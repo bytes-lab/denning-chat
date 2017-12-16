@@ -44,10 +44,6 @@ define([
             switchPage($('#loginPage'));
         },
 
-        forgot: function() {
-            switchPage($('#forgotPage'));
-        },
-
         logInFirebase: function(callback) {
             if (typeof callback === 'function') {
                 User.reLogInFirebasePhone(function(authParams) {

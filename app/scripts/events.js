@@ -526,12 +526,7 @@ define([
 
             /* login page
             ----------------------------------------------------- */
-            $('#forgot').on('click', function(event) {
-                Helpers.log('forgot password');
-                event.preventDefault();
-                UserView.forgot();
-            });
-
+           
             $('#loginForm').on('click submit', function(event) {
                 Helpers.log('authorize user');
                 event.preventDefault();
