@@ -81,7 +81,6 @@ define([
             var token;
 
             this.setHtml5Patterns();
-            this.preloader();
 
             // QB SDK initialization
             // Checking if autologin was chosen
@@ -106,13 +105,6 @@ define([
             this.listeners.init();
 
             Helpers.log('App init', this);
-        },
-
-        preloader: function() {
-            var spinner = $('#welcomePage .l-spinner');
-
-            spinner.addClass('is-hidden');
-            spinner.prevAll().removeClass('is-hidden');
         },
 
         setHtml5Patterns: function() {
