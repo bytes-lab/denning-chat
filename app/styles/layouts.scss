@@ -199,18 +199,16 @@
 }
 .l-header-logo {
     height: 32px;
-    width: 180px;
+    width: 150px;
     display: flex;
     justify-content: space-between;
     align-items: center;
 }
-    .l-header-logo .l-header-logo-text {
-        text-transform: uppercase;
-        font-family: Roboto;
-        font-size: 18px;
-        letter-spacing: 3px;
-        color: #778594;
-    }
+.l-header-logo .l-header-logo-text {
+    font-family: Roboto;
+    font-size: 18px;
+    color: #778594;
+}
 .l-content {
     position: relative;
     height: 100%;

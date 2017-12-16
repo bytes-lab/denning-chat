@@ -11,7 +11,7 @@ module.exports = function(grunt) {
     require('load-grunt-tasks')(grunt);
 
     // configurable paths
-    var yeomanConfig = {
+    var dchatConfig = {
         app: 'app',
         dist: 'dist',
         originalScriptTag: '<script src="scripts/main.js"></script>',
@@ -19,23 +19,23 @@ module.exports = function(grunt) {
     };
 
     grunt.initConfig({
-        yeoman: yeomanConfig,
+        dchat: dchatConfig,
         pkg: grunt.file.readJSON('bower.json'),
         banner: '/* <%= pkg.name %> - v<%= pkg.version %> - <%= grunt.template.today("yyyy-mm-dd") %> */\n',
 
         clean: {
-            dev: ['.sass-cache', '.tmp', '<%= yeoman.app %>/.css'],
-            dist: ['.sass-cache', '.tmp', '<%= yeoman.app %>/.css',
-                '<%= yeoman.dist %>/scripts', '<%= yeoman.dist %>/styles', '<%= yeoman.dist %>/vendor'
+            dev: ['.sass-cache', '.tmp', '<%= dchat.app %>/.css'],
+            dist: ['.sass-cache', '.tmp', '<%= dchat.app %>/.css',
+                '<%= dchat.dist %>/scripts', '<%= dchat.dist %>/styles', '<%= dchat.dist %>/vendor'
             ],
-            tmpBuild: ['<%= yeoman.app %>/scripts/.build.js'],
-            tails: ['<%= yeoman.dist %>/_index.html']
+            tmpBuild: ['<%= dchat.app %>/scripts/.build.js'],
+            tails: ['<%= dchat.dist %>/_index.html']
         },
 
         sass: {
             dist: {
                 files: {
-                    '<%= yeoman.app %>/.css/main.css': '<%= yeoman.app %>/styles/main.scss'
+                    '<%= dchat.app %>/.css/main.css': '<%= dchat.app %>/styles/main.scss'
                 }
             }
         },
@@ -47,14 +47,14 @@ module.exports = function(grunt) {
                     amd: true
                 },
                 files: {
-                    '.tmp/scripts/templates.js': ['<%= yeoman.app %>/scripts/templates/*.hbs']
+                    '.tmp/scripts/templates.js': ['<%= dchat.app %>/scripts/templates/*.hbs']
                 }
             }
         },
 
         bower: {
             all: {
-                rjsConfig: '<%= yeoman.app %>/scripts/main.js',
+                rjsConfig: '<%= dchat.app %>/scripts/main.js',
                 options: {
                     exclude: ['jquery', 'modernizr', 'requirejs']
                 }
@@ -64,11 +64,11 @@ module.exports = function(grunt) {
         requirejs: {
             dist: {
                 options: {
-                    baseUrl: '<%= yeoman.app %>/scripts',
-                    mainConfigFile: "<%= yeoman.app %>/scripts/main.js",
+                    baseUrl: '<%= dchat.app %>/scripts',
+                    mainConfigFile: "<%= dchat.app %>/scripts/main.js",
                     name: 'main',
                     optimize: 'none',
-                    out: "<%= yeoman.app %>/scripts/.build.js",
+                    out: "<%= dchat.app %>/scripts/.build.js",
 
                     paths: {
                         'templates': '.tmp/scripts/templates'
@@ -85,34 +85,34 @@ module.exports = function(grunt) {
                 spawn: false
             },
             css: {
-                files: ['<%= yeoman.app %>/styles/{,*/}*.scss'],
+                files: ['<%= dchat.app %>/styles/{,*/}*.scss'],
                 tasks: ['sass']
             },
             handlebars: {
                 files: [
-                    '<%= yeoman.app %>/scripts/templates/*.hbs'
+                    '<%= dchat.app %>/scripts/templates/*.hbs'
                 ],
                 tasks: ['handlebars']
             },
             js: {
                 files: [
-                    '<%= yeoman.app %>/scripts/*.js', 
-                    '<%= yeoman.app %>/scripts/**/*.js'
+                    '<%= dchat.app %>/scripts/*.js', 
+                    '<%= dchat.app %>/scripts/**/*.js'
                 ],
                 tasks: ['build_js']
             },
-            other: {
+            html: {
                 files: [
-                    '<%= yeoman.app %>/index.html'
+                    '<%= dchat.app %>/index.html'
                 ],
-                tasks: ['build']
+                tasks: ['htmlmin']
             }
         },
 
         useminPrepare: {
-            html: '<%= yeoman.app %>/index.html',
+            html: '<%= dchat.app %>/index.html',
             options: {
-                dest: '<%= yeoman.dist %>'
+                dest: '<%= dchat.dist %>'
             }
         },
 
@@ -132,9 +132,9 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>/images',
-                    src: '{,*/}*.{png,jpg,jpeg,svg,gif}',
-                    dest: '<%= yeoman.dist %>/images'
+                    cwd: '<%= dchat.app %>/images',
+                    src: '{,*/}*.{png,jpg,jpeg,svg,gif,ico}',
+                    dest: '<%= dchat.dist %>/images'
                 }]
             }
         },
@@ -142,7 +142,7 @@ module.exports = function(grunt) {
         htmlmin: {
             dist: {
                 files: {
-                    '<%= yeoman.dist %>/_index.html': '<%= yeoman.app %>/index.html'
+                    '<%= dchat.dist %>/_index.html': '<%= dchat.app %>/index.html'
                 }
             },
             min: {
@@ -152,8 +152,8 @@ module.exports = function(grunt) {
                     minifyJS: true
                 },
                 files: {
-                    '<%= yeoman.dist %>/index.html': '<%= yeoman.dist %>/_index.html',
-                    '<%= yeoman.dist %>/404.html': '<%= yeoman.app %>/404.html'
+                    '<%= dchat.dist %>/index.html': '<%= dchat.dist %>/_index.html',
+                    '<%= dchat.dist %>/404.html': '<%= dchat.app %>/404.html'
                 }
             }
         },
@@ -162,18 +162,18 @@ module.exports = function(grunt) {
             dist: {
                 files: {
                     src: [
-                        '<%= yeoman.dist %>/scripts/{,*/}*.js',
-                        '<%= yeoman.dist %>/styles/{,*/}*.css',
-                        '<%= yeoman.dist %>/vendor/{,*/}*.js',
+                        '<%= dchat.dist %>/scripts/{,*/}*.js',
+                        '<%= dchat.dist %>/styles/{,*/}*.css',
+                        '<%= dchat.dist %>/vendor/{,*/}*.js',
                     ]
                 }
             }
         },
 
         usemin: {
-            html: ['<%= yeoman.dist %>/{,*/}*.html'],
+            html: ['<%= dchat.dist %>/{,*/}*.html'],
             options: {
-                dirs: ['<%= yeoman.dist %>']
+                dirs: ['<%= dchat.dist %>']
             }
         },
 
@@ -181,12 +181,12 @@ module.exports = function(grunt) {
             dist: {
                 files: [{
                     expand: true,
-                    cwd: '<%= yeoman.app %>',
+                    cwd: '<%= dchat.app %>',
                     src: [
                         '*.{ico,png}',
                         'audio/{,*/}*.*'
                     ],
-                    dest: '<%= yeoman.dist %>'
+                    dest: '<%= dchat.dist %>'
                 }]
             }
         },
@@ -203,14 +203,14 @@ module.exports = function(grunt) {
                 options: {
                     base: [
                         '.tmp',
-                        '<%= yeoman.app %>'
+                        '<%= dchat.app %>'
                     ]
                 }
             },
             dist: {
                 options: {
                     protocol: 'https',
-                    base: '<%= yeoman.dist %>'
+                    base: '<%= dchat.dist %>'
                 }
             }
         },
@@ -222,8 +222,8 @@ module.exports = function(grunt) {
             },
             all: [
                 'Gruntfile.js',
-                '<%= yeoman.app %>/scripts/{,*/}*.js',
-                '!<%= yeoman.app %>/vendor/*'
+                '<%= dchat.app %>/scripts/{,*/}*.js',
+                '!<%= dchat.app %>/vendor/*'
             ]
         },
 
@@ -238,8 +238,8 @@ module.exports = function(grunt) {
                         debugQB: '0'
                     }
                 },
-                src: '<%= yeoman.app %>/configs/environment.js',
-                dest: '<%= yeoman.app %>/configs/main_config.js'
+                src: '<%= dchat.app %>/configs/environment.js',
+                dest: '<%= dchat.app %>/configs/main_config.js'
             },
             dev: {
                 options: {
@@ -251,12 +251,12 @@ module.exports = function(grunt) {
                         debugQB: '1'
                     }
                 },
-                src: '<%= yeoman.app %>/configs/environment.js',
-                dest: '<%= yeoman.app %>/configs/main_config.js'
+                src: '<%= dchat.app %>/configs/environment.js',
+                dest: '<%= dchat.app %>/configs/main_config.js'
             },
             local: {
-                src: '<%= yeoman.app %>/config.js',
-                dest: '<%= yeoman.app %>/configs/main_config.js'
+                src: '<%= dchat.app %>/config.js',
+                dest: '<%= dchat.app %>/configs/main_config.js'
             }
         }
     });
@@ -268,12 +268,12 @@ module.exports = function(grunt) {
     });
 
     grunt.registerTask('createTmpScriptTag', function(rollBack) {
-        var path = yeomanConfig.app + '/index.html';
+        var path = dchatConfig.app + '/index.html';
         var indexFile = grunt.file.read(path);
         if (typeof rollBack === 'undefined') {
-            grunt.file.write(path, indexFile.replace(yeomanConfig.originalScriptTag, yeomanConfig.tmpScriptTag));
+            grunt.file.write(path, indexFile.replace(dchatConfig.originalScriptTag, dchatConfig.tmpScriptTag));
         } else {
-            grunt.file.write(path, indexFile.replace(yeomanConfig.tmpScriptTag, yeomanConfig.originalScriptTag));
+            grunt.file.write(path, indexFile.replace(dchatConfig.tmpScriptTag, dchatConfig.originalScriptTag));
             grunt.task.run(['clean:tmpBuild']);
         }
     });
