@@ -1,0 +1,22 @@
+.sass-cache
+app/.css
+.tmp
+
+# bower & npm packages
+app/bower_components
+node_modules
+npm-debug.log
+debug.log
+
+# builded QM
+dist/*
+
+# *Storm
+.idea/*
+.idea/workspace.xml
+
+# *Sublime
+*.sublime-*
+
+config.js
+main_config.js
