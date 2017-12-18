@@ -1148,11 +1148,13 @@ define([
                     $elem = $this.clone()
                                  .addClass('image_preview')
                                  .html('<img src="'+ url +'" alt="picture"/>');
+                    $message.append($elem);
                 } else if (urlCache[url] !== null && Helpers.isValidUrl(url)) {
                     $elem = $this.clone().addClass('og_block');
 
                     if (urlCache[url]) {
                         $elem.html(QMHtml.Messages.urlPreview(urlCache[url]));
+                        $message.append($elem);
                     } else {
                         Helpers.getOpenGraphInfo({
                             'url': url,
@@ -1166,6 +1168,7 @@ define([
                                 };
 
                                 urlCache[url] = params;
+                                $message.append($elem);
                                 $elem.html(QMHtml.Messages.urlPreview(params));
                             } else {
                                 params = {
@@ -1175,14 +1178,9 @@ define([
                                 };
 
                                 urlCache[url] = null;
-                                $elem.remove();
                             }
                         });
                     }
-                }
-
-                if ($elem) {
-                    $message.append($elem);
                 }
             });
 

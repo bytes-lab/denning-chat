@@ -348,7 +348,6 @@ module.exports = function(grunt) {
         'createTmpScriptTag',
         'useminPrepare',
         'concat',
-        'uglify',
         'newer:imagemin',
         'rev',
         'usemin',
