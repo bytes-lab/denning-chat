@@ -136,7 +136,11 @@ define([
 
                 switch (type) {
                     case '1':
-                        added_occupant_ids = _.without(message.added_occupant_ids.split(',').map(Number), contact.id);
+                        if (message.added_occupant_ids) 
+                            added_occupant_ids = _.without(message.added_occupant_ids.split(',').map(Number), contact.id);
+                        else 
+                            added_occupant_ids = [];
+                        
                         occupants_names = Helpers.Messages.getOccupantsNames(added_occupant_ids, User, contacts);
 
                         html = '<article class="message message_service l-flexbox l-flexbox_alignstretch" data-id="' + message.sender_id + '" data-type="' + type + '">';
