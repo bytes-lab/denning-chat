@@ -1171,12 +1171,6 @@ define([
                                 $message.append($elem);
                                 $elem.html(QMHtml.Messages.urlPreview(params));
                             } else {
-                                params = {
-                                    title: 'Error 404 (Not Found)',
-                                    description: url,
-                                    picture: ''
-                                };
-
                                 urlCache[url] = null;
                             }
                         });
