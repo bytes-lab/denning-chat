@@ -53,20 +53,15 @@ define([
                 html;
 
             if (file) {
-                // errMsg = self.validateFile(file);
+                // progress bar DOM
+                html = QMHtml.Attach.attach({
+                    'fileName': file.name,
+                    'fileSizeCrop': fileSizeCrop,
+                    'fileSizeUnit': fileSizeUnit,
+                    'id': id
+                });
 
-                // if (errMsg) {
-                //     self.pastErrorMessage(errMsg, objDom, chat);
-                // } else {
-                    html = QMHtml.Attach.attach({
-                        'fileName': file.name,
-                        'fileSizeCrop': fileSizeCrop,
-                        'fileSizeUnit': fileSizeUnit,
-                        'id': id
-                    });
-                // }
-
-                chat.append(html);
+                chat.append(html);  
 
                 if (objDom) {
                     objDom.val('');

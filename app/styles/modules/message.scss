@@ -105,6 +105,9 @@ article.message[data-status="typing"] > div {
 .message-body a {
     color: #0d70b3;
 }
+.message-body .icon {
+    max-width: 98px;
+}
 .message-content.indent {
     padding-left: 47px;
     width: 492px;
