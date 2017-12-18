@@ -44,7 +44,7 @@ define([
     var unreadDialogs = {};
 
     var TITLE_NAME = 'Denning Chat',
-        FAVICON_COUNTER = 'images/favicon_counter.png',
+        FAVICON_COUNTER = 'images/favicon.ico',
         FAVICON = 'images/favicon.ico';
 
     function DialogView(app) {

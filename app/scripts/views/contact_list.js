@@ -142,6 +142,7 @@ define([
                 }
             }), 'id').map(String);
             friends = _.filter(sortedContacts, function(el) {
+                return true;
                 return roster[el] && roster[el].subscription !== 'none';
             });
             Helpers.log('Friends', friends);
