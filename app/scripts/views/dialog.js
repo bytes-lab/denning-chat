@@ -43,9 +43,9 @@ define([
 
     var unreadDialogs = {};
 
-    var TITLE_NAME = 'Q-municate',
+    var TITLE_NAME = 'Denning Chat',
         FAVICON_COUNTER = 'images/favicon_counter.png',
-        FAVICON = 'images/favicon.png';
+        FAVICON = 'images/favicon.ico';
 
     function DialogView(app) {
         self = this;
