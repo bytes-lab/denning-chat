@@ -553,7 +553,8 @@ define([
 
             // update roster
             if (typeof roster[id] === 'undefined') {
-                return true;
+                roster[id] = {};
+                // return true;
             }
 
             roster[id].status = !type;

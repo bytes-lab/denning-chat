@@ -901,9 +901,10 @@ define([
     function getStatus(status) {
         var str = '';
 
-        if (!status || status.subscription === 'none') {
-            str += '<span class="status status_request"></span>';
-        } else if (status && status.status) {
+        // if (!status || status.subscription === 'none') {
+        //     str += '<span class="status status_request"></span>';
+        // } else 
+        if (status && status.status) {
             str += '<span class="status status_online"></span>';
         } else {
             str += '<span class="status"></span>';
