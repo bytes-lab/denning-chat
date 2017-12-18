@@ -350,7 +350,6 @@ module.exports = function(grunt) {
         'concat',
         'newer:imagemin',
         'rev',
-        'usemin',
         'newer:copy',
         'createTmpScriptTag:rollBack',
     ]);

@@ -219,11 +219,11 @@ define([
 
                             // not show dialog if user has not confirmed this contact
                             notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {};
-                            if (private_id && (!roster[private_id] ||
-                                (roster[private_id] && roster[private_id].subscription === 'none' &&
-                                !roster[private_id].ask && notConfirmed[private_id]))) {
-                                continue;
-                            }
+                            // if (private_id && (!roster[private_id] ||
+                            //     (roster[private_id] && roster[private_id].subscription === 'none' &&
+                            //     !roster[private_id].ask && notConfirmed[private_id]))) {
+                            //     continue;
+                            // }
 
                             self.addDialogItem(dialog, true, parameter);
                         }
@@ -538,9 +538,9 @@ define([
 
                 $('.l-chat[data-dialog="' + dialog_id + '"] .j-chatOccupants').append($(html));
 
-                if (dialog.get('type') === 3 && (!status || status.subscription === 'none')) {
-                    $('.l-chat:visible').addClass('is-request');
-                }
+                // if (dialog.get('type') === 3 && (!status || status.subscription === 'none')) {
+                //     $('.l-chat:visible').addClass('is-request');
+                // }
 
                 if (!VoiceMessage.supported) {
                     VoiceMessage.blockRecorder();
