@@ -53,18 +53,18 @@ define([
                 html;
 
             if (file) {
-                errMsg = self.validateFile(file);
+                // errMsg = self.validateFile(file);
 
-                if (errMsg) {
-                    self.pastErrorMessage(errMsg, objDom, chat);
-                } else {
+                // if (errMsg) {
+                //     self.pastErrorMessage(errMsg, objDom, chat);
+                // } else {
                     html = QMHtml.Attach.attach({
                         'fileName': file.name,
                         'fileSizeCrop': fileSizeCrop,
                         'fileSizeUnit': fileSizeUnit,
                         'id': id
                     });
-                }
+                // }
 
                 chat.append(html);
 
