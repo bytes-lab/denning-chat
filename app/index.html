@@ -272,13 +272,13 @@
             </ul>
             <footer class="footer_settings_menu">
                 <label class="footer_settings">
-                    <a class="footer_settings_link" href="//github.com/QuickBlox/q-municate-web/issues/new" target="_blank">
+                    <a class="footer_settings_link" href="javascript:void();">
                         <div class="i-feedback_settings i-footer_settings"></div>
                         <span class="footer_settings_label">Write Feedback</span>
                     </a>
                 </label>
                 <label class="footer_settings">
-                    <a class="footer_settings_link" href="//q-municate.com/" target="_blank">
+                    <a class="footer_settings_link" href="javascript:void();">
                         <div class="i-help_settings i-footer_settings"></div>
                         <span class="footer_settings_label">About</span>
                     </a>
@@ -519,80 +519,80 @@
     <% if (type === 3) { %>
     <section id="chat_<%= dialog_id %>" class="l-chat l-chat_private presence-listener j-chatItem" data-dialog="<%= dialog_id %>" data-id="<%= user_id %>" data-jid="<%= jid %>">
         <header class="l-chat-header l-flexbox l-flexbox_flexbetween">
-            <% } else { %>
-            <section id="chat_<%= dialog_id %>" class="l-chat l-chat_group is-group j-chatItem" data-dialog="<%= dialog_id %>" data-jid="<%= jid %>">
-                <header class="l-chat-header l-flexbox l-flexbox_flexbetween groupTitle">
-                    <% } %>
-                    <div class="chat-title">
-                        <% if (type === 3) { %>
-                        <div class="l-flexbox_inline">
-                            <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" style="background-image:url(<%= icon %>)" data-id="<%= user_id %>" data-name="<%= name %>"></div>
-                            <h2 class="name name_chat profileUserName" title="<%= name %>" data-id="<%= user_id %>"><%= name %></h2>
-                            <%= status %>
-                        </div>
-                        <% } else { %>
-                        <div class="l-flexbox_inline">
-                            <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" style="background-image:url(<%= icon %>)" data-name="<%= name %>"></div>
-                            <input class="avatar_file avatar is-hidden" type="file" accept="image/*" data-dialog="<%= dialog_id %>">
-                            <h2 class="name name_chat" contenteditable="true" title="<%= name %>"><%= name %></h2>
-                            <span class="pencil is-hidden"></span>
-                            <span class="triangle j-triangle triangle_down"></span>
-                            <span class="triangle j-triangle triangle_up is-hidden"></span>
-                        </div>
-                        <% } %>
-                    </div>
-                    <div class="chat-controls">
-                        <% if (type === 3) { %>
-                        <button class="btn_chat btn_chat_videocall videoCall" data-id="<%= user_id %>" data-balloon="Make a video call" data-balloon-pos="down">
-                            <img src="images/icon-videocall.svg" alt="Make a Video Call">
-                        </button>
-                        <button class="btn_chat btn_chat_audiocall audioCall" data-id="<%= user_id %>" data-balloon="Make an audio call" data-balloon-pos="down">
-                            <img src="images/icon-audiocall.svg" alt="Make an Audio Call">
-                        </button>
-                        <button class="btn_chat btn_chat_profile userDetails" data-id="<%= user_id %>" data-balloon="Show user profile" data-balloon-pos="down">
-                            <img src="images/icon-profile.svg" alt="Show user profile">
-                        </button>
-                        <button class="btn_chat btn_chat_add createGroupChat" data-ids="<%= occupantsIds.join() %>" data-private="1" data-balloon="Create a new group chat with the current user" data-balloon-pos="down">
-                            <img src="images/icon-add.svg" alt="Create a new group chat">
-                        </button>
-                        <button class="btn_chat btn_chat_delete deleteContact j-deleteContact" data-balloon="Delete contact" data-balloon-pos="down">
-                            <img src="images/icon-profile-delete.svg" alt="Delete contact">
-                        </button>
-                        <button class="btn_chat btn_chat_delete deleteChat j-deleteChat" data-balloon="Remove chat" data-balloon-pos="down">
-                            <img src="images/icon-delete.svg" alt="Remove chat">
-                        </button>
-                        <% } else { %>
-                        <button class="btn_chat btn_chat_add addToGroupChat" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>" data-balloon="Add occupants to group chat" data-balloon-pos="down">
-                            <img src="images/icon-add.svg" alt="Add occupants to group chat">
-                        </button>
-                        <button class="btn_chat btn_chat_leave deleteChat j-deleteChat" data-balloon="Leave chat and clear history" data-balloon-pos="down">
-                            <img src="images/icon-exit.svg" alt="Leave chat">
-                        </button>
-                        <% } %>
-                    </div>
-                </header>
+    <% } else { %>
+    <section id="chat_<%= dialog_id %>" class="l-chat l-chat_group is-group j-chatItem" data-dialog="<%= dialog_id %>" data-jid="<%= jid %>">
+        <header class="l-chat-header l-flexbox l-flexbox_flexbetween groupTitle">
+    <% } %>
+            <div class="chat-title">
+                <% if (type === 3) { %>
+                <div class="l-flexbox_inline">
+                    <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" style="background-image:url(<%= icon %>)" data-id="<%= user_id %>" data-name="<%= name %>"></div>
+                    <h2 class="name name_chat profileUserName" title="<%= name %>" data-id="<%= user_id %>"><%= name %></h2>
+                    <%= status %>
+                </div>
+                <% } else { %>
+                <div class="l-flexbox_inline">
+                    <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" style="background-image:url(<%= icon %>)" data-name="<%= name %>"></div>
+                    <input class="avatar_file avatar is-hidden" type="file" accept="image/*" data-dialog="<%= dialog_id %>">
+                    <h2 class="name name_chat" contenteditable="true" title="<%= name %>"><%= name %></h2>
+                    <span class="pencil is-hidden"></span>
+                    <span class="triangle j-triangle triangle_down"></span>
+                    <span class="triangle j-triangle triangle_up is-hidden"></span>
+                </div>
+                <% } %>
+            </div>
+            <div class="chat-controls">
+                <% if (type === 3) { %>
+                <button class="btn_chat btn_chat_videocall videoCall" data-id="<%= user_id %>" data-balloon="Make a video call" data-balloon-pos="down">
+                    <img src="images/icon-videocall.svg" alt="Make a Video Call">
+                </button>
+                <button class="btn_chat btn_chat_audiocall audioCall" data-id="<%= user_id %>" data-balloon="Make an audio call" data-balloon-pos="down">
+                    <img src="images/icon-audiocall.svg" alt="Make an Audio Call">
+                </button>
+                <button class="btn_chat btn_chat_profile userDetails" data-id="<%= user_id %>" data-balloon="Show user profile" data-balloon-pos="down">
+                    <img src="images/icon-profile.svg" alt="Show user profile">
+                </button>
+                <button class="btn_chat btn_chat_add createGroupChat" data-ids="<%= occupantsIds.join() %>" data-private="1" data-balloon="Create a new group chat with the current user" data-balloon-pos="down">
+                    <img src="images/icon-add.svg" alt="Create a new group chat">
+                </button>
+                <button class="btn_chat btn_chat_delete deleteContact j-deleteContact" data-balloon="Delete contact" data-balloon-pos="down">
+                    <img src="images/icon-profile-delete.svg" alt="Delete contact">
+                </button>
+                <button class="btn_chat btn_chat_delete deleteChat j-deleteChat" data-balloon="Remove chat" data-balloon-pos="down">
+                    <img src="images/icon-delete.svg" alt="Remove chat">
+                </button>
+                <% } else { %>
+                <button class="btn_chat btn_chat_add addToGroupChat" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>" data-balloon="Add occupants to group chat" data-balloon-pos="down">
+                    <img src="images/icon-add.svg" alt="Add occupants to group chat">
+                </button>
+                <button class="btn_chat btn_chat_leave deleteChat j-deleteChat" data-balloon="Leave chat and clear history" data-balloon-pos="down">
+                    <img src="images/icon-exit.svg" alt="Leave chat">
+                </button>
+                <% } %>
+            </div>
+        </header>
 
-                <div class="chat-occupants-wrap j-chatOccupants"></div>
+        <div class="chat-occupants-wrap j-chatOccupants"></div>
 
-                <section id="mCS_<%= dialog_id %>" class="l-chat-content j-scrollbar_message"></section>
+        <section id="mCS_<%= dialog_id %>" class="l-chat-content j-scrollbar_message"></section>
 
-                <footer class="l-chat-footer">
-                    <div class="footer_btn j-toBottom btn_to_bottom"></div>
-                    <form class="l-message j-message" action="#">
-                        <div id="textarea_<%= dialog_id %>" class="form-input-message textarea j-textarea" tabindex="0" contenteditable="true" ondragend="return true" placeholder="Type a message"><%= draft %></div>
-                        <button class="j-footer_btn l-input-buttons btn_input_send j-btn_input_send" data-balloon="Send message" data-balloon-pos="up"></button>
-                        <input class="attachment j-attachment" type="file" accept="image/*,video/mp4,audio/mp3">
-                    </form>
-                    <div class="j-typing l-typing"></div>
-                    <div class="l-input-menu">
-                        <div class="j-footer_btn l-input-buttons btn_audio_record j-btn_audio_record" data-balloon-length="medium" data-balloon="Record audio" data-balloon-pos="up"></div>
-                        <div class="j-footer_btn l-input-buttons btn_input_smile j-btn_input_smile" data-balloon="Add smiles" data-balloon-pos="up"></div>
-                        <div class="j-footer_btn l-input-buttons btn_input_location j-btn_input_location" data-balloon="Send location" data-balloon-pos="up"></div>
-                        <div class="j-footer_btn l-input-buttons btn_sendlocation j-send_location <%= location %>" data-balloon-length="small" data-balloon="Send your location with messages" data-balloon-pos="up"></div>
-                        <div class="j-footer_btn l-input-buttons btn_input_attach j-btn_input_attach" data-balloon="Send attachment file" data-balloon-pos="up"></div>
-                    </div>
-                </footer>
-            </section>
+        <footer class="l-chat-footer">
+            <div class="footer_btn j-toBottom btn_to_bottom"></div>
+            <form class="l-message j-message" action="#">
+                <div id="textarea_<%= dialog_id %>" class="form-input-message textarea j-textarea" tabindex="0" contenteditable="true" ondragend="return true" placeholder="Type a message"><%= draft %></div>
+                <button class="j-footer_btn l-input-buttons btn_input_send j-btn_input_send" data-balloon="Send message" data-balloon-pos="up"></button>
+                <input class="attachment j-attachment" type="file" accept="*/*">
+            </form>
+            <div class="j-typing l-typing"></div>
+            <div class="l-input-menu">
+                <div class="j-footer_btn l-input-buttons btn_audio_record j-btn_audio_record" data-balloon-length="medium" data-balloon="Record audio" data-balloon-pos="up"></div>
+                <div class="j-footer_btn l-input-buttons btn_input_smile j-btn_input_smile" data-balloon="Add smiles" data-balloon-pos="up"></div>
+                <div class="j-footer_btn l-input-buttons btn_input_location j-btn_input_location" data-balloon="Send location" data-balloon-pos="up"></div>
+                <div class="j-footer_btn l-input-buttons btn_sendlocation j-send_location <%= location %>" data-balloon-length="small" data-balloon="Send your location with messages" data-balloon-pos="up"></div>
+                <div class="j-footer_btn l-input-buttons btn_input_attach j-btn_input_attach" data-balloon="Send attachment file" data-balloon-pos="up"></div>
+            </div>
+        </footer>
+    </section>
 </script>
 
 <script id="QMPlayer" type="text/template">
