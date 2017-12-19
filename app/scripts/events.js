@@ -875,6 +875,7 @@ define([
                     dialogItem.click();
                 } else {
                     Dialog.restorePrivateDialog(id, function() {
+                        ContactListView.importFBFriend(id, true);
                         dialogItem = $('.j-dialogItem[data-id="' + id + '"]').find('.contact');
                         dialogItem.click();
                     });

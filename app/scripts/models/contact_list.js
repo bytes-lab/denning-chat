@@ -61,9 +61,11 @@ define([
                 users.items.forEach(function(qbUser) {
                     var user = qbUser.user;
                     var contact = Contact.create(user);
+                    var ContactListView = self.app.views.ContactList;
 
                     self.contacts[user.id] = contact;
                     localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
+                    ContactListView.importFBFriend(user.id);
                 });
 
                 Helpers.log('Contact List is updated with Denning Users', self);
@@ -98,9 +100,11 @@ define([
                     users.items.forEach(function(qbUser) {
                         var user = qbUser.user;
                         var contact = Contact.create(user);
-
+                        var ContactListView = self.app.views.ContactList;
+                        
                         self.contacts[user.id] = contact;
                         localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
+                        // ContactListView.importFBFriend(user.id);
                     });
 
                     Helpers.log('Contact List is updated', self);

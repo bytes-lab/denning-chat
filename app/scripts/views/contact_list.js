@@ -142,7 +142,7 @@ define([
                 }
             }), 'id').map(String);
             friends = _.filter(sortedContacts, function(el) {
-                // return true;
+                return true;
                 return roster[el] && roster[el].subscription !== 'none';
             });
             Helpers.log('Friends', friends);
@@ -181,7 +181,7 @@ define([
 
         // subscriptions
 
-        importFBFriend: function(id) {
+        importFBFriend: function(id, private_created) {
             var jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
                 roster = ContactList.roster;
 
