@@ -465,30 +465,9 @@ define([
             ContactList.saveNotConfirmed(notConfirmed);
 
             ContactList.add([id], null, function() {
-                duplicate = $requestList.find('.j-incomingContactRequest[data-jid="' + jid + '"]').length;
-
-                html = '<li class="list-item j-incomingContactRequest" data-jid="' + jid + '">';
-                html += '<a class="contact l-flexbox" href="#">';
-                html += '<div class="l-flexbox_inline">';
-                html += '<div class="contact-avatar avatar profileUserAvatar" style="background-image:url(' + (typeof contacts[id] !== 'undefined' ? contacts[id].avatar_url : '') + ')" data-id="' + id + '"></div>';
-                html += '<span class="name profileUserName" data-id="' + id + '">' + (typeof contacts[id] !== 'undefined' ? contacts[id].full_name : '') + '</span>';
-                html += '</div><div class="request-controls l-flexbox">';
-                html += '<button class="request-button request-button_cancel j-requestCancel">&#10005;</button>';
-                html += '<button class="request-button request-button_ok j-requestConfirm">&#10003;</button>';
-                html += '</div></a></li>';
-
-                if (!duplicate) {
-                    $requestList.prepend(html);
-                }
-
-                $('#requestsList').removeClass('is-hidden');
-                $('#emptyList').addClass('is-hidden');
-
-                // if ($recentList.find('.list-item[data-id="' + id + '"]').length) {
-                    $recentList.find('.list-item[data-id="' + id + '"]').remove();
-                    self.autoConfirm(id);
-                    Helpers.Dialogs.isSectionEmpty($recentList);
-                // }
+                $recentList.find('.list-item[data-id="' + id + '"]').remove();
+                self.autoConfirm(id);
+                Helpers.Dialogs.isSectionEmpty($recentList);
             }, 'subscribe');
         },
 
