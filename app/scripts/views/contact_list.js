@@ -142,7 +142,7 @@ define([
                 }
             }), 'id').map(String);
             friends = _.filter(sortedContacts, function(el) {
-                return true;
+                // return true;
                 return roster[el] && roster[el].subscription !== 'none';
             });
             Helpers.log('Friends', friends);
@@ -484,11 +484,11 @@ define([
                 $('#requestsList').removeClass('is-hidden');
                 $('#emptyList').addClass('is-hidden');
 
-                if ($recentList.find('.list-item[data-id="' + id + '"]').length) {
+                // if ($recentList.find('.list-item[data-id="' + id + '"]').length) {
                     $recentList.find('.list-item[data-id="' + id + '"]').remove();
                     self.autoConfirm(id);
                     Helpers.Dialogs.isSectionEmpty($recentList);
-                }
+                // }
             }, 'subscribe');
         },
 
@@ -553,8 +553,8 @@ define([
 
             // update roster
             if (typeof roster[id] === 'undefined') {
+                return true;
                 roster[id] = {};
-                // return true;
             }
 
             roster[id].status = !type;
