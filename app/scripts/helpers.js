@@ -364,5 +364,17 @@ define([
         return /.svg|.png|.jpg|.jpeg|.gif/i.test(url);
     };
 
+    Helpers.getEmails = function(denningUsers) {
+        var users_ = [];
+        _.each(denningUsers, function(users, key) {
+            _.each(users, function(_users) {
+                _.each(_users.users, function(user) {
+                    users_.push(user.email)
+                })
+            });
+        })
+        return _.uniq(users_)
+    };    
+
     return Helpers;
 });

@@ -20,6 +20,7 @@ define([
     function ContactList(app) {
         this.app = app;
         this.roster = {};
+        this.denningUsers = {};
         this.contacts = getContacts();
         contact_ids = Object.keys(this.contacts).map(Number);
     }
@@ -36,6 +37,37 @@ define([
 
         saveHiddenDialogs: function(hiddenDialogs) {
             sessionStorage.setItem('QM.hiddenDialogs', JSON.stringify(hiddenDialogs));
+        },
+
+        addDenningUsers: function(users) {
+            var QBApiCalls = this.app.service,
+                Contact = this.app.models.Contact,
+                self = this,
+                emails = Helpers.getEmails(users),
+                params;
+
+            self.denningUsers = users;
+
+            params = {
+                filter: {
+                    field: 'email',
+                    param: 'in',
+                    value: _.difference(emails, _.pluck(self.contacts, 'email'))
+                },
+                per_page: 10000
+            };
+            
+            QBApiCalls.listUsers(params, function(users) {
+                users.items.forEach(function(qbUser) {
+                    var user = qbUser.user;
+                    var contact = Contact.create(user);
+
+                    self.contacts[user.id] = contact;
+                    localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
+                });
+
+                Helpers.log('Contact List is updated with Denning Users', self);
+            });
         },
 
         add: function(occupants_ids, dialog, callback, subscribe) {

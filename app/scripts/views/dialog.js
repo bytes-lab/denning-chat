@@ -186,15 +186,14 @@ define([
                     clearTimeout(errorDialogsLoadingID);
                 }
 
-
+                // get contacts from denning api
                 var base_url = 'http://denningsoft.dlinkddns.com/denningwcf/online/v2/chat/contact?ssid={334E910C-CC68-4784-9047-0F23D37C9CF9}&uid=';
                 $.ajax({
                     type: 'get',
                     url: base_url + self.app.models.User.contact.email,
                     data: {},
                     success: function(users) {
-                        self.denningUsers = users;
-                        resolve(get_qb_users());
+                        ContactList.addDenningUsers(users);
                     }
                 });  
 
