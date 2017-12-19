@@ -94,13 +94,13 @@ module.exports = function(grunt) {
                 ],
                 tasks: ['handlebars']
             },
-            js: {
-                files: [
-                    '<%= dchat.app %>/scripts/*.js', 
-                    '<%= dchat.app %>/scripts/**/*.js'
-                ],
-                tasks: ['build_js']
-            },
+            // js: {
+            //     files: [
+            //         '<%= dchat.app %>/scripts/*.js', 
+            //         '<%= dchat.app %>/scripts/**/*.js'
+            //     ],
+            //     tasks: ['build_js']
+            // },
             html: {
                 files: [
                     '<%= dchat.app %>/index.html'
