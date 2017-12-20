@@ -117,7 +117,8 @@
 .popup_profile,
 .popup_search,
 .temp-box {
-    width: 460px;
+    max-width: 460px;
+    width: 90%;
     height: 586px;
 }
 .popup-header {
