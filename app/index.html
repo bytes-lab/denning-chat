@@ -517,18 +517,26 @@
                 <% if (type === 3) { %>
                 <div class="l-flexbox_inline">
                     <button class="open_sidebar j-open_sidebar"></button>
-                    <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" data-id="<%= user_id %>" data-name="<%= name %>">
-                        <i class="material-icons dialog">account_circle</i>
-                    </div>
+                    <% if (icon == 'images/ava-single.svg') { %>
+                        <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" data-id="<%= user_id %>" data-name="<%= name %>">
+                            <i class="material-icons dialog">account_circle</i>
+                        </div>
+                    <% } else { %>
+                        <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" data-id="<%= user_id %>" data-name="<%= name %>" style="background-image:url(<%= icon %>)"></div>
+                    <% } %>
                     <h2 class="name name_chat profileUserName" title="<%= name %>" data-id="<%= user_id %>"><%= name %></h2>
                     <%= status %>
                 </div>
                 <% } else { %>
                 <div class="l-flexbox_inline">
                     <button class="open_sidebar j-open_sidebar"></button>
-                    <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" data-name="<%= name %>">
-                        <i class="material-icons dialog">supervisor_account</i>
-                    </div>
+                    <% if (icon == 'images/ava-group.svg') { %>
+                        <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" data-name="<%= name %>">
+                            <i class="material-icons dialog">supervisor_account</i>
+                        </div>
+                    <% } else { %>
+                        <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" data-name="<%= name %>" style="background-image:url(<%= icon %>)"></div>
+                    <% } %>
                     <input class="avatar_file avatar is-hidden" type="file" accept="image/*" data-dialog="<%= dialog_id %>">
                     <h2 class="name name_chat" contenteditable="true" title="<%= name %>"><%= name %></h2>
                     <span class="pencil is-hidden"></span>

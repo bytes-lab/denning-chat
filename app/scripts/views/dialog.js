@@ -367,7 +367,14 @@ define([
             html  = '<li class="list-item dialog-item j-dialogItem presence-listener" data-dialog="' + dialog_id + '" data-id="' + private_id + '">';
             html += '<div class="contact l-flexbox" href="#">';
             html += '<div class="l-flexbox_inline">';
-            html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" style="background-image: url(' + icon + ')" data-id="' + private_id + '"></div>';
+
+            if (icon == 'images/ava-single.svg') {
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons dialog">account_circle</i></div>';
+            } else if (icon == 'images/ava-group.svg') {
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons dialog">supervisor_account</i></div>';
+            } else {
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" style="background-image: url(' + icon + ')" data-id="' + private_id + '"></div>';
+            } 
             html += '<div class="dialog_body"><span class="name name_dialog profileUserName" data-id="' + private_id + '">' + name + '</span>';
             html += '<span class="last_message_preview j-lastMessagePreview">' + lastMessage + '</span></div></div>';
 
