@@ -377,6 +377,15 @@ define([
                 html += '<span class="status"></span>';
             }
 
+            if (!status || status.subscription === 'none') {
+                var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {};
+
+                // update notConfirmed people list
+                notConfirmed[private_id] = true;
+                self.app.models.ContactList.saveNotConfirmed(notConfirmed);
+                self.app.views.ContactList.autoConfirm(private_id);
+            }
+
             html += '<span class="last_time_preview j-lastTimePreview">' + lastTime + '</span>';
             html += '<span class="unread">' + unread_count + '</span>';
             html += '</a></li>';
@@ -912,9 +921,7 @@ define([
     function getStatus(status) {
         var str = '';
 
-        if (!status || status.subscription === 'none') {
-            str += '<span class="status status_request"></span>';
-        } else if (status && status.status) {
+        if (status && status.status) {
             str += '<span class="status status_online"></span>';
         } else {
             str += '<span class="status"></span>';

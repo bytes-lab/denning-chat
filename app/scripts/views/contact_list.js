@@ -181,7 +181,7 @@ define([
 
         // subscriptions
 
-        importFBFriend: function(id, private_created) {
+        importFBFriend: function(id) {
             var jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
                 roster = ContactList.roster;
 
@@ -314,7 +314,8 @@ define([
             });
 
             dialog = dialogs.get(dialogId);
-            Helpers.log('Dialog', dialog.toJSON());
+            if (dialog)
+                Helpers.log('Dialog', dialog.toJSON());
 
             if (isClick) {
                 QB.chat.roster.confirm(jid, function() {
