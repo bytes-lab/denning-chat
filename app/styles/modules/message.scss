@@ -109,7 +109,7 @@ article.message[data-status="typing"] > div {
     max-width: 98px;
 }
 .message-content.indent {
-    padding-left: 47px;
+    padding-left: 55px;
     width: 492px;
 }
 .message-info {
@@ -161,7 +161,7 @@ article.message[data-status="typing"] > div {
 .message-avatar.request-button_pending,
 .message-avatar.request-button_cancel,
 .message-avatar.request-button_ok {
-    margin: 0 6px;
+    margin: 0 10px;
 }
 /* preview */
 .preview {

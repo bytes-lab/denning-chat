@@ -130,6 +130,11 @@ define([
                 return false;
             });
 
+            $body.on('click', '.j-open_sidebar', function(event) {
+                $('.l-sidebar').removeClass('active');
+                $('.l-sidebar').addClass('active');
+            });
+
             $body.on('click', '#userProfile', function(event) {
                 var profileView = App.views.Profile;
 
@@ -828,6 +833,7 @@ define([
             $('.list').on('click', '.contact', function(event) {
                 if (event.target.tagName !== 'INPUT') {
                     event.preventDefault();
+                    $('.l-sidebar').removeClass('active');
                 }
             });
 

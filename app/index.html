@@ -73,7 +73,7 @@
                 <b>Not Connected.</b> Connecting...
             </div>
 
-                <aside class="l-sidebar">
+                <aside class="l-sidebar active">
                     <header class="l-header l-flexbox l-flexbox_flexbetween">
                         <div class="header-logo">
                             <a id="home" class="j-home" href="#">
@@ -518,12 +518,14 @@
             <div class="chat-title">
                 <% if (type === 3) { %>
                 <div class="l-flexbox_inline">
+                    <button class="open_sidebar j-open_sidebar"></button>
                     <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" style="background-image:url(<%= icon %>)" data-id="<%= user_id %>" data-name="<%= name %>"></div>
                     <h2 class="name name_chat profileUserName" title="<%= name %>" data-id="<%= user_id %>"><%= name %></h2>
                     <%= status %>
                 </div>
                 <% } else { %>
                 <div class="l-flexbox_inline">
+                    <button class="open_sidebar j-open_sidebar"></button>
                     <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" style="background-image:url(<%= icon %>)" data-name="<%= name %>"></div>
                     <input class="avatar_file avatar is-hidden" type="file" accept="image/*" data-dialog="<%= dialog_id %>">
                     <h2 class="name name_chat" contenteditable="true" title="<%= name %>"><%= name %></h2>
