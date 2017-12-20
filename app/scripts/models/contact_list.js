@@ -65,7 +65,6 @@ define([
 
                     self.contacts[user.id] = contact;
                     localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
-                    ContactListView.importFBFriend(user.id);
                 });
 
                 Helpers.log('Contact List is updated with Denning Users', self);
@@ -104,7 +103,6 @@ define([
                         
                         self.contacts[user.id] = contact;
                         localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
-                        // ContactListView.importFBFriend(user.id);
                     });
 
                     Helpers.log('Contact List is updated', self);
