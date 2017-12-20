@@ -315,7 +315,7 @@ define([
                     $('.profileUserPhone[data-id="' + contact.id + '"]').html(
                         '<span class="userDetails-label">Phone:</span><span class="userDetails-phone">' + contact.phone + '</span>'
                     );
-                    $('.profileUserAvatar[data-id="' + contact.id + '"]').css('background-image', 'url(' + contact.avatar_url + ')');
+                    // $('.profileUserAvatar[data-id="' + contact.id + '"]').css('background-image', 'url(' + contact.avatar_url + ')');
 
                     localStorage.setItem('QM.contact-' + contact.id, JSON.stringify(contact));
                 });
@@ -369,12 +369,13 @@ define([
             html += '<div class="l-flexbox_inline">';
 
             if (icon == 'images/ava-single.svg') {
-                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons dialog">account_circle</i></div>';
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons chat">account_circle</i></div>';
             } else if (icon == 'images/ava-group.svg') {
-                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons dialog">supervisor_account</i></div>';
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons chat">supervisor_account</i></div>';
             } else {
                 html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" style="background-image: url(' + icon + ')" data-id="' + private_id + '"></div>';
             } 
+
             html += '<div class="dialog_body"><span class="name name_dialog profileUserName" data-id="' + private_id + '">' + name + '</span>';
             html += '<span class="last_message_preview j-lastMessagePreview">' + lastMessage + '</span></div></div>';
 
