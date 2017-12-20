@@ -302,8 +302,9 @@ article.message[data-status="typing"] > div {
 }
 .video_player {
     background-color: #000;
-    width: 400px;
-    height: 225px
+    max-width: 380px;
+    width: 65%;
+    height: 215px
 }
 .media_title {
     font-weight: 500;

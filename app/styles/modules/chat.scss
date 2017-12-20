@@ -26,6 +26,9 @@
     opacity: 0;
     transition: all 0.1s;
 }
+i.material-icons.dialog {
+    font-size: 45px;
+}
 .chat-occupants-wrap.is-overlay {
     z-index: initial;
 }

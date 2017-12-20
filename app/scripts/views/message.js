@@ -338,8 +338,14 @@ define([
                             (message.stack ? ' without_border' : '') + '" data-id="' + message.sender_id + '" data-type="' + type + '">';
                         }
 
-                        html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
-                            '" style="background-image:url(' + contact.avatar_url + ')" data-id="' + message.sender_id + '"></div>';
+                        if (contact.avatar_url != 'images/ava-single.svg') {
+                            html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
+                                '" style="background-image:url(' + contact.avatar_url + ')" data-id="' + message.sender_id + '"></div>';                            
+                        } else {
+                            html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
+                                '" data-id="' + message.sender_id + '"><i class="material-icons dialog">account_circle</i></div>';                            
+                        }
+
                         html += '<div class="message-container-wrap">';
                         html += '<div class="message-container l-flexbox l-flexbox_flexbetween l-flexbox_alignstretch">';
                         html += '<div class="message-content' + (message.stack ? ' indent' : '') + '">';

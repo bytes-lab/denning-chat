@@ -20,6 +20,8 @@
     <meta name="twitter:description" content="Denning Chat - the open-source, cross platform video calling and instant messaging app from Quickblox" />
     <meta name="twitter:image:src" content="https://qm.quickblox.com/images/qm-logo.svg" />
 
+    <link href="https://fonts.googleapis.com/css?family=Roboto:400,500" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.98.1/css/materialize.min.css">
     <!-- build:css styles/build.css -->
     <link rel="stylesheet" href="bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar.css">
@@ -515,14 +517,18 @@
                 <% if (type === 3) { %>
                 <div class="l-flexbox_inline">
                     <button class="open_sidebar j-open_sidebar"></button>
-                    <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" style="background-image:url(<%= icon %>)" data-id="<%= user_id %>" data-name="<%= name %>"></div>
+                    <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" data-id="<%= user_id %>" data-name="<%= name %>">
+                        <i class="material-icons dialog">account_circle</i>
+                    </div>
                     <h2 class="name name_chat profileUserName" title="<%= name %>" data-id="<%= user_id %>"><%= name %></h2>
                     <%= status %>
                 </div>
                 <% } else { %>
                 <div class="l-flexbox_inline">
                     <button class="open_sidebar j-open_sidebar"></button>
-                    <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" style="background-image:url(<%= icon %>)" data-name="<%= name %>"></div>
+                    <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" data-name="<%= name %>">
+                        <i class="material-icons dialog">supervisor_account</i>
+                    </div>
                     <input class="avatar_file avatar is-hidden" type="file" accept="image/*" data-dialog="<%= dialog_id %>">
                     <h2 class="name name_chat" contenteditable="true" title="<%= name %>"><%= name %></h2>
                     <span class="pencil is-hidden"></span>
