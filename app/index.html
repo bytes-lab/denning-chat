@@ -69,9 +69,9 @@
 
             <div class="l-content l-flexbox">
 
-            <div id="popupDisconnect" class="disconnect j-disconnect">
-                <b>Not Connected.</b> Connecting...
-            </div>
+                <div id="popupDisconnect" class="disconnect j-disconnect">
+                    <b>Not Connected.</b> Connecting...
+                </div>
 
                 <aside class="l-sidebar active">
                     <header class="l-header l-flexbox l-flexbox_flexbetween">
@@ -88,6 +88,34 @@
                         <div id="avatar-container" class="avatar profileUserAvatar"></div>
                     </header>
 
+                    <div class="sidebar__content">
+                        <ul class="sidebar__tabs">
+                            <li class="sidebar__tab">
+                                <a href="#" class="sidebar__tab_link j-sidebar__tab_link active" data-type="chat">
+                                    <i class="material-icons">chat_bubble_outline</i>
+                                    <div class="tab-label">Chats</div>
+                                </a>
+                            </li>
+                            <li class="sidebar__tab">
+                                <a href="#!/favourite" class="sidebar__tab_link j-sidebar__tab_link"  data-type="favourite">
+                                    <i class="material-icons">star_border</i>
+                                    <div class="tab-label">Favourites</div>
+                                </a>
+                            </li>
+                            <li class="sidebar__tab">
+                                <a href="#!/dialog/create" class="sidebar__tab_link j-sidebar__tab_link active" data-type="group">
+                                    <i class="material-icons">people_outline</i>
+                                    <div class="tab-label">Groups</div>
+                                </a>
+                            </li>
+                            <li class="sidebar__tab">
+                                <a href="#!/contact" class="sidebar__tab_link j-sidebar__tab_link" data-type="contact">
+                                    <i class="material-icons">perm_identity</i>
+                                    <div class="tab-label">Contacts</div>
+                                </a>
+                            </li>
+                        </ul>
+                    </div>
                     <form id="searchContacts" class="l-search localSearch formSearch j-localSearch">
                         <input class="form-input-search without_M" type="search">
                         <button class="clean-button j-clean-button" type="reset">✕</button>
@@ -95,8 +123,7 @@
                             <a id="share" class="users-nav-btn users-nav-share is-hidden"></a>
                             <a id="contacts" class="createGroupChat users-nav-btn users-nav-contacts"></a>
                         </div>
-                    </form>
-
+                    </form>                    
                     <div id="aside_container" class="l-list-wrap j-scrollbar_aside">
 
                         <section id="requestsList" class="l-list j-aside_list_item is-hidden">
