@@ -514,6 +514,11 @@ define([
                 return false;
             });
 
+            $('.j-sidebar__tab_link').on('click', function() {
+                $('.j-sidebar__tab_link').removeClass('active');
+                $(this).addClass('active');
+            });
+
             /* button "back"
             ----------------------------------------------------- */
             $('.j-back_to_login_page').on('click', function() {
