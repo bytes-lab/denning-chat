@@ -702,11 +702,7 @@ define([
                 event.preventDefault();
 
                 Helpers.log('add people to groupchat');
-
-                var $self = $(this),
-                    isPrivate = $self.data('private');
-
-                ContactListView.addContactsToChat($self, null, null, isPrivate);
+                ContactListView.showContacts();
             });
 
             $('.l-sidebar').on('click', '.addToGroupChat', function(event) {
