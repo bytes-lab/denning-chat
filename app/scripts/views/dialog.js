@@ -369,9 +369,9 @@ define([
             html += '<div class="l-flexbox_inline">';
 
             if (icon == 'images/ava-single.svg') {
-                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons chat">account_circle</i></div>';
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons chat">person</i></div>';
             } else if (icon == 'images/ava-group.svg') {
-                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons chat">supervisor_account</i></div>';
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons chat">people</i></div>';
             } else {
                 html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" style="background-image: url(' + icon + ')" data-id="' + private_id + '"></div>';
             } 

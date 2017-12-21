@@ -328,6 +328,9 @@ define([
             $popup = $('.j-popupAvatar'),
             dialog_id;
 
+        if (url == 'none')
+            url = 'images/ava-single.svg';
+        
         if ($chat.is('.is-group')) {
             dialog_id = $chat.data('dialog');
             $popup.find('.j-changePic').removeClass('is-hidden')

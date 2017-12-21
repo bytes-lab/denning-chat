@@ -132,7 +132,7 @@ define([
                     params.custom_data = currentUser.custom_data = JSON.stringify(custom_data);
 
                     $('.profileUserName[data-id="' + currentUser.id + '"]').text(currentUser.full_name);
-                    // $('.profileUserAvatar[data-id="' + currentUser.id + '"]').css('background-image', 'url(' + currentUser.avatar_url + ')');
+                    $('.profileUserAvatar[data-id="' + currentUser.id + '"]').css('background-image', 'url(' + currentUser.avatar_url + ')');
                     App.models.User.rememberMe();
 
                     QBApiCalls.updateUser(currentUser.id, params, function(res) {

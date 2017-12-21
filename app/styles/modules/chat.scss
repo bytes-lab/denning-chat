@@ -27,11 +27,13 @@
     transition: all 0.1s;
 }
 i.material-icons.dialog {
-    font-size: 45px;
+    font-size: 32px;
+    transform: translate(13%, 10%);
 }
 
 i.material-icons.chat {
-    font-size: 50px;
+    font-size: 36px;
+    transform: translate(14%, 8%);
 }
 
 .chat-occupants-wrap.is-overlay {

@@ -343,7 +343,7 @@ define([
                                 '" style="background-image:url(' + contact.avatar_url + ')" data-id="' + message.sender_id + '"></div>';                            
                         } else {
                             html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
-                                '" data-id="' + message.sender_id + '"><i class="material-icons dialog">account_circle</i></div>';                            
+                                '" data-id="' + message.sender_id + '"><i class="material-icons dialog">person</i></div>';                            
                         }
 
                         html += '<div class="message-container-wrap">';
