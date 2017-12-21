@@ -337,7 +337,7 @@ define([
         } else {
             $popup.find('.j-changePic').addClass('is-hidden');
             if (url == 'none')
-                    url = 'images/ava-single.svg';
+                url = 'images/ava-single.svg';
         }
 
         $popup.find('.j-avatarPic').attr('src', url);
@@ -379,6 +379,26 @@ define([
         })
         return _.uniq(users_)
     };    
+
+    Helpers.fillTemplate = function (name, options) {
+        var tpl = _.template(document.querySelector('#' + name).innerHTML);
+        return tpl(options);
+    };
+
+    Helpers.toHtml = function (str) {
+        var tmp = document.createElement('div'),
+            elements = [],
+            nodes;
+
+        tmp.innerHTML = str;
+        nodes = tmp.childNodes;
+
+        for (var i = 0; i < nodes.length; i++) {
+            if (nodes[i].nodeType === 1) elements.push(nodes[i]);
+        }
+
+        return elements;
+    };
 
     return Helpers;
 });

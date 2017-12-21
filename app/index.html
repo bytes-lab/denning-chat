@@ -570,13 +570,12 @@
             </div>
             <div class="chat-controls">
                 <% if (type === 3) { %>
-<!--                 <button class="btn_chat btn_chat_videocall videoCall" data-id="<%= user_id %>" data-balloon="Make a video call" data-balloon-pos="down">
+                <button class="btn_chat btn_chat_videocall videoCall" data-id="<%= user_id %>" data-balloon="Make a video call" data-balloon-pos="down">
                     <img src="images/icon-videocall.svg" alt="Make a Video Call">
                 </button>
                 <button class="btn_chat btn_chat_audiocall audioCall" data-id="<%= user_id %>" data-balloon="Make an audio call" data-balloon-pos="down">
                     <img src="images/icon-audiocall.svg" alt="Make an Audio Call">
                 </button>
- -->
                 <button class="btn_chat btn_chat_profile userDetails" data-id="<%= user_id %>" data-balloon="Show user profile" data-balloon-pos="down">
                     <img src="images/icon-profile.svg" alt="Show user profile">
                 </button>
@@ -703,6 +702,24 @@
             </div>
         </div>
     </form>
+</script>
+
+<script id="tpl_contactItem" type="text/template">
+    <li class="list-item" data-id="<%= user_id %>">
+        <a class="contact l-flexbox" href="#">
+            <div class="l-flexbox_inline">
+                <% if (contacts[user_id].avatar_url == 'images/ava-single.svg') { %>
+                    <div class="contact-avatar avatar profileUserAvatar" data-id="<%= user_id %>">
+                        <i class="material-icons chat">person</i>
+                    </div>
+                <% } else { %>
+                    <div class="contact-avatar avatar profileUserAvatar" style="background-image:url(<%= contacts[user_id].avatar_url %>)" data-id="<%= user_id %>"></div>
+                <% } %>
+                <span class="name profileUserName" data-id="' + user_id + '"><%= contacts[user_id].full_name %></span>
+            </div>
+            <input class="form-checkbox" type="checkbox">
+        </a>
+    </li>
 </script>
 
 </body>
