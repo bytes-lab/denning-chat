@@ -517,17 +517,6 @@
     </section>
 </script>
 
-<script id="templateFBImport" type="text/template">
-    <section id="popupImportAfterConnected" class="popup popup_import is-open">
-        <div class="popup-alert l-flexbox_inline l-flexbox_flexcenter">
-            <span class="alert alert_import">Your Facebook friends who have<br>a Denning Chat account were successfully<br>added to your contacts</span>
-        </div>
-        <div class="popup-controls">
-            <a class="popup-control-button popup-control-button_ok returnBackToPopup" href="#">Got it</a>
-        </div>
-    </section>
-</script>
-
 <script id="chatTpl" type="text/template">
     <% if (type === 3) { %>
     <section id="chat_<%= dialog_id %>" class="l-chat l-chat_private presence-listener j-chatItem" data-dialog="<%= dialog_id %>" data-id="<%= user_id %>" data-jid="<%= jid %>">
@@ -644,64 +633,6 @@
             </div>
         </div>
     </div>
-</script>
-
-<script id="firebasePhoneNumberForm" type="text/template">
-    <form class="firebase__form j-phone_number">
-        <div class="firebase__info">
-            <h1>Enter your phone number</h1>
-        </div>
-        <div class="firebase__block">
-            <div class="firebase__inputs input-field">
-                <input id="firebase__phone_number_input"
-                       class="form-input input_tel"
-                       name="phone_number"
-                       type="tel"
-                       pattern="\+?[0-9]\d{3,17}$"
-                       title="Phone number" />
-            </div>
-            <div id="firebase__recaptcha_container" class="firebase__recaptcha"></div>
-        </div>
-        <div class="firebase__buttons">
-            <button type="reset" class="btn firebase__button firebase__button_close j-firebase__button_close">close</button>
-            <button class="btn firebase__button firebase__button_verify j-firebase__button_verify" disabled="true">send</button>
-        </div>
-        <div class="firebase__info">
-            <p>By tapping Verify, an SMS may be sent. Message & data rates may apply.</p>
-        </div>
-    </form>
-</script>
-
-<script id="firebaseDigitsNumberForm" type="text/template">
-    <form class="firebase__form j-digits_number">
-        <div class="firebase__info">
-            <h1>Verify your phone number</h1>
-            <h2>Enter the 6-digit code we sent to <%= fullPhoneNumber %></h2>
-        </div>
-        <div class="firebase__block">
-            <div class="firebase__inputs input-field">
-                <input id="firebase__code_input"
-                       class="form-input input_text"
-                       name="digits_number"
-                       type="text"
-                       pattern="[0-9]{6}"
-                       title="6 digits code" />
-                <label for="firebase__code_input">6-digit code</label>
-            </div>
-        </div>
-        <div class="firebase__buttons">
-            <button type="reset" class="btn firebase__button firebase__button_close j-firebase__button_close">close</button>
-            <button class="btn firebase__button firebase__button_verify j-firebase__button_verify" disabled="true">verify</button>
-        </div>
-        <div class="firebase__info">
-            <div class="j-firebase__timer_text">
-                <p>Resend code in 0:<span class="j-firebase__resend_time"></span></p>
-            </div>
-            <div class="j-firebase__resend firebase__resend">
-                <p>Didn't receive the SMS? <button id="resend_btn" class="firebase__resend_btn">Resend code</button></p>
-            </div>
-        </div>
-    </form>
 </script>
 
 <script id="tpl_contactItem" type="text/template">
