@@ -705,17 +705,17 @@
 </script>
 
 <script id="tpl_contactItem" type="text/template">
-    <li class="list-item" data-id="<%= user_id %>">
+    <li class="list-item" data-id="<%= user.id %>">
         <a class="contact l-flexbox" href="#">
             <div class="l-flexbox_inline">
-                <% if (contacts[user_id].avatar_url == 'images/ava-single.svg') { %>
-                    <div class="contact-avatar avatar profileUserAvatar" data-id="<%= user_id %>">
+                <% if (user.avatar_url == 'images/ava-single.svg') { %>
+                    <div class="contact-avatar avatar profileUserAvatar" data-id="<%= user.id %>">
                         <i class="material-icons chat">person</i>
                     </div>
                 <% } else { %>
-                    <div class="contact-avatar avatar profileUserAvatar" style="background-image:url(<%= contacts[user_id].avatar_url %>)" data-id="<%= user_id %>"></div>
+                    <div class="contact-avatar avatar profileUserAvatar" style="background-image:url(<%= user.avatar_url %>)" data-id="<%= user.id %>"></div>
                 <% } %>
-                <span class="name profileUserName" data-id="' + user_id + '"><%= contacts[user_id].full_name %></span>
+                <span class="name profileUserName" data-id="<%= user.id %>"><%= user.full_name %></span>
             </div>
             <input class="form-checkbox" type="checkbox">
         </a>

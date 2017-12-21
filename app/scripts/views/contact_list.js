@@ -159,20 +159,7 @@ define([
             for (var i = 0, len = friends.length; i < len; i++) {
                 user_id = friends[i];
 
-                html = '';
-                html += '<li class="list-item" data-id="' + user_id + '">';
-                html += '<a class="contact l-flexbox" href="#">';
-                html += '<div class="l-flexbox_inline">';
-                if (contacts[user_id].avatar_url == 'images/ava-single.svg') {                
-                    html += '<div class="contact-avatar avatar profileUserAvatar" data-id="' + user_id + '"><i class="material-icons chat">person</i></div>';
-                } else {
-                    html += '<div class="contact-avatar avatar profileUserAvatar" style="background-image:url(' + contacts[user_id].avatar_url + ')" data-id="' + user_id + '"></div>';
-                }
-
-                html += '<span class="name profileUserName" data-id="' + user_id + '">' + contacts[user_id].full_name + '</span>';
-                html += '</div><input class="form-checkbox" type="checkbox">';
-                html += '</a></li>';
-
+                html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id]});
                 popup.find('.mCSB_container').append(html);
             }
 
