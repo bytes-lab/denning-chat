@@ -453,3 +453,37 @@
     display: block;
     text-align: center;
 }
+
+.pill {
+    margin: 5px 15px;
+    cursor: pointer;
+}
+
+.filter-item:first-child {
+    border-radius: 8px 0 0 8px;
+}
+
+.filter-item.active, .filter-item:hover {
+    color: white;
+    background-color: red;
+    padding: 8px 1px;
+}
+
+.filter-item {
+    display: inline-block;
+    width: 23%;
+    color: red;
+    background-color: white;
+    margin: 0 -3px;
+    text-align: center;
+    border: 1px solid;
+    padding: 7px 0px;
+}
+
+.filter-item:last-child {
+    border-radius: 0 8px 8px 0;
+}
+
+.filter-item:nth-child(2) {
+    width: 31%;
+}
