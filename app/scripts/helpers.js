@@ -327,16 +327,17 @@ define([
                 .replace(/[\'\"]?\).*/, ''), // take URL from css background source
             $popup = $('.j-popupAvatar'),
             dialog_id;
-
-        if (url == 'none')
-            url = 'images/ava-single.svg';
-        
+    
         if ($chat.is('.is-group')) {
             dialog_id = $chat.data('dialog');
             $popup.find('.j-changePic').removeClass('is-hidden')
                 .data('dialog', dialog_id);
+            if (url == 'none')
+                url = 'images/ava-group.svg';
         } else {
             $popup.find('.j-changePic').addClass('is-hidden');
+            if (url == 'none')
+                    url = 'images/ava-single.svg';
         }
 
         $popup.find('.j-avatarPic').attr('src', url);

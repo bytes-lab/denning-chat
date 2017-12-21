@@ -88,7 +88,8 @@ define([
         },
 
         createSpinner: function() {
-            $('section:visible form').addClass('is-hidden').next('.l-spinner').removeClass('is-hidden');
+            // $('section:visible form').addClass('is-hidden').next('.l-spinner').removeClass('is-hidden');
+            $('#loginForm').html('Loading...');
         },
 
         removeSpinner: function() {

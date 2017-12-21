@@ -58,7 +58,6 @@
     border-top: none;
     border: 1px solid #DADFE1;
     margin: 0 auto;
-    background-color: white;
     box-sizing: border-box;
     height: 100%;
     display: flex;
@@ -73,7 +72,7 @@
     min-height: 520px;
 }
 .l-welcome_container {
-    width: 416px;
+    max-width: 416px;
     height: 488px;
     border-radius: 4px;
     background-color: #fff;
@@ -82,6 +81,7 @@
     top: calc(50% - 40px);
     left: 50%;
     transform: translate(-50%, -50%);
+    padding: 12px 7px;
     -webkit-transform: translate(-50%, -50%);
 }
 .l-welcome_container.reset_pas {
@@ -127,7 +127,6 @@
     background-size: cover;
 }
 .l-welcome_text_logo_login {
-    width: 250px;
     height: 25px;
     position: absolute;
     top: 76px;
@@ -153,8 +152,7 @@
 }
 .l-form {
     position: relative;
-    left: 56px;
-    width: 304px;
+    width: 100%;
 }
 .l-form_login {
     top: 200px;
@@ -392,4 +390,10 @@
     display: block;
     height: 100%;
     cursor: pointer;
+}
+#avatar-container {
+    cursor: pointer;
+}
+#loginPage {
+    margin: 0 auto;
 }

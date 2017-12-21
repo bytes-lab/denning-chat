@@ -554,7 +554,7 @@ define([
 
             /* popovers
             ----------------------------------------------------- */
-            $('#profile').on('click', function(event) {
+            $('#avatar-container').on('click', function(event) {
                 event.preventDefault();
                 removePopover();
                 if ($('.l-chat:visible').find('.triangle_down').is('.is-hidden')) {
@@ -1144,7 +1144,7 @@ define([
     // Checking if the target is not an object run popover
     function clickBehaviour(e) {
         var objDom = $(e.target),
-            selectors = '#profile, #profile *, .occupant, .occupant *, ' +
+            selectors = '#avatar-container, #profile *, .occupant, .occupant *, ' +
                 '.j-btn_input_smile, .j-btn_input_smile *, .textarea, ' +
                 '.textarea *, .j-popover_smile, .j-popover_smile *, ' +
                 '.j-popover_gmap, .j-popover_gmap *, .j-btn_input_location, ' +
