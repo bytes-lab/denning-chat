@@ -190,7 +190,6 @@ define([
                 user_id = friends[i];
 
                 html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id]});
-                // popup.find('.mCSB_container').append(html);
                 $('.j-recentList').append(html);
             }
         },

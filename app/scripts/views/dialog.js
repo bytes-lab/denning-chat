@@ -275,6 +275,13 @@ define([
             });
         },
 
+        showChats: function() {
+            $('.j-recentList')[0].innerHTML = '';
+            _.each(Entities.Collections.dialogs.models, function(dialog) {
+                self.addDialogItem(dialog, true);                
+            });
+        },
+
         showOldHistory: function(callback) {
             var hiddenDialogs = $('#oldHistoryList ul').children('.j-dialogItem'),
                 visibleDialogs = $('#historyList ul'),
@@ -385,6 +392,7 @@ define([
                 html += '<span class="status"></span>';
             }
 
+            // auto confirm for unaccepted chats
             if (!status || status.subscription === 'none') {
                 var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {};
 

@@ -517,6 +517,14 @@ define([
             $('.j-sidebar__tab_link').on('click', function() {
                 $('.j-sidebar__tab_link').removeClass('active');
                 $(this).addClass('active');
+
+                var tab_type = $(this).data('type');
+
+                if (tab_type == "contact") {
+                    ContactListView.showContacts();                    
+                } else if (tab_type == "chat") {
+                    DialogView.showChats();
+                }
             });
 
             $('.filter-item').on('click', function() {
@@ -696,13 +704,6 @@ define([
 
                 globalSearch.val(localSearch.val());
                 $('#globalSearch').submit();
-            });
-
-            $('#mainPage').on('click', '.createGroupChat', function(event) {
-                event.preventDefault();
-
-                Helpers.log('add people to groupchat');
-                ContactListView.showContacts();
             });
 
             $('.l-sidebar').on('click', '.addToGroupChat', function(event) {
