@@ -519,6 +519,11 @@ define([
                 $(this).addClass('active');
             });
 
+            $('.filter-item').on('click', function() {
+                $('.filter-item').removeClass('active');
+                $(this).addClass('active');
+            });
+
             /* button "back"
             ----------------------------------------------------- */
             $('.j-back_to_login_page').on('click', function() {
