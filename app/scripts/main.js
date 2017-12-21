@@ -66,7 +66,6 @@ requirejs.config({
         CursorModule: 'models/custom_cursor',
         SyncTabsModule: 'models/sync_tabs',
         VoiceMessage: 'models/voicemessage',
-        FirebaseWidget: 'models/firebase_widget',
         // views
         UserView: 'views/user',
         SettingsView: 'views/settings',

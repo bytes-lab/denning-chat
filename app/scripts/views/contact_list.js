@@ -124,7 +124,7 @@ define([
                 friends,
                 html;
 
-            openPopup(popup, type, dialog_id);
+            // openPopup(popup, type, dialog_id);
             popup.addClass('not-selected').removeClass('is-addition');
             popup.find('.note').addClass('is-hidden').siblings('ul').removeClass('is-hidden');
             popup.find('.popup-nofriends').addClass('is-hidden').siblings().removeClass('is-hidden');
@@ -156,11 +156,14 @@ define([
             // exclude users who are already present in the dialog
             friends = _.difference(friends, ids);
 
+            // $('.j-recentList').innerHtml = '';
+
             for (var i = 0, len = friends.length; i < len; i++) {
                 user_id = friends[i];
 
                 html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id]});
-                popup.find('.mCSB_container').append(html);
+                // popup.find('.mCSB_container').append(html);
+                // $('.j-recentList').append(html);
             }
 
             if (type || isPrivate) {

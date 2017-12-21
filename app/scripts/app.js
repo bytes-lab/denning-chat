@@ -18,8 +18,7 @@ define([
     'Helpers', 'QBApiCalls',
     'config', 'Entities',
     'QMHtml', 'Listeners',
-    'VoiceMessage', 'QMPlayer',
-    'FirebaseWidget'
+    'VoiceMessage', 'QMPlayer'
 ], function(
     $, User,
     Session, Settings,
@@ -34,8 +33,7 @@ define([
     Helpers, QBApiCalls,
     QMCONFIG, Entities,
     QMHtml, Listeners,
-    VoiceMessage, QMPlayer,
-    FirebaseWidget
+    VoiceMessage, QMPlayer
 ) {
 
     function QM() {
@@ -73,7 +71,6 @@ define([
         this.entities.app = this;
 
         this.QMPlayer = QMPlayer;
-        this.FirebaseWidget = FirebaseWidget;
     }
 
     QM.prototype = {

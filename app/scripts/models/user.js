@@ -10,22 +10,18 @@ define([
     'config',
     'quickblox',
     'Helpers',
-    'FirebaseWidget',
     'models/person',
     'views/profile',
-    'views/change_password',
-    'views/fb_import'
+    'views/change_password'
 ], function(
     $,
     _,
     QMCONFIG,
     QB,
     Helpers,
-    FirebaseWidget,
     Person,
     ProfileView,
-    ChangePassView,
-    FBImportView
+    ChangePassView
 ) {
 
     var self,
@@ -55,11 +51,8 @@ define([
                 model: currentUser
             });
 
-            var fbImportView = new FBImportView();
-
             self.app.views.Profile = profileView;
             self.app.views.ChangePass = changePassView;
-            self.app.views.FBImport = fbImportView;
         },
 
         reLogInFirebasePhone: function(callback) {
