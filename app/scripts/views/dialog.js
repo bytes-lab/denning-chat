@@ -400,7 +400,7 @@ define([
 
             startOfCurrentDay = new Date();
             startOfCurrentDay.setHours(0, 0, 0, 0);
-
+            startOfCurrentDay = 0;
             // remove duplicate and replace to newest
             var $dialogItem = $('.j-dialogItem[data-dialog="'+dialog_id+'"]');
 
