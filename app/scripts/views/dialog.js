@@ -353,6 +353,7 @@ define([
                 dialog_id =  dialog.get('id'),
                 lastTime = Helpers.getTime(last_message_date_sent, true),
                 lastMessage = minEmoji(Helpers.Messages.parser(dialog.get('last_message'))),
+                isContactRequest = lastMessage == 'Contact request:4',
                 defaultAvatar = private_id ? QMCONFIG.defAvatar.url : QMCONFIG.defAvatar.group_url,
                 startOfCurrentDay,
                 private_id,
@@ -360,6 +361,9 @@ define([
                 icon,
                 name,
                 html;
+
+                if (lastMessage.startsWith('Contact request:'))
+                    lastMessage = lastMessage.slice(0, -2);
 
             private_id = dialog_type === 3 ? occupants_ids[0] : null;
 
@@ -386,14 +390,14 @@ define([
             html += '<div class="dialog_body"><span class="name name_dialog profileUserName" data-id="' + private_id + '">' + name + '</span>';
             html += '<span class="last_message_preview j-lastMessagePreview">' + lastMessage + '</span></div></div>';
 
-            if (dialog_type === 3) {
+            if (dialog_type === 3 && !isContactRequest) {
                 html += getStatus(status);
             } else {
                 html += '<span class="status"></span>';
             }
 
             // auto confirm for unaccepted chats
-            if ((!status || status.subscription === 'none') && (private_id != null)) {
+            if ((!status || status.subscription === 'none') && (private_id != null) && isContactRequest) {
                 var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {};
 
                 // update notConfirmed people list
@@ -937,7 +941,9 @@ define([
     function getStatus(status) {
         var str = '';
 
-        if (status && status.status) {
+        if (!status || status.subscription === 'none') {
+            str += '<span class="status status_request"></span>';
+        } else if (status && status.status) {
             str += '<span class="status status_online"></span>';
         } else {
             str += '<span class="status"></span>';

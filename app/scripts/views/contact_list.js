@@ -595,7 +595,7 @@ define([
     function sendContactRequest(params) {
         QB.chat.send(params.jid, {
             'type': 'chat',
-            'body': 'Contact request',
+            'body': 'Contact request:' + params.notification_type,
             'extension': {
                 'date_sent': params.date_sent,
                 'dialog_id': params.dialog_id,
