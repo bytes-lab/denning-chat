@@ -197,12 +197,6 @@ define([
                     }
                 });
             });
-
-
-            for (var i = 0, len = friends.length; i < len; i++) {
-                user_id = friends[i];
-
-            }
         },
 
         // subscriptions

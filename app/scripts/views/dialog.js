@@ -276,9 +276,21 @@ define([
         },
 
         showChats: function() {
+            var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
+                roster = ContactList.roster,
+                private_id;
+
             $('.j-recentList')[0].innerHTML = '';
             _.each(Entities.Collections.dialogs.models, function(dialog) {
-                self.addDialogItem(dialog, true);                
+                private_id = dialog.get('type') === 3 ? dialog.get('occupants_ids')[0] : null;
+                // not show dialog if user has not confirmed this contact
+                if (private_id && (!roster[private_id] ||
+                    (roster[private_id] && roster[private_id].subscription === 'none' &&
+                    !roster[private_id].ask && notConfirmed[private_id]))) {
+                    console.log('');
+                } else {
+                    self.addDialogItem(dialog, true);                                    
+                }
             });
         },
 
