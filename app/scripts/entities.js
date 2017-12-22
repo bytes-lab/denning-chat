@@ -18,12 +18,12 @@ define([
 ) {
 
     var entities = {
-		Models: {},
-		Views: {},
-		Collections: {},
+        Models: {},
+        Views: {},
+        Collections: {},
         Helpers: {},
         active: ''
-	};
+    };
 
     /**
      * [Message model]
@@ -345,14 +345,14 @@ define([
      * Events
      */
 
-	// select and open dialog
-	$('.list_contextmenu').on('click', '.contact', function() {
+    // select and open dialog
+    $('.list_contextmenu').on('click', '.contact.dialog', function() {
         var dialogId = $(this).parent().data('dialog');
 
         if (entities.active !== dialogId) {
             entities.Collections.dialogs.selectDialog(dialogId);
         }
-	});
+    });
 
     // read all unread messages
     $(window).focus(function() {

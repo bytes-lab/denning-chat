@@ -648,10 +648,12 @@
                 <% } %>
                 <span class="name profileUserName" data-id="<%= user.id %>"><%= user.full_name %></span>
             </div>
-            <% if (!contact) { %>}
+            <% if (!contact) { %>
                 <input class="form-checkbox" type="checkbox">
-            <% } else if (user.last_request_at) { %>
-                <p class="last_time_preview j-lastTimePreview"><%= new Date(user.last_request_at).toLocaleString() %></p>
+            <% } else { %>
+                <p class="last_time_preview j-lastTimePreview favourite" data-id="<%= user.id %>">
+                    <i class="material-icons">star_border</i>
+                </p>
             <% } %>
         </a>
     </li>

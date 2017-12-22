@@ -388,7 +388,7 @@ define([
             }
 
             html  = '<li class="list-item dialog-item j-dialogItem presence-listener" data-dialog="' + dialog_id + '" data-id="' + private_id + '">';
-            html += '<div class="contact l-flexbox" href="#">';
+            html += '<div class="contact dialog l-flexbox" href="#">';
             html += '<div class="l-flexbox_inline">';
 
             if (icon == 'images/ava-single.svg') {

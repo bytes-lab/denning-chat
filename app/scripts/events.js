@@ -545,6 +545,12 @@ define([
                 }
             }
 
+            $('#mainPage').on('click', '.j-lastTimePreview', function() {
+                var uid = $(this).data('id');
+                console.log(uid);
+                $(this).toggleClass('favourite');
+            });
+
             $('#mainPage').on('click', '.createGroupChat', function(event) {
                 event.preventDefault();
 

@@ -159,7 +159,7 @@ define([
             for (var i = 0, len = friends.length; i < len; i++) {
                 user_id = friends[i];
 
-                html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id]});
+                html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id], contact: false});
                 popup.find('.mCSB_container').append(html);
             }
 
