@@ -393,7 +393,7 @@ define([
             }
 
             // auto confirm for unaccepted chats
-            if (!status || status.subscription === 'none') {
+            if ((!status || status.subscription === 'none') && (private_id != null)) {
                 var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {};
 
                 // update notConfirmed people list

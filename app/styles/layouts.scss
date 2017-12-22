@@ -487,3 +487,9 @@
 .filter-item:nth-child(2) {
     width: 31%;
 }
+
+.filter-item.disabled {
+    pointer-events: none;
+    cursor: not-allowed;
+    opacity: 0.5;    
+}
