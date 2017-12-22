@@ -190,7 +190,7 @@ define([
                         $('.j-recentList').append(html);
 
                         _.each(users, function(user) {
-                            html = Helpers.fillTemplate('tpl_contactItem', {user: user, contact: true});
+                            html = Helpers.fillTemplate('tpl_contactItem', {user: user, contact: true, is_favourite: Helpers.is_favourite(ContactList.denningUsers, user)});
                             $('.j-recentList').append(html);
                         });
                     }

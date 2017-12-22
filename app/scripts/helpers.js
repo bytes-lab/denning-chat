@@ -368,10 +368,10 @@ define([
         return /.svg|.png|.jpg|.jpeg|.gif/i.test(url);
     };
 
-    Helpers.getEmails = function(denningUsers) {
+    Helpers.getEmails = function(denningUsers, userType) {
         var users_ = [];
-        _.each(denningUsers, function(users, key) {
-            _.each(users, function(_users) {
+        _.each(userType, function(user_type) {
+            _.each(denningUsers[user_type], function(_users) {
                 _.each(_users.users, function(user) {
                     users_.push(user.email)
                 })
@@ -379,6 +379,11 @@ define([
         })
         return _.uniq(users_)
     };    
+
+    Helpers.is_favourite = function(denningUsers, user) {
+        var favourites = Helpers.getEmails(denningUsers, ['favourite_client', 'favourite_staff']);
+        return _.indexOf(favourites, user.email) > -1;
+    };
 
     Helpers.fillTemplate = function (name, options) {
         var tpl = _.template(document.querySelector('#' + name).innerHTML);

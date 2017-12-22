@@ -43,7 +43,7 @@ define([
             var QBApiCalls = this.app.service,
                 Contact = this.app.models.Contact,
                 self = this,
-                emails = Helpers.getEmails(users),
+                emails = Helpers.getEmails(users, ['client', 'staff']),
                 params;
 
             self.denningUsers = users;
