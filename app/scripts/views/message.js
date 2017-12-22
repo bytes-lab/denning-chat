@@ -342,7 +342,7 @@ define([
                             html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
                                 '" style="background-image:url(' + contact.avatar_url + ')" data-id="' + message.sender_id + '"></div>';                            
                         } else {
-                            html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
+                            html += '<div class="message-avatar avatar profileUserAvatar m-user__img_' + contact.color + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
                                 '" data-id="' + message.sender_id + '"><i class="material-icons dialog">person</i></div>';                            
                         }
 

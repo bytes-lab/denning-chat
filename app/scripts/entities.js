@@ -306,6 +306,7 @@ define([
             type: null,
             user_id: null,
             name: '',
+            color: '',
             icon: '',
             jid: ''
         },

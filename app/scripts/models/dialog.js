@@ -48,6 +48,7 @@ define([
                     last_message_date_sent: params.last_message_date_sent || time,
                     room_updated_date: Date.parse(params.updated_at) || params.room_updated_date || time,
                     unread_count: params.unread_messages_count || '',
+                    color: _.random(1, 10),
                     unread_messages: new Entities.Collections.UnreadMessages(),
                     messages: new Entities.Collections.Messages(),
                     opened: params.opened || false,

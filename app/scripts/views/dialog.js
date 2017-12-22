@@ -380,9 +380,9 @@ define([
             html += '<div class="l-flexbox_inline">';
 
             if (icon == 'images/ava-single.svg') {
-                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons chat">person</i></div>';
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar m-user__img_'+dialog.get('color')+'" data-id="' + private_id + '"><i class="material-icons chat">person</i></div>';
             } else if (icon == 'images/ava-group.svg') {
-                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" data-id="' + private_id + '"><i class="material-icons chat">people</i></div>';
+                html += '<div class="contact-avatar avatar profileUserAvatar j-avatar m-user__img_'+dialog.get('color')+'" data-id="' + private_id + '"><i class="material-icons chat">people</i></div>';
             } else {
                 html += '<div class="contact-avatar avatar profileUserAvatar j-avatar" style="background-image: url(' + icon + ')" data-id="' + private_id + '"></div>';
             } 
@@ -554,6 +554,7 @@ define([
                     'location': location,
                     'type': dialog.get('type'),
                     'user_id': user_id,
+                    'color': dialog.get('color'),
                     'name': name,
                     'icon': icon,
                     'jid': jid

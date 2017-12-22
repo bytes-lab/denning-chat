@@ -530,7 +530,7 @@
                 <div class="l-flexbox_inline">
                     <button class="open_sidebar j-open_sidebar"></button>
                     <% if (icon == 'images/ava-single.svg') { %>
-                        <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" data-id="<%= user_id %>" data-name="<%= name %>">
+                        <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar m-user__img_<%= color %>" data-id="<%= user_id %>" data-name="<%= name %>">
                             <i class="material-icons chat">person</i>
                         </div>
                     <% } else { %>
@@ -543,7 +543,7 @@
                 <div class="l-flexbox_inline">
                     <button class="open_sidebar j-open_sidebar"></button>
                     <% if (icon == 'images/ava-group.svg') { %>
-                        <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" data-name="<%= name %>">
+                        <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar m-user__img_<%= color %>" data-name="<%= name %>">
                             <i class="material-icons chat">people</i>
                         </div>
                     <% } else { %>
@@ -640,7 +640,7 @@
         <a class="contact l-flexbox" href="#">
             <div class="l-flexbox_inline">
                 <% if (user.avatar_url == 'images/ava-single.svg') { %>
-                    <div class="contact-avatar avatar profileUserAvatar" data-id="<%= user.id %>">
+                    <div class="contact-avatar avatar profileUserAvatar m-user__img_<%= user.color %>" data-id="<%= user.id %>">
                         <i class="material-icons chat">person</i>
                     </div>
                 <% } else { %>

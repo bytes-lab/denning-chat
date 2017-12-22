@@ -21,6 +21,7 @@ define([
         create: function(qbUser) {
             return {
                 id: qbUser.id,
+                color: _.random(1, 10),
                 full_name: qbUser.full_name || 'Unknown user',
                 email: qbUser.email || '',
                 phone: qbUser.phone || '',
