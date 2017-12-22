@@ -517,18 +517,28 @@ define([
             $('.j-sidebar__tab_link').on('click', function() {
                 $('.j-sidebar__tab_link').removeClass('active');
                 $(this).addClass('active');
+                selectTabFilter();                
+            });
 
-                var tab_type = $(this).data('type');
+            $('.filter-item').on('click', function() {
+                $('.filter-item').removeClass('active');
+                $(this).addClass('active');
+                selectTabFilter();
+            });
+
+            function selectTabFilter() {
+                var tab_type = $('.j-sidebar__tab_link.active').data('type')
+                var filter_type = $('.filter-item.active').data('type')
 
                 if (tab_type == "contact") {
-                    $('.filter-item:last-child').addClass('disabled');
-                    ContactListView.showContacts();         
+                    $('.filter-item:last-child').addClass('disabled');                    
+                    ContactListView.showContacts(filter_type);         
                     // ContactListView.addContactsToChat($(this));           
                 } else if (tab_type == "chat") {
                     $('.filter-item:last-child').removeClass('disabled');
                     DialogView.showChats();
                 }
-            });
+            }
 
             $('#mainPage').on('click', '.createGroupChat', function(event) {
                 event.preventDefault();
@@ -539,11 +549,6 @@ define([
                     isPrivate = $self.data('private');
 
                 ContactListView.addContactsToChat($self, null, null, isPrivate);
-            });
-
-            $('.filter-item').on('click', function() {
-                $('.filter-item').removeClass('active');
-                $(this).addClass('active');
             });
 
             /* button "back"

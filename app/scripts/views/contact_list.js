@@ -171,10 +171,9 @@ define([
             }
         },
 
-        showContacts: function() {
+        showContacts: function(userType) {
             var contacts = ContactList.contacts,
                 sortedContacts,
-                userType = "contact",
                 keyword = '';
 
             $('.j-recentList')[0].innerHTML = '';
