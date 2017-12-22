@@ -174,41 +174,34 @@ define([
         showContacts: function() {
             var contacts = ContactList.contacts,
                 sortedContacts,
-                friends,
                 userType = "contact",
                 keyword = '';
 
+            $('.j-recentList')[0].innerHTML = '';
+
             userType = userType.replace("contact", "staff client").split(" ");
             _.each(userType, function(user_type) {
-                _.each(self.denningUsers[user_type], function(firm){
+                _.each(ContactList.denningUsers[user_type], function(firm){
                     var users = _.filter(contacts, function(user) {
                         return user.full_name.match(new RegExp(keyword, "i")) && _.where(firm.users, {email: user.email}).length;
                     })
 
                     if (users.length) {
-                        self.buildFirmItem(firm);
+                        html = Helpers.fillTemplate('tpl_firm', {firm: firm});
+                        $('.j-recentList').append(html);
+
                         _.each(users, function(user) {
-                            self.buildUserItem(user, false);    
+                            html = Helpers.fillTemplate('tpl_contactItem', {user: user, contact: true});
+                            $('.j-recentList').append(html);
                         });
                     }
                 });
             });
 
-            friends = _.pluck(_.sortBy(contacts, function(user) {
-                if (user.full_name) {
-                    return user.full_name.toLowerCase();
-                } else {
-                    return user.full_name;
-                }
-            }), 'id').map(String);
-
-            $('.j-recentList')[0].innerHTML = '';
 
             for (var i = 0, len = friends.length; i < len; i++) {
                 user_id = friends[i];
 
-                html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id], contact: true});
-                $('.j-recentList').append(html);
             }
         },
 

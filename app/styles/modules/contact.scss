@@ -2,7 +2,7 @@
 .contact {
     position: relative;
     height: 100%;
-    padding: 5px 15px 5px 10px;
+    padding: 5px 15px 5px 15px;
 }
 .contact:hover {
     opacity: 1;
@@ -334,4 +334,9 @@ span.send-request {
 }
 .userMenu {
     cursor: pointer;
+}
+.firm__name {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 3px 0;
 }
