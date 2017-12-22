@@ -171,7 +171,7 @@ define([
             }
         },
 
-        showContacts: function(userType) {
+        showContacts: function(userType, prefix) {
             var contacts = ContactList.contacts,
                 sortedContacts,
                 keyword = '';
@@ -180,7 +180,7 @@ define([
 
             userType = userType.replace("contact", "staff client").split(" ");
             _.each(userType, function(user_type) {
-                _.each(ContactList.denningUsers[user_type], function(firm){
+                _.each(ContactList.denningUsers[prefix+user_type], function(firm){
                     var users = _.filter(contacts, function(user) {
                         return user.full_name.match(new RegExp(keyword, "i")) && _.where(firm.users, {email: user.email}).length;
                     })
