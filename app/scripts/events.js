@@ -522,12 +522,23 @@ define([
 
                 if (tab_type == "contact") {
                     $('.filter-item:last-child').addClass('disabled');
-                    // ContactListView.showContacts();         
-                    ContactListView.addContactsToChat($(this));           
+                    ContactListView.showContacts();         
+                    // ContactListView.addContactsToChat($(this));           
                 } else if (tab_type == "chat") {
                     $('.filter-item:last-child').removeClass('disabled');
                     DialogView.showChats();
                 }
+            });
+
+            $('#mainPage').on('click', '.createGroupChat', function(event) {
+                event.preventDefault();
+
+                Helpers.log('add people to groupchat');
+
+                var $self = $(this),
+                    isPrivate = $self.data('private');
+
+                ContactListView.addContactsToChat($self, null, null, isPrivate);
             });
 
             $('.filter-item').on('click', function() {

@@ -111,7 +111,7 @@
                             <li class="sidebar__tab">
                                 <a href="#!/contact" class="sidebar__tab_link j-sidebar__tab_link" data-type="contact">
                                     <i class="material-icons">perm_identity</i>
-                                    <div class="tab-label createGroupChat">Contacts</div>
+                                    <div class="tab-label">Contacts</div>
                                 </a>
                             </li>
                         </ul>
@@ -648,7 +648,11 @@
                 <% } %>
                 <span class="name profileUserName" data-id="<%= user.id %>"><%= user.full_name %></span>
             </div>
-            <input class="form-checkbox" type="checkbox">
+            <% if (!contact) { %>}
+                <input class="form-checkbox" type="checkbox">
+            <% } else if (user.last_request_at) { %>
+                <p class="last_time_preview j-lastTimePreview"><%= new Date(user.last_request_at).toLocaleString() %></p>
+            <% } %>
         </a>
     </li>
 </script>

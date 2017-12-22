@@ -31,6 +31,7 @@ define([
                 avatar_url: getAvatar(qbUser),
                 status: qbUser.status || getStatus(qbUser) || '',
                 user_jid: qbUser.user_jid || QB.chat.helpers.getUserJid(qbUser.id, QMCONFIG.qbAccount.appId),
+                last_request_at: qbUser.last_request_at,
                 custom_data: qbUser.custom_data || null
             };
         }

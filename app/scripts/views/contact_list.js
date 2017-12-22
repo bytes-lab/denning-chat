@@ -174,7 +174,25 @@ define([
         showContacts: function() {
             var contacts = ContactList.contacts,
                 sortedContacts,
-                friends;
+                friends,
+                userType = "contact",
+                keyword = '';
+
+            userType = userType.replace("contact", "staff client").split(" ");
+            _.each(userType, function(user_type) {
+                _.each(self.denningUsers[user_type], function(firm){
+                    var users = _.filter(contacts, function(user) {
+                        return user.full_name.match(new RegExp(keyword, "i")) && _.where(firm.users, {email: user.email}).length;
+                    })
+
+                    if (users.length) {
+                        self.buildFirmItem(firm);
+                        _.each(users, function(user) {
+                            self.buildUserItem(user, false);    
+                        });
+                    }
+                });
+            });
 
             friends = _.pluck(_.sortBy(contacts, function(user) {
                 if (user.full_name) {
@@ -189,7 +207,7 @@ define([
             for (var i = 0, len = friends.length; i < len; i++) {
                 user_id = friends[i];
 
-                html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id]});
+                html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id], contact: true});
                 $('.j-recentList').append(html);
             }
         },
