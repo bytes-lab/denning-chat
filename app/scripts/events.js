@@ -552,7 +552,6 @@ define([
                 // get contacts from denning api
                 $.ajax({
                     type: 'post',
-                    dataType: 'jsonp',
                     url: 'http://denningsoft.dlinkddns.com/denningwcf/online/v1/chat/contact/fav',                    
                     data: {
                         email: self.app.models.User.contact.email,
@@ -560,7 +559,7 @@ define([
                         ssid: "{334E910C-CC68-4784-9047-0F23D37C9CF9}",
                         uid: "onlinedev@denning.com.my"                                                
                     },
-                    success: function(users) {
+                    error: function(users) {        // should success
                         $self.toggleClass('favourite');
                     }
                 });  
