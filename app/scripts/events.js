@@ -546,9 +546,24 @@ define([
             }
 
             $('#mainPage').on('click', '.j-lastTimePreview', function() {
-                var uid = $(this).data('id');
-                console.log(uid);
-                $(this).toggleClass('favourite');
+                var email = $(this).data('email')
+                    $self = $(this);
+
+                // get contacts from denning api
+                $.ajax({
+                    type: 'post',
+                    dataType: 'jsonp',
+                    url: 'http://denningsoft.dlinkddns.com/denningwcf/online/v1/chat/contact/fav',                    
+                    data: {
+                        email: self.app.models.User.contact.email,
+                        favourite: email,
+                        ssid: "{334E910C-CC68-4784-9047-0F23D37C9CF9}",
+                        uid: "onlinedev@denning.com.my"                                                
+                    },
+                    success: function(users) {
+                        $self.toggleClass('favourite');
+                    }
+                });  
             });
 
             $('#mainPage').on('click', '.createGroupChat', function(event) {

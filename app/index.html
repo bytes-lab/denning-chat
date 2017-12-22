@@ -651,7 +651,7 @@
             <% if (!contact) { %>
                 <input class="form-checkbox" type="checkbox">
             <% } else { %>
-                <p class="last_time_preview j-lastTimePreview <% if (is_favourite) { %> favourite <% } %>" data-id="<%= user.id %>">
+                <p class="last_time_preview j-lastTimePreview <% if (is_favourite) { %> favourite <% } %>" data-email="<%= user.email %>">
                     <i class="material-icons">star_border</i>
                 </p>
             <% } %>
