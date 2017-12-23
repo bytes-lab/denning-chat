@@ -530,6 +530,7 @@ define([
                 var tab_type = $('.j-sidebar__tab_link.active').data('type');
                 var filter_type = $('.filter-item.active').data('type');
 
+                $('.new-group').addClass('is-hidden');
                 if (tab_type == "contact") {
                     $('.filter-item:last-child').addClass('disabled');                    
                     ContactListView.showContacts(filter_type, '');         
@@ -542,6 +543,7 @@ define([
                     DialogView.showChats(false);
                 } else {
                     $('.filter-item:last-child').removeClass('disabled');
+                    $('.new-group').removeClass('is-hidden');
                     DialogView.showChats(true);
                 }
             }
