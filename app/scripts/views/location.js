@@ -49,7 +49,8 @@ define([
                 'markers': [{
                     lat: geoCoords.lat,
                     lng: geoCoords.lng
-                }]
+                }],
+                'key': 'AIzaSyDb6AmKfayLm-uRYcCgjw0mR_3pfX-isjQ'
             };
 
             return GMaps.staticMapURL(params);
@@ -112,7 +113,8 @@ define([
                 'div': '#map',
                 'lat': isCoords ? localStorage['QM.latitude'] : 0,
                 'lng': isCoords ? localStorage['QM.longitude'] : 0,
-                'zoom': isCoords ? 15 : 1
+                'zoom': isCoords ? 15 : 1,
+                'key': 'AIzaSyDb6AmKfayLm-uRYcCgjw0mR_3pfX-isjQ'
             });
 
             $('#map img').addClass('gooImg');
