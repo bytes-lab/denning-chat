@@ -185,6 +185,7 @@ define([
             last_message_date_sent: null,
             last_message: '',
             last_messages: [],
+            last_message_user_id: null,
             unread_count: '',
             unread_messages: [],
             messages: [],

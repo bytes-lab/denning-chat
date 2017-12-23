@@ -365,7 +365,7 @@ define([
                 dialog_id =  dialog.get('id'),
                 lastTime = Helpers.getTime(last_message_date_sent, true),
                 lastMessage = minEmoji(Helpers.Messages.parser(dialog.get('last_message'))),
-                isContactRequest = lastMessage == 'Contact request:4',
+                isContactRequest = (lastMessage == 'Contact request:4') && (dialog.get('last_message_user_id') != self.app.models.User.contact.id),
                 defaultAvatar = private_id ? QMCONFIG.defAvatar.url : QMCONFIG.defAvatar.group_url,
                 startOfCurrentDay,
                 private_id,

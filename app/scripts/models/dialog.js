@@ -46,6 +46,7 @@ define([
                     occupants_ids: _.uniq(_.without(params.occupants_ids, User.contact.id)),
                     last_message: params.last_message || ((params.type === 2) ? 'Notification message' : 'Contact request'),
                     last_message_date_sent: params.last_message_date_sent || time,
+                    last_message_user_id: params.last_message_user_id || null,
                     room_updated_date: Date.parse(params.updated_at) || params.room_updated_date || time,
                     unread_count: params.unread_messages_count || '',
                     color: _.random(1, 10),
