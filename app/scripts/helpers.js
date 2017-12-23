@@ -373,11 +373,11 @@ define([
         _.each(userType, function(user_type) {
             _.each(denningUsers[user_type], function(_users) {
                 _.each(_users.users, function(user) {
-                    users_.push(user.email)
-                })
+                    users_.push(user.email);
+                });
             });
-        })
-        return _.uniq(users_)
+        });
+        return _.uniq(users_);
     };    
 
     Helpers.is_favourite = function(denningUsers, user) {

@@ -143,7 +143,7 @@ define([
             }), 'id').map(String);
             friends = _.filter(sortedContacts, function(el) {
                 return true;
-                return roster[el] && roster[el].subscription !== 'none';
+                // return roster[el] && roster[el].subscription !== 'none';
             });
             Helpers.log('Friends', friends);
 
@@ -183,7 +183,7 @@ define([
                 _.each(ContactList.denningUsers[prefix+user_type], function(firm){
                     var users = _.filter(contacts, function(user) {
                         return user.full_name.match(new RegExp(keyword, "i")) && _.where(firm.users, {email: user.email}).length;
-                    })
+                    });
 
                     if (users.length) {
                         html = Helpers.fillTemplate('tpl_firm', {firm: firm});
@@ -553,7 +553,6 @@ define([
             // update roster
             if (typeof roster[id] === 'undefined') {
                 return true;
-                roster[id] = {};
             }
 
             roster[id].status = !type;

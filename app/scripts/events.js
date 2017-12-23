@@ -527,8 +527,8 @@ define([
             });
 
             function selectTabFilter() {
-                var tab_type = $('.j-sidebar__tab_link.active').data('type')
-                var filter_type = $('.filter-item.active').data('type')
+                var tab_type = $('.j-sidebar__tab_link.active').data('type');
+                var filter_type = $('.filter-item.active').data('type');
 
                 if (tab_type == "contact") {
                     $('.filter-item:last-child').addClass('disabled');                    
@@ -546,7 +546,7 @@ define([
             }
 
             $('#mainPage').on('click', '.j-lastTimePreview', function() {
-                var email = $(this).data('email')
+                var email = $(this).data('email'),
                     $self = $(this);
 
                 // get contacts from denning api
@@ -566,9 +566,9 @@ define([
             });
 
             $('.list_contextmenu').on('dblclick', '.contact.user', function() {
-                var id = $(this).parent().data('id');
-                var tab_type = $('.j-sidebar__tab_link.active').data('type')
-                var filter_type = $('.filter-item.active').data('type')
+                var id = $(this).parent().data('id'),
+                    tab_type = $('.j-sidebar__tab_link.active').data('type'),
+                    filter_type = $('.filter-item.active').data('type');
 
                 if (tab_type != 'chat') {
                     $('.filter-item').removeClass('active');
@@ -577,7 +577,7 @@ define([
                 } else if (filter_type != 'contact') {
                     $('.filter-item:first-child').click();
                 }
-                
+
                 selectOrCreateChat(id);
             });
 
