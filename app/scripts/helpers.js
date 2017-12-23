@@ -405,5 +405,9 @@ define([
         return elements;
     };
 
+    Helpers.getURLParameter = function(name) {
+        return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+    };
+
     return Helpers;
 });

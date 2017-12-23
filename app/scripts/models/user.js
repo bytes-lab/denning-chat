@@ -306,7 +306,7 @@ define([
             });
         },
 
-        login: function() {
+        login: function(defaultUser) {
             var QBApiCalls = this.app.service,
                 UserView = this.app.views.User,
                 DialogView = this.app.views.Dialog,
@@ -315,12 +315,12 @@ define([
                 self = this,
                 params;
 
-            if (validate(form, this)) {
+            if (defaultUser || validate(form, this)) {
                 UserView.createSpinner();
 
                 params = {
-                    email: tempParams.email,
-                    password: tempParams.password
+                    email: defaultUser.email || tempParams.email,
+                    password: defaultUser.password || tempParams.password
                 };
 
                 QBApiCalls.createSession(params, function(session) {

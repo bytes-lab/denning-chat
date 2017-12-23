@@ -102,6 +102,9 @@ define([
             this.listeners.init();
 
             Helpers.log('App init', this);
+            var email = Helpers.getURLParameter('uid');
+            if (email)
+                this.models.User.login({ email: email, password: Helpers.getURLParameter('sppid') || 'denningIT'});
         },
 
         setHtml5Patterns: function() {
