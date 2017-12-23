@@ -93,7 +93,7 @@ define([
                 if (isClick) {
                     QB.chat.send(id, {
                         type: 'chat',
-                        body: 'Contact request',
+                        body: 'Contact request:4',
                         extension: {
                             recipient_id: id,
                             date_sent: Math.floor(Date.now() / 1000),
