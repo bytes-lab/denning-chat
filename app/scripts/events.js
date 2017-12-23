@@ -539,9 +539,10 @@ define([
                     ContactListView.showContacts(filter_type, 'favourite_');
                 } else if (tab_type == "chat") {
                     $('.filter-item:last-child').removeClass('disabled');
-                    DialogView.showChats();
+                    DialogView.showChats(false);
                 } else {
-
+                    $('.filter-item:last-child').removeClass('disabled');
+                    DialogView.showChats(true);
                 }
             }
 

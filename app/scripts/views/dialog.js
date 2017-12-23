@@ -275,7 +275,7 @@ define([
             });
         },
 
-        showChats: function() {
+        showChats: function(isGroup) {
             var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
                 roster = ContactList.roster,
                 private_id;
@@ -288,7 +288,7 @@ define([
                     (roster[private_id] && roster[private_id].subscription === 'none' &&
                     !roster[private_id].ask && notConfirmed[private_id]))) {
                     console.log('');
-                } else {
+                } else if (!isGroup || dialog.get('type') == 2) {
                     self.addDialogItem(dialog, true);                                    
                 }
             });
