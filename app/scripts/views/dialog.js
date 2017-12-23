@@ -646,7 +646,11 @@ define([
                 Dialog.createGroup(occupants_names, {
                     name: groupName,
                     occupants_ids: occupants_ids,
-                    type: 2
+                    type: 2,
+                    data: {
+                        class_name: "dialog_data",
+                        tag: 'Dennng'
+                    }
                 }, function(dialog) {
                     self.removeDataSpinner();
                     $('.is-overlay:not(.chat-occupants-wrap)').removeClass('is-overlay');

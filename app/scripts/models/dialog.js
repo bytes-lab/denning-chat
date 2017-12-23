@@ -53,7 +53,8 @@ define([
                     unread_messages: new Entities.Collections.UnreadMessages(),
                     messages: new Entities.Collections.Messages(),
                     opened: params.opened || false,
-                    joined: (params.type === 3) ? true : false
+                    joined: (params.type === 3) ? true : false,
+                    tag: params.data && params.data.tag || ''
                 };
 
             new Entities.Models.Dialog(dialog);

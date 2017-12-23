@@ -534,7 +534,6 @@ define([
                 if (tab_type == "contact") {
                     $('.filter-item:last-child').addClass('disabled');                    
                     ContactListView.showContacts(filter_type, '');         
-                    // ContactListView.addContactsToChat($(this)); 
                 } else if (tab_type == "favourite") {
                     $('.filter-item:last-child').addClass('disabled');
                     ContactListView.showContacts(filter_type, 'favourite_');

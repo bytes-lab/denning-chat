@@ -191,7 +191,8 @@ define([
             messages: [],
             opened: false,
             joined: false,
-            draft: ''
+            draft: '',
+            tag: ''
         },
 
         // add dialog to collection after initialize
