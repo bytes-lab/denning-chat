@@ -1138,7 +1138,7 @@ define([
                 } else {
                     console.log('@@@@12@@@@@'+val);
                     $textarea.removeClass('contenteditable').empty();
-                    $textarea.find('br').remove();
+                    $textarea.html(' ');
                     Cursor.setCursorToEnd($textarea[0]);
                 }
             });
