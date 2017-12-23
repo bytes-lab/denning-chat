@@ -1135,7 +1135,6 @@ define([
                 if (val.length || $emj.length) {
                     $textarea.addClass('contenteditable');
                 } else {
-                    $textarea.removeClass('contenteditable').empty();
                     $textarea.html(' ');
                     Cursor.setCursorToEnd($textarea[0]);
                 }

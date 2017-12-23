@@ -562,7 +562,7 @@ define([
                     'occupantsIds': occupants_ids,
                     'status': getStatus(status),
                     'dialog_id': dialog_id,
-                    'draft': dialog.get('draft'),
+                    'draft': dialog.get('draft') || ' ',
                     'location': location,
                     'type': dialog.get('type'),
                     'user_id': user_id,
