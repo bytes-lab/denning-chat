@@ -319,8 +319,8 @@ define([
                 UserView.createSpinner();
 
                 params = {
-                    email: defaultUser.email || tempParams.email,
-                    password: defaultUser.password || tempParams.password
+                    email: defaultUser && defaultUser.email || tempParams.email,
+                    password: defaultUser && defaultUser.password || tempParams.password
                 };
 
                 QBApiCalls.createSession(params, function(session) {
