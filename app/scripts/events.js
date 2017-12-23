@@ -1133,10 +1133,8 @@ define([
                     val = $textarea.text().trim();
 
                 if (val.length || $emj.length) {
-                    console.log('@@@@@@@@@'+val);
                     $textarea.addClass('contenteditable');
                 } else {
-                    console.log('@@@@12@@@@@'+val);
                     $textarea.removeClass('contenteditable').empty();
                     $textarea.html(' ');
                     Cursor.setCursorToEnd($textarea[0]);
