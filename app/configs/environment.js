@@ -78,7 +78,7 @@ define(function() {
             chatProtocol: {
                 // BOSH protocol = 1,
                 // WebSocket = 2
-                active: 2
+                active: 1
             },
             debug: {
                 mode: Number('@@debugQB'),

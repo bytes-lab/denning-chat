@@ -1133,9 +1133,12 @@ define([
                     val = $textarea.text().trim();
 
                 if (val.length || $emj.length) {
+                    console.log('@@@@@@@@@'+val);
                     $textarea.addClass('contenteditable');
                 } else {
+                    console.log('@@@@12@@@@@'+val);
                     $textarea.removeClass('contenteditable').empty();
+                    $textarea.find('br').remove();
                     Cursor.setCursorToEnd($textarea[0]);
                 }
             });
