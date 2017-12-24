@@ -539,11 +539,11 @@ define([
                     ContactListView.showContacts(filter_type, 'favourite_');
                 } else if (tab_type == "chat") {
                     $('.filter-item:last-child').removeClass('disabled');
-                    DialogView.showChats(false);
+                    DialogView.showChats(false, filter_type);
                 } else {
                     $('.filter-item:last-child').removeClass('disabled');
                     $('.new-group').removeClass('is-hidden');
-                    DialogView.showChats(true);
+                    DialogView.showChats(true, filter_type);
                 }
             }
 

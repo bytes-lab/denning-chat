@@ -286,3 +286,16 @@
     left: 0;
     background: transparent;
 }
+.chat-category {
+    display: flex;
+    background: #eee;
+}
+.chat-category label {
+    padding: 16px;
+    color: orange;
+}
+.chat-category select {
+    color: red;
+    display: flex;
+    padding-left: 10px;
+}

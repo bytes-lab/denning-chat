@@ -190,9 +190,15 @@ define([
                 DialogView = this.app.views.Dialog,
                 self = this;
 
+            var tag = $('.chat-category select').val();
+            console.log(tag);
             QBApiCalls.createDialog({
                 type: 3,
-                occupants_ids: id
+                occupants_ids: id,
+                data: {
+                    class_name: "dialog_data",
+                    tag: tag
+                }                
             }, function(res) {
                 var dialogs = Entities.Collections.dialogs,
                     dialogId = self.create(res),

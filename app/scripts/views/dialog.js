@@ -275,7 +275,7 @@ define([
             });
         },
 
-        showChats: function(isGroup) {
+        showChats: function(isGroup, tag) {
             var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
                 roster = ContactList.roster,
                 private_id;
@@ -289,7 +289,8 @@ define([
                     !roster[private_id].ask && notConfirmed[private_id]))) {
                     console.log('');
                 } else if (!isGroup || dialog.get('type') == 2) {
-                    self.addDialogItem(dialog, true);                                    
+                    if (tag == 'contact' || dialog.get('tag') == tag)
+                        self.addDialogItem(dialog, true);                                    
                 }
             });
         },
@@ -643,13 +644,15 @@ define([
                     $('.is-overlay:not(.chat-occupants-wrap)').removeClass('is-overlay');
                 });
             } else {
+                var tag = $('.chat-category select').val();
+                console.log(tag);
                 Dialog.createGroup(occupants_names, {
                     name: groupName,
                     occupants_ids: occupants_ids,
                     type: 2,
                     data: {
                         class_name: "dialog_data",
-                        tag: 'Dennng'
+                        tag: tag
                     }
                 }, function(dialog) {
                     self.removeDataSpinner();
