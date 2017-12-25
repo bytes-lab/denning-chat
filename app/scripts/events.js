@@ -517,6 +517,8 @@ define([
             $('.j-sidebar__tab_link').on('click', function() {
                 $('.j-sidebar__tab_link').removeClass('active');
                 $(this).addClass('active');
+                // reset search
+                $('.localSearch input').val('');
                 selectTabFilter();                
             });
 
@@ -545,6 +547,7 @@ define([
                     $('.new-group').removeClass('is-hidden');
                     DialogView.showChats(true, filter_type);
                 }
+                UserView.localSearch($('.localSearch'));                
             }
 
             $('#mainPage').on('click', '.j-lastTimePreview', function() {
