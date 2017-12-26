@@ -206,6 +206,21 @@ define([
             function escapeHTML(s) {
                 return s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
             }
+        },
+
+        parse_plain: function(str) {
+            var url, url_text;
+
+            str = escapeHTML(str);
+
+            // parser of paragraphs
+            str = str.replace(/\n/g, '<br>');
+
+            return str;
+
+            function escapeHTML(s) {
+                return s.replace(/</g, "&lt;").replace(/>/g, "&gt;");
+            }
         }
     };
 
