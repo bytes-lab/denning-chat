@@ -530,7 +530,9 @@ define([
             $('.filter-item').on('click', function() {
                 $('.filter-item').removeClass('active');
                 $(this).addClass('active');
-                selectTabFilter();
+
+                if ($(this).parent().data('for') == 'main')
+                    selectTabFilter();
             });
 
             function selectTabFilter() {
