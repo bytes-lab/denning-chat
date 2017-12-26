@@ -328,7 +328,7 @@ define([
                         self.contact = Contact.create(user);
 
                         Helpers.log('User', self);
-
+                        $('.l-user-email').html(user.email);
                         UserView.successFormCallback();
 
                         QBApiCalls.connectChat(self.contact.user_jid, function() {
@@ -390,6 +390,7 @@ define([
                 }
 
                 Helpers.log('User', user);
+                $('.l-user-email').html(user.email);
 
                 UserView.successFormCallback();
 
