@@ -837,6 +837,7 @@ define([
             $('.list_matters').on('click', '.list-item-matter', function() {
                 var key = $(this).data('key');
                 $('.list-item-matter').addClass('is-hidden');
+                $('.btn_matter_file').removeClass('is-hidden');
 
                 var base_url = 'http://43.252.215.81/online/denningwcf/v1/app/matter/'+key+'/fileFolder?ssid=testdenningOnline&uid=onlinedev@denning.com.my';// + item.value + '';// + self.selectedSearchCategory;
                 $.ajax({
@@ -852,6 +853,12 @@ define([
                     error: function() {
                     }
                 });                 
+            });
+
+            $('.btn_matter_file').on('click', function() {
+                $(this).addClass('is-hidden');
+                $('.list-item-file').remove();
+                $('.list-item-matter').removeClass('is-hidden');
             });
 
             /* search
