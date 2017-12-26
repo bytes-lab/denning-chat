@@ -550,7 +550,7 @@ define([
                 UserView.localSearch($('.localSearch'));                
             }
 
-            $('#mainPage').on('click', '.j-lastTimePreview', function() {
+            $('#mainPage').on('click', '.j-lastTimePreview.fav', function() {
                 var email = $(this).data('email'),
                     $self = $(this);
 
