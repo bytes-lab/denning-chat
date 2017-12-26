@@ -513,3 +513,34 @@
 .new-group i {
     font-size: 23px;
 }
+
+.matter_desc {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 3px 0;
+    max-height: 24px;
+    overflow: hidden;
+}
+
+.matter_title {
+    font-size: 16px;
+    line-height: 22px;
+    margin: 3px 0;
+    color: purple;
+    font-weight: 550;
+}
+
+.list-item-matter {
+    padding: 3px 12px;
+    cursor: pointer;
+    background: white;
+}
+
+.list-item-matter:hover {
+    background: #eee;
+}
+
+.list_matters {
+    height: 400px;
+    overflow-y: scroll;
+}

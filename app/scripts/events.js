@@ -64,6 +64,8 @@ define([
         VideoChatView = this.app.views.VideoChat;
         SettingsView = this.app.views.Settings;
         VoiceMessage = this.app.models.VoiceMessage;
+
+        isSearching = false;
     }
 
     Events.prototype = {
@@ -785,6 +787,51 @@ define([
                     dialog_id = $self.data('dialog');
                 Helpers.log('add people to groupchat');
                 ContactListView.addContactsToChat($self, 'add', dialog_id);
+            });
+
+            /* file folder search
+            ----------------------------------------------------- */
+            $('.j-fileSearch').on('keyup search submit', function(event) {
+                var $self = $(this),
+                    code = event.keyCode,
+                    type = event.type,
+                    isText = $self.find('.form-input-search').val().length,
+                    keyword = $self.find('.form-input-search').val(),
+                    $cleanButton = $self.find('.j-clean-button'),
+                    isNoBtn = $cleanButton.is(':hidden');
+
+                $self.parent().find('.list_matters').html('<li>Searching...</li>');
+                if ((type === 'keyup' && code !== 27 && code !== 13) || (type === 'search')) {
+                    if (!isSearching) {
+                        isSearching = true;
+                        var base_url = 'http://43.252.215.81/online/denningwcf/v1/generalSearch?ssid=testdenningOnline&uid=onlinedev@denning.com.my&category=2&search=';// + item.value + '';// + self.selectedSearchCategory;
+                        $.ajax({
+                            type: 'get',
+                            url: base_url + keyword,
+                            data: {},
+                            success: function(res) {
+                                isSearching = false;
+                                $self.parent().find('.list_matters').html('');
+
+                                _.each(res, function(ii) {
+                                    var el = Helpers.fillTemplate('tpl_matter', { matter: ii});                                    
+                                    $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
+                                });
+                            },
+                            fail: function() {
+                                isSearching = false;
+                            }
+                        });                          
+                    }
+                }
+
+                if (isText && isNoBtn) {
+                    $cleanButton.show();
+                } else if (!isText) {
+                    $cleanButton.hide();
+                }
+
+                return false;
             });
 
             /* search

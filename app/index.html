@@ -306,16 +306,7 @@
             <div class="filter-item file" data-type="denning">Contact Folder</div>
         </div>                
 
-        <ul class="popup-elem list list_contacts"></ul>
-        <div class="start_search_note j-start_search_note">
-            <span class="text text_start_search">Results</span>
-            <span class="text start_search">Here will be users</span>
-        </div>
-        <div class="popup-elem note l-flexbox l-flexbox_column j-global_search_note">
-            <span class="text text_alert">Sorry...</span>
-            <span class="text not_found">No results found</span>
-            <span class="text short_length is-hidden">Name must be more than 2 characters</span>
-        </div>
+        <ul class="popup-elem list list_matters"></ul>
     </div>
 
     <div id="popupDetails" class="popup popup_details presence-listener">
@@ -687,6 +678,14 @@
     </li>
 </script>
 
+<script type="text/template" id="tpl_matter">
+    <li class="list-item-matter" data-key="<%= matter.key %>">
+        <div class="matter__details">
+            <p class="matter_title"><%- matter.Title %></p>
+            <p class="matter_desc"><%- matter.Desc %></p>
+        </div>
+    </li>
+</script>
 </body>
 
 </html>
