@@ -540,7 +540,19 @@
     background: #eee;
 }
 
+.list-item-file {
+    padding: 3px 12px;
+    cursor: pointer;
+    background: white;
+}
+
+.list-item-file:hover {
+    background: #eee;
+}
+
 .list_matters {
     height: 400px;
     overflow-y: scroll;
+    margin: 10px 12px;
+    border: solid 1px #bbb;    
 }

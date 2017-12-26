@@ -530,7 +530,7 @@ define([
             });
 
             $('.filter-item').on('click', function() {
-                $('.filter-item').removeClass('active');
+                $('.filter-item').siblings().removeClass('active');
                 $(this).addClass('active');
 
                 if ($(this).parent().data('for') == 'main')
@@ -800,7 +800,7 @@ define([
                     $cleanButton = $self.find('.j-clean-button'),
                     isNoBtn = $cleanButton.is(':hidden');
 
-                $self.parent().find('.list_matters').html('<li>Searching...</li>');
+                $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 600; font-size: 17px;">Searching...</li>');
                 if ((type === 'keyup' && code !== 27 && code !== 13) || (type === 'search')) {
                     if (!isSearching) {
                         isSearching = true;
@@ -818,7 +818,7 @@ define([
                                     $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
                                 });
                             },
-                            fail: function() {
+                            error: function() {
                                 isSearching = false;
                             }
                         });                          
@@ -832,6 +832,26 @@ define([
                 }
 
                 return false;
+            });
+
+            $('.list_matters').on('click', '.list-item-matter', function() {
+                var key = $(this).data('key');
+                $('.list-item-matter').addClass('is-hidden');
+
+                var base_url = 'http://43.252.215.81/online/denningwcf/v1/app/matter/'+key+'/fileFolder?ssid=testdenningOnline&uid=onlinedev@denning.com.my';// + item.value + '';// + self.selectedSearchCategory;
+                $.ajax({
+                    type: 'get',
+                    url: base_url,
+                    data: {},
+                    success: function(res) {
+                        _.each(res.documents, function(ii) {
+                            var el = Helpers.fillTemplate('tpl_matter_file', { file: ii});
+                            $('.list_matters').append(Helpers.toHtml(el)[0]);
+                        });
+                    },
+                    error: function() {
+                    }
+                });                 
             });
 
             /* search

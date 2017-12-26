@@ -307,6 +307,7 @@
         </div>                
 
         <ul class="popup-elem list list_matters"></ul>
+        <button class="btn btn_popup btn_matter_file">Back</button>
     </div>
 
     <div id="popupDetails" class="popup popup_details presence-listener">
@@ -686,6 +687,16 @@
         </div>
     </li>
 </script>
+
+<script type="text/template" id="tpl_matter_file">
+    <li class="list-item-file" data-URL="<%= file.URL %>">
+        <div class="matter__details">
+            <p class="matter_title"><%- file.name %><%= file.ext %></p>
+            <p class="matter_desc">Created at <%- file.date %></p>
+        </div>
+    </li>
+</script>
+
 </body>
 
 </html>
