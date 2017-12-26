@@ -466,21 +466,11 @@ define([
 
         sendMessage: function(form) {
             var jid = form.parents('.l-chat').data('jid'),
-                id = form.parents('.l-chat').data('id'),
                 dialog_id = form.parents('.l-chat').data('dialog'),
                 $textarea = form.find('.textarea'),
                 $smiles = form.find('.textarea > img'),
                 val = $textarea.html().trim(),
-                time = Math.floor(Date.now() / 1000),
-                type = form.parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat',
-                $chat = $('.l-chat[data-dialog="' + dialog_id + '"]'),
-                $newMessages = $('.j-newMessages[data-dialog="' + dialog_id + '"]'),
-                locationIsActive = ($('.j-send_location').hasClass('btn_active') && localStorage['QM.latitude'] && localStorage['QM.longitude']),
-                dialogs = Entities.Collections.dialogs,
-                dialog = dialogs.get(dialog_id),
-                lastMessage,
-                message,
-                msg;
+                type = form.parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat';
 
             if ($smiles.length > 0) {
                 $smiles.each(function() {
@@ -492,6 +482,20 @@ define([
                 val = $textarea.text();
             }
             val = val.replace(/<br>/gi, '\n').trim();
+
+            self._sendMessage(jid, val, type, dialog_id);
+        },
+
+        _sendMessage: function(jid, val, type, dialog_id) {
+            var time = Math.floor(Date.now() / 1000),
+                $chat = $('.l-chat[data-dialog="' + dialog_id + '"]'),
+                $newMessages = $('.j-newMessages[data-dialog="' + dialog_id + '"]'),
+                locationIsActive = ($('.j-send_location').hasClass('btn_active') && localStorage['QM.latitude'] && localStorage['QM.longitude']),
+                lastMessage,                            
+                dialogs = Entities.Collections.dialogs,
+                dialog = dialogs.get(dialog_id),
+                message,
+                msg;
 
             if (val.length > 0) {
                 // send message
@@ -544,7 +548,6 @@ define([
                 }
             }
         },
-
         // send start or stop typing status to chat or groupchat
         sendTypingStatus: function(jid, start) {
             var roomJid = QB.chat.helpers.getRoomJid(jid),
