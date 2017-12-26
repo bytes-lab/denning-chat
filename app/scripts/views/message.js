@@ -1154,7 +1154,7 @@ define([
                     params,
                     $elem;
 
-                if (urlCache[url] !== null && Helpers.isImageUrl(url)) {
+                if (urlCache[url] != null && Helpers.isImageUrl(url)) {
                     $elem = $this.clone()
                                  .addClass('image_preview')
                                  .html('<img src="'+ url +'" alt="picture"/>');
