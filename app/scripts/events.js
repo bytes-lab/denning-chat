@@ -861,6 +861,15 @@ define([
                 $('.list-item-matter').removeClass('is-hidden');
             });
 
+            $('.list_matters').on('dblclick', '.list-item-file', function() {
+                var jid = $('.j-btn_file_folder').parents('.l-chat').data('jid'),
+                    dialog_id = $('.j-btn_file_folder').parents('.l-chat').data('dialog'),
+                    val = 'http://43.252.215.81/denningwcf/' + $(this).data('url'),
+                    type = $('.j-btn_file_folder').parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat';
+
+                MessageView._sendMessage(jid, val, type, dialog_id);
+            });
+            
             /* search
             ----------------------------------------------------- */
             $('.j-globalSearch').on('keyup search submit', function(event) {
