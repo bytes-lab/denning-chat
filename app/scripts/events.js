@@ -300,6 +300,11 @@ define([
                 }
             });
 
+            $workspace.on('click', '.j-btn_file_folder', function() {
+                $('.j-file-folder').addClass('is-overlay')
+                    .parent('.j-overlay').addClass('is-overlay');
+            });
+
             $body.on('keypress', function(e) {
                 if ((e.keyCode === 13) && $('.j-open_map').length) {
                     $('.j-send_map').click();
