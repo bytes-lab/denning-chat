@@ -329,6 +329,8 @@ define([
                 });
                 if ($('.l-list-wrap section:not(#searchList) .list-item').length === 0) {
                     $('#emptyList').removeClass('is-hidden');
+                } else {
+                    $('#emptyList').addClass('is-hidden');
                 }
             }
         },
