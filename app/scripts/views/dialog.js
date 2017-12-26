@@ -579,6 +579,8 @@ define([
                     for (var i = 0, len = occupants_ids.length, id; i < len; i++) {
                         id = occupants_ids[i];
                         if (!contacts[id]) continue;
+                        if(_.indexOf(Helpers.getEmails(ContactList.denningUsers, ['denningPeople']), contacts[id].email) > -1) 
+                            continue;
                         if (id != User.contact.id) {
                             html += '<a class="occupant l-flexbox_inline presence-listener" data-id="' + id + '" href="#">';
                             html += getStatus(roster[id]);
