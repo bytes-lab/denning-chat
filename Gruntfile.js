@@ -193,7 +193,7 @@ module.exports = function(grunt) {
 
         connect: {
             options: {
-                protocol: 'http',
+                protocol: 'https',
                 port: grunt.option('port') || SERVER_PORT,
                 open: true,
                 // change this to '0.0.0.0' to access the server from outside
@@ -209,7 +209,7 @@ module.exports = function(grunt) {
             },
             dist: {
                 options: {
-                    protocol: 'http',
+                    protocol: 'https',
                     base: '<%= dchat.dist %>'
                 }
             }
