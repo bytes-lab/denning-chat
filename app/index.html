@@ -546,7 +546,7 @@
                     <% } else { %>
                         <div class="contact-avatar avatar avatar_chat profileUserAvatar scaleAvatar j-scaleAvatar" data-id="<%= user_id %>" data-name="<%= name %>" style="background-image:url(<%= icon %>)"></div>
                     <% } %>
-                    <h2 class="name name_chat profileUserName" title="<%= name %>" data-id="<%= user_id %>"><%= name %></h2>
+                    <h2 class="name name_chat c<%= type %> profileUserName" title="<%= name %>" data-id="<%= user_id %>"><%= name %></h2>
                     <%= status %>
                 </div>
                 <% } else { %>
