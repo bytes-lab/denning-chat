@@ -78,7 +78,7 @@
                         <div class="header-logo">
                             <a id="home" class="j-home" href="#">
                                 <div class="l-header-logo">
-                                    <img src="images/app-icon.png" width="54" height="54" alt="Denning Chat" style="margin-right: 15px;">
+                                    <div id="avatar-container" class="avatar profileUserAvatar"></div>
                                     <div>
                                         <p class="l-header-logo-text">Denning Chat</p>
                                         <p class="l-user-email"></p>
@@ -87,8 +87,7 @@
 
                             </a>
                         </div>
-
-                        <div id="avatar-container" class="avatar profileUserAvatar"></div>
+                        <img src="images/careline.svg" width="108" height="54" alt="Denning Chat">
                     </header>
 
                     <div class="sidebar__content">
@@ -119,16 +118,16 @@
                             </li>
                         </ul>
                     </div>
-                    <form id="searchContacts" class="l-search localSearch formSearch j-localSearch">
-                        <input class="form-input-search without_M" type="search">
-                        <button class="clean-button j-clean-button" type="reset">✕</button>
-                    </form>                    
                     <div class="pill" data-for="main">
                         <div class="filter-item active" data-type="contact">All</div>
                         <div class="filter-item" data-type="staff">Colleagues</div>
                         <div class="filter-item" data-type="client">Clients</div>
                         <div class="filter-item" data-type="denning">Matters</div>
                     </div>                
+                    <form id="searchContacts" class="l-search localSearch formSearch j-localSearch">
+                        <input class="form-input-search without_M" type="search">
+                        <button class="clean-button j-clean-button" type="reset">✕</button>
+                    </form>                    
                     <div class="new-group createGroupChat is-hidden">
                         <a href="#!/dialog/create">
                             <div style="float: left;"><i class="material-icons">add_box</i></div> 
@@ -615,8 +614,8 @@
                 <div class="j-footer_btn l-input-buttons btn_input_smile j-btn_input_smile" data-balloon="Add smiles" data-balloon-pos="up"></div>
                 <div class="j-footer_btn l-input-buttons btn_input_location j-btn_input_location" data-balloon="Send location" data-balloon-pos="up"></div>
                 <div class="j-footer_btn l-input-buttons btn_sendlocation j-send_location <%= location %>" data-balloon-length="small" data-balloon="Send your location with messages" data-balloon-pos="up"></div>
-                <div class="j-footer_btn l-input-buttons btn_file_folder j-btn_file_folder" data-balloon="Send from Denning file folder" data-balloon-pos="up"></div>
                 <div class="j-footer_btn l-input-buttons btn_input_attach j-btn_input_attach" data-balloon="Send attachment file" data-balloon-pos="up"></div>
+                <div class="j-footer_btn l-input-buttons btn_file_folder j-btn_file_folder" data-balloon="Send from Denning file folder" data-balloon-pos="up"></div>
             </div>
             <div class="j-typing l-typing"></div>
         </footer>

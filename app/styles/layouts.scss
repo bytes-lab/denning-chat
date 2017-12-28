@@ -208,7 +208,7 @@
     position: relative;
     height: 60px;
     padding: 0 12px;
-    margin-top: 5px;
+    margin-top: 18px;
 }
 .l-header-logo {
     height: 32px;
@@ -218,12 +218,14 @@
 }
 .l-header-logo .l-header-logo-text {
     font-family: Roboto;
-    font-size: 25px;
-    color: #778594;
+    font-size: 20px;
+    font-weight: 600;
+    color: #999;
 }
 .l-user-email {
     font-size: 15px;
-    padding: 6px 0px 0 3px;
+    padding: 4px 0 0 1px;
+    color: #999;
 }
 .l-content {
     position: relative;
@@ -434,8 +436,8 @@
 }
 
 .sidebar__tab_link.active {
-    color: #18C942;
-    box-shadow: inset 0 -2px 0 0 #18C942;
+    color: #4691F1;
+    box-shadow: inset 0 -2px 0 0 #4691F1;
 }
 
 .tab-label {
@@ -452,15 +454,14 @@
     text-decoration: none;
     font-size: 14px;
     line-height: 40px;
-    font-weight: 500;
+    font-weight: 600;
     color: #778594;
-    /* text-transform: uppercase; */
     display: block;
     text-align: center;
 }
 
 .pill {
-    margin: 5px 12px;
+    margin: 15px 12px 5px;
     cursor: pointer;
 }
 
@@ -470,18 +471,18 @@
 
 .filter-item.active, .filter-item:hover {
     color: white;
-    background-color: red;
+    background-color: #4691F1;
     padding: 8px 1px;
 }
 
 .filter-item {
     display: inline-block;
     width: 23%;
-    color: red;
+    color: #aaa;
     background-color: white;
     margin: 0 -2px;
     text-align: center;
-    border: 1px solid;
+    border: 1px solid #eee;
     padding: 7px 0px;
 }
 
