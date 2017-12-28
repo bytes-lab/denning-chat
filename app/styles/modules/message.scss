@@ -60,7 +60,7 @@ article.message[data-status="typing"] > div {
     margin-top: 0;
 }
 .message-content {
-    padding-left: 15px;
+    padding-left: 5px;
     width: 460px;
     color: #333;
     word-wrap: break-word;
@@ -321,4 +321,9 @@ article.message[data-status="typing"] > div {
     width: 45px;
     height: 45px;
     background: url('../images/ic-play-video.svg') no-repeat center;
+}
+@media screen and (max-width: 425px) {
+    .message {
+        padding: 8px 24px 8px 8px;
+    }
 }
