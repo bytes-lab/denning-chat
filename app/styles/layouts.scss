@@ -36,11 +36,6 @@
     -ms-flex-pack: end;
     justify-content: flex-end;
 }
-.l-flexbox_flexbetween {
-    -webkit-justify-content: space-between;
-    -ms-flex-pack: justify;
-    justify-content: space-between;
-}
 .l-flexbox_flexwrap {
     -webkit-flex-wrap: wrap;
     -ms-flex-wrap: wrap;
@@ -93,6 +88,11 @@
     .l-welcome_container {
         padding: 25px;
     }
+    .l-flexbox_flexbetween {
+        -webkit-justify-content: space-between;
+        -ms-flex-pack: justify;
+        justify-content: space-between;
+    }    
 }
 .l-welcome_container.reset_pas {
     height: 318px;
@@ -550,6 +550,7 @@
 
 .l-sidebar.active {
     left: 0;
+    top: 0;
 }
 
 @media screen and (min-width: 880px) {

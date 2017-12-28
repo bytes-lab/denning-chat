@@ -111,7 +111,7 @@ define([
                     } : null,
                     geoCoords = (message.attachment && message.attachment.type === 'location') ? getLocationFromAttachment(message.attachment) : null,
                     mapAttachImage = geoCoords ? Location.getStaticMapUrl(geoCoords, {
-                        'size': [380, 200]
+                        'size': [286, 200]
                     }) : null,
                     mapAttachLink = geoCoords ? Location.getMapUrl(geoCoords) : null,
                     recipientFullName = message.recipient_id && contacts[message.recipient_id] && contacts[message.recipient_id].full_name || 'this user',

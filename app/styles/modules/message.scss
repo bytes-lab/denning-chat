@@ -114,7 +114,6 @@ article.message[data-status="typing"] > div {
 }
 .message-info {
     position: relative;
-    width: 120px;
     height: 14px;
     line-height: 14px;
     font-family: Roboto, sans-serif;
@@ -324,6 +323,18 @@ article.message[data-status="typing"] > div {
 }
 @media screen and (max-width: 425px) {
     .message {
-        padding: 8px 24px 8px 8px;
+        padding: 8px;
+    }
+
+    .message-content {
+        width: calc(100% - 115px);
+    }
+
+    .message-content.indent {
+        width: calc(100% - 65px);
+    }
+
+    .message-time {
+        width: 65px;
     }
 }
