@@ -560,40 +560,45 @@
                         <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" data-name="<%= name %>" style="background-image:url(<%= icon %>)"></div>
                     <% } %>
                     <input class="avatar_file avatar is-hidden" type="file" accept="image/*" data-dialog="<%= dialog_id %>">
-                    <h2 class="name name_chat" contenteditable="true" title="<%= name %>"><%= name %></h2>
+                    <h2 class="name name_chat c<%= type %>" contenteditable="true" title="<%= name %>"><%= name %></h2>
                     <span class="pencil is-hidden"></span>
                     <span class="triangle j-triangle triangle_down"></span>
                     <span class="triangle j-triangle triangle_up is-hidden"></span>
                 </div>
                 <% } %>
             </div>
-            <div class="chat-controls">
+            <div class="chat-controls c<%= type %>">
                 <% if (type === 3) { %>
-                <button class="btn_chat btn_chat_videocall videoCall" data-id="<%= user_id %>" data-balloon="Make a video call" data-balloon-pos="down">
-                    <img src="images/icon-videocall.svg" alt="Make a Video Call">
-                </button>
-                <button class="btn_chat btn_chat_audiocall audioCall" data-id="<%= user_id %>" data-balloon="Make an audio call" data-balloon-pos="down">
-                    <img src="images/icon-audiocall.svg" alt="Make an Audio Call">
-                </button>
-                <button class="btn_chat btn_chat_profile userDetails" data-id="<%= user_id %>" data-balloon="Show user profile" data-balloon-pos="down">
-                    <img src="images/icon-profile.svg" alt="Show user profile">
-                </button>
-                <button class="btn_chat btn_chat_add createGroupChat" data-ids="<%= occupantsIds.join() %>" data-private="1" data-balloon="Create a new group chat with the current user" data-balloon-pos="down">
-                    <img src="images/icon-add.svg" alt="Create a new group chat">
-                </button>
-                <button class="btn_chat btn_chat_delete deleteContact j-deleteContact" data-balloon="Delete contact" data-balloon-pos="down">
-                    <img src="images/icon-profile-delete.svg" alt="Delete contact">
-                </button>
-                <button class="btn_chat btn_chat_delete deleteChat j-deleteChat" data-balloon="Remove chat" data-balloon-pos="down">
-                    <img src="images/icon-delete.svg" alt="Remove chat">
-                </button>
+                    <button class="btn_chat btn_chat_videocall videoCall" data-id="<%= user_id %>" data-balloon="Make a video call" data-balloon-pos="down">
+                        <img src="images/icon-videocall.svg" alt="Make a Video Call">
+                    </button>
+                    <button class="btn_chat btn_chat_audiocall audioCall" data-id="<%= user_id %>" data-balloon="Make an audio call" data-balloon-pos="down">
+                        <img src="images/icon-audiocall.svg" alt="Make an Audio Call">
+                    </button>
+                    <button class="btn_chat btn_chat_more" data-balloon="More Buttons" data-balloon-pos="down">
+                        <img src="images/ic_more.svg" alt="More Buttons">
+                    </button>
+                    <div class="btn_chat_extra is-hidden">
+                        <button class="btn_chat btn_chat_profile userDetails" data-id="<%= user_id %>" data-balloon="Show user profile" data-balloon-pos="down">
+                            <img src="images/icon-profile.svg" alt="Show user profile">
+                        </button>
+                        <button class="btn_chat btn_chat_add createGroupChat" data-ids="<%= occupantsIds.join() %>" data-private="1" data-balloon="Create a new group chat with the current user" data-balloon-pos="down">
+                            <img src="images/icon-add.svg" alt="Create a new group chat">
+                        </button>
+                        <button class="btn_chat btn_chat_delete deleteContact j-deleteContact" data-balloon="Delete contact" data-balloon-pos="down">
+                            <img src="images/icon-profile-delete.svg" alt="Delete contact">
+                        </button>
+                        <button class="btn_chat btn_chat_delete deleteChat j-deleteChat" data-balloon="Remove chat" data-balloon-pos="down">
+                            <img src="images/icon-delete.svg" alt="Remove chat">
+                        </button>
+                    </div>
                 <% } else { %>
-                <button class="btn_chat btn_chat_add addToGroupChat" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>" data-balloon="Add occupants to group chat" data-balloon-pos="down">
-                    <img src="images/icon-add.svg" alt="Add occupants to group chat">
-                </button>
-                <button class="btn_chat btn_chat_leave deleteChat j-deleteChat" data-balloon="Leave chat and clear history" data-balloon-pos="down">
-                    <img src="images/icon-exit.svg" alt="Leave chat">
-                </button>
+                    <button class="btn_chat btn_chat_add addToGroupChat" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>" data-balloon="Add occupants to group chat" data-balloon-pos="down">
+                        <img src="images/icon-add.svg" alt="Add occupants to group chat">
+                    </button>
+                    <button class="btn_chat btn_chat_leave deleteChat j-deleteChat" data-balloon="Leave chat and clear history" data-balloon-pos="down">
+                        <img src="images/icon-exit.svg" alt="Leave chat">
+                    </button>
                 <% } %>
             </div>
         </header>

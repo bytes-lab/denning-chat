@@ -389,3 +389,22 @@ button.btn.btn_search:hover {
     background: url(../images/icon-fb_header.svg) 50% no-repeat;
     background-size: 18px 18px;
 }
+
+@media screen and (max-width: 425px) {
+    .btn_chat {
+        margin-right: 0px;
+    }
+}
+
+.btn_chat_extra {
+    position: fixed;
+    background: white;
+    padding: 5px 10px;
+    border-radius: 12px;
+    border: solid 1px #ddd;
+    margin: 7px -40px;
+}
+
+.btn_chat_more {
+    margin-right: 0;
+}
