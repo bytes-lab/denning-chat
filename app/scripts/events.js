@@ -453,7 +453,7 @@ define([
 
             $workspace.on('click', '.btn_chat_more', function() {
                 $('.btn_chat_extra').toggleClass('is-hidden');
-            })
+            });
 
             $workspace.on('change', '.groupTitle .avatar_file', function() {
                 var $chat = $('.l-chat:visible');

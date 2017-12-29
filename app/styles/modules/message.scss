@@ -327,7 +327,12 @@ article.message[data-status="typing"] > div {
     }
 
     .message-content {
-        width: calc(100% - 115px);
+        margin-right: auto;
+        width: 100%;
+    }
+
+    .message-body {
+        max-width: calc(100vw - 142px);
     }
 
     .message-content.indent {
