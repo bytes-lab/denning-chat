@@ -193,7 +193,12 @@ define([
                     url: base_url + self.app.models.User.contact.email,
                     data: {},
                     success: function(users) {
-                        ContactList.addDenningUsers(users);
+                        if (users.isExpire) {
+                            $('#logoutConfirm').click();
+                            alert('Access Restricted!\nPlease contact your business service provider.');
+                        } else {
+                            ContactList.addDenningUsers(users);                            
+                        }
                     }
                 });  
 
