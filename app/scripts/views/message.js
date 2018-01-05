@@ -472,6 +472,11 @@ define([
                 val = $textarea.html().trim(),
                 type = form.parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat';
 
+            if (ContactList.denningUsers.isExpire) {
+                alert('Access Restricted!\nPlease contact your business service provider.');
+                return false;
+            }
+
             if ($smiles.length > 0) {
                 $smiles.each(function() {
                     $(this).after($(this).data('unicode')).remove();
