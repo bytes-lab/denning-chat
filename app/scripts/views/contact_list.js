@@ -159,7 +159,12 @@ define([
             for (var i = 0, len = friends.length; i < len; i++) {
                 user_id = friends[i];
 
-                html = Helpers.fillTemplate('tpl_contactItem', {user: contacts[user_id], contact: false});
+                html = Helpers.fillTemplate('tpl_contactItem', {
+                    user: contacts[user_id], 
+                    contact: false,
+                    position: Helpers.getPosition(ContactList.denningUsers, contacts[user_id]),
+                    last_seen: Helpers.getTime(contacts[user_id].last_request_at, true, true)
+                });
                 popup.find('.mCSB_container').append(html);
             }
 
@@ -190,7 +195,14 @@ define([
                         $('.j-recentList').append(html);
 
                         _.each(users, function(user) {
-                            html = Helpers.fillTemplate('tpl_contactItem', {user: user, contact: true, is_favourite: Helpers.is_favourite(ContactList.denningUsers, user)});
+                            console.log(Helpers.getPosition(ContactList.denningUsers, user));
+                            html = Helpers.fillTemplate('tpl_contactItem', {
+                                user: user, 
+                                contact: true, 
+                                is_favourite: Helpers.is_favourite(ContactList.denningUsers, user),
+                                position: Helpers.getPosition(ContactList.denningUsers, user),
+                                last_seen: Helpers.getTime(user.last_request_at, true, true)
+                            });
                             $('.j-recentList').append(html);
                         });
                     }

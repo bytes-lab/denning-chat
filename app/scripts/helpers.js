@@ -320,9 +320,14 @@ define([
         }
     };
 
-    Helpers.getTime = function(time, isDate) {
-        var messageDate = new Date(time * 1000),
+    Helpers.getTime = function(time, isDate, strDate) {
+        var messageDate,
             startOfCurrentDay = new Date();
+
+        if (strDate)
+            messageDate = new Date(time);
+        else 
+            messageDate = new Date(time * 1000);
 
         startOfCurrentDay.setHours(0, 0, 0, 0);
 
@@ -394,6 +399,22 @@ define([
         });
         return _.uniq(users_);
     };    
+
+    Helpers.getPosition = function(denningUsers, user) {
+        var res;
+        _.each(_.pluck(_.unzip(_.values(denningUsers))[0], 'users'), function(users) { 
+            var _res =_.where(users, {email: user.email});
+            if (_res.length > 0) {
+                res = _res;
+            }
+        });
+        
+        if (res.length > 0) {
+            return res[0].position;
+        } else {
+            return '';
+        }
+    };
 
     Helpers.is_favourite = function(denningUsers, user) {
         var favourites = Helpers.getEmails(denningUsers, ['favourite_client', 'favourite_staff']);

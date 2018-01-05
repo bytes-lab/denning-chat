@@ -428,6 +428,7 @@
                 <option value="staff">Colleagues</option>
                 <option value="client">Clients</option>
                 <option value="matter">Matter</option>
+                <option value="denning">Denning</option>
             </select>
         </div>
         <footer class="popup-footer">
@@ -662,7 +663,13 @@
                 <% } else { %>
                     <div class="contact-avatar avatar profileUserAvatar" style="background-image:url(<%= user.avatar_url %>)" data-id="<%= user.id %>"></div>
                 <% } %>
-                <span class="name profileUserName" data-id="<%= user.id %>"><%= user.full_name %></span>
+                <div class="name">
+                    <span class="name profileUserName" data-id="<%= user.id %>"><%= user.full_name %></span>
+                    <div style="font-size: 13px; color: #aaa;"><%= position %></div>
+                    <div style="font-size: 13px; color: #aaa;">
+                        Last seen <%= last_seen %>
+                    </div>
+                </div>
             </div>
             <% if (!contact) { %>
                 <input class="form-checkbox" type="checkbox">
