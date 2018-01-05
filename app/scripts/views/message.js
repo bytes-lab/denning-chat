@@ -733,6 +733,9 @@ define([
                 self.addItem(msg, true, true);
             }
 
+            console.debug('#########');
+            console.debug(msg);
+
             if (notification_type === '5' && isNotMyUser && isExistent) {
                 ContactListView.onConfirm(id);
             }
