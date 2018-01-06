@@ -68,7 +68,7 @@ define([
             }
         },
 
-        addItem: function(message, isCallback, isMessageListener) {
+        addItem: function(message, isCallback, isMessageListener, dext) {
             var Contact = this.app.models.Contact,
                 $chat = $('.l-chat[data-dialog="' + message.dialog_id + '"]'),
                 isOnline = message.online,
@@ -370,10 +370,18 @@ define([
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + attachUrl + '" download="' + message.attachment.name + '"><img class="icon" src="images/file/pdf.png"><div class=""> ' + message.attachment.name + '</div></a>';
                             html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div></div>';
+                        } else if (dext && dext.ext.indexOf('pdf') > -1) {
+                            html += '<div class="message-body">';
+                            html += '<a id="attach_' + message.id + '" class="attach-file" href="' + dext.url + '" download="' + dext.title + dext.ext + '"><img class="icon" src="images/file/pdf.png"><div class=""> ' + dext.title + dext.ext + '</div></a>';
+                            html += '<span class="attach-size">' + getFileSize(dext.size) + '</span></div></div>';
                         } else if (attachType && attachType.indexOf('word') > -1) {
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + attachUrl + '" download="' + message.attachment.name + '"><img class="icon" src="images/file/word.png"><div class=""> ' + message.attachment.name + '</div></a>';
                             html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div></div>';
+                        } else if (dext && dext.ext.indexOf('doc') > -1) {
+                            html += '<div class="message-body">';
+                            html += '<a id="attach_' + message.id + '" class="attach-file" href="' + dext.url + '" download="' + dext.title + dext.ext + '"><img class="icon" src="images/file/word.png"><div class=""> ' + dext.title + dext.ext + '</div></a>';
+                            html += '<span class="attach-size">' + getFileSize(dext.size) + '</span></div></div>';
                         } else if (message.attachment && message.attachment.type.indexOf('file') > -1) {
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + attachUrl + '" download="' + message.attachment.name + '"><img class="icon" src="images/file/file.ico"><div class=""> ' + message.attachment.name + '</div></a>';
@@ -472,10 +480,10 @@ define([
                 val = $textarea.html().trim(),
                 type = form.parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat';
 
-            if (ContactList.denningUsers.isExpire) {
-                alert('Access Restricted!\nPlease contact your business service provider.');
-                return false;
-            }
+            // if (ContactList.denningUsers.isExpire) {
+            //     alert('Access Restricted!\nPlease contact your business service provider.');
+            //     return false;
+            // }
 
             if ($smiles.length > 0) {
                 $smiles.each(function() {
@@ -491,7 +499,7 @@ define([
             self._sendMessage(jid, val, type, dialog_id);
         },
 
-        _sendMessage: function(jid, val, type, dialog_id) {
+        _sendMessage: function(jid, val, type, dialog_id, dext) {
             var time = Math.floor(Date.now() / 1000),
                 $chat = $('.l-chat[data-dialog="' + dialog_id + '"]'),
                 $newMessages = $('.j-newMessages[data-dialog="' + dialog_id + '"]'),
@@ -538,7 +546,7 @@ define([
                     Helpers.Dialogs.moveDialogToTop(dialog_id);
                     lastMessage = $chat.find('article[data-type="message"]').last();
                     message.stack = Message.isStack(true, message, lastMessage);
-                    self.addItem(message, true, true);
+                    self.addItem(message, true, true, dext);
 
                     if ($newMessages.length) {
                         $newMessages.remove();
