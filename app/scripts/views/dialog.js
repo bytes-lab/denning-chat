@@ -804,7 +804,7 @@ define([
                         }
                     }
 
-                    MessageView.addItem(message, null, null);
+                    MessageView.addItem(message, null, null, message.dext);
                 }
 
                 setScrollToNewMessages('#mCS_'+dialogId);

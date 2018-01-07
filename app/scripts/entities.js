@@ -41,7 +41,8 @@ define([
             read_ids: [],
             read: null,
             online: false,
-            status: ''
+            status: '',
+            dext: ''
         },
 
         initialize: function() {

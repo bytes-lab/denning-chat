@@ -92,6 +92,7 @@ define([
 				latitude: (params.extension && params.extension.latitude) || params.latitude || null,
                 longitude: (params.extension && params.extension.longitude) || params.longitude || null,
                 stack: false,
+                dext: JSON.parse(params.dext || null),
                 online: params.online || false,
                 status: ((params.extension && params.extension.notification_type) || params.notification_type) ? '' : 'Not delivered yet'
             };

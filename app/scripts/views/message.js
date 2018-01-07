@@ -518,7 +518,8 @@ define([
                     'extension': {
                         'save_to_history': 1,
                         'dialog_id': dialog_id,
-                        'date_sent': time
+                        'date_sent': time,
+                        'dext': dext && JSON.stringify(dext) || ""
                     },
                     'markable': 1
                 };
@@ -743,7 +744,7 @@ define([
                     contacts[id] = Contact.create(user);
                 });
             } else {
-                self.addItem(msg, true, true);
+                self.addItem(msg, true, true, JSON.parse(message.extension.dext));
             }
 
             console.debug('#########');

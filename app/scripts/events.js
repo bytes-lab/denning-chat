@@ -874,7 +874,7 @@ define([
                         url: val,
                         title: $(this).data('title'),
                         ext: $(this).data('ext'),
-                        size: $(this).data('size')
+                        size: $(this).data('size') * 1000
                     };
 
                 MessageView._sendMessage(jid, val, type, dialog_id, dext);
