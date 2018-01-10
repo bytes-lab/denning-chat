@@ -21,3 +21,4 @@ dist/*
 config.js
 main_config.js
 *.tar.gz
+*.vscode

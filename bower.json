@@ -19,7 +19,8 @@
     "lamejs": "*",
     "media-recorder-js": "^1.0.1",
     "quickblox": "^2.6.0",
-    "firebase": "^4.3.1"
+    "firebase": "^4.3.1",
+    "jquery-ui": "^1.12.1"
   },
   "devDependencies": {}
 }

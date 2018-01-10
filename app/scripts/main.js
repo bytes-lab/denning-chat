@@ -23,6 +23,10 @@ requirejs.config({
         },
         minEmoji: {
             exports: 'minEmoji'
+        },
+       "jquery-ui": {
+            deps: ['jquery'],
+            exports: "$"
         }
     },
     paths: {
@@ -38,6 +42,7 @@ requirejs.config({
         progressbar: '../bower_components/progressbar.js/lib/control/progressbar',
         loadImage: '../bower_components/blueimp-load-image/js/load-image',
         mCustomScrollbar: '../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar',
+        "jquery-ui": '../bower_components/jquery-ui/jquery-ui',
         mousewheel: '../bower_components/jquery-mousewheel/jquery.mousewheel',
         timeago: '../bower_components/jquery-timeago/jquery.timeago',
         minEmoji: '../vendor/emoji/js/minEmoji',
@@ -94,6 +99,7 @@ requirejs.config({
 
 requirejs([
     'jquery',
+    'jquery-ui',
     'config',
     'minEmoji',
     'MainModule',
@@ -102,6 +108,7 @@ requirejs([
     'firebase'
 ], function(
     $,
+    ui,
     QMCONFIG,
     minEmoji,
     QM,
