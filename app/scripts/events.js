@@ -827,7 +827,7 @@ define([
                         }
                     }
                 });                          
-            }
+            };
 
             $( ".j-fileSearch .form-input-search" ).autocomplete({
                 source: function (request, response) {

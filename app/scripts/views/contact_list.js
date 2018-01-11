@@ -195,7 +195,6 @@ define([
                         $('.j-recentList').append(html);
 
                         _.each(users, function(user) {
-                            console.log(Helpers.getPosition(ContactList.denningUsers, user));
                             html = Helpers.fillTemplate('tpl_contactItem', {
                                 user: user, 
                                 contact: true, 

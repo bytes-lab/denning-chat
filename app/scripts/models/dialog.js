@@ -67,6 +67,7 @@ define([
                 QBApiCalls = this.app.service,
                 DialogView = this.app.views.Dialog,
                 ContactList = this.app.models.ContactList,
+                tag = $('.chat-category select').val(),
                 id;
 
             id = (idOrJid.indexOf('@') > -1) ? QB.chat.helpers.getIdFromNode(idOrJid) : idOrJid;
@@ -78,7 +79,11 @@ define([
             } else {
                 QBApiCalls.createDialog({
                     type: 3,
-                    occupants_ids: id
+                    occupants_ids: id,
+                    data: {
+                        class_name: "dialog_data",
+                        tag: tag
+                    }                
                 }, function(res) {
                     addContactRequestDialogItem(res, true);
                 });
@@ -191,7 +196,7 @@ define([
                 self = this;
 
             var tag = $('.chat-category select').val();
-            console.log(tag);
+
             QBApiCalls.createDialog({
                 type: 3,
                 occupants_ids: id,

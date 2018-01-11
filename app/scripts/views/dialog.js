@@ -282,6 +282,7 @@ define([
                 roster = ContactList.roster,
                 private_id;
 
+            tag = tag == 'staff' ? 'colleagues' : tag == 'client' ? 'clients' : tag;
             $('.j-recentList')[0].innerHTML = '';
             _.each(Entities.Collections.dialogs.models, function(dialog) {
                 private_id = dialog.get('type') === 3 ? dialog.get('occupants_ids')[0] : null;
@@ -289,7 +290,6 @@ define([
                 if (private_id && (!roster[private_id] ||
                     (roster[private_id] && roster[private_id].subscription === 'none' &&
                     !roster[private_id].ask && notConfirmed[private_id]))) {
-                    console.log('');
                 } else if (!isGroup || dialog.get('type') == 2) {
                     if (tag == 'contact' || dialog.get('tag') == tag)
                         self.addDialogItem(dialog, true);                                    
@@ -649,7 +649,6 @@ define([
                 });
             } else {
                 var tag = $('.chat-category select').val();
-                console.log(tag);
                 Dialog.createGroup(occupants_names, {
                     name: groupName,
                     occupants_ids: occupants_ids,
