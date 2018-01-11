@@ -296,16 +296,17 @@
 
     <div id="popupFileFolder" class="popup popup_file_folder j-file-folder">
         <header class="popup-header">
-            <h3>Matter Search</h3>
+            <h3>Search Denning Folders</h3>
         </header>
         <form id="fileSearch" class="popup-form formSearch j-fileSearch" action="#">
             <input class="form-input-search without_M" type="search" autofocus>
             <button class="clean-button j-clean-button" type="reset">✕</button>
         </form>
-        <div class="pill is-hidden">
-            <div class="filter-item file active" data-type="contact">Transit Folder</div>
-            <div class="filter-item file" data-type="client">File Folder</div>
-            <div class="filter-item file" data-type="denning">Contact Folder</div>
+        <div class="pill" data-for="file">
+            <div class="filter-item active" data-category="0">All</div>
+            <div class="filter-item" data-category="1">Contact</div>
+            <div class="filter-item" data-category="2">Related Matter</div>
+            <div class="filter-item" data-category="4">Property</div>
         </div>                
 
         <ul class="popup-elem list list_matters"></ul>

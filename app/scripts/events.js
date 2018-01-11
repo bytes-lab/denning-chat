@@ -534,11 +534,13 @@ define([
             });
 
             $('.filter-item').on('click', function() {
-                $('.filter-item').siblings().removeClass('active');
+                $(this).siblings().removeClass('active');
                 $(this).addClass('active');
 
                 if ($(this).parent().data('for') == 'main')
-                    selectTabFilter();
+                    selectTabFilter();      // for main filter
+                else
+                    loadFolders();          // for denning file filter
             });
 
             function selectTabFilter() {
@@ -795,6 +797,38 @@ define([
 
             /* file folder search
             ----------------------------------------------------- */   
+            var keyword_folder;
+
+            var loadFolders = function() {
+                var $self = $( ".j-fileSearch" );
+
+                $self.find('.j-clean-button').show();
+                $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 600; font-size: 17px;">Searching...</li>');
+
+                $.ajax({
+                    type: 'get',
+                    url: 'http://43.252.215.81/online/denningwcf/v1/generalSearch',
+                    data: {
+                        ssid: "testdenningOnline",
+                        uid: "onlinedev@denning.com.my",
+                        search: keyword_folder,
+                        category: $('.j-file-folder .filter-item.active').data('category')
+                    },
+                    success: function(res) {
+                        if (res.length == 0) {
+                            $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 500; font-size: 16px;">There is no result.</li>');
+                        } else {
+                            $self.parent().find('.list_matters').html('');
+
+                            _.each(res, function(ii) {
+                                var el = Helpers.fillTemplate('tpl_matter', { matter: ii});                                    
+                                $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
+                            });                                
+                        }
+                    }
+                });                          
+            }
+
             $( ".j-fileSearch .form-input-search" ).autocomplete({
                 source: function (request, response) {
                     $.get("http://43.252.215.81/online/denningwcf/v1/generalSearch/keyword", {
@@ -809,33 +843,8 @@ define([
                 },
                 minLength: 2,
                 select: function( event, ui ) {
-                    var $self = $( ".j-fileSearch" );
-
-                    $self.find('.j-clean-button').show();
-                    $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 600; font-size: 17px;">Searching...</li>');
-
-                    $.ajax({
-                        type: 'get',
-                        url: 'http://43.252.215.81/online/denningwcf/v1/generalSearch',
-                        data: {
-                            ssid: "testdenningOnline",
-                            uid: "onlinedev@denning.com.my",
-                            search: ui.item.value,
-                            category: 2
-                        },
-                        success: function(res) {
-                            if (res.length == 0) {
-                                $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 500; font-size: 16px;">There is no result.</li>');
-                            } else {
-                                $self.parent().find('.list_matters').html('');
-
-                                _.each(res, function(ii) {
-                                    var el = Helpers.fillTemplate('tpl_matter', { matter: ii});                                    
-                                    $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
-                                });                                
-                            }
-                        }
-                    });                          
+                    keyword_folder = ui.item.value;
+                    loadFolders();
                 }
             });
 
