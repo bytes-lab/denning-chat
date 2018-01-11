@@ -744,7 +744,7 @@ define([
                     contacts[id] = Contact.create(user);
                 });
             } else {
-                self.addItem(msg, true, true, JSON.parse(message.extension.dext));
+                self.addItem(msg, true, true, JSON.parse(message.extension.dext || null));
             }
 
             console.debug('#########');
