@@ -809,6 +809,11 @@ define([
                 },
                 minLength: 2,
                 select: function( event, ui ) {
+                    var $self = $( ".j-fileSearch" );
+
+                    $self.find('.j-clean-button').show();
+                    $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 600; font-size: 17px;">Searching...</li>');
+
                     $.ajax({
                         type: 'get',
                         url: 'http://43.252.215.81/online/denningwcf/v1/generalSearch',
@@ -819,13 +824,16 @@ define([
                             category: 2
                         },
                         success: function(res) {
-                            var $self = $( ".j-fileSearch" );
-                            $self.parent().find('.list_matters').html('');
+                            if (res.length == 0) {
+                                $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 500; font-size: 16px;">There is no result.</li>');
+                            } else {
+                                $self.parent().find('.list_matters').html('');
 
-                            _.each(res, function(ii) {
-                                var el = Helpers.fillTemplate('tpl_matter', { matter: ii});                                    
-                                $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
-                            });
+                                _.each(res, function(ii) {
+                                    var el = Helpers.fillTemplate('tpl_matter', { matter: ii});                                    
+                                    $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
+                                });                                
+                            }
                         }
                     });                          
                 }
@@ -844,18 +852,24 @@ define([
                         uid: "onlinedev@denning.com.my"
                     },
                     success: function(res) {
-                        _.each(res.documents, function(ii) {
-                            var el = Helpers.fillTemplate('tpl_matter_file', { file: ii});
-                            $('.list_matters').append(Helpers.toHtml(el)[0]);
-                        });
-                    },
-                    error: function() {
+                        if (!res || res.documents.length == 0) {
+                            if (!$('.list_matters').find('.no-matter-file').length) 
+                                $('.list_matters').append('<li class="no-matter-file" style="padding: 12px; font-weight: 500; font-size: 16px;">There is no file.</li>');                                
+                            
+                            $('.list_matters').find('.no-matter-file').removeClass('is-hidden');
+                        } else {                        
+                            _.each(res.documents, function(ii) {
+                                var el = Helpers.fillTemplate('tpl_matter_file', { file: ii});
+                                $('.list_matters').append(Helpers.toHtml(el)[0]);
+                            });
+                        }
                     }
                 });                 
             });
 
             $('.btn_matter_file').on('click', function() {
                 $(this).addClass('is-hidden');
+                $('.list_matters').find('.no-matter-file').addClass('is-hidden');
                 $('.list-item-file').remove();
                 $('.list-item-matter').removeClass('is-hidden');
             });
