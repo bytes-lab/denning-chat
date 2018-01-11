@@ -797,7 +797,9 @@ define([
             ----------------------------------------------------- */   
             $( ".j-fileSearch .form-input-search" ).autocomplete({
                 source: function (request, response) {
-                    $.get("http://43.252.215.81/online/denningwcf/v1/generalSearch/keyword?ssid=testdenningOnline&uid=onlinedev@denning.com.my", {
+                    $.get("http://43.252.215.81/online/denningwcf/v1/generalSearch/keyword", {
+                        ssid: "testdenningOnline",
+                        uid: "onlinedev@denning.com.my",
                         search: request.term
                     }, function (data) {
                         response($.map( data, function(item) {
@@ -807,11 +809,15 @@ define([
                 },
                 minLength: 2,
                 select: function( event, ui ) {
-                    var base_url = 'http://43.252.215.81/online/denningwcf/v1/generalSearch?ssid=testdenningOnline&uid=onlinedev@denning.com.my&category=2&search=';// + item.value + '';// + self.selectedSearchCategory;
                     $.ajax({
                         type: 'get',
-                        url: base_url + ui.item.value,
-                        data: {},
+                        url: 'http://43.252.215.81/online/denningwcf/v1/generalSearch',
+                        data: {
+                            ssid: "testdenningOnline",
+                            uid: "onlinedev@denning.com.my",
+                            search: ui.item.value,
+                            category: 2
+                        },
                         success: function(res) {
                             var $self = $( ".j-fileSearch" );
                             $self.parent().find('.list_matters').html('');
@@ -825,59 +831,18 @@ define([
                 }
             });
 
-            // $('.j-fileSearch').on('keyup search submit', function(event) {
-            //     var $self = $(this),
-            //         code = event.keyCode,
-            //         type = event.type,
-            //         isText = $self.find('.form-input-search').val().length,
-            //         keyword = $self.find('.form-input-search').val(),
-            //         $cleanButton = $self.find('.j-clean-button'),
-            //         isNoBtn = $cleanButton.is(':hidden');
-
-            //     $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 600; font-size: 17px;">Searching...</li>');
-            //     if ((type === 'keyup' && code !== 27 && code !== 13) || (type === 'search')) {
-            //         if (!isSearching) {
-            //             isSearching = true;
-            //             var base_url = 'http://43.252.215.81/online/denningwcf/v1/generalSearch?ssid=testdenningOnline&uid=onlinedev@denning.com.my&category=2&search=';// + item.value + '';// + self.selectedSearchCategory;
-            //             $.ajax({
-            //                 type: 'get',
-            //                 url: base_url + keyword,
-            //                 data: {},
-            //                 success: function(res) {
-            //                     isSearching = false;
-            //                     $self.parent().find('.list_matters').html('');
-
-            //                     _.each(res, function(ii) {
-            //                         var el = Helpers.fillTemplate('tpl_matter', { matter: ii});                                    
-            //                         $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
-            //                     });
-            //                 },
-            //                 error: function() {
-            //                     isSearching = false;
-            //                 }
-            //             });                          
-            //         }
-            //     }
-
-            //     if (isText && isNoBtn) {
-            //         $cleanButton.show();
-            //     } else if (!isText) {
-            //         $cleanButton.hide();
-            //     }
-
-            //     return false;
-            // });
-
             $('.list_matters').on('click', '.list-item-matter', function() {
                 var key = $(this).data('key');
                 $('.list-item-matter').addClass('is-hidden');
                 $('.btn_matter_file').removeClass('is-hidden');
 
-                var base_url = 'http://43.252.215.81/online/denningwcf/v1/app/matter/'+key+'/fileFolder?ssid=testdenningOnline&uid=onlinedev@denning.com.my';// + item.value + '';// + self.selectedSearchCategory;
                 $.ajax({
                     type: 'get',
-                    url: base_url,
-                    data: {},
+                    url: 'http://43.252.215.81/online/denningwcf/v1/app/matter/'+key+'/fileFolder',
+                    data: {
+                        ssid: "testdenningOnline",
+                        uid: "onlinedev@denning.com.my"
+                    },
                     success: function(res) {
                         _.each(res.documents, function(ii) {
                             var el = Helpers.fillTemplate('tpl_matter_file', { file: ii});
