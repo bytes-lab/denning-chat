@@ -839,7 +839,8 @@ define([
                         ssid: "testdenningOnline",
                         uid: "onlinedev@denning.com.my",
                         search: keyword_folder,
-                        category: $('.j-file-folder .filter-item.active').data('category')
+                        category: $('.j-file-folder .filter-item.active').data('category'),
+                        isAutoComplete: 1
                     },
                     success: function(res) {
                         if (res.length == 0) {
