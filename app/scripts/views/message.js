@@ -747,8 +747,8 @@ define([
                 self.addItem(msg, true, true, JSON.parse(message.extension.dext || null));
             }
 
-            console.debug('#########');
-            console.debug(msg);
+            // console.debug('#########');
+            // console.debug(msg);
 
             if (notification_type === '5' && isNotMyUser && isExistent) {
                 ContactListView.onConfirm(id);

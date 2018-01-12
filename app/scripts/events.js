@@ -527,20 +527,25 @@ define([
 
             $('.care-line').on('click', function() {
                 $('.new-group').addClass('is-hidden');
+                $('.j-sidebar__tab_link').removeClass('active');
                 $('.main .filter-item').removeClass('active');
                 $('.filter-item:last-child').removeClass('disabled');
                 DialogView.showChats(true, 'denning');
+
+                var scrollbar = document.querySelector('.j-scrollbar_aside');
+                Ps.update(scrollbar);                
             });
 
             $('.j-sidebar__tab_link').on('click', function() {
                 $('.j-sidebar__tab_link').removeClass('active');
                 $(this).addClass('active');
 
+                $('.filter-item').removeClass('active');
+                $('.filter-item:first-child').addClass('active');                    
+
                 var tab_type = $('.j-sidebar__tab_link.active').data('type');
                 if (tab_type == "contact" || tab_type == "favourite") {
                     $('.filter-item:last-child').addClass('disabled');   
-                    $('.filter-item').removeClass('active');
-                    $('.filter-item:first-child').addClass('active');                    
                 }
                 // reset search
                 $('.localSearch input').val('');
@@ -548,6 +553,9 @@ define([
             });
 
             $('.filter-item').on('click', function() {
+                if (!$('.j-sidebar__tab_link.active').data('type'))
+                    return;
+
                 $(this).siblings().removeClass('active');
                 $(this).addClass('active');
 
