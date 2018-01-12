@@ -478,9 +478,11 @@ define([
                 $textarea = form.find('.textarea'),
                 $smiles = form.find('.textarea > img'),
                 val = $textarea.html().trim(),
-                type = form.parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat';
+                type = form.parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat',
+                dialogs = Entities.Collections.dialogs,
+                dialog = dialogs.get(dialog_id);
 
-            if (ContactList.denningUsers.isExpire) {
+            if (ContactList.denningUsers.isExpire && dialog.get('tag').toLowerCase() != 'denning') {
                 alert('Access Restricted!\nPlease contact your business service provider.');
                 return false;
             }
