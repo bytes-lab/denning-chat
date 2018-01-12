@@ -913,7 +913,7 @@ define([
             $('.list_matters').on('dblclick', '.list-item-file', function() {
                 var jid = $('.j-btn_file_folder').parents('.l-chat').data('jid'),
                     dialog_id = $('.j-btn_file_folder').parents('.l-chat').data('dialog'),
-                    val = 'http://43.252.215.81/denningwcf/' + $(this).data('url'),
+                    val = 'http://43.252.215.81/Online/denningwcf/' + $(this).data('url') + '?ssid=testdenningOnline&uid=onlinedev@denning.com.my',
                     type = $('.j-btn_file_folder').parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat',
                     dext = {
                         url: val,

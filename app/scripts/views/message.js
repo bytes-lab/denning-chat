@@ -542,6 +542,7 @@ define([
                     'longitude': localStorage['QM.longitude'] || null,
                     '_id': msg.id,
                     'type': type,
+                    'dext': dext && JSON.stringify(dext) || "",
                     'online': true
                 });
 
