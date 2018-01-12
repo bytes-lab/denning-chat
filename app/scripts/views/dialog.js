@@ -291,7 +291,7 @@ define([
                     (roster[private_id] && roster[private_id].subscription === 'none' &&
                     !roster[private_id].ask && notConfirmed[private_id]))) {
                 } else if (!isGroup || dialog.get('type') == 2) {
-                    if (tag == 'contact' || dialog.get('tag') == tag)
+                    if (tag == 'contact' || dialog.get('tag').toLowerCase() == tag)
                         self.addDialogItem(dialog, true);                                    
                 }
             });

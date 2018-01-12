@@ -283,6 +283,11 @@
     height: calc(100% - 270px);
     position: relative;
 }
+
+.l-list-wrap.group {
+    height: calc(100% - 320px);
+}
+
 .l-list-header {
     padding: 0 15px;
     background: #f2f4f5;
@@ -589,4 +594,8 @@
 
 .ui-state-active {
     border: none !important;
+}
+
+.care-line {
+    cursor: pointer;
 }

@@ -525,9 +525,23 @@ define([
                 return false;
             });
 
+            $('.care-line').on('click', function() {
+                $('.new-group').addClass('is-hidden');
+                $('.main .filter-item').removeClass('active');
+                $('.filter-item:last-child').removeClass('disabled');
+                DialogView.showChats(true, 'denning');
+            });
+
             $('.j-sidebar__tab_link').on('click', function() {
                 $('.j-sidebar__tab_link').removeClass('active');
                 $(this).addClass('active');
+
+                var tab_type = $('.j-sidebar__tab_link.active').data('type');
+                if (tab_type == "contact" || tab_type == "favourite") {
+                    $('.filter-item:last-child').addClass('disabled');   
+                    $('.filter-item').removeClass('active');
+                    $('.filter-item:first-child').addClass('active');                    
+                }
                 // reset search
                 $('.localSearch input').val('');
                 selectTabFilter();                
@@ -537,10 +551,11 @@ define([
                 $(this).siblings().removeClass('active');
                 $(this).addClass('active');
 
-                if ($(this).parent().data('for') == 'main')
+                if ($(this).parent().data('for') == 'main') {
                     selectTabFilter();      // for main filter
-                else
+                } else {
                     loadFolders();          // for denning file filter
+                }
             });
 
             function selectTabFilter() {
@@ -548,11 +563,11 @@ define([
                 var filter_type = $('.filter-item.active').data('type');
 
                 $('.new-group').addClass('is-hidden');
+                $('.l-list-wrap').removeClass('group');
+
                 if (tab_type == "contact") {
-                    $('.filter-item:last-child').addClass('disabled');                    
                     ContactListView.showContacts(filter_type, '');         
                 } else if (tab_type == "favourite") {
-                    $('.filter-item:last-child').addClass('disabled');
                     ContactListView.showContacts(filter_type, 'favourite_');
                 } else if (tab_type == "chat") {
                     $('.filter-item:last-child').removeClass('disabled');
@@ -560,9 +575,13 @@ define([
                 } else {
                     $('.filter-item:last-child').removeClass('disabled');
                     $('.new-group').removeClass('is-hidden');
+                    $('.l-list-wrap').addClass('group');
                     DialogView.showChats(true, filter_type);
                 }
-                UserView.localSearch($('.localSearch'));                
+                UserView.localSearch($('.localSearch'));        
+
+                var scrollbar = document.querySelector('.j-scrollbar_aside');
+                Ps.update(scrollbar);
             }
 
             $('#mainPage').on('click', '.j-lastTimePreview.fav', function() {
