@@ -51,13 +51,10 @@ define([
                 file,
                 function(img) {
                     var attr = {
-                        'crop': true
+                        'crop': true,
+                        'maxWidth': img.width,
+                        'maxHeight': img.height
                     };
-                    if (img.width > img.height) {
-                        attr.maxWidth = params.w;
-                    } else {
-                        attr.maxHeight = params.h;
-                    }
 
                     loadImage(
                         file,
@@ -76,5 +73,4 @@ define([
     };
 
     return Attach;
-
 });
