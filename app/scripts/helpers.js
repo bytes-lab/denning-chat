@@ -401,19 +401,23 @@ define([
     };    
 
     Helpers.getAttr = function(denningUsers, user, attr) {
-        var res;
+        var res = [];
         _.each(_.pluck(_.unzip(_.values(denningUsers))[0], 'users'), function(users) { 
-            var _res =_.where(users, {email: user.email});
-            if (_res.length > 0) {
-                res = _res;
-            }
+            res = res.concat(_.where(users, {email: user.email}));
         });
         
-        if (res && res.length > 0) {
-            return res[0][attr];
-        } else {
-            return '';
+        if (res.length > 0) {
+            if (attr == 'tag') {
+                if (_.where(res, {tag: 'DenningPeople'}).length > 0)
+                    return 'DenningPeople';
+                else if (_.where(res, {tag: 'colleague'}).length > 0)
+                    return 'colleague';
+                else if (_.where(res, {tag: 'Client'}).length > 0)
+                    return 'Client';                
+            } 
+            return res[0][attr];                
         }
+        return '';
     };
 
     Helpers.is_favourite = function(denningUsers, user) {
