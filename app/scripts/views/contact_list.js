@@ -162,7 +162,7 @@ define([
                 html = Helpers.fillTemplate('tpl_contactItem', {
                     user: contacts[user_id], 
                     contact: false,
-                    position: Helpers.getPosition(ContactList.denningUsers, contacts[user_id]),
+                    position: Helpers.getAttr(ContactList.denningUsers, contacts[user_id], 'position'),
                     last_seen: Helpers.getTime(contacts[user_id].last_request_at, true, true)
                 });
                 popup.find('.mCSB_container').append(html);
@@ -199,7 +199,7 @@ define([
                                 user: user, 
                                 contact: true, 
                                 is_favourite: Helpers.is_favourite(ContactList.denningUsers, user),
-                                position: Helpers.getPosition(ContactList.denningUsers, user),
+                                position: Helpers.getAttr(ContactList.denningUsers, user, 'position'),
                                 last_seen: Helpers.getTime(user.last_request_at, true, true)
                             });
                             $('.j-recentList').append(html);

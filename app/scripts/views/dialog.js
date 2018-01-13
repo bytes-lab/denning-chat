@@ -170,6 +170,19 @@ define([
             self.removeDataSpinner();
             self.createDataSpinner();
 
+            // get contacts from denning api
+            $.ajax({
+                type: 'get',
+                url: 'http://denningsoft.dlinkddns.com/denningwcf/online/v2/chat/contact',
+                data: {
+                    ssid: "{334E910C-CC68-4784-9047-0F23D37C9CF9}",
+                    uid: self.app.models.User.contact.email
+                },
+                success: function(users) {
+                    ContactList.addDenningUsers(users);                            
+                }
+            });  
+
             Dialog.download({
                 'sort_desc': 'last_message_date_sent',
                 'skip': skip || 0
@@ -185,19 +198,6 @@ define([
                 } else {
                     clearTimeout(errorDialogsLoadingID);
                 }
-
-                // get contacts from denning api
-                $.ajax({
-                    type: 'get',
-                    url: 'http://denningsoft.dlinkddns.com/denningwcf/online/v2/chat/contact',
-                    data: {
-                        ssid: "{334E910C-CC68-4784-9047-0F23D37C9CF9}",
-                        uid: self.app.models.User.contact.email
-                    },
-                    success: function(users) {
-                        ContactList.addDenningUsers(users);                            
-                    }
-                });  
 
                 dialogs = result.items;
                 totalEntries = result.total_entries;

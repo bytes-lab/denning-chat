@@ -400,7 +400,7 @@ define([
         return _.uniq(users_);
     };    
 
-    Helpers.getPosition = function(denningUsers, user) {
+    Helpers.getAttr = function(denningUsers, user, attr) {
         var res;
         _.each(_.pluck(_.unzip(_.values(denningUsers))[0], 'users'), function(users) { 
             var _res =_.where(users, {email: user.email});
@@ -410,7 +410,7 @@ define([
         });
         
         if (res.length > 0) {
-            return res[0].position;
+            return res[0][attr];
         } else {
             return '';
         }
