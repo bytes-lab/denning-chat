@@ -625,8 +625,9 @@
                 <div class="j-footer_btn l-input-buttons btn_input_location j-btn_input_location" data-balloon="Send location" data-balloon-pos="up"></div>
                 <div class="j-footer_btn l-input-buttons btn_sendlocation j-send_location <%= location %>" data-balloon-length="small" data-balloon="Send your location with messages" data-balloon-pos="up"></div>
                 <div class="j-footer_btn l-input-buttons btn_input_attach j-btn_input_attach" data-balloon="Send attachment file" data-balloon-pos="up"></div>
-                
+                <% if (user_tag == 'colleague' || user_tag == 'DenningPeople' ) { %>
                 <div class="j-footer_btn l-input-buttons btn_file_folder j-btn_file_folder" data-balloon="Send  Denning files" data-balloon-pos="up"></div>
+                <% } %>
             </div>
             <div class="j-typing l-typing"></div>
         </footer>

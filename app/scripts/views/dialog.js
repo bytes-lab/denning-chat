@@ -569,6 +569,7 @@ define([
                     'location': location,
                     'type': dialog.get('type'),
                     'user_id': user_id,
+                    'user_tag': Helpers.getAttr(ContactList.denningUsers, User.contact, 'tag') || '',
                     'color': dialog.get('color'),
                     'name': name,
                     'icon': icon,

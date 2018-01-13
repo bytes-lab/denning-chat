@@ -308,6 +308,7 @@ define([
             location: '',
             type: null,
             user_id: null,
+            user_tag: null,
             name: '',
             color: '',
             icon: '',

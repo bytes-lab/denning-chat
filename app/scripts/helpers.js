@@ -409,7 +409,7 @@ define([
             }
         });
         
-        if (res.length > 0) {
+        if (res && res.length > 0) {
             return res[0][attr];
         } else {
             return '';
