@@ -307,6 +307,11 @@ define([
                     .parent('.j-overlay').addClass('is-overlay');
             });
 
+            $workspace.on('click', '.j-groupProfile', function() {
+                $('.j-group-profile').addClass('is-overlay')
+                    .parent('.j-overlay').addClass('is-overlay');
+            });
+
             $body.on('keypress', function(e) {
                 if ((e.keyCode === 13) && $('.j-open_map').length) {
                     $('.j-send_map').click();
