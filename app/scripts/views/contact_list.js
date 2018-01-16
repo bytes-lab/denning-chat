@@ -176,6 +176,42 @@ define([
             }
         },
 
+        openGroupProfile: function(objDom, dialog_id, isPrivate) {
+            var ids = objDom.data('ids') ? objDom.data('ids').toString().split(',') : [],
+                popup = $('#popupChatProfile'),
+                contacts = ContactList.contacts,
+                roster = ContactList.roster,
+                sortedContacts,
+                existing_ids,
+                user_id,
+                friends,
+                html;
+
+            ids = ids.concat([User.contact.id]);
+            openPopup(popup, 'add', dialog_id);
+            popup.addClass('not-selected').removeClass('is-addition');
+            popup.find('.note').addClass('is-hidden').siblings('ul').removeClass('is-hidden');
+            popup.find('.popup-nofriends').addClass('is-hidden').siblings().removeClass('is-hidden');
+            // popup.find('form')[0].reset();
+            popup.find('.list_contacts').mCustomScrollbar("scrollTo", "top");
+            popup.find('.mCSB_container').empty();
+            popup.find('.btn').removeClass('is-hidden');
+
+            friends = ids;
+
+            for (var i = 0, len = friends.length; i < len; i++) {
+                user_id = friends[i];
+
+                html = Helpers.fillTemplate('tpl_contactItem', {
+                    user: contacts[user_id], 
+                    contact: false,
+                    position: Helpers.getAttr(ContactList.denningUsers, contacts[user_id], 'position'),
+                    last_seen: Helpers.getTime(contacts[user_id].last_request_at, true, true)
+                });
+                popup.find('.mCSB_container').append(html);
+            }
+        },
+
         showContacts: function(userType, prefix) {
             var contacts = ContactList.contacts,
                 sortedContacts,

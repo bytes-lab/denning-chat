@@ -313,13 +313,13 @@ define([
                     dialog_id = $self.data('dialog');
 
                 Helpers.log('add people to groupchat');
-                // ContactListView.addContactsToChat($self, 'add', dialog_id);
                 $('.j-group-profile .addToGroupChat').data('ids', $self.data('ids'));
                 $('.j-group-profile .addToGroupChat').data('dialog', dialog_id);
                 $('.j-group-profile .deleteChat').data('dialog', dialog_id);
 
-                $('.j-group-profile').addClass('is-overlay')
-                    .parent('.j-overlay').addClass('is-overlay');
+                ContactListView.openGroupProfile($self, dialog_id);
+                // $('.j-group-profile').addClass('is-overlay')
+                //     .parent('.j-overlay').addClass('is-overlay');
             });
 
             $body.on('keypress', function(e) {
