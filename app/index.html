@@ -442,14 +442,11 @@
         </footer>
     </div>
 
-    <div id="popupChatProfile" class="popup popup_group_profile j-group-profile not-selected">
+    <div id="popupChatProfile" class="popup popup_group_profile j-group-profile not-selected groupTitle">
         <header class="popup-header">
-            <h3>Contacts</h3>
+            <h3>Group Chat Profile</h3>
         </header>
-        <form id="searchFriends" class="popup-form localSearch formSearch j-searchFriends" action="#">
-            <input class="form-input-search without_M" type="search">
-            <button class="clean-button j-clean-button" type="reset">✕</button>
-        </form>
+        <h2 class="name name_chat" contenteditable="true" title="Content edit profile">Content edit profile</h2>
         <div class="popup-content">
             <ul class="list list_contacts scrollbarContacts"></ul>
             <div class="note l-flexbox l-flexbox_column">
@@ -466,10 +463,10 @@
             </div>
         </div>
         <div class="chat-controls">
-            <button class="btn_chat btn_chat_add addToGroupChat" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>" data-balloon="Add occupants to group chat" data-balloon-pos="down">
+            <button class="btn_chat btn_chat_add addToGroupChat" data-ids="" data-dialog="" data-balloon="Add occupants to group chat" data-balloon-pos="down">
                 <img src="images/icon-add.svg" alt="Add occupants to group chat">
             </button>
-            <button class="btn_chat btn_chat_leave deleteChat j-deleteChat" data-balloon="Leave chat and clear history" data-balloon-pos="down">
+            <button class="btn_chat btn_chat_leave deleteChat j-deleteChat" data-dialog="" data-balloon="Leave chat and clear history" data-balloon-pos="down">
                 <img src="images/icon-exit.svg" alt="Leave chat">
             </button>
         </div>
@@ -646,13 +643,7 @@
                         </button>
                     </div>
                 <% } else { %>
-                    <button class="btn_chat btn_chat_add addToGroupChat" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>" data-balloon="Add occupants to group chat" data-balloon-pos="down">
-                        <img src="images/icon-add.svg" alt="Add occupants to group chat">
-                    </button>
-                    <button class="btn_chat btn_chat_leave deleteChat j-deleteChat" data-balloon="Leave chat and clear history" data-balloon-pos="down">
-                        <img src="images/icon-exit.svg" alt="Leave chat">
-                    </button>
-                    <button class="btn_chat btn_chat_leave groupProfile j-groupProfile" data-balloon="Settings and profile" data-balloon-pos="down">
+                    <button class="btn_chat btn_chat_leave groupProfile j-groupProfile" data-balloon="Settings and profile" data-balloon-pos="down" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>">
                         <img src="images/ic_settings_black_24px.svg" alt="Chat profile">
                     </button>                    
                 <% } %>

@@ -307,7 +307,17 @@ define([
                     .parent('.j-overlay').addClass('is-overlay');
             });
 
-            $workspace.on('click', '.j-groupProfile', function() {
+            $workspace.on('click', '.j-groupProfile', function(event) {
+                event.stopPropagation();
+                var $self = $(this),
+                    dialog_id = $self.data('dialog');
+
+                Helpers.log('add people to groupchat');
+                // ContactListView.addContactsToChat($self, 'add', dialog_id);
+                $('.j-group-profile .addToGroupChat').data('ids', $self.data('ids'));
+                $('.j-group-profile .addToGroupChat').data('dialog', dialog_id);
+                $('.j-group-profile .deleteChat').data('dialog', dialog_id);
+
                 $('.j-group-profile').addClass('is-overlay')
                     .parent('.j-overlay').addClass('is-overlay');
             });
@@ -363,14 +373,18 @@ define([
                 return false;
             });
 
-            $workspace.on('click', '.groupTitle .addToGroupChat', function(event) {
+            addToGroupChat = function(event) {
                 event.stopPropagation();
+                closePopup();
                 var $self = $(this),
                     dialog_id = $self.data('dialog');
 
                 Helpers.log('add people to groupchat');
                 ContactListView.addContactsToChat($self, 'add', dialog_id);
-            });
+            };
+
+            $workspace.on('click', '.groupTitle .addToGroupChat', addToGroupChat);
+            $('#popupChatProfile').on('click', '.addToGroupChat', addToGroupChat);
 
             $workspace.on('click', '.groupTitle .leaveChat, .groupTitle .avatar', function(event) {
                 event.stopPropagation();
@@ -771,6 +785,17 @@ define([
                 var $self = $(this),
                     parent = $self.parents('.presence-listener')[0] ? $self.parents('.presence-listener') : $self.parents('.is-group'),
                     dialog_id = parent.data('dialog');
+
+                openPopup($('.j-popupDeleteChat'), null, dialog_id);
+
+                return false;
+            });
+
+            $('#popupChatProfile').on('click', '.j-deleteChat', function() {
+                closePopup();
+
+                var $self = $(this),
+                    dialog_id = $self.data('dialog');
 
                 openPopup($('.j-popupDeleteChat'), null, dialog_id);
 
