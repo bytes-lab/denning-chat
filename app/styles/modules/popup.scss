@@ -35,6 +35,10 @@
     max-width: 460px;
     border: 1px solid #f2f4f5;
 }
+.popup_group_profile {
+    width: 90%;
+    max-width: 460px;
+}
 .popup_file_folder {
     width: 90%;
     max-width: 600px;
@@ -143,6 +147,7 @@
 }
 .popup-content {
     height: calc(100% - 170px);
+    min-height: 480px;
 }
 .not-selected .popup-content {
     height: calc(100% - 110px);
@@ -297,9 +302,11 @@
 .chat-category label {
     padding: 16px;
     color: orange;
+    flex-grow: 1;
 }
 .chat-category select {
     color: red;
     display: flex;
     padding-left: 10px;
+    flex-grow: 2;
 }

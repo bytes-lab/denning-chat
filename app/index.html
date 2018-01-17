@@ -444,9 +444,17 @@
 
     <div id="popupChatProfile" class="popup popup_group_profile j-group-profile not-selected groupTitle">
         <header class="popup-header">
-            <h3>Group Chat Profile</h3>
+            <h3 contenteditable="true">Group Chat Profile</h3>
         </header>
-        <h2 class="name name_chat" contenteditable="true" title="Content edit profile">Content edit profile</h2>
+        <div class="chat-category">
+            <label>Dialog Category:</label>
+            <select style="width: inherit;">
+                <option value="colleagues">Colleagues</option>
+                <option value="clients">Clients</option>
+                <option value="matters">Matter</option>
+                <option value="denning">Denning</option>
+            </select>
+        </div>        
         <div class="popup-content">
             <ul class="list list_contacts scrollbarContacts"></ul>
             <div class="note l-flexbox l-flexbox_column">
@@ -462,29 +470,14 @@
                 </button>
             </div>
         </div>
-        <div class="chat-controls">
-            <button class="btn_chat btn_chat_add addToGroupChat" data-ids="" data-dialog="" data-balloon="Add occupants to group chat" data-balloon-pos="down">
-                <img src="images/icon-add.svg" alt="Add occupants to group chat">
+        <div style="text-align: center; margin-bottom: 8px;">
+            <button class="waves-effect waves-light btn addToGroupChat" data-ids="" data-dialog="" data-balloon="Add occupants to group chat" data-balloon-pos="down">
+                Add members
             </button>
-            <button class="btn_chat btn_chat_leave deleteChat j-deleteChat" data-dialog="" data-balloon="Leave chat and clear history" data-balloon-pos="down">
-                <img src="images/icon-exit.svg" alt="Leave chat">
+            <button class="waves-effect waves-light btn deleteChat j-deleteChat" data-dialog="" data-balloon="Leave chat and clear history" data-balloon-pos="down">
+                Leave chat
             </button>
         </div>
-
-        <div class="chat-category">
-            <label>Category:</label>
-            <select>
-                <option value="colleagues">Colleagues</option>
-                <option value="clients">Clients</option>
-                <option value="matters">Matter</option>
-                <option value="denning">Denning</option>
-            </select>
-        </div>
-        <footer class="popup-footer">
-            <button class="btn btn_popup btn_popup_private">Create a chat</button>
-            <button class="btn btn_popup btn_popup_group">Create group chat</button>
-            <button class="btn btn_popup btn_popup_add">Add to chat</button>
-        </footer>
     </div>    
 </div>
 
