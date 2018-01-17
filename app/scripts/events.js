@@ -310,16 +310,17 @@ define([
             $workspace.on('click', '.j-groupProfile', function(event) {
                 event.stopPropagation();
                 var $self = $(this),
-                    dialog_id = $self.data('dialog');
+                    dialog_id = $self.data('dialog'),
+                    new_title = editedChatName && editedChatName.name || chatName && chatName.name;
 
                 Helpers.log('add people to groupchat');
                 $('.j-group-profile .addToGroupChat').data('ids', $self.data('ids'));
                 $('.j-group-profile .addToGroupChat').data('dialog', dialog_id);
-                $('.j-group-profile .deleteChat').data('dialog', dialog_id);
+                $('.j-group-profile .deleteChat').data('dialog', dialog_id);                
+                if (new_title)
+                    $('.j-group-profile .name_chat').text(new_title);
 
                 ContactListView.openGroupProfile($self, dialog_id);
-                // $('.j-group-profile').addClass('is-overlay')
-                //     .parent('.j-overlay').addClass('is-overlay');
             });
 
             $body.on('keypress', function(e) {

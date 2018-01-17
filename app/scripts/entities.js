@@ -341,6 +341,7 @@ define([
             var chatTpl = this.template(this.model.toJSON()),
                 chatElem = this.$el.html(chatTpl);
 
+            $('.j-group-profile .name_chat').html(this.model.get('name'));
             $('#chatWrap').removeClass('is-hidden').append(chatElem);
         }
     });
