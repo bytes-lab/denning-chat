@@ -893,7 +893,7 @@ define([
                         category: $('.j-file-folder .filter-item.active').data('category'),
                         isAutoComplete: 1
                     },                        
-                    success: function (data) {
+                    success: function (res) {
                         if (res.length == 0) {
                             $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 500; font-size: 16px;">There is no result.</li>');
                         } else {
