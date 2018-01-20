@@ -39,7 +39,7 @@ define([
             sessionStorage.setItem('QM.hiddenDialogs', JSON.stringify(hiddenDialogs));
         },
 
-        addDenningUsers: function(users) {
+        addDenningUsers: function(users, contactLoaded) {
             var QBApiCalls = this.app.service,
                 Contact = this.app.models.Contact,
                 self = this,

@@ -659,7 +659,12 @@ define([
                     type: 2,
                     data: {
                         class_name: "dialog_data",
-                        tag: tag
+                        tag: tag,
+                        role_admin: [],
+                        role_denning: [],
+                        role_normal: [],        // staff
+                        role_reader: [],
+                        notifications: 1
                     }
                 }, function(dialog) {
                     self.removeDataSpinner();

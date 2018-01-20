@@ -883,15 +883,17 @@ define([
 
                 $.ajax({
                     type: 'get',
-                    url: 'http://43.252.215.81/online/denningwcf/v1/generalSearch',
+                    url: 'http://43.252.215.81/denningwcf/v1/generalSearch',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "webuser-sessionid": "testdenningSkySea"                            
+                    }, 
                     data: {
-                        ssid: "testdenningOnline",
-                        uid: "onlinedev@denning.com.my",
                         search: keyword_folder,
                         category: $('.j-file-folder .filter-item.active').data('category'),
                         isAutoComplete: 1
-                    },
-                    success: function(res) {
+                    },                        
+                    success: function (data) {
                         if (res.length == 0) {
                             $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 500; font-size: 16px;">There is no result.</li>');
                         } else {
@@ -903,7 +905,7 @@ define([
                             });                                
                         }
                     }
-                });                          
+                });                    
             };
 
             $( ".j-fileSearch .form-input-search" ).autocomplete({
@@ -939,11 +941,12 @@ define([
 
                 $.ajax({
                     type: 'get',
-                    url: 'http://43.252.215.81/online/denningwcf/v1/app/matter/'+key+'/fileFolder',
-                    data: {
-                        ssid: "testdenningOnline",
-                        uid: "onlinedev@denning.com.my"
-                    },
+                    url: 'http://43.252.215.81/denningwcf/v1/app/matter/'+key+'/fileFolder',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "webuser-sessionid": "testdenningSkySea"                            
+                    },                     
+                    data: {},
                     success: function(res) {
                         if (!res || res.documents.length == 0) {
                             if (!$('.list_matters').find('.no-matter-file').length) 
