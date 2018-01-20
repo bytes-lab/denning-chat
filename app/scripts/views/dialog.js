@@ -173,10 +173,13 @@ define([
             // get contacts from denning api
             $.ajax({
                 type: 'get',
-                url: 'http://denningsoft.dlinkddns.com/denningwcf/online/v2/chat/contact',
+                url: 'http://43.252.215.163:8313/denningapi/v2/chat/contact',
+                headers: {
+                    "Content-Type": "application/json",
+                    "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
+                }, 
                 data: {
-                    ssid: "{334E910C-CC68-4784-9047-0F23D37C9CF9}",
-                    uid: self.app.models.User.contact.email
+                    userid: self.app.models.User.contact.email
                 },
                 success: function(users) {
                     ContactList.addDenningUsers(users);                            

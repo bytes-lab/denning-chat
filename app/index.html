@@ -446,6 +446,11 @@
         <header class="popup-header">
             <h3 class="name_chat" contenteditable="false"></h3>
         </header>
+        <form id="searchFriends" class="popup-form localSearch formSearch j-searchFriends" action="#">
+            <label>Position: </label>
+            <input class="" type="text">
+        </form>
+
         <div class="chat-category">
             <label>Dialog Category:</label>
             <select style="width: inherit;">
@@ -712,7 +717,17 @@
                     </div>
                 </div>
             </div>
-            <% if (!contact) { %>
+            <% if (contact == 5) { %>
+                <label style="color: blue;">Denning</label>
+<!--                 <p class="fav last_time_preview j-lastTimePreview">
+                    <select class="">
+                        <option value="colleagues">Denning</option>
+                        <option value="clients">Admin</option>
+                        <option value="matters">Staff</option>
+                        <option value="denning">Client</option>
+                    </select>
+                </p>
+ -->            <% } else if (!contact) { %>
                 <input class="form-checkbox" type="checkbox">
             <% } else { %>
                 <p class="fav last_time_preview j-lastTimePreview <% if (is_favourite) { %> favourite <% } %>" data-email="<%= user.email %>">

@@ -614,18 +614,21 @@ define([
 
             $('#mainPage').on('click', '.j-lastTimePreview.fav', function() {
                 var email = $(this).data('email'),
-                    $self = $(this);
+                    $self = $(this),
+                    data = {
+                        email: self.app.models.User.contact.email,
+                        favourite: email,
+                    };
 
                 // get contacts from denning api
                 $.ajax({
                     type: 'post',
-                    url: 'http://denningsoft.dlinkddns.com/denningwcf/online/v1/chat/contact/fav',                    
-                    data: {
-                        email: self.app.models.User.contact.email,
-                        favourite: email,
-                        ssid: "{334E910C-CC68-4784-9047-0F23D37C9CF9}",
-                        uid: "onlinedev@denning.com.my"                                                
-                    },
+                    url: 'http://43.252.215.163:8313/denningapi/v1/chat/contact/fav',
+                    headers: {
+                        "Content-Type": "application/json",
+                        "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
+                    }, 
+                    data: JSON.stringify(data),
                     error: function(users) {        // should success
                         $self.toggleClass('favourite');
                     }

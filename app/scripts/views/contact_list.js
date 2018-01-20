@@ -204,7 +204,7 @@ define([
 
                 html = Helpers.fillTemplate('tpl_contactItem', {
                     user: contacts[user_id], 
-                    contact: false,
+                    contact: 5,
                     position: Helpers.getAttr(ContactList.denningUsers, contacts[user_id], 'position'),
                     last_seen: Helpers.getTime(contacts[user_id].last_request_at, true, true)
                 });
