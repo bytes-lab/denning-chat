@@ -48,27 +48,29 @@ define([
 
             self.denningUsers = users;
 
-            params = {
-                filter: {
-                    field: 'email',
-                    param: 'in',
-                    value: _.difference(emails, _.pluck(self.contacts, 'email'))
-                },
-                per_page: 10000
-            };
-            
-            QBApiCalls.listUsers(params, function(users) {
-                users.items.forEach(function(qbUser) {
-                    var user = qbUser.user;
-                    var contact = Contact.create(user);
-                    var ContactListView = self.app.views.ContactList;
+            if (!contactLoaded) {
+                params = {
+                    filter: {
+                        field: 'email',
+                        param: 'in',
+                        value: _.difference(emails, _.pluck(self.contacts, 'email'))
+                    },
+                    per_page: 10000
+                };
+                
+                QBApiCalls.listUsers(params, function(users) {
+                    users.items.forEach(function(qbUser) {
+                        var user = qbUser.user;
+                        var contact = Contact.create(user);
+                        var ContactListView = self.app.views.ContactList;
 
-                    self.contacts[user.id] = contact;
-                    localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
-                });
+                        self.contacts[user.id] = contact;
+                        localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
+                    });
 
-                Helpers.log('Contact List is updated with Denning Users', self);
-            });
+                    Helpers.log('Contact List is updated with Denning Users', self);
+                });                
+            }
         },
 
         add: function(occupants_ids, dialog, callback, subscribe) {

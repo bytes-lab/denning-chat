@@ -620,7 +620,6 @@ define([
                         favourite: email,
                     };
 
-                // get contacts from denning api
                 $.ajax({
                     type: 'post',
                     url: 'http://43.252.215.163:8313/denningapi/v1/chat/contact/fav',
@@ -629,8 +628,24 @@ define([
                         "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
                     }, 
                     data: JSON.stringify(data),
-                    error: function(users) {        // should success
+                    success: function(users) {        // should success
                         $self.toggleClass('favourite');
+
+                        // update denning user info
+                        $.ajax({
+                            type: 'get',
+                            url: 'http://43.252.215.163:8313/denningapi/v2/chat/contact',
+                            headers: {
+                                "Content-Type": "application/json",
+                                "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
+                            }, 
+                            data: {
+                                userid: self.app.models.User.contact.email
+                            },
+                            success: function(users) {
+                                ContactList.addDenningUsers(users, true);                            
+                            }
+                        });                         
                     }
                 });  
             });
@@ -893,14 +908,21 @@ define([
 
             $( ".j-fileSearch .form-input-search" ).autocomplete({
                 source: function (request, response) {
-                    $.get("http://43.252.215.81/online/denningwcf/v1/generalSearch/keyword", {
-                        ssid: "testdenningOnline",
-                        uid: "onlinedev@denning.com.my",
-                        search: request.term
-                    }, function (data) {
-                        response($.map( data, function(item) {
-                            return item.keyword;
-                        }));
+                    $.ajax({
+                        type: 'get',
+                        url: 'http://43.252.215.81/denningwcf/v1/generalSearch/keyword',
+                        headers: {
+                            "Content-Type": "application/json",
+                            "webuser-sessionid": "testdenningSkySea"                            
+                        }, 
+                        data: {
+                            search: request.term
+                        },                        
+                        success: function (data) {
+                            response($.map( data, function(item) {
+                                return item.keyword;
+                            }));
+                        }
                     });
                 },
                 minLength: 2,
