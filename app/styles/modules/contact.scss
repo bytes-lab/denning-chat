@@ -65,16 +65,18 @@
 .name {
     font-family: Roboto, sans-serif;
     font-size: 15px;
-    color: #778594;
+    color: black;
     max-width: 200px;
     overflow: hidden;
     white-space: nowrap;
     text-overflow: ellipsis;
 }
+
 .name.name_dialog {
     display: block;
     height: 20px;
     margin-top: 2px;
+    color: black;
 }
 #requestsList .name {
     max-width: 162px;
@@ -380,4 +382,10 @@ span.send-request {
 }
 .favourite {
     color: red;
+}
+
+@media screen and (min-width: 768px) {
+    .dialog_body {
+        max-width: 175px;
+    }
 }

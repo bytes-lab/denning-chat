@@ -297,6 +297,7 @@
     <div id="popupFileFolder" class="popup popup_file_folder j-file-folder">
         <header class="popup-header">
             <h3>Search Denning Folders</h3>
+            <button class="close-button j-close-button"><i class="material-icons">close</i></button>
         </header>
         <form id="fileSearch" class="popup-form formSearch j-fileSearch" action="#">
             <input class="form-input-search without_M" type="search" autofocus>
@@ -305,8 +306,8 @@
         <div class="pill" data-for="file">
             <div class="filter-item active" data-category="0">All</div>
             <div class="filter-item" data-category="1">Contact</div>
-            <div class="filter-item" data-category="2">Related Matter</div>
-            <div class="filter-item" data-category="4">Property</div>
+            <div class="filter-item" data-category="2">Matter</div>
+            <div class="filter-item" data-category="4">Transit</div>
         </div>                
 
         <ul class="popup-elem list list_matters"></ul>
@@ -446,10 +447,6 @@
         <header class="popup-header">
             <h3 class="name_chat" contenteditable="false"></h3>
         </header>
-        <form id="chatPosition" class="popup-form localSearch formSearch j-chatPosition" action="#">
-            <label>Position: </label>
-            <input class="" type="text">
-        </form>
 
         <div class="chat-category">
             <label>Dialog Category:</label>
@@ -467,15 +464,11 @@
                 <span class="text">No results found</span>
             </div>
         </div>
-        <div class="popup-nofriends l-flexbox is-hidden">
-            <div class="l-cap l-cap_contacts l-flexbox l-flexbox_column">
-                <span class="cap-text cap-text_contacts">It's a little lonely<br>over here</span>
-                <button class="search btn btn_invite btn_invite_contacts btn_add">
-                    <img class="btn-icon btn-icon_invite btn-icon_invite_contacts" src="images/icon-invite.svg" alt="invite"> Search for Friends
-                </button>
-            </div>
-        </div>
-        <div style="text-align: center; margin-bottom: 8px;">
+        <form id="chatPosition" class="popup-form localSearch formSearch j-chatPosition" action="#">
+            <label>Position: </label>
+            <input style="height: 30px; margin: 10px;" type="text">
+        </form>
+        <div style="text-align: center; margin: 10px;">
             <button class="waves-effect waves-light btn addToGroupChat" data-ids="" data-dialog="" data-balloon="Add occupants to group chat" data-balloon-pos="down">
                 Add members
             </button>

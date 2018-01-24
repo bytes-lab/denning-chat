@@ -660,8 +660,8 @@ define([
                     data: {
                         class_name: "dialog_data",
                         tag: tag,
-                        role_admin: [],
-                        role_denning: [],
+                        role_denning: [], //Helpers.getDenning(ContactList.denningUsers, User.contact, occupants_ids),
+                        role_admin: Helpers.getAdmin(ContactList.denningUsers, User.contact, occupants_ids),
                         role_normal: [],        // staff
                         role_reader: [],
                         notifications: 1

@@ -226,6 +226,10 @@
     font-size: 14px;
     padding: 4px 0 0 1px;
     color: #999;
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;    
 }
 .l-content {
     position: relative;
@@ -260,14 +264,20 @@
     z-index: 2;
 }
 
-@media screen and (min-width: 880px) {
+@media screen and (min-width: 768px) {
     .l-sidebar {
         border-right: 1px solid #dadfe1;
         height: 100%;
-        flex: 1 0 350px;
+        flex: 1 0 325px;
         position: static;
         left: 100%;    
     }    
+}
+
+@media screen and (min-width: 880px) {
+    .l-sidebar {
+        flex: 1 0 350px;
+    }        
 }
 
 .l-search {
@@ -515,10 +525,10 @@
 }
 
 .matter_desc {
-    font-size: 16px;
+    font-size: 14px;
     line-height: 22px;
     margin: 3px 0;
-    max-height: 24px;
+    max-height: 64px;
     overflow: hidden;
 }
 
@@ -598,4 +608,16 @@
 
 .care-line {
     cursor: pointer;
+}
+
+@media screen and (max-width: 880px) and (min-width: 768px) {
+    .l-user-email {
+        max-width: 130px;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .l-user-email {
+        max-width: 200px;
+    }
 }

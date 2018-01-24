@@ -85,6 +85,15 @@ input.form-input-search.without_M[type=search]:focus:not([readonly]) {
     color: #ccc;
     cursor: pointer;
 }
+.close-button {
+    position: absolute;
+    width: 22px;
+    height: 22px;
+    top: 15px;
+    right: 15px;
+    color: #333;
+    cursor: pointer;
+}
 #searchContacts .clean-button {
     right: 14px;
     top: 18px;

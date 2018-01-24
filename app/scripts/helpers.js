@@ -420,6 +420,12 @@ define([
         return '';
     };
 
+    Helpers.getAdmin = function(denningUsers, user, attr) {
+        var res = [];
+        
+        return res;
+    };
+
     Helpers.is_favourite = function(denningUsers, user) {
         var favourites = Helpers.getEmails(denningUsers, ['favourite_client', 'favourite_staff']);
         return _.indexOf(favourites, user.email) > -1;
