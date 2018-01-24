@@ -622,7 +622,7 @@ define([
                 chat = $('.l-chat[data-dialog="' + dialog_id + '"]');
 
             for (var i = 0, len = new_members.length, name; i < len; i++) {
-                name = $(new_members[i]).find('.name').text();
+                name = $(new_members[i]).find('.name .name').text();
                 if (groupName.length < 3) groupName.push(name);
                 occupants_names.push(name);
                 occupants_ids.push($(new_members[i]).data('id').toString());

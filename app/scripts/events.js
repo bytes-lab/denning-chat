@@ -412,6 +412,10 @@ define([
                 return false;
             });
 
+            $workspace.on('click', '.pencil', function() {
+                $('h2.name_chat').text('             ');
+            });
+
             $(document.body).on('click', function() {
                 var $chat = $('.l-chat:visible');
 
