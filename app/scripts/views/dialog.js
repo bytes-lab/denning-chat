@@ -182,7 +182,9 @@ define([
                     userid: self.app.models.User.contact.email
                 },
                 success: function(users) {
-                    ContactList.addDenningUsers(users);                            
+                    ContactList.addDenningUsers(users);  
+                    var my_position = Helpers.getAttr(users, self.app.models.User.contact, 'position');
+                    $('.l-user-position').html(my_position);
                 }
             });  
 

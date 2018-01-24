@@ -84,6 +84,7 @@
                                 <div class="l-header-logo">
                                     <div>
                                         <p class="l-header-logo-text">Denning Chat</p>
+                                        <p class="l-user-position">-</p>
                                         <p class="l-user-email"></p>
                                     </div>
                                 </div>
@@ -704,8 +705,8 @@
                 <% } %>
                 <div class="name">
                     <span class="name profileUserName" data-id="<%= user.id %>"><%= user.full_name %></span>
-                    <div style="font-size: 13px; color: #aaa;"><%= position %></div>
-                    <div style="font-size: 13px; color: #aaa;">
+                    <div style="font-size: 11px; color: #aaa;"><%= position %></div>
+                    <div style="font-size: 13px; color: #555;">
                         Last seen <%= last_seen %>
                     </div>
                 </div>

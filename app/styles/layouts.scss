@@ -224,12 +224,22 @@
 }
 .l-user-email {
     font-size: 14px;
+    color: #333;
+    max-width: 150px;
+    overflow: hidden;
+    white-space: nowrap;
+    text-overflow: ellipsis;
+    height: 20px;    
+}
+.l-user-position {
+    font-size: 12px;
     padding: 4px 0 0 1px;
     color: #999;
     max-width: 150px;
     overflow: hidden;
     white-space: nowrap;
-    text-overflow: ellipsis;    
+    text-overflow: ellipsis;
+    height: 20px;    
 }
 .l-content {
     position: relative;
