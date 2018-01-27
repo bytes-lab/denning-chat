@@ -35,6 +35,7 @@ requirejs.config({
         async: '../bower_components/requirejs-plugins/src/async',
         gmaps: 'https://cdnjs.cloudflare.com/ajax/libs/gmaps.js/0.4.24/gmaps.min',
         cryptojs: '../bower_components/crypto-js-lib/rollups/aes',
+        cryptojs_hmac: '../bower_components/crypto-js-lib/rollups/hmac-sha1',
         jquery: '../bower_components/jquery/dist/jquery',
         underscore: '../bower_components/underscore/underscore',
         backbone: '../bower_components/backbone/backbone',

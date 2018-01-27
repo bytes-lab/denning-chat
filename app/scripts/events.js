@@ -944,6 +944,7 @@ define([
                 $('.btn_matter_file').removeClass('is-hidden');
                 $('.j-ifileSearch').removeClass('is-hidden');
                 $('.j-ifileSearch .form-input-search').val('');
+                $('.filename').text($(this).find('.matter_title').text());
 
                 $.ajax({
                     type: 'get',
@@ -975,6 +976,7 @@ define([
                 $('.list_matters').find('.no-matter-file').addClass('is-hidden');
                 $('.list-item-file').remove();
                 $('.list-item-matter').removeClass('is-hidden');
+                $('.filename').text('Search Denning Folders');
             });
 
             $('.j-close-button').on('click', function() {
@@ -1075,6 +1077,8 @@ define([
                     ContactListView.globalSearch($form);
                 } else if ($form.is('.j-localSearch')) {
                     UserView.localSearch($form);
+                } else if ($form.is('.j-fileSearch')) {
+                    $('.list_matters').html('');
                 } else {
                     UserView.friendsSearch($form);
                 }

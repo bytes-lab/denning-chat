@@ -6,7 +6,8 @@
  */
 define([
     'config',
-    'cryptojs'
+    'cryptojs',
+    'cryptojs_hmac',
 ], function(
     QMCONFIG,
     CryptoJS
@@ -61,6 +62,7 @@ define([
             if (params && params.password) {
                 params.password = CryptoJS.AES.encrypt(params.password, QMCONFIG.qbAccount.authSecret).toString();
             }
+            // console.log(CryptoJS.HmacSHA1('application_id=55869&auth_key=tpH4TbFKOcmrYet&nonce=3515&timestamp=1517023275', QMCONFIG.qbAccount.authSecret).toString());
             return params;
         },
 

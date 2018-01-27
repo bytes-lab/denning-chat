@@ -340,8 +340,6 @@ define([
                 $notSearchLists = $('.list_matters');
 
             if (val.length > 0) {
-                // $('#searchList ul').html('').add('#searchList .note').removeClass('is-hidden');
-
                 $('.list_matters').find('.list-item-file').each(function() {
                     var name = $(this).find('.matter_title').text().toLowerCase(),
                         li = $(this).clone();
@@ -350,10 +348,6 @@ define([
                         $(this).addClass('is-hidden');
                     }
                 });
-
-                // if ($('#searchList ul').find('li').length === 0) {
-                //     $('#searchList .note').removeClass('is-hidden').siblings('ul').addClass('is-hidden');
-                // }
             } else {
 
                 $('.list_matters').find('.list-item-file').removeClass('is-hidden');
