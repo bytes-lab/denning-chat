@@ -639,9 +639,11 @@
                         </button>
                     </div>
                 <% } else { %>
+                    <% if (user_tag == 'colleague' || user_tag == 'DenningPeople' ) { %>
                     <button class="btn_chat btn_chat_leave groupProfile j-groupProfile" data-balloon="Settings and profile" data-balloon-pos="down" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>">
                         <img src="images/ic_settings_black_24px.svg" alt="Chat profile">
                     </button>                    
+                    <% } %>
                 <% } %>
             </div>
         </header>
