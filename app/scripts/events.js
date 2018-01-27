@@ -942,6 +942,8 @@ define([
                 var key = $(this).data('key');
                 $('.list-item-matter').addClass('is-hidden');
                 $('.btn_matter_file').removeClass('is-hidden');
+                $('.j-ifileSearch').removeClass('is-hidden');
+                $('.j-ifileSearch .form-input-search').val('');
 
                 $.ajax({
                     type: 'get',
@@ -969,6 +971,7 @@ define([
 
             $('.btn_matter_file').on('click', function() {
                 $(this).addClass('is-hidden');
+                $('.j-ifileSearch').addClass('is-hidden');
                 $('.list_matters').find('.no-matter-file').addClass('is-hidden');
                 $('.list-item-file').remove();
                 $('.list-item-matter').removeClass('is-hidden');
@@ -991,6 +994,7 @@ define([
                     };
 
                 MessageView._sendMessage(jid, val, type, dialog_id, dext);
+                alert(dext.title+dext.ext+' is attached successfully.');
             });
             
             /* search
@@ -1042,6 +1046,8 @@ define([
                 if ((type === 'keyup' && code !== 27 && code !== 13) || (type === 'search')) {
                     if (this.id === 'searchContacts') {
                         UserView.localSearch($self);
+                    } else if (this.id === 'docSearch') {
+                        UserView.docSearch($self);
                     } else {
                         UserView.friendsSearch($self);
                     }

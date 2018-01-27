@@ -408,6 +408,7 @@ define([
             } 
 
             html += '<div class="dialog_body"><span class="name name_dialog profileUserName" data-id="' + private_id + '">' + name + '</span>';
+            html += '<div style="font-size: 11px; color: #aaa;">'+dialog.get('position')+'</div>';
             html += '<span class="last_message_preview j-lastMessagePreview">' + lastMessage + '</span></div></div>';
 
             if (dialog_type === 3 && !isContactRequest) {

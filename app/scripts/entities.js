@@ -193,7 +193,8 @@ define([
             opened: false,
             joined: false,
             draft: '',
-            tag: ''
+            tag: '',
+            position: ''
         },
 
         // add dialog to collection after initialize
