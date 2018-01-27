@@ -141,9 +141,10 @@ define([
                     return user.full_name;
                 }
             }), 'id').map(String);
+
+            var dcontacts = Helpers.getEmails(ContactList.denningUsers, ['client', 'staff']);
             friends = _.filter(sortedContacts, function(el) {
-                return true;
-                // return roster[el] && roster[el].subscription !== 'none';
+                return dcontacts.indexOf(ContactList.contacts[el].email) != -1;
             });
             Helpers.log('Friends', friends);
 
