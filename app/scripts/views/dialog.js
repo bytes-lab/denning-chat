@@ -663,10 +663,10 @@ define([
                     data: {
                         class_name: "dialog_data",
                         tag: tag,
-                        role_denning: [], //Helpers.getDenning(ContactList.denningUsers, User.contact, occupants_ids),
-                        role_admin: Helpers.getAdmin(ContactList.denningUsers, User.contact, occupants_ids),
-                        role_normal: [],        // staff
-                        role_reader: [],
+                        role_denning: Helpers.getRoles(ContactList.denningUsers, ContactList.contacts, occupants_ids, 'DenningPeople'),
+                        role_admin: Helpers.getAdmin(ContactList.denningUsers, User.contact),
+                        role_normal: Helpers.getRoles(ContactList.denningUsers, ContactList.contacts, occupants_ids, 'colleague'),        // staff
+                        role_reader: Helpers.getRoles(ContactList.denningUsers, ContactList.contacts, occupants_ids, 'Client'),
                         notifications: 1
                     }
                 }, function(dialog) {

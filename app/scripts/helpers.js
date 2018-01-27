@@ -420,9 +420,19 @@ define([
         return '';
     };
 
-    Helpers.getAdmin = function(denningUsers, user, attr) {
+    Helpers.getAdmin = function(denningUsers, user) {
+        var tag = Helpers.getAttr(denningUsers, user, 'tag');
+        if (tag == 'colleague') 
+            return [user.id];        
+        return [];
+    };
+
+    Helpers.getRoles = function(denningUsers, contacts, occupants_ids, role) {
         var res = [];
-        
+        _.each(occupants_ids.split(','), function(occupant) {
+            if(Helpers.getAttr(denningUsers, contacts[occupant]) == role)
+                res.push(occupant);
+        });
         return res;
     };
 
