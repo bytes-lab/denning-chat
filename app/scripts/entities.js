@@ -309,6 +309,7 @@ define([
             type: null,
             user_id: null,
             user_tag: null,
+            user_role: null,
             name: '',
             color: '',
             icon: '',

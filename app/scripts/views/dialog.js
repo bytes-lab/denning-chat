@@ -576,6 +576,7 @@ define([
                     'type': dialog.get('type'),
                     'user_id': user_id,
                     'user_tag': Helpers.getAttr(ContactList.denningUsers, User.contact, 'tag') || '',
+                    'use_role': Helpers.getRole(dialog.get('data'), User.contact),
                     'color': dialog.get('color'),
                     'name': name,
                     'icon': icon,

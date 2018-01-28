@@ -436,6 +436,17 @@ define([
         return res;
     };
 
+    Helpers.getRole = function(dialog_data, user) {
+        if (dialog_data.role_denning && dialog_data.role_denning.indexOf(user.id) > -1)
+            return 'denning';
+        else if (dialog_data.role_admin && dialog_data.role_admin.indexOf(user.id) > -1)
+            return 'admin';
+        else if (dialog_data.role_normal && dialog_data.role_normal.indexOf(user.id) > -1)
+            return 'staff';
+        else if (dialog_data.role_reader && dialog_data.role_reader.indexOf(user.id) > -1)
+            return 'client';
+    };
+
     Helpers.is_favourite = function(denningUsers, user) {
         var favourites = Helpers.getEmails(denningUsers, ['favourite_client', 'favourite_staff']);
         return _.indexOf(favourites, user.email) > -1;
