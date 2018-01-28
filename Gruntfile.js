@@ -1,6 +1,6 @@
 'use strict';
 
-var SERVER_PORT = 9000;
+var SERVER_PORT = 7000;
 
 // # Globbing
 

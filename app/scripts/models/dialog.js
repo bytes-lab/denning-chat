@@ -55,7 +55,7 @@ define([
                     opened: params.opened || false,
                     joined: (params.type === 3) ? true : false,
                     tag: params.data && params.data.tag || '',
-                    position: params.data && params.data.position || ''
+                    data: params.data || {}
                 };
 
             new Entities.Models.Dialog(dialog);

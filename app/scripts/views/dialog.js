@@ -296,7 +296,7 @@ define([
                     (roster[private_id] && roster[private_id].subscription === 'none' &&
                     !roster[private_id].ask && notConfirmed[private_id]))) {
                 } else if (!isGroup || dialog.get('type') == 2) {
-                    if (tag == 'contact' || dialog.get('tag').toLowerCase() == tag)
+                    if (tag == 'contact' || (dialog.get('data').tag || '').toLowerCase() == tag)
                         self.addDialogItem(dialog, true);                                    
                 }
             });
@@ -408,7 +408,7 @@ define([
             } 
 
             html += '<div class="dialog_body"><span class="name name_dialog profileUserName" data-id="' + private_id + '">' + name + '</span>';
-            html += '<div style="font-size: 11px; color: #aaa;">'+dialog.get('position')+'</div>';
+            html += '<div style="font-size: 11px; color: #aaa;">'+(dialog.get('data').position || '')+'</div>';
             html += '<span class="last_message_preview j-lastMessagePreview">' + lastMessage + '</span></div></div>';
 
             if (dialog_type === 3 && !isContactRequest) {
