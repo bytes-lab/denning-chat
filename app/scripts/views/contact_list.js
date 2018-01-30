@@ -190,9 +190,18 @@ define([
                 friends,
                 html;
 
+            // select current tag selected
+            $('.j-group-profile .chat-category select options').removeProp('selected');
+            $('.j-group-profile .chat-category select .'+dialog.get('data').tag.toLowerCase()).prop('selected', true);
+            // role manage for the tag
             $('.j-group-profile .chat-category select').prop('disabled', 'disabled');
             if(Helpers.can_change_group_tag(dialog.get('data').tag, Helpers.getRole(dialog.get('data'), User.contact))) 
                 $('.j-group-profile .chat-category select').prop('disabled', false);
+
+            // set current notification
+            $('#group_notify').prop('checked', false);
+            if (dialog.get('data').notifications) 
+                $('#group_notify').prop('checked', 'checked');
 
             ids = ids.concat([User.contact.id]);
             openPopup(popup, 'add', dialog_id);
