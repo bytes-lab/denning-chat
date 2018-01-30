@@ -316,9 +316,13 @@ define([
                 Helpers.log('add people to groupchat');
                 $('.j-group-profile .addToGroupChat').data('ids', $self.data('ids'));
                 $('.j-group-profile .addToGroupChat').data('dialog', dialog_id);
-                $('.j-group-profile .deleteChat').data('dialog', dialog_id);                
+                $('.j-group-profile .deleteChat').data('dialog', dialog_id);
                 if (new_title)
                     $('.j-group-profile .name_chat').text(new_title);
+
+                $('.j-group-profile .chat-category select').prop('disabled', 'disabled');
+                if(Helpers.can_change_group_tag()) 
+                    $('.j-group-profile .chat-category select').prop('disabled', false);
 
                 ContactListView.openGroupProfile($self, dialog_id);
             });
@@ -439,7 +443,7 @@ define([
             $body.on('click', '.groupTitle .name_chat', function(event) {
                 event.stopPropagation();
                 var $self = $(this);
-
+                return;
                 $self.addClass('is-focus');
                 chatName = {
                     name: $self.text().trim(),

@@ -454,10 +454,10 @@
         </header>
 
         <div class="chat-category">
-            <label>Dialog Category:</label>
+            <label>Dialog Tag:</label>
             <select style="width: inherit;">
-                <option value="colleagues">Colleagues</option>
-                <option value="clients">Clients</option>
+                <option value="colleagues">Colleague</option>
+                <option value="clients">Client</option>
                 <option value="matters">Matter</option>
                 <option value="denning">Denning</option>
             </select>
@@ -606,7 +606,7 @@
                         <div class="contact-avatar avatar avatar_chat scaleAvatar j-scaleAvatar" data-name="<%= name %>" style="background-image:url(<%= icon %>)"></div>
                     <% } %>
                     <input class="avatar_file avatar is-hidden" type="file" accept="image/*" data-dialog="<%= dialog_id %>">
-                    <h2 class="name name_chat c<%= type %>" contenteditable="true" title="<%= name %>"><%= name %></h2>
+                    <h2 class="name name_chat c<%= type %>" contenteditable="<%= can_change_group_name ? true: false%>"" title="<%= name %>"><%= name %></h2>
                     <span class="pencil is-hidden"></span>
                     <span class="triangle j-triangle triangle_down"></span>
                     <span class="triangle j-triangle triangle_up is-hidden"></span>
@@ -639,7 +639,7 @@
                         </button>
                     </div>
                 <% } else { %>
-                    <% if (user_tag == 'colleague' || user_tag == 'DenningPeople' ) { %>
+                    <% if (user_role != 'client' ) { %>
                     <button class="btn_chat btn_chat_leave groupProfile j-groupProfile" data-balloon="Settings and profile" data-balloon-pos="down" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>">
                         <img src="images/ic_settings_black_24px.svg" alt="Chat profile">
                     </button>                    

@@ -445,6 +445,30 @@ define([
             return 'staff';
         else if (dialog_data.role_reader && dialog_data.role_reader.indexOf(user.id) > -1)
             return 'client';
+        else
+            return 'client';
+    };
+
+    Helpers.can_change_group_name = function(chat_info) {
+        switch (chat_info.dialog_tag.toLowerCase()) {
+            case 'denning':
+                if (['denning'].indexOf(chat_info.user_role) > -1)
+                    return true;            
+                break;
+            case 'colleagues':
+                if (['denning', 'admin'].indexOf(chat_info.user_role) > -1)
+                    return true;            
+                break;
+            case 'matters':
+                if (['denning', 'admin'].indexOf(chat_info.user_role) > -1)
+                    return true;            
+                break;
+            case 'clients':
+                if (['denning', 'admin'].indexOf(chat_info.user_role) > -1)
+                    return true;            
+                break;
+        }
+        return false;
     };
 
     Helpers.is_favourite = function(denningUsers, user) {

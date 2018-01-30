@@ -305,6 +305,7 @@ define([
             occupantsIds: '',
             status: '',
             dialog_id: '',
+            dialog_tag: '',
             location: '',
             type: null,
             user_id: null,
@@ -339,7 +340,9 @@ define([
         },
 
         render: function() {
-            var chatTpl = this.template(this.model.toJSON()),
+            var chat_model = this.model.toJSON();
+            chat_model.can_change_group_name = Helpers.can_change_group_name(chat_model);
+            var chatTpl = this.template(chat_model),
                 chatElem = this.$el.html(chatTpl);
 
             $('.j-group-profile .name_chat').html(this.model.get('name'));
