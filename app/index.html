@@ -469,16 +469,29 @@
                 <span class="text">No results found</span>
             </div>
         </div>
+
+        <div class="switch">
+            <label class="toogle_settings j-toogle_settings">
+                <i class="material-icons" style="font-size: 19px;">notifications</i>
+                <span class="settings_label">Notifications</span>
+                <input id="messages_notify" class="j-setings_notify" type="checkbox" checked>
+                <span class="lever" style="margin-top: 6px;"></span>
+            </label>
+        </div>
+
         <form id="chatPosition" class="popup-form localSearch formSearch j-chatPosition" action="#">
             <label>Position: </label>
             <input style="height: 30px; margin: 10px;" type="text">
         </form>
         <div style="text-align: center; margin: 10px;">
+            <button class="waves-effect waves-light btn deleteChat j-deleteChat" data-dialog="" data-balloon="Save Settings" data-balloon-pos="down">
+                Save
+            </button>            
             <button class="waves-effect waves-light btn addToGroupChat" data-ids="" data-dialog="" data-balloon="Add occupants to group chat" data-balloon-pos="down">
                 Add members
             </button>
             <button class="waves-effect waves-light btn deleteChat j-deleteChat" data-dialog="" data-balloon="Leave chat and clear history" data-balloon-pos="down">
-                Leave chat
+                Leave
             </button>
         </div>
     </div>    
@@ -763,6 +776,8 @@
         </div>
     </li>
 </script>
+
+<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
 
 </body>
 

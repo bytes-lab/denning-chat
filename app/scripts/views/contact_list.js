@@ -182,11 +182,17 @@ define([
                 popup = $('#popupChatProfile'),
                 contacts = ContactList.contacts,
                 roster = ContactList.roster,
+                dialogs = Entities.Collections.dialogs,
+                dialog = dialogs.get(dialog_id),
                 sortedContacts,
                 existing_ids,
                 user_id,
                 friends,
                 html;
+
+            $('.j-group-profile .chat-category select').prop('disabled', 'disabled');
+            if(Helpers.can_change_group_tag(dialog.get('data').tag, Helpers.getRole(dialog.get('data'), User.contact))) 
+                $('.j-group-profile .chat-category select').prop('disabled', false);
 
             ids = ids.concat([User.contact.id]);
             openPopup(popup, 'add', dialog_id);

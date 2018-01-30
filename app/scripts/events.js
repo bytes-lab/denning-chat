@@ -320,10 +320,6 @@ define([
                 if (new_title)
                     $('.j-group-profile .name_chat').text(new_title);
 
-                $('.j-group-profile .chat-category select').prop('disabled', 'disabled');
-                if(Helpers.can_change_group_tag()) 
-                    $('.j-group-profile .chat-category select').prop('disabled', false);
-
                 ContactListView.openGroupProfile($self, dialog_id);
             });
 

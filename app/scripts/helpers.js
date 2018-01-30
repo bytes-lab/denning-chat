@@ -471,6 +471,28 @@ define([
         return false;
     };
 
+    Helpers.can_change_group_tag = function(dialog_tag, user_role) {
+        switch (dialog_tag.toLowerCase()) {
+            case 'denning':
+                if (['denning'].indexOf(user_role) > -1)
+                    return true;            
+                break;
+            case 'colleagues':
+                if (['denning', 'admin'].indexOf(user_role) > -1)
+                    return true;            
+                break;
+            case 'matters':
+                if (['denning', 'admin'].indexOf(user_role) > -1)
+                    return true;            
+                break;
+            case 'clients':
+                if (['denning', 'admin'].indexOf(user_role) > -1)
+                    return true;            
+                break;
+        }
+        return false;
+    };
+
     Helpers.is_favourite = function(denningUsers, user) {
         var favourites = Helpers.getEmails(denningUsers, ['favourite_client', 'favourite_staff']);
         return _.indexOf(favourites, user.email) > -1;
