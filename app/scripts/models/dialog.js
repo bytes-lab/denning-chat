@@ -216,6 +216,16 @@ define([
             });
         },
 
+        updateProfile: function(dialog_id, params, callback) {
+            var QBApiCalls = this.app.service;
+
+            QBApiCalls.updateDialog(dialog_id, {
+                data: params
+            }, function(res) {
+                callback();
+            });
+        },
+
         updateGroup: function(occupants_names, params, callback) {
             var QBApiCalls = this.app.service,
                 ContactList = this.app.models.ContactList,

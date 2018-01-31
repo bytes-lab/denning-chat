@@ -202,6 +202,8 @@ define([
             $('#group_notify').prop('checked', false);
             if (dialog.get('data').notifications) 
                 $('#group_notify').prop('checked', 'checked');
+            // set position
+            $('#chatPosition input').val(dialog.get('data').position);
 
             ids = ids.concat([User.contact.id]);
             openPopup(popup, 'add', dialog_id);

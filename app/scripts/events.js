@@ -439,7 +439,6 @@ define([
             $body.on('click', '.groupTitle .name_chat', function(event) {
                 event.stopPropagation();
                 var $self = $(this);
-                return;
                 $self.addClass('is-focus');
                 chatName = {
                     name: $self.text().trim(),
@@ -823,6 +822,20 @@ define([
                 openPopup($('.j-popupDeleteChat'), null, dialog_id);
 
                 return false;
+            });
+
+            $('#popupChatProfile').on('click', '.j-saveProfile', function() {
+                var dialog_id = $('.j-group-profile .deleteChat').data('dialog'),
+                    tag = $('.j-group-profile .chat-category select').val(),
+                    position = $('#chatPosition input').val(),
+                    notifications = $('#group_notify').prop('checked') ? 1 : 0;
+
+                    Dialog.updateProfile(dialog_id, {
+                        class_name: "dialog_data",
+                        tag: tag,
+                        position: position,
+                        notifications: notifications
+                    }, function() { alert('Profile is saved successfully.');});
             });
 
             $('.j-deleteChatConfirm').on('click', function() {
