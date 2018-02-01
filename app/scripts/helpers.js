@@ -493,6 +493,12 @@ define([
         return false;
     };
 
+    Helpers.can_mute = function(dialog_tag, user_role) {
+        // if (['denning', 'admin', 'staff'].indexOf(user_role) > -1)
+        //     return true;            
+        return false;
+    };
+
     Helpers.is_favourite = function(denningUsers, user) {
         var favourites = Helpers.getEmails(denningUsers, ['favourite_client', 'favourite_staff']);
         return _.indexOf(favourites, user.email) > -1;

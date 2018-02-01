@@ -184,6 +184,8 @@ define([
                 roster = ContactList.roster,
                 dialogs = Entities.Collections.dialogs,
                 dialog = dialogs.get(dialog_id),
+                dialog_tag = dialog.get('data').tag,
+                user_role = Helpers.getRole(dialog.get('data'), User.contact),
                 sortedContacts,
                 existing_ids,
                 user_id,
@@ -195,13 +197,16 @@ define([
             $('.j-group-profile .chat-category select .'+dialog.get('data').tag.toLowerCase()).prop('selected', true);
             // role manage for the tag
             $('.j-group-profile .chat-category select').prop('disabled', 'disabled');
-            if(Helpers.can_change_group_tag(dialog.get('data').tag, Helpers.getRole(dialog.get('data'), User.contact))) 
+            if(Helpers.can_change_group_tag(dialog_tag, user_role)) 
                 $('.j-group-profile .chat-category select').prop('disabled', false);
 
             // set current notification
             $('#group_notify').prop('checked', false);
             if (dialog.get('data').notifications) 
                 $('#group_notify').prop('checked', 'checked');
+            // role
+            if(!Helpers.can_mute(dialog_tag, user_role))
+                $('#group_notify').prop('disabled', 'disabled');
             // set position
             $('#chatPosition input').val(dialog.get('data').position);
 
