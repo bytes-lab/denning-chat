@@ -213,8 +213,10 @@ define([
 
             // add member
             popup.find('.btn').removeClass('is-hidden');
-            if(!Helpers.can_add_member(dialog_tag, user_role)) 
+            if(!Helpers.can_add_member(dialog_tag, user_role)) {
                 $('.j-group-profile .addToGroupChat').addClass('is-hidden');
+                $('.j-group-profile .deleteChat').addClass('is-hidden');                
+            }
 
             ids = ids.concat([User.contact.id]);
             openPopup(popup, 'add', dialog_id);

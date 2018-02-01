@@ -835,7 +835,10 @@ define([
                         tag: tag,
                         position: position,
                         notifications: notifications
-                    }, function() { alert('Profile is saved successfully.');});
+                    }, function() { 
+                        alert('Profile is saved successfully.');
+                        closePopup();
+                    });
             });
 
             $('.j-deleteChatConfirm').on('click', function() {
