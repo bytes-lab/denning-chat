@@ -236,7 +236,8 @@ define([
                 html = Helpers.fillTemplate('tpl_contactItem', {
                     user: contacts[user_id], 
                     contact: 5,
-                    user_role: Helpers.capitalizeFirstLetter(member_role),
+                    user_role: member_role,
+                    can_change_role: Helpers.can_add_member(dialog_tag, user_role),
                     position: Helpers.getAttr(ContactList.denningUsers, contacts[user_id], 'position'),
                     last_seen: Helpers.getTime(contacts[user_id].last_request_at, true, true)
                 });

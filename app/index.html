@@ -731,15 +731,14 @@
                 </div>
             </div>
             <% if (contact == 5) { %>
-                <label style="color: blue; padding-left: 8px;"><%=user_role%></label>
-<!--                 <p class="fav last_time_preview j-lastTimePreview">
-                    <select class="">
-                        <option value="colleagues">Denning</option>
-                        <option value="clients">Admin</option>
-                        <option value="matters">Staff</option>
-                        <option value="denning">Client</option>
+                <div class="input-field">
+                    <select class="" style="display: block; width: 90px;" <%=can_change_role? '': 'disabled'%>>
+                        <option value="denning" <%=user_role=='denning'? 'selected': ''%>>Denning</option>
+                        <option value="admin" <%=user_role=='admin'? 'selected': ''%>>Admin</option>
+                        <option value="staff" <%=user_role=='staff'? 'selected': ''%>>Staff</option>
+                        <option value="client" <%=user_role=='client'? 'selected': ''%>>Client</option>
                     </select>
-                </p> -->
+                </div>
             <% } else if (!contact) { %>
                 <input class="form-checkbox" type="checkbox">
             <% } else { %>
