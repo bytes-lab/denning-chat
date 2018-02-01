@@ -217,11 +217,17 @@ define([
         },
 
         updateProfile: function(dialog_id, params, callback) {
-            var QBApiCalls = this.app.service;
+            var QBApiCalls = this.app.service,
+                self = this;
 
             QBApiCalls.updateDialog(dialog_id, {
                 data: params
             }, function(res) {
+                var dialogId = self.create(res),
+                    dialogs = Entities.Collections.dialogs,
+                    dialog = dialogs.get(dialogId);
+
+                dialog.set('data', res.data);
                 callback();
             });
         },
