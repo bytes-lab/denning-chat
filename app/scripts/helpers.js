@@ -494,8 +494,14 @@ define([
     };
 
     Helpers.can_mute = function(dialog_tag, user_role) {
-        // if (['denning', 'admin', 'staff'].indexOf(user_role) > -1)
-        //     return true;            
+        if (['denning', 'admin', 'staff'].indexOf(user_role) > -1)
+            return true;            
+        return false;
+    };
+
+    Helpers.can_add_member = function(dialog_tag, user_role) {
+        if (['denning', 'admin'].indexOf(user_role) > -1)
+            return true;            
         return false;
     };
 

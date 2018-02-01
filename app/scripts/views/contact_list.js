@@ -184,7 +184,7 @@ define([
                 roster = ContactList.roster,
                 dialogs = Entities.Collections.dialogs,
                 dialog = dialogs.get(dialog_id),
-                dialog_tag = dialog.get('data').tag,
+                dialog_tag = dialog.get('data').tag || '',
                 user_role = Helpers.getRole(dialog.get('data'), User.contact),
                 sortedContacts,
                 existing_ids,
@@ -194,7 +194,8 @@ define([
 
             // select current tag selected
             $('.j-group-profile .chat-category select options').removeProp('selected');
-            $('.j-group-profile .chat-category select .'+dialog.get('data').tag.toLowerCase()).prop('selected', true);
+            if (dialog_tag)
+                $('.j-group-profile .chat-category select .'+dialog.get('data').tag.toLowerCase()).prop('selected', true);
             // role manage for the tag
             $('.j-group-profile .chat-category select').prop('disabled', 'disabled');
             if(Helpers.can_change_group_tag(dialog_tag, user_role)) 
@@ -204,21 +205,25 @@ define([
             $('#group_notify').prop('checked', false);
             if (dialog.get('data').notifications) 
                 $('#group_notify').prop('checked', 'checked');
-            // role
+            // role for mute
             if(!Helpers.can_mute(dialog_tag, user_role))
                 $('#group_notify').prop('disabled', 'disabled');
             // set position
             $('#chatPosition input').val(dialog.get('data').position);
+
+            // add member
+            popup.find('.btn').removeClass('is-hidden');
+            if(!Helpers.can_add_member(dialog_tag, user_role)) 
+                $('.j-group-profile .addToGroupChat').addClass('is-hidden');
 
             ids = ids.concat([User.contact.id]);
             openPopup(popup, 'add', dialog_id);
             popup.addClass('not-selected').removeClass('is-addition');
             popup.find('.note').addClass('is-hidden').siblings('ul').removeClass('is-hidden');
             popup.find('.popup-nofriends').addClass('is-hidden').siblings().removeClass('is-hidden');
-            // popup.find('form')[0].reset();
+            
             popup.find('.list_contacts').mCustomScrollbar("scrollTo", "top");
             popup.find('.mCSB_container').empty();
-            popup.find('.btn').removeClass('is-hidden');
 
             friends = ids;
 
