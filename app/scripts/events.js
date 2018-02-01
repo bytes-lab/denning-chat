@@ -828,17 +828,40 @@ define([
                 var dialog_id = $('.j-group-profile .deleteChat').data('dialog'),
                     tag = $('.j-group-profile .chat-category select').val(),
                     position = $('#chatPosition input').val(),
-                    notifications = $('#group_notify').prop('checked') ? 1 : 0;
+                    notifications = $('#group_notify').prop('checked') ? 1 : 0,
+                    role_denning = [0],
+                    role_admin = [0],
+                    role_normal = [0],
+                    role_reader = [0];
 
-                    Dialog.updateProfile(dialog_id, {
-                        class_name: "dialog_data",
-                        tag: tag,
-                        position: position,
-                        notifications: notifications
-                    }, function() { 
-                        alert('Profile is saved successfully.');
-                        closePopup();
-                    });
+                // get roles
+                $('.member_role').each(function() {
+                    var role = $(this).val(),
+                        id = $(this).data('id');
+
+                    if (role == 'denning')
+                        role_denning.push(id);
+                    else if (role == 'admin')
+                        role_admin.push(id);
+                    else if (role == 'staff')
+                        role_normal.push(id);
+                    else 
+                        role_reader.push(id);                        
+                });
+
+                Dialog.updateProfile(dialog_id, {
+                    class_name: "dialog_data",
+                    tag: tag,
+                    position: position,
+                    notifications: notifications,
+                    role_denning: role_denning,
+                    role_admin: role_admin,
+                    role_normal: role_normal,
+                    role_reader: role_reader
+                }, function() { 
+                    alert('Profile is saved successfully.');
+                    closePopup();
+                });
             });
 
             $('.j-deleteChatConfirm').on('click', function() {

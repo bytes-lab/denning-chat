@@ -732,8 +732,8 @@
             </div>
             <% if (contact == 5) { %>
                 <div class="input-field">
-                    <select class="" style="display: block; width: 90px;" <%=can_change_role? '': 'disabled'%>>
-                        <option value="denning" <%=user_role=='denning'? 'selected': ''%>>Denning</option>
+                    <select class="member_role" data-id="<%= user.id %>" style="display: block; width: 90px;" <%=can_change_role? '': 'disabled'%>>
+                        <option value="denning" <%=user_role=='denning'? 'selected': ''%> <%=viewer_role=='denning'? '': 'disabled'%>>Denning</option>
                         <option value="admin" <%=user_role=='admin'? 'selected': ''%>>Admin</option>
                         <option value="staff" <%=user_role=='staff'? 'selected': ''%>>Staff</option>
                         <option value="client" <%=user_role=='client'? 'selected': ''%>>Client</option>
