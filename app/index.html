@@ -731,7 +731,7 @@
                 </div>
             </div>
             <% if (contact == 5) { %>
-                <label style="color: blue;">Denning</label>
+                <label style="color: blue; padding-left: 8px;"><%=user_role%></label>
 <!--                 <p class="fav last_time_preview j-lastTimePreview">
                     <select class="">
                         <option value="colleagues">Denning</option>
@@ -739,8 +739,8 @@
                         <option value="matters">Staff</option>
                         <option value="denning">Client</option>
                     </select>
-                </p>
- -->            <% } else if (!contact) { %>
+                </p> -->
+            <% } else if (!contact) { %>
                 <input class="form-checkbox" type="checkbox">
             <% } else { %>
                 <p class="fav last_time_preview j-lastTimePreview <% if (is_favourite) { %> favourite <% } %>" data-email="<%= user.email %>">

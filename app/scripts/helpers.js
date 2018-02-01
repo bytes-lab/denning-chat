@@ -436,6 +436,10 @@ define([
         return res;
     };
 
+    Helpers.capitalizeFirstLetter = function(string) {
+        return string.charAt(0).toUpperCase() + string.slice(1);
+    };
+    
     Helpers.getRole = function(dialog_data, user) {
         if (dialog_data.role_denning && dialog_data.role_denning.indexOf(user.id) > -1)
             return 'denning';

@@ -231,10 +231,12 @@ define([
 
             for (var i = 0, len = friends.length; i < len; i++) {
                 user_id = friends[i];
+                var member_role = Helpers.getRole(dialog.get('data'), contacts[user_id]);                
 
                 html = Helpers.fillTemplate('tpl_contactItem', {
                     user: contacts[user_id], 
                     contact: 5,
+                    user_role: Helpers.capitalizeFirstLetter(member_role),
                     position: Helpers.getAttr(ContactList.denningUsers, contacts[user_id], 'position'),
                     last_seen: Helpers.getTime(contacts[user_id].last_request_at, true, true)
                 });
