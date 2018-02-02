@@ -265,14 +265,16 @@ define([
                         $('.j-recentList').append(html);
 
                         _.each(users, function(user) {
-                            html = Helpers.fillTemplate('tpl_contactItem', {
-                                user: user, 
-                                contact: true, 
-                                is_favourite: Helpers.is_favourite(ContactList.denningUsers, user),
-                                position: Helpers.getAttr(ContactList.denningUsers, user, 'position'),
-                                last_seen: Helpers.getTime(user.last_request_at, true, true)
-                            });
-                            $('.j-recentList').append(html);
+                            if (user.email != self.app.models.User.contact.email) {
+                                html = Helpers.fillTemplate('tpl_contactItem', {
+                                    user: user, 
+                                    contact: true, 
+                                    is_favourite: Helpers.is_favourite(ContactList.denningUsers, user),
+                                    position: Helpers.getAttr(ContactList.denningUsers, user, 'position'),
+                                    last_seen: Helpers.getTime(user.last_request_at, true, true)
+                                });
+                                $('.j-recentList').append(html);                                
+                            }
                         });
                     }
                 });

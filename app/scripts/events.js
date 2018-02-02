@@ -653,7 +653,7 @@ define([
                 });  
             });
 
-            $('.list_contextmenu').on('dblclick', '.contact.user', function() {
+            $('.list_contextmenu').on('click', '.contact.user', function() {
                 var id = $(this).parent().data('id'),
                     tab_type = $('.j-sidebar__tab_link.active').data('type'),
                     filter_type = $('.filter-item.active').data('type');
