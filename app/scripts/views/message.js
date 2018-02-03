@@ -1183,31 +1183,31 @@ define([
                                  .html('<img src="'+ url +'" alt="picture"/>');
                     $message.append($elem);
                 } else if (urlCache[url] !== null && Helpers.isValidUrl(url)) {
-                    $elem = $this.clone().addClass('og_block');
+                    // $elem = $this.clone().addClass('og_block');
 
-                    if (urlCache[url]) {
-                        $elem.html(QMHtml.Messages.urlPreview(urlCache[url]));
-                        $message.append($elem);
-                    } else {
-                        Helpers.getOpenGraphInfo({
-                            'url': url,
-                            'token': JSON.parse(localStorage['QM.session']).token
-                        }, function(error, result) {
-                            if (result && (result.ogTitle || result.ogDescription)) {
-                                params = {
-                                    title: result.ogTitle || result.ogUrl || '',
-                                    description: result.ogDescription || result.ogUrl || url,
-                                    picture: result.ogImage && result.ogImage.url || ''
-                                };
+                    // if (urlCache[url]) {
+                    //     $elem.html(QMHtml.Messages.urlPreview(urlCache[url]));
+                    //     $message.append($elem);
+                    // } else {
+                    //     Helpers.getOpenGraphInfo({
+                    //         'url': url,
+                    //         'token': JSON.parse(localStorage['QM.session']).token
+                    //     }, function(error, result) {
+                    //         if (result && (result.ogTitle || result.ogDescription)) {
+                    //             params = {
+                    //                 title: result.ogTitle || result.ogUrl || '',
+                    //                 description: result.ogDescription || result.ogUrl || url,
+                    //                 picture: result.ogImage && result.ogImage.url || ''
+                    //             };
 
-                                urlCache[url] = params;
-                                $message.append($elem);
-                                $elem.html(QMHtml.Messages.urlPreview(params));
-                            } else {
-                                urlCache[url] = null;
-                            }
-                        });
-                    }
+                    //             urlCache[url] = params;
+                    //             $message.append($elem);
+                    //             $elem.html(QMHtml.Messages.urlPreview(params));
+                    //         } else {
+                    //             urlCache[url] = null;
+                    //         }
+                    //     });
+                    // }
                 }
             });
 
