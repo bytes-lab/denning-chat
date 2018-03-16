@@ -241,7 +241,9 @@ define([
                 }
             } catch (e) {
                 Helpers.log("Error getting contacts from cache. Clearing...");
+                var tmp = localStorage['userInfo'];
                 localStorage.clear();
+                localStorage.setItem('userInfo', tmp);
                 contacts = {};
             }
         }

@@ -92,7 +92,9 @@ define([
                 this.service.init();
             } else {
                 // removing the old cached data from LocalStorage
+                var tmp = localStorage['userInfo'];
                 localStorage.clear();
+                localStorage.setItem('userInfo', tmp);
                 localStorage.setItem('QM.isReleaseQBAccount', '1');
                 this.service.init();
                 
