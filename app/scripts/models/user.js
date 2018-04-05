@@ -413,7 +413,7 @@ define([
                 self.contact = null;
                 self._valid = false;
 
-                var tmp = localStorage['userInfo'];
+                var tmp = localStorage.userInfo;
                 localStorage.clear();
                 localStorage.setItem('userInfo', tmp);
                 window.location.reload();
