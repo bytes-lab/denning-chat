@@ -625,7 +625,7 @@ define([
 
                 $.ajax({
                     type: 'post',
-                    url: 'http://43.252.215.163:8313/denningapi/v1/chat/contact/fav',
+                    url: 'https://43.252.215.163/denningapi/v1/chat/contact/fav',
                     headers: {
                         "Content-Type": "application/json",
                         "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
@@ -637,7 +637,7 @@ define([
                         // update denning user info
                         $.ajax({
                             type: 'get',
-                            url: 'http://43.252.215.163:8313/denningapi/v2/chat/contact',
+                            url: 'https://43.252.215.163/denningapi/v2/chat/contact',
                             headers: {
                                 "Content-Type": "application/json",
                                 "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
