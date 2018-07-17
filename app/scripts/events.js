@@ -653,7 +653,7 @@ define([
                 });  
             });
 
-            $('.list_contextmenu').on('click', '.contact.user', function() {
+            $('.list_contextmenu').on('dblclick', '.contact.user', function() {
                 var id = $(this).parent().data('id'),
                     tab_type = $('.j-sidebar__tab_link.active').data('type'),
                     filter_type = $('.filter-item.active').data('type');
@@ -926,7 +926,7 @@ define([
 
                 $.ajax({
                     type: 'get',
-                    url: 'http://43.252.215.81/denningwcf/v1/generalSearch',
+                    url: 'https://43.252.215.81/denningwcf/v1/generalSearch',
                     headers: {
                         "Content-Type": "application/json",
                         "webuser-sessionid": "testdenningSkySea"                            
@@ -955,7 +955,7 @@ define([
                 source: function (request, response) {
                     $.ajax({
                         type: 'get',
-                        url: 'http://43.252.215.81/denningwcf/v1/generalSearch/keyword',
+                        url: 'https://43.252.215.81/denningwcf/v1/generalSearch/keyword',
                         headers: {
                             "Content-Type": "application/json",
                             "webuser-sessionid": "testdenningSkySea"                            
@@ -987,7 +987,7 @@ define([
 
                 $.ajax({
                     type: 'get',
-                    url: 'http://43.252.215.81/denningwcf/v1/app/matter/'+key+'/fileFolder',
+                    url: 'https://43.252.215.81/denningwcf/v1/app/matter/'+key+'/fileFolder',
                     headers: {
                         "Content-Type": "application/json",
                         "webuser-sessionid": "testdenningSkySea"                            
@@ -1025,7 +1025,7 @@ define([
             $('.list_matters').on('dblclick', '.list-item-file', function() {
                 var jid = $('.j-btn_file_folder').parents('.l-chat').data('jid'),
                     dialog_id = $('.j-btn_file_folder').parents('.l-chat').data('dialog'),
-                    val = 'http://43.252.215.81/denningwcf/' + $(this).data('title') + $(this).data('ext'),
+                    val = 'https://43.252.215.81/denningwcf/' + $(this).data('title') + $(this).data('ext'),
                     type = $('.j-btn_file_folder').parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat',
                     dext = {
                         url: val,
