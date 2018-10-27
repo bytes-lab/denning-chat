@@ -22,4 +22,4 @@ If you want to build your own app using this repo as a base, please do the follo
 ### - Build and run
 
 1. Run `grunt build` or `grunt` (build with jshint verification) in your terminal to build Q-municate (q-municate-web/dist).
-2. Run `grunt serve` in your terminal to open Q-municate in a browser window (<https://localhost:9000>).
+2. Run `grunt serve` in your terminal to open Q-municate in a browser window (<localhost:7000>).

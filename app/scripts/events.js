@@ -637,7 +637,7 @@ define([
                         // update denning user info
                         $.ajax({
                             type: 'get',
-                            url: 'https://denningchat.com/denningapi/v2/chat/contact',
+                            url: 'https://denningonline.com.my/denningapi/v2/chat/contact',
                             headers: {
                                 "Content-Type": "application/json",
                                 "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
