@@ -625,7 +625,7 @@ define([
 
                 $.ajax({
                     type: 'post',
-                    url: 'https://denningchat.com/denningapi/v1/chat/contact/fav',
+                    url: 'https://denningonline.com.my/denningapi/v1/chat/contact/fav',
                     headers: {
                         "Content-Type": "application/json",
                         "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
@@ -926,7 +926,7 @@ define([
 
                 $.ajax({
                     type: 'get',
-                    url: 'https://denningchat.com/denningwcf/v1/generalSearch',
+                    url: 'https://denningonline.com.my/denningapi/v1/generalSearch',
                     headers: {
                         "Content-Type": "application/json",
                         "webuser-sessionid": "testdenningSkySea"                            
@@ -955,7 +955,7 @@ define([
                 source: function (request, response) {
                     $.ajax({
                         type: 'get',
-                        url: 'https://denningchat.com/denningwcf/v1/generalSearch/keyword',
+                        url: 'https://denningonline.com.my/denningapi/v1/generalSearch/keyword',
                         headers: {
                             "Content-Type": "application/json",
                             "webuser-sessionid": "testdenningSkySea"                            
@@ -987,7 +987,7 @@ define([
 
                 $.ajax({
                     type: 'get',
-                    url: 'https://denningchat.com/denningwcf/v1/app/matter/'+key+'/fileFolder',
+                    url: 'https://denningonline.com.my/denningapi/v1/app/matter/'+key+'/fileFolder',
                     headers: {
                         "Content-Type": "application/json",
                         "webuser-sessionid": "testdenningSkySea"                            
@@ -1025,7 +1025,7 @@ define([
             $('.list_matters').on('dblclick', '.list-item-file', function() {
                 var jid = $('.j-btn_file_folder').parents('.l-chat').data('jid'),
                     dialog_id = $('.j-btn_file_folder').parents('.l-chat').data('dialog'),
-                    val = 'https://denningchat.com/denningwcf/' + $(this).data('title') + $(this).data('ext'),
+                    val = 'https://denningonline.com.my/denningapi/' + $(this).data('title') + $(this).data('ext'),
                     type = $('.j-btn_file_folder').parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat',
                     dext = {
                         url: val,
