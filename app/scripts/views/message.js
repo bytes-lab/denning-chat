@@ -505,7 +505,7 @@ define([
             var time = Math.floor(Date.now() / 1000),
                 $chat = $('.l-chat[data-dialog="' + dialog_id + '"]'),
                 $newMessages = $('.j-newMessages[data-dialog="' + dialog_id + '"]'),
-                locationIsActive = ($('.j-send_location').hasClass('btn_active') && localStorage['QM.latitude'] && localStorage['QM.longitude']),
+                locationIsActive = ($('.j-send_location').hasClass('btn_active') && localStorage['DC.latitude'] && localStorage['DC.longitude']),
                 lastMessage,                            
                 dialogs = Entities.Collections.dialogs,
                 dialog = dialogs.get(dialog_id),
@@ -527,8 +527,8 @@ define([
                 };
 
                 if (locationIsActive) {
-                    msg.extension.latitude = localStorage['QM.latitude'];
-                    msg.extension.longitude = localStorage['QM.longitude'];
+                    msg.extension.latitude = localStorage['DC.latitude'];
+                    msg.extension.longitude = localStorage['DC.longitude'];
                 }
 
                 msg.id = QB.chat.send(jid, msg);
@@ -538,8 +538,8 @@ define([
                     'body': val,
                     'date_sent': time,
                     'sender_id': User.contact.id,
-                    'latitude': localStorage['QM.latitude'] || null,
-                    'longitude': localStorage['QM.longitude'] || null,
+                    'latitude': localStorage['DC.latitude'] || null,
+                    'longitude': localStorage['DC.longitude'] || null,
                     '_id': msg.id,
                     'type': type,
                     'dext': dext && JSON.stringify(dext) || "",
@@ -586,7 +586,7 @@ define([
 
             var DialogView = self.app.views.Dialog,
                 ContactListView = self.app.views.ContactList,
-                hiddenDialogs = sessionStorage['QM.hiddenDialogs'] ? JSON.parse(sessionStorage['QM.hiddenDialogs']) : {},
+                hiddenDialogs = sessionStorage['DC.hiddenDialogs'] ? JSON.parse(sessionStorage['DC.hiddenDialogs']) : {},
                 dialogs = Entities.Collections.dialogs,
                 contacts = ContactList.contacts,
                 notification_type = message.extension && message.extension.notification_type,
@@ -611,7 +611,7 @@ define([
                 isBottom = Helpers.isBeginOfChat(),
                 otherChat = !selected && dialogItem.length > 0 && notification_type !== '1' && (!isOfflineStorage || message.type === 'groupchat'),
                 isNotMyUser = id !== User.contact.id,
-                readBadge = 'QM.' + User.contact.id + '_readBadge',
+                readBadge = 'DC.' + User.contact.id + '_readBadge',
                 $newMessages = $('<div class="new_messages j-newMessages" data-dialog="' + dialog_id + '"><span class="newMessages">New messages</span></div>'),
                 $label = $chat.find('.j-newMessages'),
                 isNewMessages = $label.length,
@@ -1191,7 +1191,7 @@ define([
                     // } else {
                     //     Helpers.getOpenGraphInfo({
                     //         'url': url,
-                    //         'token': JSON.parse(localStorage['QM.session']).token
+                    //         'token': JSON.parse(localStorage['DC.session']).token
                     //     }, function(error, result) {
                     //         if (result && (result.ogTitle || result.ogDescription)) {
                     //             params = {

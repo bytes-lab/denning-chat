@@ -54,7 +54,7 @@ define([
                 QB.service.qbInst.session.application_id = QMCONFIG.qbAccount.appId;
                 QB.service.qbInst.config.creds = QMCONFIG.qbAccount;
 
-                Session.create(JSON.parse(localStorage['QM.session']));
+                Session.create(JSON.parse(localStorage['DC.session']));
                 UserView.autologin();
             }
 

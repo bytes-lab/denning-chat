@@ -61,7 +61,7 @@ define([
         },
 
         toggleGeoCoordinatesToLocalStorage: function(saveLocation, callback) {
-            var isCoords = (localStorage['QM.latitude'] && localStorage['QM.longitude']) ? true : false,
+            var isCoords = (localStorage['DC.latitude'] && localStorage['DC.longitude']) ? true : false,
                 $button = $('.j-send_location');
 
             if (saveLocation) {
@@ -76,15 +76,15 @@ define([
 
                         if (isCoords) {
                             navigator.geolocation.clearWatch(watchId);
-                            localStorage.removeItem('QM.latitude');
-                            localStorage.removeItem('QM.longitude');
+                            localStorage.removeItem('DC.latitude');
+                            localStorage.removeItem('DC.longitude');
                             $button.removeClass('btn_active');
                         }
 
                         callback(null, err);
                     } else {
-                        localStorage.setItem('QM.latitude', res.latitude);
-                        localStorage.setItem('QM.longitude', res.longitude);
+                        localStorage.setItem('DC.latitude', res.latitude);
+                        localStorage.setItem('DC.longitude', res.longitude);
 
                         $button.addClass('btn_active');
 
@@ -92,8 +92,8 @@ define([
                     }
                 });
             } else {
-                localStorage.removeItem('QM.latitude');
-                localStorage.removeItem('QM.longitude');
+                localStorage.removeItem('DC.latitude');
+                localStorage.removeItem('DC.longitude');
 
                 $button.removeClass('btn_active');
 
@@ -106,13 +106,13 @@ define([
         addMap: function($gmap) {
             $gmap.prepend('<div id="map" class="open_map j-open_map"></div>');
 
-            var isCoords = (localStorage['QM.latitude'] && localStorage['QM.longitude']) ? true : false,
+            var isCoords = (localStorage['DC.latitude'] && localStorage['DC.longitude']) ? true : false,
                 mapCoords = {};
 
             var map = new GMaps({
                 'div': '#map',
-                'lat': isCoords ? localStorage['QM.latitude'] : 0,
-                'lng': isCoords ? localStorage['QM.longitude'] : 0,
+                'lat': isCoords ? localStorage['DC.latitude'] : 0,
+                'lng': isCoords ? localStorage['DC.longitude'] : 0,
                 'zoom': isCoords ? 15 : 1,
                 'key': 'AIzaSyDb6AmKfayLm-uRYcCgjw0mR_3pfX-isjQ'
             });
@@ -132,7 +132,7 @@ define([
                 mapCoords.lat = event.latLng.lat();
                 mapCoords.lng = event.latLng.lng();
 
-                localStorage.setItem('QM.locationAttach', JSON.stringify(mapCoords));
+                localStorage.setItem('DC.locationAttach', JSON.stringify(mapCoords));
 
                 map.removeMarkers();
 

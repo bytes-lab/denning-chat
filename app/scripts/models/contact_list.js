@@ -32,11 +32,11 @@ define([
         },
 
         saveNotConfirmed: function(notConfirmed) {
-            localStorage.setItem('QM.notConfirmed', JSON.stringify(notConfirmed));
+            localStorage.setItem('DC.notConfirmed', JSON.stringify(notConfirmed));
         },
 
         saveHiddenDialogs: function(hiddenDialogs) {
-            sessionStorage.setItem('QM.hiddenDialogs', JSON.stringify(hiddenDialogs));
+            sessionStorage.setItem('DC.hiddenDialogs', JSON.stringify(hiddenDialogs));
         },
 
         addDenningUsers: function(users, contactLoaded) {
@@ -65,7 +65,7 @@ define([
                         var ContactListView = self.app.views.ContactList;
 
                         self.contacts[user.id] = contact;
-                        localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
+                        localStorage.setItem('DC.contact-' + user.id, JSON.stringify(contact));
                     });
 
                     Helpers.log('Contact List is updated with Denning Users', self);
@@ -84,7 +84,7 @@ define([
             // (for new device the user will be waiting very long time if he has a lot of private dialogs)
             new_ids = [].concat(_.difference(occupants_ids, contact_ids));
             contact_ids = contact_ids.concat(new_ids);
-            localStorage.setItem('QM.contacts', contact_ids.join());
+            localStorage.setItem('DC.contacts', contact_ids.join());
             if (subscribe) new_ids = occupants_ids;
 
             if (new_ids.length > 0) {
@@ -104,7 +104,7 @@ define([
                         var ContactListView = self.app.views.ContactList;
                         
                         self.contacts[user.id] = contact;
-                        localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
+                        localStorage.setItem('DC.contact-' + user.id, JSON.stringify(contact));
                     });
 
                     Helpers.log('Contact List is updated', self);
@@ -121,11 +121,11 @@ define([
                 ids = _.difference(requestIds, responseIds);
 
             ids.forEach(function(id) {
-                localStorage.removeItem('QM.contact-' + id);
+                localStorage.removeItem('DC.contact-' + id);
             });
 
             contact_ids = _.difference(contact_ids, ids);
-            localStorage.setItem('QM.contacts', contact_ids.join());
+            localStorage.setItem('DC.contacts', contact_ids.join());
         },
 
         globalSearch: function(callback) {
@@ -134,8 +134,8 @@ define([
             }
 
             var QBApiCalls = this.app.service,
-                val = sessionStorage['QM.search.value'],
-                page = sessionStorage['QM.search.page'],
+                val = sessionStorage['DC.search.value'],
+                page = sessionStorage['DC.search.page'],
                 self = this,
                 contacts;
 
@@ -154,8 +154,8 @@ define([
                     contacts = data.items;
                 }
 
-                sessionStorage.setItem('QM.search.allPages', Math.ceil(data.total_entries / data.per_page));
-                sessionStorage.setItem('QM.search.page', ++page);
+                sessionStorage.setItem('DC.search.allPages', Math.ceil(data.total_entries / data.per_page));
+                sessionStorage.setItem('DC.search.page', ++page);
 
                 contacts.sort(function(first, second) {
                     var a = first.full_name.toLowerCase(),
@@ -208,11 +208,11 @@ define([
                     var contact = Contact.create(user);
                     new_ids.push(user.id);
                     self.contacts[user.id] = contact;
-                    localStorage.setItem('QM.contact-' + user.id, JSON.stringify(contact));
+                    localStorage.setItem('DC.contact-' + user.id, JSON.stringify(contact));
                 });
 
                 contact_ids = contact_ids.concat(new_ids);
-                localStorage.setItem('QM.contacts', contact_ids.join());
+                localStorage.setItem('DC.contacts', contact_ids.join());
 
                 Helpers.log('Contact List is updated', self);
                 callback(new_ids);
@@ -226,13 +226,13 @@ define([
     // Creation of Contact List from cache
     function getContacts() {
         var contacts = {},
-            ids = localStorage['QM.contacts'] ? localStorage['QM.contacts'].split(',') : [];
+            ids = localStorage['DC.contacts'] ? localStorage['DC.contacts'].split(',') : [];
 
         if (ids.length > 0) {
             try {
                 for (var i = 0, len = ids.length; i < len; i++) {
-                    contacts[ids[i]] = typeof localStorage['QM.contact-' + ids[i]] !== 'undefined' ?
-                        JSON.parse(localStorage['QM.contact-' + ids[i]]) :
+                    contacts[ids[i]] = typeof localStorage['DC.contact-' + ids[i]] !== 'undefined' ?
+                        JSON.parse(localStorage['DC.contact-' + ids[i]]) :
                         true;
 
                     if (contacts[ids[i]] === true) {

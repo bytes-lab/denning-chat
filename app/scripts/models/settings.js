@@ -33,16 +33,16 @@ define([], function() {
         };
 
         this.save = function() {
-            localStorage.setItem('QM.settings-' + userId, JSON.stringify(options));
+            localStorage.setItem('DC.settings-' + userId, JSON.stringify(options));
         };
 
         function sync() {
-            if (!localStorage['QM.settings-' + userId]) {
+            if (!localStorage['DC.settings-' + userId]) {
                 self.save();
 
                 return false;
             } else {
-                options = JSON.parse(localStorage['QM.settings-' + userId]);
+                options = JSON.parse(localStorage['DC.settings-' + userId]);
             }
         }
     }

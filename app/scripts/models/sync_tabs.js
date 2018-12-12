@@ -52,11 +52,11 @@ define(['jquery'], function($) {
         };
 
         function _set() {
-            countTabs = 'QM.' + currentUserId + '_countTabs',
-            mainTab   = 'QM.' + currentUserId + '_mainTab',
-            closedTab = 'QM.' + currentUserId + '_closedTab',
-            logOutAll = 'QM.' + currentUserId + '_logOut';
-            readBadge = 'QM.' + currentUserId + '_readBadge';
+            countTabs = 'DC.' + currentUserId + '_countTabs',
+            mainTab   = 'DC.' + currentUserId + '_mainTab',
+            closedTab = 'DC.' + currentUserId + '_closedTab',
+            logOutAll = 'DC.' + currentUserId + '_logOut';
+            readBadge = 'DC.' + currentUserId + '_readBadge';
 
             if (localStorage[mainTab] && localStorage[countTabs]) {
                 curTab = +localStorage[countTabs] + 1;   // set new order for current tab
@@ -86,7 +86,7 @@ define(['jquery'], function($) {
             }
 
             // fire if user's settings was changed
-            if (key === ('QM.settings-' + currentUserId)) {
+            if (key === ('DC.settings-' + currentUserId)) {
                 self.app.views.Settings.setUp(currentUserId);
             }
 

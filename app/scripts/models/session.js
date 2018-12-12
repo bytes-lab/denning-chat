@@ -42,7 +42,7 @@ define([
                     this.expirationTime = date.toISOString();
                 }
 
-                localStorage.setItem('QM.session', JSON.stringify({
+                localStorage.setItem('DC.session', JSON.stringify({
                     token: this.token,
                     expirationTime: this.expirationTime,
                     authParams: this.authParams
@@ -51,7 +51,7 @@ define([
         },
 
         destroy: function() {
-            localStorage.removeItem('QM.session');
+            localStorage.removeItem('DC.session');
             this.token = null;
             this.expirationTime = null;
             this.authParams = null;

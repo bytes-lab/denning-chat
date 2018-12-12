@@ -204,8 +204,8 @@ define([
             };
 
             if (locationIsActive) {
-                msg.extension.latitude = localStorage['QM.latitude'];
-                msg.extension.longitude = localStorage['QM.longitude'];
+                msg.extension.latitude = localStorage['DC.latitude'];
+                msg.extension.longitude = localStorage['DC.longitude'];
             }
 
             msg.id = QB.chat.send(jid, msg);
@@ -216,8 +216,8 @@ define([
                 'date_sent': time,
                 'attachment': attach,
                 'sender_id': User.contact.id,
-                'latitude': localStorage['QM.latitude'] || null,
-                'longitude': localStorage['QM.longitude'] || null,
+                'latitude': localStorage['DC.latitude'] || null,
+                'longitude': localStorage['DC.longitude'] || null,
                 '_id': msg.id,
                 'online': true
             });

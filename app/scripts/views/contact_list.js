@@ -94,8 +94,8 @@ define([
                 scrollbar($list, self);
                 self.createDataSpinner($list);
 
-                sessionStorage.setItem('QM.search.value', val);
-                sessionStorage.setItem('QM.search.page', 1);
+                sessionStorage.setItem('DC.search.value', val);
+                sessionStorage.setItem('DC.search.page', 1);
 
                 ContactList.globalSearch(function(results) {
                     createListResults($list, results, self);
@@ -308,7 +308,7 @@ define([
                 $dialogItem = $('.dialog-item[data-id="' + id + '"]'),
                 dialogItem = $dialogItem[0],
                 requestItem = $('#requestsList .list-item[data-jid="' + jid + '"]'),
-                notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
+                notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
                 time = Math.floor(Date.now() / 1000),
                 copyDialogItem,
                 message,
@@ -385,8 +385,8 @@ define([
                 $chat = $('.l-chat[data-id="' + id + '"]'),
                 list = $objDom.parents('ul.j-requestsList'),
                 roster = ContactList.roster,
-                notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
-                hiddenDialogs = JSON.parse(sessionStorage['QM.hiddenDialogs']),
+                notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
+                hiddenDialogs = JSON.parse(sessionStorage['DC.hiddenDialogs']),
                 time = Math.floor(Date.now() / 1000),
                 dialogs = Entities.Collections.dialogs,
                 copyDialogItem,
@@ -474,8 +474,8 @@ define([
             var id = QB.chat.helpers.getIdFromNode(jid),
                 $objDom = $('.j-incomingContactRequest[data-jid="' + jid + '"]'),
                 roster = ContactList.roster,
-                notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
-                hiddenDialogs = JSON.parse(sessionStorage['QM.hiddenDialogs']),
+                notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
+                hiddenDialogs = JSON.parse(sessionStorage['DC.hiddenDialogs']),
                 time = Math.floor(Date.now() / 1000);
 
             $objDom.remove();
@@ -517,7 +517,7 @@ define([
                 jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
                 li = $('.dialog-item[data-id="' + id + '"]'),
                 list = li.parents('ul.j-list'),
-                hiddenDialogs = JSON.parse(sessionStorage['QM.hiddenDialogs']),
+                hiddenDialogs = JSON.parse(sessionStorage['DC.hiddenDialogs']),
                 dialogId = li.data('dialog') || hiddenDialogs[id] || null,
                 roster = ContactList.roster,
                 dialog = dialogId ? dialogs.get(dialogId) : null,
@@ -560,7 +560,7 @@ define([
                 jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
                 $requestList = $('.j-requestsList'),
                 $recentList = $('.j-recentList'),
-                notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
+                notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
                 duplicate;
 
             // update notConfirmed people list
@@ -600,7 +600,7 @@ define([
                 request = $('#requestsList .list-item[data-jid="' + jid + '"]'),
                 list = request && request.parents('ul'),
                 roster = ContactList.roster,
-                notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {};
+                notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {};
 
             // reset recorder state
             VoiceMessage.resetRecord(dialogItem.data('dialog'));
@@ -658,8 +658,8 @@ define([
 
         autoConfirm: function(id) {
             var jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
-                notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
-                hiddenDialogs = notConfirmed[id] ? JSON.parse(sessionStorage['QM.hiddenDialogs']) : null,
+                notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
+                hiddenDialogs = notConfirmed[id] ? JSON.parse(sessionStorage['DC.hiddenDialogs']) : null,
                 dialogId = hiddenDialogs[id] || null,
                 activeId = Entities.active,
                 dialogs = Entities.Collections.dialogs,
@@ -731,8 +731,8 @@ define([
 
     // ajax downloading of data through scroll
     function ajaxDownloading(list, self) {
-        var page = parseInt(sessionStorage['QM.search.page']),
-            allPages = parseInt(sessionStorage['QM.search.allPages']);
+        var page = parseInt(sessionStorage['DC.search.page']),
+            allPages = parseInt(sessionStorage['DC.search.allPages']);
 
         if (page <= allPages) {
             self.createDataSpinner(list);
@@ -744,7 +744,7 @@ define([
 
     function createListResults(list, results, self) {
         var roster = ContactList.roster,
-            notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
+            notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
             item;
 
         if (results.length > 0) {

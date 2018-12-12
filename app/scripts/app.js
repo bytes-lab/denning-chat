@@ -36,7 +36,7 @@ define([
     VoiceMessage, QMPlayer
 ) {
 
-    function QM() {
+    function DenningChat() {
         this.listeners = new Listeners(this);
 
         this.models = {
@@ -73,7 +73,7 @@ define([
         this.QMPlayer = QMPlayer;
     }
 
-    QM.prototype = {
+    DenningChat.prototype = {
         init: function() {
             var token;
 
@@ -81,21 +81,21 @@ define([
 
             // QB SDK initialization
             // Checking if autologin was chosen
-            if (localStorage['QM.session'] && localStorage['QM.user'] &&
+            if (localStorage['DC.session'] && localStorage['DC.user'] &&
                 // new QB release account (13.02.2015)
-                localStorage['QM.isReleaseQBAccount']) {
+                localStorage['DC.isReleaseQBAccount']) {
 
-                token = JSON.parse(localStorage['QM.session']).token;
+                token = JSON.parse(localStorage['DC.session']).token;
                 this.service.init(token);
 
-            } else if (localStorage['QM.isReleaseQBAccount']) {
+            } else if (localStorage['DC.isReleaseQBAccount']) {
                 this.service.init();
             } else {
                 // removing the old cached data from LocalStorage
                 var tmp = localStorage.userInfo;
                 localStorage.clear();
                 localStorage.setItem('userInfo', tmp);
-                localStorage.setItem('QM.isReleaseQBAccount', '1');
+                localStorage.setItem('DC.isReleaseQBAccount', '1');
                 this.service.init();
             }
 
@@ -115,5 +115,5 @@ define([
         }
     };
 
-    return QM;
+    return DenningChat;
 });

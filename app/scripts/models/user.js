@@ -351,7 +351,7 @@ define([
                 }
             });
 
-            localStorage.setItem('QM.user', JSON.stringify(storage));
+            localStorage.setItem('DC.user', JSON.stringify(storage));
         },
 
         forgot: function() {
@@ -377,7 +377,7 @@ define([
                 UserView = this.app.views.User,
                 DialogView = this.app.views.Dialog,
                 Contact = this.app.models.Contact,
-                storage = JSON.parse(localStorage['QM.user']),
+                storage = JSON.parse(localStorage['DC.user']),
                 self = this;
 
             UserView.createSpinner();
@@ -409,7 +409,7 @@ define([
             QBApiCalls.disconnectChat();
 
             QBApiCalls.logoutUser(function() {
-                localStorage.removeItem('QM.user');
+                localStorage.removeItem('DC.user');
                 self.contact = null;
                 self._valid = false;
 

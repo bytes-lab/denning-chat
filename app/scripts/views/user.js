@@ -122,7 +122,7 @@ define([
             if (typeof FB === 'undefined') {
                 // Wait until FB SDK will be downloaded and then calling this function again
                 FBCallback = callback;
-                sessionStorage.setItem('QM.is_getFBStatus', true);
+                sessionStorage.setItem('DC.is_getFBStatus', true);
                 return false;
             } else {
                 callback = callback || FBCallback;
@@ -270,7 +270,7 @@ define([
                 }
                 $('.profileUserAvatar[data-id="' + contact.id + '"]').css('background-image', 'url(' + contact.avatar_url + ')');
 
-                localStorage.setItem('QM.contact-' + contact.id, JSON.stringify(contact));
+                localStorage.setItem('DC.contact-' + contact.id, JSON.stringify(contact));
             });
         },
 
@@ -400,9 +400,9 @@ define([
             page.find('input:checkbox').prop('checked', false);
 
             // start watch location if the option is enabled
-            if (localStorage['QM.latitude'] && localStorage['QM.longitude']) {
-                localStorage.removeItem('QM.latitude');
-                localStorage.removeItem('QM.longitude');
+            if (localStorage['DC.latitude'] && localStorage['DC.longitude']) {
+                localStorage.removeItem('DC.latitude');
+                localStorage.removeItem('DC.longitude');
 
                 Location.toggleGeoCoordinatesToLocalStorage(true, function(res, err) {
                     Helpers.log('Location: ', err ? err : res);

@@ -99,22 +99,16 @@ requirejs.config({
 
 requirejs([
     'jquery',
-    'jquery-ui',
     'config',
     'minEmoji',
     'MainModule',
-    'backbone',
-    'QBNotification',
-    'firebase'
+    'QBNotification'
 ], function(
     $,
-    ui,
     QMCONFIG,
     minEmoji,
-    QM,
-    Backbone,
-    QBNotification,
-    firebase
+    DenningChat,
+    QBNotification
 ) {
     var APP;
 
@@ -133,10 +127,9 @@ requirejs([
             QBNotification.requestPermission();
         }
 
-        APP = new QM();
+        APP = new DenningChat();
         APP.init();
 
         window.app = APP;
     });
-
 });

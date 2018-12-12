@@ -6,6 +6,7 @@
  */
 define([
     'jquery',
+    'jquery-ui',
     'config',
     'Helpers',
     'QMHtml',
@@ -16,6 +17,7 @@ define([
     'mousewheel'
 ], function(
     $,
+    ui,
     QMCONFIG,
     Helpers,
     QMHtml,
@@ -265,7 +267,7 @@ define([
             /* location
             ----------------------------------------------------- */
             $workspace.on('click', '.j-send_location', function() {
-                if (localStorage['QM.latitude'] && localStorage['QM.longitude']) {
+                if (localStorage['DC.latitude'] && localStorage['DC.longitude']) {
                     Location.toggleGeoCoordinatesToLocalStorage(false, function(res, err) {
                         Helpers.log(err ? err : res);
                     });
@@ -293,11 +295,11 @@ define([
             });
 
             $workspace.on('click', '.j-send_map', function() {
-                var localData = localStorage['QM.locationAttach'];
+                var localData = localStorage['DC.locationAttach'];
 
                 if (localData) {
                     AttachView.sendMessage($('.l-chat:visible'), null, null, localData);
-                    localStorage.removeItem('QM.locationAttach');
+                    localStorage.removeItem('DC.locationAttach');
                     removePopover();
                 }
             });
@@ -870,7 +872,7 @@ define([
             });
 
             $('#logoutConfirm').on('click', function() {
-                localStorage.setItem('QM.' + User.contact.id + '_logOut', true);
+                localStorage.setItem('DC.' + User.contact.id + '_logOut', true);
                 UserView.logout();
             });
 

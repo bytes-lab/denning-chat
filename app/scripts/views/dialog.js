@@ -151,7 +151,7 @@ define([
 
         downloadDialogs: function(ids, skip) {
             var ContactListView = this.app.views.ContactList,
-                hiddenDialogs = sessionStorage['QM.hiddenDialogs'] ? JSON.parse(sessionStorage['QM.hiddenDialogs']) : {},
+                hiddenDialogs = sessionStorage['DC.hiddenDialogs'] ? JSON.parse(sessionStorage['DC.hiddenDialogs']) : {},
                 parameter = !skip ? null : 'old_dialog',
                 dialogsCollection = Entities.Collections.dialogs,
                 activeId = Entities.active,
@@ -236,7 +236,7 @@ define([
                             ContactList.saveHiddenDialogs(hiddenDialogs);
 
                             // not show dialog if user has not confirmed this contact
-                            notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {};
+                            notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {};
                             if (private_id && (!roster[private_id] ||
                                 (roster[private_id] && roster[private_id].subscription === 'none' &&
                                 !roster[private_id].ask && notConfirmed[private_id]))) {
@@ -283,7 +283,7 @@ define([
         },
 
         showChats: function(isGroup, tag) {
-            var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {},
+            var notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
                 roster = ContactList.roster,
                 private_id;
 
@@ -344,7 +344,7 @@ define([
                     );
                     // $('.profileUserAvatar[data-id="' + contact.id + '"]').css('background-image', 'url(' + contact.avatar_url + ')');
 
-                    localStorage.setItem('QM.contact-' + contact.id, JSON.stringify(contact));
+                    localStorage.setItem('DC.contact-' + contact.id, JSON.stringify(contact));
                 });
             });
         },
@@ -419,7 +419,7 @@ define([
 
             // auto confirm for unaccepted chats
             if ((!status || status.subscription === 'none') && (private_id != null) && isContactRequest) {
-                var notConfirmed = localStorage['QM.notConfirmed'] ? JSON.parse(localStorage['QM.notConfirmed']) : {};
+                var notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {};
 
                 // update notConfirmed people list
                 notConfirmed[private_id] = true;
@@ -487,7 +487,7 @@ define([
                 user_id = $dialog.data('id'),
                 dialog = dialogs.get(dialog_id),
                 user = contacts[user_id],
-                readBadge = 'QM.' + User.contact.id + '_readBadge',
+                readBadge = 'DC.' + User.contact.id + '_readBadge',
                 unreadCount = Number($dialog.find('.unread').text()),
                 occupants_ids = dialog.get('occupants_ids'),
                 $chatWrap = $('.j-chatWrap'),
@@ -520,7 +520,7 @@ define([
             icon = user_id ? user.avatar_url : (dialog.get('room_photo') || QMCONFIG.defAvatar.group_url);
             name = dialog.get('room_name') || user.full_name;
             status = roster[user_id] ? roster[user_id] : null;
-            location = (localStorage['QM.latitude'] && localStorage['QM.longitude']) ? 'btn_active' : '';
+            location = (localStorage['DC.latitude'] && localStorage['DC.longitude']) ? 'btn_active' : '';
             Message.skip = 0;
 
             $('.l-workspace-wrap .l-workspace').addClass('is-hidden');

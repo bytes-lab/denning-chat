@@ -19,7 +19,7 @@ define(['jquery'], function($) {
         setUp: function(userId) {
             Settings.init(userId);
 
-            var storageSettings = JSON.parse(localStorage['QM.settings-' + userId]);
+            var storageSettings = JSON.parse(localStorage['DC.settings-' + userId]);
             // set checkbox position
             for (var key in storageSettings) {
                 $('#' + key)[0].checked = storageSettings[key];
