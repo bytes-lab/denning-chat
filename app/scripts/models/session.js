@@ -62,7 +62,6 @@ define([
             if (params && params.password) {
                 params.password = CryptoJS.AES.encrypt(params.password, DCCONFIG.qbAccount.authSecret).toString();
             }
-            // console.log(CryptoJS.HmacSHA1('application_id=55869&auth_key=tpH4TbFKOcmrYet&nonce=3515&timestamp=1517023275', DCCONFIG.qbAccount.authSecret).toString());
             return params;
         },
 
@@ -76,5 +75,4 @@ define([
     };
 
     return Session;
-
 });

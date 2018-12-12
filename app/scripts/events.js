@@ -164,26 +164,6 @@ define([
                 changePassView.submitForm();
             });
 
-            $body.on('click', '.btn_userProfile_connect', function() {
-                var profileView = App.views.Profile,
-                    btn = $(this);
-
-                btn.prop('disabled', true);
-
-                FB.login(
-                    function(response) {
-                        Helpers.log('FB authResponse', response);
-                        if (response.status === 'connected') {
-                            profileView.addFBAccount(response.authResponse.userID);
-                        } else {
-                            btn.prop('disabled', false);
-                        }
-                    }, {
-                        scope: DCCONFIG.fbAccount.scope
-                    }
-                );
-            });
-
             /* smiles
             ----------------------------------------------------- */
             $('.smiles-tab').on('click', function() {
@@ -504,36 +484,6 @@ define([
             /* welcome page
             ----------------------------------------------------- */
             Events.intiAuthorizationInputs();
-
-            $('.j-btn_login_fb').on('click', function() {
-                if ($(this).hasClass('j-reloadPage')) {
-                    window.location.reload();
-                }
-
-                if (window.FB) {
-                    UserView.logInFacebook();
-                } else {
-                    $('.j-btn_login_fb').addClass('not_allowed j-reloadPage')
-                        .html('Login by Facebook failed.<br>Click to reload the page.');
-                }
-
-                return false;
-            });
-
-            $('.j-firebasePhone').on('click', function() {
-                if ($(this).hasClass('j-reloadPage')) {
-                    window.location.reload();
-                }
-
-                if (window.firebase) {
-                    UserView.logInFirebase();
-                } else {
-                    $('.j-firebasePhone').addClass('not_allowed j-reloadPage')
-                        .html('Login by phone number failed.<br>Click to reload the page.');
-                }
-
-                return false;
-            });
 
             $('#signupQB').on('click', function() {
                 Helpers.log('signup with QB');

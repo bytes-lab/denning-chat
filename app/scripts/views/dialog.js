@@ -259,16 +259,6 @@ define([
                     $('#emptyList').removeClass('is-hidden');
                 }
 
-                // import FB friends
-                if (ids) {
-                    ContactList.getFBFriends(ids, function(new_ids) {
-                        openPopup($('#popupImport'));
-                        for (var i = 0, len = new_ids.length; i < len; i++) {
-                            ContactListView.importFBFriend(new_ids[i]);
-                        }
-                    });
-                }
-
                 self.getAllUsers(rosterIds);
                 self.removeDataSpinner();
 

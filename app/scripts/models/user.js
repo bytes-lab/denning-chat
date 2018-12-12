@@ -55,69 +55,6 @@ define([
             self.app.views.ChangePass = changePassView;
         },
 
-        reLogInFirebasePhone: function(callback) {
-            FirebaseWidget.init();
-
-            firebase.auth().onAuthStateChanged(function(user) {
-                if (user) {
-                    self.logInFirebasePhone(user, function(authParams) {
-                        callback(authParams);
-                    });
-                } else {
-                    callback();
-                }
-            });
-        },
-
-        logInFirebasePhone: function(user, callback) {
-            user.getIdToken().then(function(idToken) {
-                var authParams = {
-                    'provider': 'firebase_phone',
-                    'firebase_phone': {
-                        'access_token': idToken,
-                        'project_id': DCCONFIG.firebase.projectId
-                    }
-                };
-
-                self.providerConnect(authParams);
-
-                if (typeof callback === 'function') {
-                    callback(authParams);
-                }
-            });
-        },
-
-        logInFacebook: function () {
-            if (isFacebookCalled) {
-                return false;
-            } else {
-                isFacebookCalled = true;
-            }
-
-            // NOTE!! You should use FB.login method instead FB.getLoginStatus
-            // and your browser won't block FB Login popup
-            FB.login(function(response) {
-                if (response.authResponse && response.status === 'connected') {
-                    self.connectFB(response.authResponse.accessToken);
-
-                    isFacebookCalled = false;
-                    Helpers.log('FB authResponse', response);
-                } else {
-                    isFacebookCalled = false;
-                    Helpers.log('User cancelled login or did not fully authorize.');
-                }
-            }, {
-                scope: DCCONFIG.fbAccount.scope
-            });
-        },
-
-        connectFB: function(token) {
-            self.providerConnect({
-                provider: 'facebook',
-                keys: { token: token }
-            });
-        },
-
         providerConnect: function(params) {
             var self = this,
                 QBApiCalls = self.app.service,
@@ -164,45 +101,6 @@ define([
                     }
                 });
             }
-        },
-
-        import: function(user) {
-            var DialogView = this.app.views.Dialog,
-                isFriendsPermission = false,
-                self = this;
-
-            FB.api('/me/permissions', function(response) {
-                Helpers.log('FB Permissions', response);
-                for (var i = 0, len = response.data.length; i < len; i++) {
-                    if (response.data[i].permission === 'user_friends' && response.data[i].status === 'granted') {
-                        isFriendsPermission = true;
-                    }
-                }
-
-                if (isFriendsPermission) {
-
-                    // import FB friends
-                    FB.api('/me/friends', function(res) {
-                        Helpers.log('FB friends', res);
-                        var ids = [];
-
-                        for (var i = 0, len = res.data.length; i < len; i++) {
-                            ids.push(res.data[i].id);
-                        }
-
-                        if (ids.length > 0) {
-                            DialogView.downloadDialogs(ids);
-                        } else {
-                            DialogView.downloadDialogs();
-                        }
-                    });
-
-                } else {
-                    DialogView.downloadDialogs();
-                }
-                self._is_import = '1';
-                self.updateQBUser(user);
-            });
         },
 
         updateQBUser: function(user) {

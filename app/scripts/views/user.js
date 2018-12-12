@@ -44,24 +44,6 @@ define([
             switchPage($('#loginPage'));
         },
 
-        logInFirebase: function(callback) {
-            if (typeof callback === 'function') {
-                User.reLogInFirebasePhone(function(authParams) {
-                    callback(authParams);
-                });
-            } else {
-                new this.app.FirebaseWidget(User.logInFirebasePhone);
-            }
-        },
-
-        logInFacebook: function() {
-            User.logInFacebook();
-        },
-
-        connectFB: function(token) {
-            User.connectFB(token);
-        },
-
         signupForm: function() {
             clearErrors();
             User.signup();
@@ -116,35 +98,6 @@ define([
 
             this.removeSpinner();
             $('section:visible form').addClass('is-hidden').after(alert);
-        },
-
-        getFBStatus: function(callback) {
-            if (typeof FB === 'undefined') {
-                // Wait until FB SDK will be downloaded and then calling this function again
-                FBCallback = callback;
-                sessionStorage.setItem('DC.is_getFBStatus', true);
-                return false;
-            } else {
-                callback = callback || FBCallback;
-                FBCallback = null;
-
-                FB.getLoginStatus(function(response) {
-                    Helpers.log('FB status response', response);
-                    if (callback) {
-                        // situation when you are recovering QB session via FB
-                        // and FB accessToken has expired
-                        if (response.status === 'connected') {
-                            callback(response.authResponse.accessToken);
-                        } else {
-                            FB.login(function(response) {
-                                Helpers.log('FB authResponse', response);
-                                if (response.status === 'connected')
-                                    callback(response.authResponse.accessToken);
-                            });
-                        }
-                    }
-                }, true);
-            }
         },
 
         profilePopover: function(objDom) {
@@ -349,7 +302,6 @@ define([
                     }
                 });
             } else {
-
                 $('.list_matters').find('.list-item-file').removeClass('is-hidden');
             }
         },

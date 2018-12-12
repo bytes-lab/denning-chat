@@ -40,7 +40,7 @@
 <body class="is-welcome">
 
 <div class="l-wrapper">
-    <section id="loginPage" class="l-page ">
+    <section id="loginPage" class="l-page">
         <div class="l-welcome_container">
             <!-- <div class="l-welcome_block l-welcome_logo"></div> -->
             <div class="l-welcome_block_login l-welcome_logo_login"></div>
@@ -67,15 +67,11 @@
     </section>
 
     <section id="mainPage" class="l-page l-chat_wrapper is-hidden">
-
         <div class="l-container">
-
             <div class="l-content l-flexbox">
-
                 <div id="popupDisconnect" class="disconnect j-disconnect">
                     <b>Not Connected.</b> Connecting...
                 </div>
-
                 <aside class="l-sidebar active">
                     <header class="l-header l-flexbox l-flexbox_flexbetween">
                         <div id="avatar-container" class="avatar profileUserAvatar"></div>
@@ -88,7 +84,6 @@
                                         <p class="l-user-email"></p>
                                     </div>
                                 </div>
-
                             </a>
                         </div>
                         <img src="images/careline.svg" class="care-line" width="108" height="54" alt="Denning Chat">
@@ -127,17 +122,17 @@
                         <div class="filter-item" data-type="staff">Colleagues</div>
                         <div class="filter-item" data-type="client">Clients</div>
                         <div class="filter-item" data-type="matters">Matters</div>
-                    </div>                
+                    </div>
                     <form id="searchContacts" class="l-search localSearch formSearch j-localSearch">
                         <input class="form-input-search without_M" type="search">
                         <button class="clean-button j-clean-button" type="reset">✕</button>
-                    </form>                    
+                    </form>
                     <div class="new-group createGroupChat is-hidden">
                         <a href="#!/dialog/create">
                             <div style="float: left;"><i class="material-icons">add_box</i></div> 
                             <div style="margin: 1px 33px;">New Group</div>
                         </a>
-                    </div>                        
+                    </div>
                     <div id="aside_container" class="l-list-wrap j-scrollbar_aside">
 
                         <section id="recentList" class="l-list j-aside_list_item is-hidden">
@@ -157,9 +152,7 @@
                             <span class="text text_alert">Oops...</span>
                             <span class="text">You don't have any contacts.</span>
                         </section>
-
                     </div>
-
                 </aside>
 
                 <div class="l-workspace-wrap j-workspace-wrap">
@@ -220,15 +213,12 @@
                         <div class="coner"><i class="icon_coner"></i></div>
                     </div>
                 </div>
-
             </div>
         </div>
     </section>
-
 </div>
 
 <div class="popups l-flexbox j-overlay">
-
     <!-- Popup with users settings (on/off sounds and local notification for calls or messages) -->
     <div id="popupSettings" class="popup popup_settings is-open j-settings">
         <header class="header_settings">
@@ -313,7 +303,7 @@
             <div class="filter-item" data-category="1">Contact</div>
             <div class="filter-item" data-category="2">Matter</div>
             <div class="filter-item" data-category="4">Transit</div>
-        </div>                
+        </div>
 
         <ul class="popup-elem list list_matters"></ul>
         <button class="btn btn_popup btn_matter_file is-hidden">Back</button>
@@ -517,9 +507,6 @@
     <source src="audio/end_of_call.mp3" />
 </audio>
 
-<div id="fb-root"></div>
-
-<script src="https://connect.facebook.net/en_US/sdk.js"></script>
 <!-- build:js scripts/build.js -->
 <script src="bower_components/requirejs/require.js"></script>
 <script src="scripts/main.js"></script>

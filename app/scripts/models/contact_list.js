@@ -184,41 +184,7 @@ define([
             });
 
             return contacts;
-        },
-
-        getFBFriends: function(ids, callback) {
-            var QBApiCalls = this.app.service,
-                Contact = this.app.models.Contact,
-                self = this,
-                new_ids = [],
-                params;
-
-            // TODO: duplicate of add() function
-            params = {
-                filter: {
-                    field: 'facebook_id',
-                    param: 'in',
-                    value: ids
-                }
-            };
-
-            QBApiCalls.listUsers(params, function(users) {
-                users.items.forEach(function(qbUser) {
-                    var user = qbUser.user;
-                    var contact = Contact.create(user);
-                    new_ids.push(user.id);
-                    self.contacts[user.id] = contact;
-                    localStorage.setItem('DC.contact-' + user.id, JSON.stringify(contact));
-                });
-
-                contact_ids = contact_ids.concat(new_ids);
-                localStorage.setItem('DC.contacts', contact_ids.join());
-
-                Helpers.log('Contact List is updated', self);
-                callback(new_ids);
-            });
         }
-
     };
 
     /* Private

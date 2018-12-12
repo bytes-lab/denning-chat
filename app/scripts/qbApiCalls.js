@@ -11,7 +11,8 @@ define([
     'Entities',
     'Helpers',
     'LocationView'
-], function($,
+], function(
+    $,
     DCCONFIG,
     QB,
     Entities,
@@ -67,25 +68,11 @@ define([
         checkSession: function(callback) {
             if ((new Date()).toISOString() > Session.expirationTime) {
                 // recovery session
-                if (Session.authParams.provider === 'facebook') {
-                    UserView.getFBStatus(function(token) {
-                        Session.authParams.keys.token = token;
+                self.createSession(Session.decrypt(Session.authParams), function() {
+                    callback();
+                });
 
-                        self.createSession(Session.authParams, function() {
-                            callback();
-                        });
-                    });
-                } else if (Session.authParams.provider === 'firebase_phone') {
-                    self.getFirebasePhone(function() {
-                        callback();
-                    });
-                } else {
-                    self.createSession(Session.decrypt(Session.authParams), function() {
-                        callback();
-                    });
-
-                    Session.encrypt(Session.authParams);
-                }
+                Session.encrypt(Session.authParams);
             } else {
                 callback();
             }
@@ -170,25 +157,6 @@ define([
                         Helpers.log(err);
 
                         window.location.reload();
-                    }
-                });
-            });
-        },
-
-        getFirebasePhone: function(callback) {
-            self.createSession({}, function(session) {
-                QB.login(Session.authParams, function(err, user) {
-                    if (user && !err) {
-                        Session.update({
-                            date: new Date(),
-                            authParams: Session.encrypt(Session.authParams)
-                        });
-
-                        callback(session);
-                    } else {
-                        UserView.logInFirebase(function(authParams) {
-                            self.loginUser(authParams);
-                        });
                     }
                 });
             });

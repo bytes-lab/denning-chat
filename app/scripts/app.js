@@ -87,7 +87,6 @@ define([
 
                 token = JSON.parse(localStorage['DC.session']).token;
                 this.service.init(token);
-
             } else if (localStorage['DC.isReleaseQBAccount']) {
                 this.service.init();
             } else {
@@ -105,7 +104,10 @@ define([
             Helpers.log('App init', this);
             var email = Helpers.getURLParameter('uid');
             if (email) {
-                this.models.User.login({ email: email, password: Helpers.getURLParameter('sppid') || 'denningIT'});
+                this.models.User.login({ 
+                    email: email, 
+                    password: Helpers.getURLParameter('sppid') || 'denningIT'
+                });
             }
         },
 
