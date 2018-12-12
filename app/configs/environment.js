@@ -1,7 +1,7 @@
 /* Configuration your application */
 define(function() {
 
-    var QMCONFIG = {
+    var DCCONFIG = {
 
         qbAccount: {
             appId: Number('@@appId'),
@@ -23,7 +23,7 @@ define(function() {
             messagingSenderId: '265299067289'
         },
 
-        debug: Number('@@debugQM'),
+        debug: Number('@@debugDC'),
 
         notification: {
             timeout: 7
@@ -92,6 +92,6 @@ define(function() {
 
     };
 
-    return QMCONFIG;
+    return DCCONFIG;
 
 });
