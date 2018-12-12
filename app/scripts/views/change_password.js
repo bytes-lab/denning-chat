@@ -14,7 +14,7 @@ define([
     $,
     _,
     Backbone,
-    QMCONFIG,
+    DCCONFIG,
     Helpers
 ) {
 
@@ -44,9 +44,9 @@ define([
 
         validateError: function(model, error) {
             if (error === "Fields mustn't be empty" ||
-                error === QMCONFIG.errors.oldPass ||
-                error === QMCONFIG.errors.invalidPass ||
-                error === QMCONFIG.errors.shortPass) {
+                error === DCCONFIG.errors.oldPass ||
+                error === DCCONFIG.errors.invalidPass ||
+                error === DCCONFIG.errors.shortPass) {
 
                 model.set('password', '');
                 this.remove();
@@ -108,7 +108,7 @@ define([
                 if (!this.model.validationError) {
                     this.model.changeQBPass(params, function(err, res) {
                         if (err) {
-                            self.validateError(self.model, QMCONFIG.errors.oldPass);
+                            self.validateError(self.model, DCCONFIG.errors.oldPass);
                         } else {
                             self.remove();
                             $('.profileWrap .userProfile-errors').text('');

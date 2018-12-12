@@ -14,11 +14,11 @@ define([
     'timeago',
     'QBNotification',
     'LocationView',
-    'QMHtml',
+    'DCHtml',
     'Entities'
 ], function(
     $,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     _,
     minEmoji,
@@ -26,7 +26,7 @@ define([
     timeago,
     QBNotification,
     Location,
-    QMHtml,
+    DCHtml,
     Entities
 ) {
 
@@ -424,7 +424,7 @@ define([
                     var mapLink = Location.getMapUrl(geolocation),
                         imgUrl = Location.getStaticMapUrl(geolocation);
 
-                    QMHtml.Messages.setMap({
+                    DCHtml.Messages.setMap({
                         id: message.id,
                         mapLink: mapLink,
                         imgUrl: imgUrl
@@ -640,9 +640,9 @@ define([
             msg = Message.create(message);
 
             // add or remove label about new messages
-            if ($chat.length && !isHiddenChat && window.isQMAppActive && isNewMessages) {
+            if ($chat.length && !isHiddenChat && window.isDCAppActive && isNewMessages) {
                 $label.remove();
-            } else if ((isHiddenChat || !window.isQMAppActive) &&
+            } else if ((isHiddenChat || !window.isDCAppActive) &&
                         $chat.length && !isNewMessages && isNotMyUser) {
                 $chat.find('.l-chat-content .mCSB_container').append($newMessages);
             }
@@ -757,7 +757,7 @@ define([
                 ContactListView.onConfirm(id);
             }
 
-            var isHidden = isHiddenChat || !window.isQMAppActive,
+            var isHidden = isHiddenChat || !window.isDCAppActive,
                 sentToMe = (message.type !== 'groupchat') || (msg.sender_id !== User.contact.id),
                 isSoundOn = Settings.get('sounds_notify'),
                 isMainTab = SyncTabs.get();
@@ -902,12 +902,12 @@ define([
 
         updateMediaElement: function(params) {
             var Listeners = this.app.listeners,
-                QMPlayer = self.app.QMPlayer.Model;
+                DCPlayer = self.app.DCPlayer.Model;
 
             if (params.type && params.type.indexOf('audio') > -1) {
                 var duration = isNaN(params.duration) ? 0 : Number(params.duration);
 
-                new QMPlayer({
+                new DCPlayer({
                     id: params.id,
                     name: params.name,
                     source: params.url,
@@ -1012,7 +1012,7 @@ define([
             arrayString = roomJid.split('');
 
         if (arrayString[0] == '_') {
-            roomJid = QMCONFIG.qbAccount.appId + roomJid.toString();
+            roomJid = DCCONFIG.qbAccount.appId + roomJid.toString();
         }
         return roomJid;
     }
@@ -1155,7 +1155,7 @@ define([
     }
 
     function makeJid(id) {
-        return QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId);
+        return QB.chat.helpers.getUserJid(id, DCCONFIG.qbAccount.appId);
     }
 
     function getUrlPreview(id) {
@@ -1186,7 +1186,7 @@ define([
                     // $elem = $this.clone().addClass('og_block');
 
                     // if (urlCache[url]) {
-                    //     $elem.html(QMHtml.Messages.urlPreview(urlCache[url]));
+                    //     $elem.html(DCHtml.Messages.urlPreview(urlCache[url]));
                     //     $message.append($elem);
                     // } else {
                     //     Helpers.getOpenGraphInfo({
@@ -1202,7 +1202,7 @@ define([
 
                     //             urlCache[url] = params;
                     //             $message.append($elem);
-                    //             $elem.html(QMHtml.Messages.urlPreview(params));
+                    //             $elem.html(DCHtml.Messages.urlPreview(params));
                     //         } else {
                     //             urlCache[url] = null;
                     //         }

@@ -9,7 +9,7 @@ define([
     'jquery-ui',
     'config',
     'Helpers',
-    'QMHtml',
+    'DCHtml',
     'LocationView',
     'minEmoji',
     'perfectscrollbar',
@@ -18,9 +18,9 @@ define([
 ], function(
     $,
     ui,
-    QMCONFIG,
+    DCCONFIG,
     Helpers,
-    QMHtml,
+    DCHtml,
     Location,
     minEmoji,
     Ps
@@ -73,10 +73,10 @@ define([
     Events.prototype = {
 
         init: function() {
-            window.isQMAppActive = true;
+            window.isDCAppActive = true;
 
             $(window).focus(function() {
-                window.isQMAppActive = true;
+                window.isDCAppActive = true;
 
                 var dialogItem = $('.l-list-wrap section:not(#searchList) .is-selected'),
                     dialog_id = dialogItem[0] && dialogItem.data('dialog');
@@ -95,7 +95,7 @@ define([
                     $label.remove();
                 }
 
-                window.isQMAppActive = false;
+                window.isDCAppActive = false;
             });
 
             $(document).on('click', function(event) {
@@ -123,7 +123,7 @@ define([
                     roster = ContactList.roster[id];
 
                 if (roster) {
-                    QMHtml.User.getControlButtonsForPopupDetails(roster);
+                    DCHtml.User.getControlButtonsForPopupDetails(roster);
                     openPopup($('#popupDetails'), id);
                     UserView.buildDetails(id);
                 } else {
@@ -179,7 +179,7 @@ define([
                             btn.prop('disabled', false);
                         }
                     }, {
-                        scope: QMCONFIG.fbAccount.scope
+                        scope: DCCONFIG.fbAccount.scope
                     }
                 );
             });
@@ -1506,8 +1506,8 @@ define([
     function changeInputFile(objDom) {
         var URL = window.URL,
             file = objDom[0].files[0],
-            src = file ? URL.createObjectURL(file) : QMCONFIG.defAvatar.url,
-            fileName = file ? file.name : QMCONFIG.defAvatar.caption;
+            src = file ? URL.createObjectURL(file) : DCCONFIG.defAvatar.url,
+            fileName = file ? file.name : DCCONFIG.defAvatar.caption;
 
         objDom.prev().find('.avatar').css('background-image', "url(" + src + ")").siblings('span').text(fileName);
     }

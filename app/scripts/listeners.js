@@ -10,7 +10,7 @@ define([
 ], function(
     _,
     $,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Helpers,
     Ps

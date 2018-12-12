@@ -11,7 +11,7 @@ define([
     $,
     QB,
     _,
-    QMCONFIG,
+    DCCONFIG,
     QBNotification
 ) {
 
@@ -44,7 +44,7 @@ define([
                 roomPhoto = params.roomPhoto,
                 contact = contacts[message.sender_id],
                 chatType = message.type,
-                photo = (chatType === 'chat') ? (contact.avatar_url || QMCONFIG.defAvatar.url_png) : (roomPhoto || QMCONFIG.defAvatar.group_url_png),
+                photo = (chatType === 'chat') ? (contact.avatar_url || DCCONFIG.defAvatar.url_png) : (roomPhoto || DCCONFIG.defAvatar.group_url_png),
                 type = message.notification_type || (message.callState && (parseInt(message.callState) + 7).toString()) || 'message',
                 selectDialog = $('.dialog-item[data-dialog="' + message.dialog_id + '"] .contact'),
                 occupants_ids,
@@ -54,7 +54,7 @@ define([
 
             // hot fix (local notifications can't shows image.svg)
             if (photo === 'images/ava-single.svg') {
-                photo = QMCONFIG.defAvatar.url_png;
+                photo = DCCONFIG.defAvatar.url_png;
             }
 
             /**
@@ -159,7 +159,7 @@ define([
                         window.focus();
                         selectDialog.click();
                     },
-                    timeout: QMCONFIG.notification.timeout,
+                    timeout: DCCONFIG.notification.timeout,
                     closeOnClick: true
                 };
             }
@@ -268,7 +268,7 @@ define([
 
     // smart console
     Helpers.log = function() {
-        if (QMCONFIG.debug) {
+        if (DCCONFIG.debug) {
             if (arguments.length <= 1) {
                 console.group("[Denning debug mode]:");
                 console.log(arguments[0]);

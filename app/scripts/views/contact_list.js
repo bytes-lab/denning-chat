@@ -10,17 +10,17 @@ define([
     'quickblox',
     'Entities',
     'Helpers',
-    'QMHtml',
+    'DCHtml',
     'underscore',
     'mCustomScrollbar',
     'mousewheel'
 ], function(
     $,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Entities,
     Helpers,
-    QMHtml,
+    DCHtml,
     _
 ) {
     var self;
@@ -284,7 +284,7 @@ define([
         // subscriptions
 
         importFBFriend: function(id) {
-            var jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
+            var jid = QB.chat.helpers.getUserJid(id, DCCONFIG.qbAccount.appId),
                 roster = ContactList.roster;
 
             QB.chat.roster.add(jid, function() {
@@ -514,7 +514,7 @@ define([
             var DialogView = self.app.views.Dialog,
                 VoiceMessage = self.app.models.VoiceMessage,
                 dialogs = Entities.Collections.dialogs,
-                jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
+                jid = QB.chat.helpers.getUserJid(id, DCCONFIG.qbAccount.appId),
                 li = $('.dialog-item[data-id="' + id + '"]'),
                 list = li.parents('ul.j-list'),
                 hiddenDialogs = JSON.parse(sessionStorage['DC.hiddenDialogs']),
@@ -557,7 +557,7 @@ define([
         onSubscribe: function(id) {
             var html,
                 contacts = ContactList.contacts,
-                jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
+                jid = QB.chat.helpers.getUserJid(id, DCCONFIG.qbAccount.appId),
                 $requestList = $('.j-requestsList'),
                 $recentList = $('.j-recentList'),
                 notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
@@ -596,7 +596,7 @@ define([
         onReject: function(id) {
             var VoiceMessage = self.app.models.VoiceMessage,
                 dialogItem = $('.presence-listener[data-id="' + id + '"]'),
-                jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
+                jid = QB.chat.helpers.getUserJid(id, DCCONFIG.qbAccount.appId),
                 request = $('#requestsList .list-item[data-jid="' + jid + '"]'),
                 list = request && request.parents('ul'),
                 roster = ContactList.roster,
@@ -657,7 +657,7 @@ define([
         },
 
         autoConfirm: function(id) {
-            var jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
+            var jid = QB.chat.helpers.getUserJid(id, DCCONFIG.qbAccount.appId),
                 notConfirmed = localStorage['DC.notConfirmed'] ? JSON.parse(localStorage['DC.notConfirmed']) : {},
                 hiddenDialogs = notConfirmed[id] ? JSON.parse(sessionStorage['DC.hiddenDialogs']) : null,
                 dialogId = hiddenDialogs[id] || null,

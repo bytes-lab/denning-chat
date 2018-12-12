@@ -8,7 +8,7 @@ define([
     'config',
     'quickblox'
 ], function(
-    QMCONFIG,
+    DCCONFIG,
     QB
 ) {
 
@@ -31,7 +31,7 @@ define([
                 user_tags: qbUser.tag || qbUser.user_tags || null,
                 avatar_url: getAvatar(qbUser),
                 status: qbUser.status || getStatus(qbUser) || '',
-                user_jid: qbUser.user_jid || QB.chat.helpers.getUserJid(qbUser.id, QMCONFIG.qbAccount.appId),
+                user_jid: qbUser.user_jid || QB.chat.helpers.getUserJid(qbUser.id, DCCONFIG.qbAccount.appId),
                 last_request_at: qbUser.last_request_at,
                 custom_data: qbUser.custom_data || null
             };
@@ -53,7 +53,7 @@ define([
         } else if (contact.facebook_id) {
             avatar = 'https://graph.facebook.com/v2.9/' + contact.facebook_id + '/picture?width=240&height=240';
         } else {
-            avatar = QMCONFIG.defAvatar.url;
+            avatar = DCCONFIG.defAvatar.url;
         }
 
         avatar.replace('http://', 'https://');

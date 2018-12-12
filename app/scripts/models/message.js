@@ -9,7 +9,7 @@ define([
     'quickblox',
     'Entities'
 ], function(
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Entities
 ) {
@@ -26,7 +26,7 @@ define([
         download: function(dialog_id, callback, count, isAjaxDownloading) {
             var QBApiCalls = this.app.service,
                 DialogView = this.app.views.Dialog,
-                limitCount = QMCONFIG.stackMessages,
+                limitCount = DCCONFIG.stackMessages,
                 skipCount;
 
             if (self.skip === count) {

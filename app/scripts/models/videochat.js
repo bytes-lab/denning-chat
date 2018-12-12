@@ -11,7 +11,7 @@ define([
     'Helpers'
 ], function(
     $,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Helpers
 ) {
@@ -79,7 +79,7 @@ define([
     };
 
     VideoChat.prototype.sendMessage = function(userId, state, callDuration, dialogId, callType, isErrorMessage, sessionID) {
-        var jid = QB.chat.helpers.getUserJid(userId, QMCONFIG.qbAccount.appId),
+        var jid = QB.chat.helpers.getUserJid(userId, DCCONFIG.qbAccount.appId),
             User = this.app.models.User,
             Message = this.app.models.Message,
             MessageView = this.app.views.Message,

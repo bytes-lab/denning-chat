@@ -89,11 +89,11 @@ requirejs.config({
         // custom listeners
         Listeners: 'listeners',
         // templates
-        QMHtml: 'qmhtml',
+        DCHtml: 'qmhtml',
         // entities
         Entities: 'entities',
-        // QM Player
-        QMPlayer: 'views/qmplayer'
+        // DC Player
+        DCPlayer: 'views/qmplayer'
     }
 });
 
@@ -105,12 +105,12 @@ requirejs([
     'QBNotification'
 ], function(
     $,
-    QMCONFIG,
+    DCCONFIG,
     minEmoji,
     DenningChat,
     QBNotification
 ) {
-    var APP;
+    var app;
 
     // Application initialization
     $(function() {
@@ -123,13 +123,13 @@ requirejs([
             obj.html(minEmoji(obj.text(), true));
         });
 
-        if (QMCONFIG.notification && QBNotification.isSupported()) {
+        if (DCCONFIG.notification && QBNotification.isSupported()) {
             QBNotification.requestPermission();
         }
 
-        APP = new DenningChat();
-        APP.init();
+        app = new DenningChat();
+        app.init();
 
-        window.app = APP;
+        window.app = app;
     });
 });

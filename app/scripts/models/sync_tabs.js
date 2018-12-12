@@ -90,7 +90,7 @@ define(['jquery'], function($) {
                 self.app.views.Settings.setUp(currentUserId);
             }
 
-            // fire if user log out from QM
+            // fire if user log out from DC
             if (key === logOutAll) {
                 localStorage.removeItem(countTabs);
                 localStorage.removeItem(mainTab);

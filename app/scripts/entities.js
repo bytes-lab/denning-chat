@@ -12,7 +12,7 @@ define([
     $,
     _,
     Backbone,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Helpers
 ) {
@@ -65,7 +65,7 @@ define([
                 isOpen = dialog.get('opened'),
                 myUserId = entities.app.models.User.contact.id,
                 isActive = (dialogId === entities.active),
-                isHidden = (isActive && !window.isQMAppActive),
+                isHidden = (isActive && !window.isDCAppActive),
                 isFromOtherUser = (myUserId !== senderId),
                 isUnreadMessage = (readIds.length < 2);
 
@@ -120,7 +120,7 @@ define([
 
         // keep count for messages collection
         keepCountOfMessages: function() {
-            var stack = QMCONFIG.stackMessages,
+            var stack = DCCONFIG.stackMessages,
                 dialogId = this.models[0].get('dialog_id'),
                 dialog = entities.Collections.dialogs.get(dialogId),
                 unreadCount = dialog.get('unread_count');
@@ -207,7 +207,7 @@ define([
         cutMessages: function() {
             var messages = this.get('messages'),
                 curCount = this.get('unread_count'),
-                stack = QMCONFIG.stackMessages,
+                stack = DCCONFIG.stackMessages,
                 msgCount = messages.length;
 
             if (+curCount === 0) {

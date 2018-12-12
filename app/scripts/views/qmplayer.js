@@ -1,5 +1,5 @@
 /**
- * QMPlayer
+ * DCPlayer
  */
 define([
     'underscore',
@@ -10,9 +10,9 @@ define([
 ) {
     'use strict';
 
-    var QMPlayer = {};
+    var DCPlayer = {};
 
-    QMPlayer.Model = Backbone.Model.extend({
+    DCPlayer.Model = Backbone.Model.extend({
         defaults: {
             id: '',
             name: '',
@@ -25,14 +25,14 @@ define([
         },
 
         buildView: function() {
-            new QMPlayer.View({model: this});
+            new DCPlayer.View({model: this});
         }
     });
 
-    QMPlayer.View = Backbone.View.extend({
+    DCPlayer.View = Backbone.View.extend({
         tagName: 'div',
         className: 'qm_audio_player',
-        template: _.template(document.querySelector('#QMPlayer').innerHTML),
+        template: _.template(document.querySelector('#DCPlayer').innerHTML),
 
         initialize: function() {
             var id = this.model.get('id');
@@ -49,11 +49,11 @@ define([
         },
 
         start: function(id) {
-            new QMPlayer.init(id);
+            new DCPlayer.init(id);
         }
     });
 
-    QMPlayer.init = function(id) {
+    DCPlayer.init = function(id) {
         var audioEl = document.querySelector('#audio_' + id),
             controlEl = document.querySelector('#qm_player_control_' + id),
             setterEl = document.querySelector('#qm_player_setter_' + id),
@@ -112,6 +112,6 @@ define([
         }
     };
 
-    return QMPlayer;
+    return DCPlayer;
 });
 

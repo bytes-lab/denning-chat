@@ -17,8 +17,8 @@ define([
     'VideoChatView', 'Events',
     'Helpers', 'QBApiCalls',
     'config', 'Entities',
-    'QMHtml', 'Listeners',
-    'VoiceMessage', 'QMPlayer'
+    'DCHtml', 'Listeners',
+    'VoiceMessage', 'DCPlayer'
 ], function(
     $, User,
     Session, Settings,
@@ -31,9 +31,9 @@ define([
     AttachView, ContactListView,
     VideoChatView, Events,
     Helpers, QBApiCalls,
-    QMCONFIG, Entities,
-    QMHtml, Listeners,
-    VoiceMessage, QMPlayer
+    DCCONFIG, Entities,
+    DCHtml, Listeners,
+    VoiceMessage, DCPlayer
 ) {
 
     function DenningChat() {
@@ -70,7 +70,7 @@ define([
         this.entities  = Entities;
         this.entities.app = this;
 
-        this.QMPlayer = QMPlayer;
+        this.DCPlayer = DCPlayer;
     }
 
     DenningChat.prototype = {
@@ -110,8 +110,8 @@ define([
         },
 
         setHtml5Patterns: function() {
-            $('.pattern-name').attr('pattern', QMCONFIG.patterns.name);
-            $('.pattern-pass').attr('pattern', QMCONFIG.patterns.password);
+            $('.pattern-name').attr('pattern', DCCONFIG.patterns.name);
+            $('.pattern-pass').attr('pattern', DCCONFIG.patterns.password);
         }
     };
 

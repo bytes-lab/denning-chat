@@ -14,7 +14,7 @@ define([
     $,
     _,
     Backbone,
-    QMCONFIG,
+    DCCONFIG,
     Helpers
 ) {
 
@@ -99,7 +99,7 @@ define([
         chooseAvatar: function() {
             var URL = window.URL,
                 avatar = this.$el.find('.btn_userProfile_file')[0].files[0],
-                src = avatar ? URL.createObjectURL(avatar) : (this.model.get('avatar_url') === QMCONFIG.defAvatar.url) ? QMCONFIG.defAvatar.url : this.model.get('avatar_url');
+                src = avatar ? URL.createObjectURL(avatar) : (this.model.get('avatar_url') === DCCONFIG.defAvatar.url) ? DCCONFIG.defAvatar.url : this.model.get('avatar_url');
 
             this.$el.find('.userDetails-avatar').css('background-image', "url(" + src + ")");
         },
@@ -109,7 +109,7 @@ define([
 
             this.model.connectFB(fbId, function(err, res) {
                 if (err) {
-                    self.validateError(self.model, QMCONFIG.errors.FBAccountExists);
+                    self.validateError(self.model, DCCONFIG.errors.FBAccountExists);
                     self.$el.find('.btn_userProfile_connect').prop('disabled', false);
                 } else {
                     self.$el.find('.userProfile-field-facebook').html(

@@ -12,7 +12,7 @@ define([
     'Helpers',
     'LocationView'
 ], function($,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Entities,
     Helpers,
@@ -48,11 +48,11 @@ define([
 
         init: function(token) {
             if (typeof token === 'undefined') {
-                QB.init(QMCONFIG.qbAccount.appId, QMCONFIG.qbAccount.authKey, QMCONFIG.qbAccount.authSecret, QMCONFIG.QBconf);
+                QB.init(DCCONFIG.qbAccount.appId, DCCONFIG.qbAccount.authKey, DCCONFIG.qbAccount.authSecret, DCCONFIG.QBconf);
             } else {
-                QB.init(token, QMCONFIG.qbAccount.appId, null, QMCONFIG.QBconf);
-                QB.service.qbInst.session.application_id = QMCONFIG.qbAccount.appId;
-                QB.service.qbInst.config.creds = QMCONFIG.qbAccount;
+                QB.init(token, DCCONFIG.qbAccount.appId, null, DCCONFIG.QBconf);
+                QB.service.qbInst.session.application_id = DCCONFIG.qbAccount.appId;
+                QB.service.qbInst.config.creds = DCCONFIG.qbAccount;
 
                 Session.create(JSON.parse(localStorage['DC.session']));
                 UserView.autologin();
@@ -105,7 +105,7 @@ define([
                         parseErr = JSON.parse(err.detail);
 
                     if (err.code === 401) {
-                        errMsg = QMCONFIG.errors.unauthorized;
+                        errMsg = DCCONFIG.errors.unauthorized;
                         $('section:visible input:not(:checkbox)').addClass('is-error');
                     } else {
                         errMsg = parseErr.errors.email ? parseErr.errors.email[0] :
@@ -115,16 +115,16 @@ define([
                         // and you try to relogin on a project via FB without reload the page.
                         // All you need it is to get the new FB user status and show specific error message
                         if (errMsg.indexOf('Authentication') >= 0) {
-                            errMsg = QMCONFIG.errors.crashFBToken;
+                            errMsg = DCCONFIG.errors.crashFBToken;
                             UserView.getFBStatus();
 
                             // This checking is needed when you trying to connect via FB
                             // and your primary email has already been taken on the project
                         } else if (errMsg.indexOf('already') >= 0) {
-                            errMsg = QMCONFIG.errors.emailExists;
+                            errMsg = DCCONFIG.errors.emailExists;
                             UserView.getFBStatus();
                         } else {
-                            errMsg = QMCONFIG.errors.session;
+                            errMsg = DCCONFIG.errors.session;
                         }
                     }
 
@@ -197,7 +197,7 @@ define([
         logoutUser: function(callback) {
             Helpers.log('QB SDK: User has exited');
             // reset QuickBlox JS SDK after autologin via an existing token
-            QB.service.qbInst.config.creds = QMCONFIG.qbAccount;
+            QB.service.qbInst.config.creds = DCCONFIG.qbAccount;
             clearTimeout(timer);
             Session.destroy();
             callback();
@@ -565,9 +565,9 @@ define([
         var errMsg;
 
         if (err.indexOf('already') >= 0) {
-            errMsg = QMCONFIG.errors.emailExists;
+            errMsg = DCCONFIG.errors.emailExists;
         } else if (err.indexOf('look like') >= 0) {
-            errMsg = QMCONFIG.errors.invalidEmail;
+            errMsg = DCCONFIG.errors.invalidEmail;
         }
 
         $('section:visible input[type="email"]').addClass('is-error');
@@ -575,7 +575,7 @@ define([
     };
 
     var failForgot = function() {
-        var errMsg = QMCONFIG.errors.notFoundEmail;
+        var errMsg = DCCONFIG.errors.notFoundEmail;
         $('section:visible input[type="email"]').addClass('is-error');
         fail(errMsg);
     };

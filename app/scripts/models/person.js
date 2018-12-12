@@ -16,7 +16,7 @@ define([
     _,
     QB,
     Backbone,
-    QMCONFIG,
+    DCCONFIG,
     Helpers
 ) {
 
@@ -31,13 +31,13 @@ define([
             facebook_id: null,
             is_provider: null,
             avatar: null,
-            avatar_url: QMCONFIG.defAvatar.url,
+            avatar_url: DCCONFIG.defAvatar.url,
             status: '',
             user_tags: null
         },
 
         validate: function(attrs) {
-            var MAX_SIZE = QMCONFIG.maxLimitFile * 1024 * 1024;
+            var MAX_SIZE = DCCONFIG.maxLimitFile * 1024 * 1024;
 
             // Field: full_name
             // mandatory; 3-50 characters; could contain everything except '<', '>' and ';'
@@ -48,20 +48,20 @@ define([
                 return 'Your name is "Unknown user", please change';
             }
             if (attrs.full_name.length < 3) {
-                return QMCONFIG.errors.shortName;
+                return DCCONFIG.errors.shortName;
             }
             if (!/^[^><;]+$/.test(attrs.full_name)) {
-                return QMCONFIG.errors.invalidName;
+                return DCCONFIG.errors.invalidName;
             }
 
             // Field: password
             // mustn’t contain non-Latin characters and spaces; 8-40 characters
             if (attrs.password) {
                 if (!/^[A-Za-z0-9`~!@#%&=_<>;:,'\"\.\$\^\*\-\+\\\/\|\(\)\[\]\{\}\?]+$/.test(attrs.password)) {
-                    return QMCONFIG.errors.invalidPass;
+                    return DCCONFIG.errors.invalidPass;
                 }
                 if (attrs.password.length < 8) {
-                    return QMCONFIG.errors.shortPass;
+                    return DCCONFIG.errors.shortPass;
                 }
             }
 
@@ -69,13 +69,13 @@ define([
             // only image file; not more than 10 MB; filename not more than 100 characters
             if (attrs.avatar) {
                 if (!/^image.{0,}$/.test(attrs.avatar.type)) {
-                    return QMCONFIG.errors.avatarType;
+                    return DCCONFIG.errors.avatarType;
                 }
                 if (attrs.avatar.size > MAX_SIZE) {
-                    return QMCONFIG.errors.fileSize;
+                    return DCCONFIG.errors.fileSize;
                 }
                 if (attrs.avatar.name.length > 100) {
-                    return QMCONFIG.errors.fileName;
+                    return DCCONFIG.errors.fileName;
                 }
             }
         },
@@ -200,7 +200,7 @@ define([
                 params = {},
                 self = this;
 
-            if (self.get('avatar_url') === QMCONFIG.defAvatar.url) {
+            if (self.get('avatar_url') === DCCONFIG.defAvatar.url) {
                 custom_data.avatar_url = 'https://graph.facebook.com/v2.9/' + fbId + '/picture?width=1200&height=1200';
             }
             custom_data.is_import = '1';
@@ -211,7 +211,7 @@ define([
                 if (res) {
                     Helpers.log('update of user', res);
 
-                    if (self.get('avatar_url') === QMCONFIG.defAvatar.url) {
+                    if (self.get('avatar_url') === DCCONFIG.defAvatar.url) {
                         self.set('avatar_url', custom_data.avatar_url);
                         currentUser.avatar_url = custom_data.avatar_url;
                     }

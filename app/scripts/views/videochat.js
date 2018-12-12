@@ -11,15 +11,15 @@ define([
     'config',
     'Helpers',
     'QBNotification',
-    'QMHtml'
+    'DCHtml'
 ], function(
     $,
     QB,
     Entities,
-    QMCONFIG,
+    DCCONFIG,
     Helpers,
     QBNotification,
-    QMHtml
+    DCHtml
 ) {
     var self,
         User,
@@ -85,7 +85,7 @@ define([
                     });
                 }
             } else {
-                QMHtml.VideoChat.noWebRTC();
+                DCHtml.VideoChat.noWebRTC();
             }
 
             // remove contextmenus after start call
@@ -295,7 +295,7 @@ define([
             userAvatar = contact.avatar_url || extension.avatar,
             $dialogItem = $('.j-dialogItem[data-id="' + id + '"]'),
             dialogId = $dialogItem.length ? $dialogItem.data('dialog') : null,
-            autoReject = QMCONFIG.QBconf.webrtc.answerTimeInterval * 1000,
+            autoReject = DCCONFIG.QBconf.webrtc.answerTimeInterval * 1000,
             htmlTpl,
             tplParams;
 
@@ -319,7 +319,7 @@ define([
                 userId: id
             };
 
-            htmlTpl = QMHtml.VideoChat.onCallTpl(tplParams);
+            htmlTpl = DCHtml.VideoChat.onCallTpl(tplParams);
 
             $incomings.find('.mCSB_container').prepend(htmlTpl);
             openPopup($incomings);
@@ -511,7 +511,7 @@ define([
             fixScroll();
             if (err) {
                 $chat.find('.mediacall .btn_hangup').click();
-                QMHtml.VideoChat.showError();
+                DCHtml.VideoChat.showError();
                 return true;
             } else {
                 QBApiCalls.sendPushNotification(calleeId, fullName);
@@ -553,7 +553,7 @@ define([
             userId: userId
         };
 
-        htmlTpl = QMHtml.VideoChat.buildTpl(tplParams);
+        htmlTpl = DCHtml.VideoChat.buildTpl(tplParams);
 
         $chat.parent('.chatView').addClass('j-mediacall');
         $chat.prepend(htmlTpl);
@@ -695,7 +695,7 @@ define([
         var title = Helpers.Notifications.getTitle(msg, params),
             options = Helpers.Notifications.getOptions(msg, params);
 
-        if (QMCONFIG.notification && QBNotification.isSupported() && !window.isQMAppActive) {
+        if (DCCONFIG.notification && QBNotification.isSupported() && !window.isDCAppActive) {
             if (!QBNotification.needsPermission()) {
                 Helpers.Notifications.show(title, options);
             } else {

@@ -16,7 +16,7 @@ define([
 ], function(
     $,
     _,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Helpers,
     Person,
@@ -75,7 +75,7 @@ define([
                     'provider': 'firebase_phone',
                     'firebase_phone': {
                         'access_token': idToken,
-                        'project_id': QMCONFIG.firebase.projectId
+                        'project_id': DCCONFIG.firebase.projectId
                     }
                 };
 
@@ -107,7 +107,7 @@ define([
                     Helpers.log('User cancelled login or did not fully authorize.');
                 }
             }, {
-                scope: QMCONFIG.fbAccount.scope
+                scope: DCCONFIG.fbAccount.scope
             });
         },
 
@@ -425,7 +425,7 @@ define([
     /* Private
     ---------------------------------------------------------------------- */
     function validate(form, user) {
-        var maxSize = QMCONFIG.maxLimitFile * 1024 * 1024,
+        var maxSize = DCCONFIG.maxLimitFile * 1024 * 1024,
             file = form.find('input:file')[0],
             fieldName, errName,
             value, errMsg;
@@ -450,22 +450,22 @@ define([
                     errMsg = errName + ' is required';
                 } else if (this.validity.typeMismatch) {
                     this.value = '';
-                    errMsg = QMCONFIG.errors.invalidEmail;
+                    errMsg = DCCONFIG.errors.invalidEmail;
                 } else if (this.validity.patternMismatch && errName === 'Name') {
                     if (value.length < 3) {
-                        errMsg = QMCONFIG.errors.shortName;
+                        errMsg = DCCONFIG.errors.shortName;
                     } else if (value.length > 50) {
-                        errMsg = QMCONFIG.errors.bigName;
+                        errMsg = DCCONFIG.errors.bigName;
                     } else {
-                        errMsg = QMCONFIG.errors.invalidName;
+                        errMsg = DCCONFIG.errors.invalidName;
                     }
                 } else if (this.validity.patternMismatch && (errName === 'Password' || errName === 'New password')) {
                     if (value.length < 8) {
-                        errMsg = QMCONFIG.errors.shortPass;
+                        errMsg = DCCONFIG.errors.shortPass;
                     } else if (value.length > 40) {
-                        errMsg = QMCONFIG.errors.bigPass;
+                        errMsg = DCCONFIG.errors.bigPass;
                     } else {
-                        errMsg = QMCONFIG.errors.invalidPass;
+                        errMsg = DCCONFIG.errors.invalidPass;
                     }
                 }
 
@@ -480,13 +480,13 @@ define([
             file = file.files[0];
 
             if (file.type.indexOf('image/') === -1) {
-                errMsg = QMCONFIG.errors.avatarType;
+                errMsg = DCCONFIG.errors.avatarType;
                 fail(user, errMsg);
             } else if (file.name.length > 100) {
-                errMsg = QMCONFIG.errors.fileName;
+                errMsg = DCCONFIG.errors.fileName;
                 fail(user, errMsg);
             } else if (file.size > maxSize) {
-                errMsg = QMCONFIG.errors.fileSize;
+                errMsg = DCCONFIG.errors.fileSize;
                 fail(user, errMsg);
             } else {
                 tempParams.blob = file;

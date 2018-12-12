@@ -1,6 +1,6 @@
 /**
  *
- * htmlQM Module
+ * htmlDC Module
  *
  */
 define([
@@ -12,9 +12,9 @@ define([
     _,
     Helpers
 ) {
-    var QMHtml = {};
+    var DCHtml = {};
 
-    QMHtml.VideoChat = {
+    DCHtml.VideoChat = {
 
         onCallTpl: function(params) {
             var htmlTemplate = _.template('<div class="incoming-call l-flexbox l-flexbox_column l-flexbox_flexbetween">' +
@@ -94,7 +94,7 @@ define([
 
     };
 
-    QMHtml.User = {
+    DCHtml.User = {
 
         contactPopover: function(params, roster) {
             var $html = $('<ul class="list-actions list-actions_contacts popover j-listActionsContacts"></ul>'),
@@ -178,7 +178,7 @@ define([
 
     };
 
-    QMHtml.Messages = {
+    DCHtml.Messages = {
 
         setMap: function(params) {
             var htmlTemplate = _.template(
@@ -206,7 +206,7 @@ define([
 
     };
 
-    QMHtml.Attach = {
+    DCHtml.Attach = {
 
         error: function(params) {
             var htmlTemplate = _.template('<article class="message message_service l-flexbox l-flexbox_alignstretch">'+
@@ -241,5 +241,5 @@ define([
 
     };
 
-    return QMHtml;
+    return DCHtml;
 });

@@ -9,7 +9,7 @@ define([
     'cryptojs',
     'cryptojs_hmac',
 ], function(
-    QMCONFIG,
+    DCCONFIG,
     CryptoJS
 ) {
 
@@ -60,15 +60,15 @@ define([
         // crypto methods for password
         encrypt: function(params) {
             if (params && params.password) {
-                params.password = CryptoJS.AES.encrypt(params.password, QMCONFIG.qbAccount.authSecret).toString();
+                params.password = CryptoJS.AES.encrypt(params.password, DCCONFIG.qbAccount.authSecret).toString();
             }
-            // console.log(CryptoJS.HmacSHA1('application_id=55869&auth_key=tpH4TbFKOcmrYet&nonce=3515&timestamp=1517023275', QMCONFIG.qbAccount.authSecret).toString());
+            // console.log(CryptoJS.HmacSHA1('application_id=55869&auth_key=tpH4TbFKOcmrYet&nonce=3515&timestamp=1517023275', DCCONFIG.qbAccount.authSecret).toString());
             return params;
         },
 
         decrypt: function(params) {
             if (params && params.password) {
-                params.password = CryptoJS.AES.decrypt(params.password, QMCONFIG.qbAccount.authSecret).toString(CryptoJS.enc.Utf8);
+                params.password = CryptoJS.AES.decrypt(params.password, DCCONFIG.qbAccount.authSecret).toString(CryptoJS.enc.Utf8);
             }
             return params;
         }

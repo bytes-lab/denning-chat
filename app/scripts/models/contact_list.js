@@ -9,7 +9,7 @@ define([
     'underscore',
     'Helpers'
 ], function(
-    QMCONFIG,
+    DCCONFIG,
     _,
     Helpers
 ) {

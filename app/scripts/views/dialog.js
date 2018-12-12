@@ -11,7 +11,7 @@ define([
     'quickblox',
     'Entities',
     'Helpers',
-    'QMHtml',
+    'DCHtml',
     'minEmoji',
     'perfectscrollbar',
     'mCustomScrollbar',
@@ -20,11 +20,11 @@ define([
 ], function(
     $,
     _,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Entities,
     Helpers,
-    QMHtml,
+    DCHtml,
     minEmoji,
     Ps
 ) {
@@ -374,7 +374,7 @@ define([
                 lastTime = Helpers.getTime(last_message_date_sent, true),
                 lastMessage = minEmoji(Helpers.Messages.parse_plain(dialog.get('last_message'))),
                 isContactRequest = (lastMessage == 'Contact request:4') && (dialog.get('last_message_user_id') != self.app.models.User.contact.id),
-                defaultAvatar = private_id ? QMCONFIG.defAvatar.url : QMCONFIG.defAvatar.group_url,
+                defaultAvatar = private_id ? DCCONFIG.defAvatar.url : DCCONFIG.defAvatar.group_url,
                 startOfCurrentDay,
                 private_id,
                 status,
@@ -517,7 +517,7 @@ define([
             isBlocked = $('.icon_videocall, .icon_audiocall').length;
             isCall = $dialog.find('.icon_videocall').length || $dialog.find('.icon_audiocall').length;
             jid = dialog.get('room_jid') || user.user_jid;
-            icon = user_id ? user.avatar_url : (dialog.get('room_photo') || QMCONFIG.defAvatar.group_url);
+            icon = user_id ? user.avatar_url : (dialog.get('room_photo') || DCCONFIG.defAvatar.group_url);
             name = dialog.get('room_name') || user.full_name;
             status = roster[user_id] ? roster[user_id] : null;
             location = (localStorage['DC.latitude'] && localStorage['DC.longitude']) ? 'btn_active' : '';
@@ -749,7 +749,7 @@ define([
                 message,
                 count;
 
-            var MIN_STACK = QMCONFIG.stackMessages,
+            var MIN_STACK = DCCONFIG.stackMessages,
                 MAX_STACK = 100,
                 lessThenMinStack = unreadCount < MIN_STACK,
                 moreThenMinStack = unreadCount > (MIN_STACK - 1),
@@ -848,12 +848,12 @@ define([
                     if (params.privateId) {
                         var user = ContactList.contacts[params.privateId];
 
-                        user.avatar_url = QMCONFIG.defAvatar.url;
+                        user.avatar_url = DCCONFIG.defAvatar.url;
                         avatar.classList.add('default_single_avatar');
                     } else {
                         var dialog = Entities.Collections.dialogs.get(params.dialogId);
 
-                        dialog.set('room_photo', QMCONFIG.defAvatar.group_url);
+                        dialog.set('room_photo', DCCONFIG.defAvatar.group_url);
                         avatar.classList.add('default_group_avatar');
                     }
                 }, 100);

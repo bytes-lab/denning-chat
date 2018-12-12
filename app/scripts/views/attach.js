@@ -9,16 +9,16 @@ define([
     'config',
     'quickblox',
     'Helpers',
-    'QMHtml',
+    'DCHtml',
     'LocationView',
     'underscore',
     'progressbar'
 ], function(
     $,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Helpers,
-    QMHtml,
+    DCHtml,
     Location,
     _,
     ProgressBar
@@ -54,7 +54,7 @@ define([
 
             if (file) {
                 // progress bar DOM
-                html = QMHtml.Attach.attach({
+                html = DCHtml.Attach.attach({
                     'fileName': file.name,
                     'fileSizeCrop': fileSizeCrop,
                     'fileSizeUnit': fileSizeUnit,
@@ -83,7 +83,7 @@ define([
         },
 
         pastErrorMessage: function(errMsg, objDom, chat) {
-            var html = QMHtml.Attach.error({
+            var html = DCHtml.Attach.error({
                 'errMsg': errMsg
             });
 
@@ -281,18 +281,18 @@ define([
                    file.type.indexOf('video/') === 0 ? 'video' : 'file';
 
             if (type === 'video' || type === 'audio') {
-                maxSize = QMCONFIG.maxLimitMediaFile * 1024 * 1024;
+                maxSize = DCCONFIG.maxLimitMediaFile * 1024 * 1024;
             } else {
-                maxSize = QMCONFIG.maxLimitFile * 1024 * 1024;
+                maxSize = DCCONFIG.maxLimitFile * 1024 * 1024;
             }
 
             if (file.name.length > 100) {
-                errMsg = QMCONFIG.errors.fileName;
+                errMsg = DCCONFIG.errors.fileName;
             } else if (file.size > maxSize) {
                 if (type === 'video') {
-                    errMsg = QMCONFIG.errors.videoSize;
+                    errMsg = DCCONFIG.errors.videoSize;
                 } else {
-                    errMsg = QMCONFIG.errors.fileSize;
+                    errMsg = DCCONFIG.errors.fileSize;
                 }
             }
 

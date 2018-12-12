@@ -10,15 +10,15 @@ define([
     'quickblox',
     'Entities',
     'Helpers',
-    'QMHtml',
+    'DCHtml',
     'LocationView'
 ], function(
     $,
-    QMCONFIG,
+    DCCONFIG,
     QB,
     Entities,
     Helpers,
-    QMHtml,
+    DCHtml,
     Location
 ) {
 
@@ -148,7 +148,7 @@ define([
         },
 
         profilePopover: function(objDom) {
-            var html = QMHtml.User.profilePopover();
+            var html = DCHtml.User.profilePopover();
 
             objDom.after(html);
             appearAnimation();
@@ -162,7 +162,7 @@ define([
                 dialog = dialogs.get(dialog_id).toJSON(),
                 htmlTpl;
 
-            htmlTpl = QMHtml.User.contactPopover({
+            htmlTpl = DCHtml.User.contactPopover({
                 'dialogId': dialog_id,
                 'dialogType': dialog.type,
                 'occupantsIds': dialog.occupants_ids,
@@ -200,10 +200,10 @@ define([
 
         occupantPopover: function(objDom, e) {
             var id = objDom.data('id'),
-                jid = QB.chat.helpers.getUserJid(id, QMCONFIG.qbAccount.appId),
+                jid = QB.chat.helpers.getUserJid(id, DCCONFIG.qbAccount.appId),
                 roster = ContactList.roster,
                 position = e.currentTarget.getBoundingClientRect(),
-                htmlTpl = QMHtml.User.occupantPopover({
+                htmlTpl = DCHtml.User.occupantPopover({
                     'id': id,
                     'jid': jid
                 }, roster[id]);
@@ -395,8 +395,8 @@ define([
         page.find('input').val('');
         if (!page.is('#mainPage')) {
             page.find('form').removeClass('is-hidden').next('.l-form').remove(); // reset Forgot form after success sending of letter
-            // page.find('input:file').prev().find('img').attr('src', QMCONFIG.defAvatar.url).siblings('span').text(QMCONFIG.defAvatar.caption);
-            page.find('input:file').prev().find('.avatar').css('background-image', "url(" + QMCONFIG.defAvatar.url + ")").siblings('span').text(QMCONFIG.defAvatar.caption);
+            // page.find('input:file').prev().find('img').attr('src', DCCONFIG.defAvatar.url).siblings('span').text(DCCONFIG.defAvatar.caption);
+            page.find('input:file').prev().find('.avatar').css('background-image', "url(" + DCCONFIG.defAvatar.url + ")").siblings('span').text(DCCONFIG.defAvatar.caption);
             page.find('input:checkbox').prop('checked', false);
 
             // start watch location if the option is enabled

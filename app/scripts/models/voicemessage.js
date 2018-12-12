@@ -7,7 +7,7 @@ define([
     'lamejs',
     'QBMediaRecorder'
 ], function(
-    QMCONFIG,
+    DCCONFIG,
     Helpers,
     lamejs,
     QBMediaRecorder
@@ -129,7 +129,7 @@ define([
 
                 self.ui.title.innerHTML = timerValue();
 
-                if (step === QMCONFIG.MAX_RECORD_TIME) {
+                if (step === DCCONFIG.MAX_RECORD_TIME) {
                     self.ui.control.click();
                 }
             }, 1000);

@@ -11,7 +11,7 @@ define([
     'Helpers',
     'Entities'
 ], function(
-    QMCONFIG,
+    DCCONFIG,
     QB,
     _,
     Helpers,
@@ -340,9 +340,9 @@ define([
 
             if (file) {
                 if (file.type.indexOf('image/') === -1) {
-                    errMsg = QMCONFIG.errors.avatarType;
+                    errMsg = DCCONFIG.errors.avatarType;
                 } else if (file.name.length > 100) {
-                    errMsg = QMCONFIG.errors.fileName;
+                    errMsg = DCCONFIG.errors.fileName;
                 }
 
                 if (errMsg) {
