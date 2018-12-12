@@ -1,4 +1,3 @@
-
 /*global require*/
 'use strict';
 
@@ -24,7 +23,7 @@ requirejs.config({
         minEmoji: {
             exports: 'minEmoji'
         },
-       "jquery-ui": {
+        "jquery-ui": {
             deps: ['jquery'],
             exports: "$"
         }
@@ -56,7 +55,7 @@ requirejs.config({
         QBMediaRecorder: '../bower_components/media-recorder-js/mediaRecorder',
         firebase: '../bower_components/firebase/firebase',
 
-        // Q-municate application
+        // Denning application
         config: '../configs/main_config',
         MainModule: 'app',
         // models
@@ -123,14 +122,6 @@ requirejs([
     $(function() {
 
         $.ajaxSetup({cache: true});
-
-        // initialize facebook sdk
-        if (window.hasOwnProperty('FB')) {
-            FB.init({
-                appId: QMCONFIG.fbAccount.appId,
-                version: 'v2.9'
-            });
-        }
 
         // emoji smiles run
         $('.smiles-group').each(function() {

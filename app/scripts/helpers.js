@@ -270,11 +270,11 @@ define([
     Helpers.log = function() {
         if (QMCONFIG.debug) {
             if (arguments.length <= 1) {
-                console.group("[Q-MUNICATE debug mode]:");
+                console.group("[Denning debug mode]:");
                 console.log(arguments[0]);
                 console.groupEnd();
             } else {
-                console.group("[Q-MUNICATE debug mode]:");
+                console.group("[Denning debug mode]:");
                 for (var i = 0; i < arguments.length; i++) {
                     if ((typeof arguments[i] === "string") && (typeof arguments[i + 1] !== "string")) {
                         console.log(arguments[i], arguments[i + 1]);

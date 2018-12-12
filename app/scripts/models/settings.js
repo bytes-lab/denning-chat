@@ -1,6 +1,6 @@
 /*
  *
- * Q-MUNICATE settings models Module
+ * Denning settings models Module
  *
  */
 define([], function() {

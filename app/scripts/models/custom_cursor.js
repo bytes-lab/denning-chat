@@ -1,6 +1,6 @@
 /*
  *
- * Q-MUNICATE custom cursor models Module
+ * Denning custom cursor models Module
  *
  */
 define([], function() {

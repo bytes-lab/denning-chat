@@ -1,6 +1,6 @@
 /**
  *
- * Q-MUNICATE Location Module
+ * Denning Location Module
  *
  */
 define([

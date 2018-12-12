@@ -1,5 +1,5 @@
 /*
- * Q-municate chat application
+ * Denning chat application
  *
  * Main Module
  *
@@ -97,7 +97,6 @@ define([
                 localStorage.setItem('userInfo', tmp);
                 localStorage.setItem('QM.isReleaseQBAccount', '1');
                 this.service.init();
-                
             }
 
             this.events.init();
@@ -105,8 +104,9 @@ define([
 
             Helpers.log('App init', this);
             var email = Helpers.getURLParameter('uid');
-            if (email)
+            if (email) {
                 this.models.User.login({ email: email, password: Helpers.getURLParameter('sppid') || 'denningIT'});
+            }
         },
 
         setHtml5Patterns: function() {

@@ -40,7 +40,7 @@ define([
                 '<img class="mediacall-remote-avatar" src="<%=contactAvatar%>" alt="avatar">' +
                 '<span class="mediacall-remote-name"><%=contactName%></span></div>' +
                 '<div class="mediacall-info l-flexbox l-flexbox_column l-flexbox_flexcenter">' +
-                '<img class="mediacall-info-logo" src="images/logo-qmunicate-transparent.svg" alt="Q-municate">' +
+                '<img class="mediacall-info-logo" src="images/logo-qmunicate-transparent.svg" alt="Denning">' +
                 '<span class="mediacall-info-duration">connect...</span></div>' +
                 '<div class="mediacall-controls l-flexbox l-flexbox_flexcenter">' +
                 '<button class="btn_mediacall btn_full-mode" data-id="<%=userId%>" data-dialog="<%=dialogId%>" disabled>' +

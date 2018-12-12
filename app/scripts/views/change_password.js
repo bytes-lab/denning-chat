@@ -1,5 +1,5 @@
 /*
- * Q-municate chat application
+ * Denning chat application
  *
  * Change Password View
  *

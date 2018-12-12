@@ -1,6 +1,6 @@
 /*
  *
- * Q-MUNICATE settings views Module
+ * Denning settings views Module
  *
  */
 define(['jquery'], function($) {

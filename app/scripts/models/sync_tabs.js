@@ -1,6 +1,6 @@
 /*
  *
- * Q-MUNICATE sync tabs models Module
+ * Denning sync tabs models Module
  *
  */
 define(['jquery'], function($) {
