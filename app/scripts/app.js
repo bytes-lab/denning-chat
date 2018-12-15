@@ -80,7 +80,6 @@ define([
             this.setHtml5Patterns();
 
             // QB SDK initialization
-            // Checking if autologin was chosen
             if (localStorage['DC.session'] && localStorage['DC.user'] &&
                 // new QB release account (13.02.2015)
                 localStorage['DC.isReleaseQBAccount']) {

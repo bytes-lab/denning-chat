@@ -55,54 +55,6 @@ define([
             self.app.views.ChangePass = changePassView;
         },
 
-        providerConnect: function(params) {
-            var self = this,
-                QBApiCalls = self.app.service,
-                UserView = self.app.views.User,
-                DialogView = self.app.views.Dialog,
-                Contact = self.app.models.Contact;
-
-            UserView.loginQB();
-            UserView.createSpinner();
-
-            if (params.provider === 'facebook') {
-                QBApiCalls.createSession(params, function(session) {
-                    QBApiCalls.getUser(session.user_id, function(user) {
-                        _prepareChat(user, true);
-                    });
-                });
-            } else {
-                QBApiCalls.createSession({}, function() {
-                    QBApiCalls.loginUser(params, function(user) {
-                        _prepareChat(user);
-                    });
-                });
-            }
-
-            function _prepareChat(user, isFB) {
-                self.contact = Contact.create(user);
-                self._is_import = getImport(user);
-
-                Helpers.log('User', self);
-
-                UserView.successFormCallback();
-
-                QBApiCalls.connectChat(self.contact.user_jid, function() {
-                    self.rememberMe();
-                    DialogView.prepareDownloading();
-                    DialogView.downloadDialogs();
-
-                    if (!self._is_import && isFB) {
-                        self.import(user);
-                    }
-
-                    if (self.contact.full_name === 'Unknown user') {
-                        self.app.views.Profile.render().openPopup();
-                    }
-                });
-            }
-        },
-
         updateQBUser: function(user) {
             var QBApiCalls = this.app.service,
                 custom_data;
@@ -120,52 +72,6 @@ define([
             }, function(res) {
 
             });
-        },
-
-        signup: function() {
-            var QBApiCalls = this.app.service,
-                UserView = this.app.views.User,
-                DialogView = this.app.views.Dialog,
-                Contact = this.app.models.Contact,
-                form = $('section:visible form'),
-                self = this,
-                params;
-
-            if (validate(form, this)) {
-                UserView.createSpinner();
-
-                params = {
-                    full_name: tempParams.full_name,
-                    email: tempParams.email,
-                    password: tempParams.password,
-                    tag_list: 'web'
-                };
-
-                QBApiCalls.createSession({}, function() {
-                    QBApiCalls.createUser(params, function() {
-                        delete params.full_name;
-                        delete params.tag_list;
-
-                        QBApiCalls.loginUser(params, function(user) {
-                            self.contact = Contact.create(user);
-
-                            Helpers.log('User', self);
-
-                            UserView.successFormCallback();
-
-                            QBApiCalls.connectChat(self.contact.user_jid, function() {
-                                if (tempParams.blob) {
-                                    self.uploadAvatar();
-                                } else {
-                                    DialogView.prepareDownloading();
-                                    DialogView.downloadDialogs();
-                                }
-                            });
-                        });
-
-                    });
-                });
-            }
         },
 
         uploadAvatar: function() {
@@ -226,9 +132,8 @@ define([
                         self.contact = Contact.create(user);
 
                         Helpers.log('User', self);
-                        $('.l-user-email').html(user.email);
+                        
                         UserView.successFormCallback();
-
                         QBApiCalls.connectChat(self.contact.user_jid, function() {
                             self.rememberMe();
                             DialogView.prepareDownloading();
@@ -288,7 +193,6 @@ define([
                 }
 
                 Helpers.log('User', user);
-                $('.l-user-email').html(user.email);
 
                 UserView.successFormCallback();
 

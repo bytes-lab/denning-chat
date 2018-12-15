@@ -485,11 +485,6 @@ define([
             ----------------------------------------------------- */
             Events.intiAuthorizationInputs();
 
-            $('#signupQB').on('click', function() {
-                Helpers.log('signup with QB');
-                UserView.signupQB();
-            });
-
             $('.j-login_QB').on('click', function() {
                 Helpers.log('login wih QB');
 
@@ -637,14 +632,6 @@ define([
             $('.j-back_to_login_page').on('click', function() {
                 UserView.loginQB();
                 $('.j-success_callback').remove();
-            });
-
-            /* signup page
-            ----------------------------------------------------- */
-            $('#signupForm').on('click submit', function(event) {
-                Helpers.log('create user');
-                event.preventDefault();
-                UserView.signupForm();
             });
 
             /* login page
