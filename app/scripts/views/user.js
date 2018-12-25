@@ -69,19 +69,14 @@ define([
             $('section:visible form').removeClass('is-hidden').next('.l-spinner').addClass('is-hidden');
         },
 
-
         successFormCallback: function() {
             var $profileAvatar = $('#avatar-container');
 
             this.removeSpinner();
-
-            $('.l-user-email').html(User.contact.email);
-            $profileAvatar.addClass('profileUserAvatar').css('background-image', "url(" + User.contact.avatar_url + ")");
-            $profileAvatar.attr('data-id', User.contact.id);
-            $profileAvatar.attr('data-name', User.contact.full_name);
+            html = Helpers.fillTemplate('tpl_avatarSection', User.contact);
+            $profileAvatar.html(html);
 
             switchPage($('#mainPage'));
-            this.app.views.Dialog.createDataSpinner();
         },
 
         successSendEmailCallback: function() {

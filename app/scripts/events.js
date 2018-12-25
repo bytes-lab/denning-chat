@@ -503,7 +503,7 @@ define([
                 DialogView.showChats(true, 'denning');
 
                 var scrollbar = document.querySelector('.j-scrollbar_aside');
-                Ps.update(scrollbar);                
+                Ps.update(scrollbar);
             });
 
             $('.j-sidebar__tab_link').on('click', function() {
@@ -511,15 +511,15 @@ define([
                 $(this).addClass('active');
 
                 $('.filter-item').removeClass('active');
-                $('.filter-item:first-child').addClass('active');                    
+                $('.filter-item:first-child').addClass('active');
 
                 var tab_type = $('.j-sidebar__tab_link.active').data('type');
                 if (tab_type == "contact" || tab_type == "favourite") {
-                    $('.filter-item:last-child').addClass('disabled');   
+                    $('.filter-item:last-child').addClass('disabled');
                 }
                 // reset search
                 $('.localSearch input').val('');
-                selectTabFilter();                
+                selectTabFilter();
             });
 
             $('.filter-item').on('click', function() {
@@ -544,7 +544,7 @@ define([
                 $('.l-list-wrap').removeClass('group');
 
                 if (tab_type == "contact") {
-                    ContactListView.showContacts(filter_type, '');         
+                    ContactListView.showContacts(filter_type, '');
                 } else if (tab_type == "favourite") {
                     ContactListView.showContacts(filter_type, 'favourite_');
                 } else if (tab_type == "chat") {
@@ -556,7 +556,7 @@ define([
                     $('.l-list-wrap').addClass('group');
                     DialogView.showChats(true, filter_type);
                 }
-                UserView.localSearch($('.localSearch'));        
+                UserView.localSearch($('.localSearch'));
 
                 var scrollbar = document.querySelector('.j-scrollbar_aside');
                 Ps.update(scrollbar);
@@ -593,9 +593,9 @@ define([
                                 userid: self.app.models.User.contact.email
                             },
                             success: function(users) {
-                                ContactList.addDenningUsers(users, true);                            
+                                ContactList.addDenningUsers(users, true);
                             }
-                        });                         
+                        });
                     }
                 });  
             });
@@ -785,7 +785,7 @@ define([
                     else if (role == 'staff')
                         role_normal.push(id);
                     else 
-                        role_reader.push(id);                        
+                        role_reader.push(id);
                 });
 
                 Dialog.updateProfile(dialog_id, {
@@ -868,13 +868,13 @@ define([
                     url: 'https://denningonline.com.my/denningapi/v1/generalSearch',
                     headers: {
                         "Content-Type": "application/json",
-                        "webuser-sessionid": "testdenningSkySea"                            
+                        "webuser-sessionid": "testdenningSkySea"
                     }, 
                     data: {
                         search: keyword_folder,
                         category: $('.j-file-folder .filter-item.active').data('category'),
                         isAutoComplete: 1
-                    },                        
+                    },
                     success: function (res) {
                         if (res.length == 0) {
                             $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 500; font-size: 16px;">There is no result.</li>');
@@ -882,12 +882,12 @@ define([
                             $self.parent().find('.list_matters').html('');
 
                             _.each(res, function(ii) {
-                                var el = Helpers.fillTemplate('tpl_matter', { matter: ii});                                    
+                                var el = Helpers.fillTemplate('tpl_matter', { matter: ii});
                                 $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
-                            });                                
+                            });
                         }
                     }
-                });                    
+                });
             };
 
             $( ".j-fileSearch .form-input-search" ).autocomplete({
@@ -897,11 +897,11 @@ define([
                         url: 'https://denningonline.com.my/denningapi/v1/generalSearch/keyword',
                         headers: {
                             "Content-Type": "application/json",
-                            "webuser-sessionid": "testdenningSkySea"                            
+                            "webuser-sessionid": "testdenningSkySea"
                         }, 
                         data: {
                             search: request.term
-                        },                        
+                        },
                         success: function (data) {
                             response($.map( data, function(item) {
                                 return item.keyword;
@@ -929,8 +929,8 @@ define([
                     url: 'https://denningonline.com.my/denningapi/v1/app/matter/'+key+'/fileFolder',
                     headers: {
                         "Content-Type": "application/json",
-                        "webuser-sessionid": "testdenningSkySea"                            
-                    },                     
+                        "webuser-sessionid": "testdenningSkySea"
+                    },
                     data: {},
                     success: function(res) {
                         if (!res || res.documents.length == 0) {
@@ -938,14 +938,14 @@ define([
                                 $('.list_matters').append('<li class="no-matter-file" style="padding: 12px; font-weight: 500; font-size: 16px;">There is no file.</li>');                                
                             
                             $('.list_matters').find('.no-matter-file').removeClass('is-hidden');
-                        } else {                        
+                        } else {
                             _.each(res.documents, function(ii) {
                                 var el = Helpers.fillTemplate('tpl_matter_file', { file: ii});
                                 $('.list_matters').append(Helpers.toHtml(el)[0]);
                             });
                         }
                     }
-                });                 
+                });
             });
 
             $('.btn_matter_file').on('click', function() {
@@ -1105,7 +1105,8 @@ define([
 
             /* dialogs
             ----------------------------------------------------- */
-            $('.list').on('click', '.contact', function(event) {
+            $('.list').on('click', '.contact.dialog', function(event) {
+                console.log("123");
                 if (event.target.tagName !== 'INPUT') {
                     event.preventDefault();
                     $('.l-sidebar').removeClass('active');

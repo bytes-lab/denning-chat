@@ -73,20 +73,7 @@
                     <b>Not Connected.</b> Connecting...
                 </div>
                 <aside class="l-sidebar active">
-                    <header class="l-header l-flexbox l-flexbox_flexbetween">
-                        <div id="avatar-container" class="avatar profileUserAvatar"></div>
-                        <div class="header-logo" style="margin-right: auto;">
-                            <a id="home" class="j-home" href="#">
-                                <div class="l-header-logo">
-                                    <div>
-                                        <p class="l-header-logo-text">Denning Chat</p>
-                                        <p class="l-user-position">-</p>
-                                        <p class="l-user-email"></p>
-                                    </div>
-                                </div>
-                            </a>
-                        </div>
-                        <img src="images/careline.svg" class="care-line" width="108" height="54" alt="Denning Chat">
+                    <header class="l-header l-flexbox l-flexbox_flexbetween" id="avatar-container">
                     </header>
 
                     <div class="sidebar__content">
@@ -513,6 +500,22 @@
 
 <!-- endbuild -->
 
+<script id="tpl_avatarSection" type="text/template">
+    <div class="avatar profileUserAvatar" style="background-image: url(<%= avatar_url %>)" data-id="<%= id %>"  data-name="<%= full_name %>"></div>
+    <div class="header-logo" style="margin-right: auto;">
+        <a id="home" class="j-home" href="#">
+            <div class="l-header-logo">
+                <div>
+                    <p class="l-header-logo-text">Denning Chat</p>
+                    <p class="l-user-position">-</p>
+                    <p class="l-user-email"><%= email %></p>
+                </div>
+            </div>
+        </a>
+    </div>
+    <img src="images/careline.svg" class="care-line" width="108" height="54" alt="Denning Chat">
+</script>
+
 <script id="templateProfile" type="text/template">
     <section id="popupProfile" class="popup popup_profile">
         <div class="userProfile-preview">
@@ -700,7 +703,7 @@
 
 <script id="tpl_contactItem" type="text/template">
     <li class="list-item dialog-item" data-id="<%= user.id %>">
-        <a class="contact l-flexbox user" href="#">
+        <span class="contact l-flexbox user">
             <div class="l-flexbox_inline">
                 <% if (user.avatar_url == 'images/ava-single.svg') { %>
                     <div class="contact-avatar avatar profileUserAvatar m-user__img_<%= user.color %>" data-id="<%= user.id %>">
@@ -733,7 +736,7 @@
                     <i class="material-icons">star_border</i>
                 </p>
             <% } %>
-        </a>
+        </span>
     </li>
 </script>
 
@@ -762,8 +765,6 @@
         </div>
     </li>
 </script>
-
-<!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/0.100.2/js/materialize.min.js"></script> -->
 
 </body>
 
