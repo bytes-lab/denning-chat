@@ -157,6 +157,7 @@ define([
                 activeId = Entities.active,
                 roster = ContactList.roster,
                 rosterIds = Object.keys(roster),
+                denningApi = this.app.denningApi,
                 totalEntries,
                 localEntries,
                 occupants_ids,
@@ -170,23 +171,13 @@ define([
             self.removeDataSpinner();
             self.createDataSpinner();
 
-            // get contacts from denning api
-            $.ajax({
-                type: 'get',
-                url: 'https://denningonline.com.my/denningapi/v2/chat/contact',
-                headers: {
-                    "Content-Type": "application/json",
-                    "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
-                }, 
-                data: {
-                    userid: self.app.models.User.contact.email
-                },
-                success: function(users) {
-                    ContactList.addDenningUsers(users);  
-                    var my_position = Helpers.getAttr(users, self.app.models.User.contact, 'position');
-                    $('.l-user-position').html(my_position);
-                }
-            });  
+            // get contacts from denning api            
+            $.when(denningApi.call('get', 'v2/chat/contact', { userid: self.app.models.User.contact.email }))
+            .done(function (users) {
+                ContactList.addDenningUsers(users);  
+                var my_position = Helpers.getAttr(users, self.app.models.User.contact, 'position');
+                $('.l-user-position').html(my_position);
+            });
 
             Dialog.download({
                 'sort_desc': 'last_message_date_sent',

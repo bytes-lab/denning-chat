@@ -82,6 +82,7 @@ requirejs.config({
         LocationView: 'views/location',
         // apiCalls
         QBApiCalls: 'qbApiCalls',
+        DenningApi: 'denningApi',
         // events
         Events: 'events',
         // helpers

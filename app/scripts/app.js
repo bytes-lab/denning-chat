@@ -18,7 +18,8 @@ define([
     'Helpers', 'QBApiCalls',
     'config', 'Entities',
     'DCHtml', 'Listeners',
-    'VoiceMessage', 'DCPlayer'
+    'VoiceMessage', 'DCPlayer',
+    'DenningApi'
 ], function(
     $, User,
     Session, Settings,
@@ -33,7 +34,8 @@ define([
     Helpers, QBApiCalls,
     DCCONFIG, Entities,
     DCHtml, Listeners,
-    VoiceMessage, DCPlayer
+    VoiceMessage, DCPlayer,
+    DenningApi
 ) {
 
     function DenningChat() {
@@ -64,10 +66,11 @@ define([
             VideoChat   : new VideoChatView(this)
         };
 
-        this.events    = new Events(this);
-        this.service   = new QBApiCalls(this);
-
-        this.entities  = Entities;
+        this.events     = new Events(this);
+        this.service    = new QBApiCalls(this);
+        this.denningApi = new DenningApi();
+        this.entities   = Entities;
+        
         this.entities.app = this;
 
         this.DCPlayer = DCPlayer;
