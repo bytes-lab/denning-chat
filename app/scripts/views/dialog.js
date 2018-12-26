@@ -157,7 +157,7 @@ define([
                 activeId = Entities.active,
                 roster = ContactList.roster,
                 rosterIds = Object.keys(roster),
-                denningApi = this.app.denningApi,
+                DenningApi = this.app.denningApi,
                 totalEntries,
                 localEntries,
                 occupants_ids,
@@ -171,9 +171,9 @@ define([
             self.removeDataSpinner();
             self.createDataSpinner();
 
-            // get contacts from denning api            
-            $.when(denningApi.call('get', 'v2/chat/contact', { userid: self.app.models.User.contact.email }))
-            .done(function (users) {
+            // get contacts from denning api
+            var param = { userid: self.app.models.User.contact.email };
+            DenningApi.call('get', 'v2/chat/contact', param, function (users) {
                 ContactList.addDenningUsers(users);  
                 var my_position = Helpers.getAttr(users, self.app.models.User.contact, 'position');
                 $('.l-user-position').html(my_position);
