@@ -66,9 +66,9 @@ define([
             VideoChat   : new VideoChatView(this)
         };
 
+        this.denningApi = new DenningApi();
         this.events     = new Events(this);
         this.service    = new QBApiCalls(this);
-        this.denningApi = new DenningApi();
         this.entities   = Entities;
         
         this.entities.app = this;

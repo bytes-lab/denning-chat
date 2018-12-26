@@ -66,6 +66,7 @@ define([
         VideoChatView = this.app.views.VideoChat;
         SettingsView = this.app.views.Settings;
         VoiceMessage = this.app.models.VoiceMessage;
+        DenningApi = this.app.denningApi;
 
         isSearching = false;
     }
@@ -570,34 +571,16 @@ define([
                         favourite: email,
                     };
 
-                $.ajax({
-                    type: 'post',
-                    url: 'https://denningonline.com.my/denningapi/v1/chat/contact/fav',
-                    headers: {
-                        "Content-Type": "application/json",
-                        "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
-                    }, 
-                    data: JSON.stringify(data),
-                    success: function(users) {        // should success
-                        $self.toggleClass('favourite');
+                var param = JSON.stringify(data);
+                DenningApi.call('post', 'v1/chat/contact/fav', param, function (users) {
+                    $self.toggleClass('favourite');
 
-                        // update denning user info
-                        $.ajax({
-                            type: 'get',
-                            url: 'https://denningonline.com.my/denningapi/v2/chat/contact',
-                            headers: {
-                                "Content-Type": "application/json",
-                                "webuser-sessionid": "{334E910C-CC68-4784-9047-0F23D37C9CF9}"
-                            }, 
-                            data: {
-                                userid: self.app.models.User.contact.email
-                            },
-                            success: function(users) {
-                                ContactList.addDenningUsers(users, true);
-                            }
-                        });
-                    }
-                });  
+                    // update denning user info
+                    var param = { userid: self.app.models.User.contact.email };
+                    DenningApi.call('get', 'v2/chat/contact', param, function (users) {
+                        ContactList.addDenningUsers(users, true);
+                    });
+                });
             });
 
             $('.list_contextmenu').on('dblclick', '.contact.user', function() {
@@ -863,50 +846,33 @@ define([
                 $self.find('.j-clean-button').show();
                 $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 600; font-size: 17px;">Searching...</li>');
 
-                $.ajax({
-                    type: 'get',
-                    url: 'https://denningonline.com.my/denningapi/v1/generalSearch',
-                    headers: {
-                        "Content-Type": "application/json",
-                        "webuser-sessionid": "testdenningSkySea"
-                    }, 
-                    data: {
+                var param = {
                         search: keyword_folder,
                         category: $('.j-file-folder .filter-item.active').data('category'),
                         isAutoComplete: 1
-                    },
-                    success: function (res) {
-                        if (res.length == 0) {
-                            $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 500; font-size: 16px;">There is no result.</li>');
-                        } else {
-                            $self.parent().find('.list_matters').html('');
+                    };
 
-                            _.each(res, function(ii) {
-                                var el = Helpers.fillTemplate('tpl_matter', { matter: ii});
-                                $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
-                            });
-                        }
+                DenningApi.call('get', 'v1/generalSearch', param, function (res) {
+                    if (res.length == 0) {
+                        $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 500; font-size: 16px;">There is no result.</li>');
+                    } else {
+                        $self.parent().find('.list_matters').html('');
+
+                        _.each(res, function(ii) {
+                            var el = Helpers.fillTemplate('tpl_matter', { matter: ii});
+                            $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
+                        });
                     }
                 });
             };
 
             $( ".j-fileSearch .form-input-search" ).autocomplete({
                 source: function (request, response) {
-                    $.ajax({
-                        type: 'get',
-                        url: 'https://denningonline.com.my/denningapi/v1/generalSearch/keyword',
-                        headers: {
-                            "Content-Type": "application/json",
-                            "webuser-sessionid": "testdenningSkySea"
-                        }, 
-                        data: {
-                            search: request.term
-                        },
-                        success: function (data) {
-                            response($.map( data, function(item) {
-                                return item.keyword;
-                            }));
-                        }
+                    var param = { search: request.term };
+                    DenningApi.call('get', 'v1/generalSearch/keyword', param, function (data) {
+                        response($.map( data, function(item) {
+                            return item.keyword;
+                        }));
                     });
                 },
                 minLength: 2,
@@ -924,26 +890,18 @@ define([
                 $('.j-ifileSearch .form-input-search').val('');
                 $('.filename').text($(this).find('.matter_title').text());
 
-                $.ajax({
-                    type: 'get',
-                    url: 'https://denningonline.com.my/denningapi/v1/app/matter/'+key+'/fileFolder',
-                    headers: {
-                        "Content-Type": "application/json",
-                        "webuser-sessionid": "testdenningSkySea"
-                    },
-                    data: {},
-                    success: function(res) {
-                        if (!res || res.documents.length == 0) {
-                            if (!$('.list_matters').find('.no-matter-file').length) 
-                                $('.list_matters').append('<li class="no-matter-file" style="padding: 12px; font-weight: 500; font-size: 16px;">There is no file.</li>');                                
-                            
-                            $('.list_matters').find('.no-matter-file').removeClass('is-hidden');
-                        } else {
-                            _.each(res.documents, function(ii) {
-                                var el = Helpers.fillTemplate('tpl_matter_file', { file: ii});
-                                $('.list_matters').append(Helpers.toHtml(el)[0]);
-                            });
-                        }
+                var param = {};
+                DenningApi.call('get', 'v1/app/matter/'+key+'/fileFolder', param, function (res) {
+                    if (!res || res.documents.length == 0) {
+                        if (!$('.list_matters').find('.no-matter-file').length) 
+                            $('.list_matters').append('<li class="no-matter-file" style="padding: 12px; font-weight: 500; font-size: 16px;">There is no file.</li>');                                
+                        
+                        $('.list_matters').find('.no-matter-file').removeClass('is-hidden');
+                    } else {
+                        _.each(res.documents, function(ii) {
+                            var el = Helpers.fillTemplate('tpl_matter_file', { file: ii});
+                            $('.list_matters').append(Helpers.toHtml(el)[0]);
+                        });
                     }
                 });
             });
