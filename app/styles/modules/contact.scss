@@ -12,8 +12,8 @@
 }
 .contact-avatar.avatar {
     margin-right: 15px;
-    width: 45px;
-    height: 45px;
+    width: 36px;
+    height: 36px;
 }
 .list-item .contact-avatar.avatar {
     margin-right: 10px;
@@ -48,9 +48,8 @@
 }
 /* avatar */
 .avatar {
-    width: 50px;
-    min-width: 40px;
-    height: 50px;
+    width: 42px;
+    height: 42px;
     border-radius: 50%;
     background-size: cover;
     background-position: 50%;
@@ -108,8 +107,8 @@
 .list-item .status {
     border-color: #fff;
     position: absolute;
-    top: 40px;
-    left: 33px;
+    top: 35px;
+    left: 32px;
 }
 .list-item:hover .status {
     border-color: #f2f4f5;
@@ -382,7 +381,7 @@ span.send-request {
     color: #b3bbe0;
 }
 .favourite {
-    color: red;
+    color: gold;
 }
 
 @media screen and (min-width: 768px) {

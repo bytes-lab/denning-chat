@@ -19,7 +19,7 @@ define([
 
     function DenningApi() {
         self = this;
-        var userInfo = JSON.parse(localStorage['userInfo'])
+        var userInfo = JSON.parse(localStorage.userInfo);
         baseUrl = userInfo.catDenning[0].APIServer;
         sessionID = userInfo.sessionID;
         email = userInfo.email;
@@ -47,7 +47,7 @@ define([
                 success: function(res) {
                     callback(res);
                 }
-            })
+            });
         }
     };
 

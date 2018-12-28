@@ -338,7 +338,7 @@ define([
                             (message.stack ? ' without_border' : '') + '" data-id="' + message.sender_id + '" data-type="' + type + '">';
                         }
 
-                        if (contact.avatar_url != 'images/ava-single.svg') {
+                        if (contact.avatar_url != 'images/profile.svg') {
                             html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
                                 '" style="background-image:url(' + contact.avatar_url + ')" data-id="' + message.sender_id + '"></div>';                            
                         } else {

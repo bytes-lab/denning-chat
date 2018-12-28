@@ -506,9 +506,8 @@
         <a id="home" class="j-home" href="#">
             <div class="l-header-logo">
                 <div>
-                    <p class="l-header-logo-text">Denning Chat</p>
-                    <p class="l-user-position">-</p>
                     <p class="l-user-email"><%= email %></p>
+                    <p class="l-user-position">-</p>
                 </div>
             </div>
         </a>
@@ -705,7 +704,7 @@
     <li class="list-item dialog-item" data-id="<%= user.id %>">
         <span class="contact l-flexbox user">
             <div class="l-flexbox_inline">
-                <% if (user.avatar_url == 'images/ava-single.svg') { %>
+                <% if (user.avatar_url == 'images/profile.svg') { %>
                     <div class="contact-avatar avatar profileUserAvatar m-user__img_<%= user.color %>" data-id="<%= user.id %>">
                         <i class="material-icons chat">person</i>
                     </div>
