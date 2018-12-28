@@ -207,8 +207,16 @@
 }
 /* location */
 .attach_map {
-    width: 286px;
-    height: 200px;
+    width: 230px;
+    height: 161px;
+    margin-left: -5px;
+}    
+@media screen and (min-width: 768px) {
+    .attach_map {
+        width: 286px;
+        height: 200px;
+        margin-left: 0;
+    }
 }
 /* attach message */
 .attach-file {

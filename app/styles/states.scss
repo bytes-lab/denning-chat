@@ -29,10 +29,7 @@ input.is-error:focus {
     position: relative;
 }
 .list-item.is-selected {
-    background: #1cba48;
-}
-.list-item.is-selected:hover {
-    background: #1cba48;
+    background: rgb(240, 244, 248);
 }
 .list-actions_occupants .list-item:hover {
     background: #f8f8f8;
@@ -42,9 +39,6 @@ input.is-error:focus {
 }
 .popup_search .list-item a {
     cursor: default;
-}
-.list-item.is-selected .name {
-    color: #fff;
 }
 .occupant.is-active {
     background: #1cba48;

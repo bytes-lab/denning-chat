@@ -332,22 +332,31 @@ define([
 
                         if (isMyUser) {
                             html = '<article id="' + message.id + '" class="message is-own l-flexbox l-flexbox_alignstretch' +
-                            (message.stack ? ' without_border' : '') + '" data-id="' + message.sender_id + '" data-type="' + type + '">';
+                            (message.stack ? ' continue' : '') + '" data-id="' + message.sender_id + '" data-type="' + type + '">';
                         } else {
                             html = '<article id="' + message.id + '" class="message l-flexbox l-flexbox_alignstretch' +
-                            (message.stack ? ' without_border' : '') + '" data-id="' + message.sender_id + '" data-type="' + type + '">';
+                            (message.stack ? ' continue' : '') + '" data-id="' + message.sender_id + '" data-type="' + type + '">';
                         }
 
                         // if (contact.avatar_url != 'images/profile.svg') {
+                        if (!isMyUser) {
                             html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
                                 '" style="background-image:url(' + contact.avatar_url + ')" data-id="' + message.sender_id + '"></div>';                            
+                        }
                         // } else {
                         //     html += '<div class="message-avatar avatar profileUserAvatar m-user__img_' + contact.color + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
                         //         '" data-id="' + message.sender_id + '"><i class="material-icons dialog">person</i></div>';                            
                         // }
 
                         html += '<div class="message-container-wrap">';
-                        html += '<div class="message-container l-flexbox l-flexbox_flexbetween l-flexbox_alignstretch">';
+                        html += '<div class="message-container l-flexbox1 l-flexbox_flexbetween l-flexbox_alignstretch">';
+
+                        if (!message.stack) {
+                            html += '<div class="message-info"><time class="message-time" data-time="' + message.date_sent + '">' + Helpers.getTime(message.date_sent) + '</time>';
+                            html += '<div class="message-status is-hidden">'+ status +'</div>';
+                            html += '<div class="message-geo j-showlocation"></div></div>';                            
+                        }
+
                         html += '<div class="message-content' + (message.stack ? ' indent' : '') + '">';
                         // html += '<h4 class="message-author' + (message.stack ? ' is-hidden' : '') + '"><span class="profileUserName" data-id="' + message.sender_id + '">' + contact.full_name + '</span></h4>';
 
@@ -390,9 +399,6 @@ define([
                             html += '<div class="message-body">' + minEmoji(Helpers.Messages.parser(message.body)) + '</div></div>';
                         }
 
-                        html += '<div class="message-info"><time class="message-time" data-time="' + message.date_sent + '">' + Helpers.getTime(message.date_sent) + '</time>';
-                        html += '<div class="message-status is-hidden">'+ status +'</div>';
-                        html += '<div class="message-geo j-showlocation"></div></div>';
                         html += '</div></div></article>';
 
                         break;

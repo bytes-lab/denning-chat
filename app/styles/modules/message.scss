@@ -1,10 +1,11 @@
 /* message */
 .message {
     font-family: Roboto, sans-serif;
-    padding: 8px 24px 8px 24px;
+    padding: 1px 20px;
+    margin-top: 12px;
 }
-.message.without_border {
-    border: none;
+.message.continue {
+    margin-top: 0;
 }
 .new_messages {
     padding: 8px 24px 8px 24px;
@@ -61,18 +62,21 @@ article.message[data-status="typing"] > div {
     margin-top: 0;
 }
 .message-content {
+    display: inline-block;
     background: rgb(242,246,249);
     padding: 13px 19px 15px;
-    width: 460px;
+    max-width: 90%;
     border-radius: 0 15px 15px;
     word-wrap: break-word;
 }
 .message.is-own .message-content {
     background: rgb(219,244,253);
     border-radius: 15px 15px 0;
+    float: right;
+    max-width: 80%;
 }
 .message_attach .message-content {
-    width: 460px;
+    max-width: 460px;
 }
 .message-author {
     margin-bottom: 4px;
@@ -94,7 +98,6 @@ article.message[data-status="typing"] > div {
     color: #c03d3d;
 }
 .message-body {
-    max-width: 460px;
     font-size: 14px;
     line-height: 1.43;
     text-align: left;
@@ -115,10 +118,11 @@ article.message[data-status="typing"] > div {
     max-width: 98px;
 }
 .message-content.indent {
-    padding-left: 55px;
-    width: 492px;
+    margin-left: 46px;
 }
 .message-info {
+    margin-bottom: 3px;
+    margin-left: 5px;
     position: relative;
     height: 14px;
     line-height: 14px;
@@ -129,7 +133,6 @@ article.message[data-status="typing"] > div {
 .message-time {
     display: inline-block;
     vertical-align: top;
-    width: 120px;
     text-align: right;
     opacity: .8;
     color: #4a4a4a;
@@ -144,7 +147,6 @@ article.message[data-status="typing"] > div {
 .message-status {
     display: inline-block;
     vertical-align: top;
-    width: 120px;
     text-align: right;
     opacity: .8;
     color: #4a4a4a;
@@ -162,6 +164,17 @@ article.message[data-status="typing"] > div {
 .message-geo.with-geo {
     background: url('../images/ic_location_sm.svg') 50% 25% no-repeat;
     cursor: pointer;
+}
+.message.is-own .message-time {
+    float: right;
+    margin-right: 3px;
+}
+.message.is-own .message-status {
+    float: right;
+    margin-right: 3px;
+}
+.message.is-own .message-geo {
+    float: right;
 }
 .message-avatar.request-button_pending,
 .message-avatar.request-button_cancel,
@@ -326,26 +339,4 @@ article.message[data-status="typing"] > div {
     width: 45px;
     height: 45px;
     background: url('../images/ic-play-video.svg') no-repeat center;
-}
-@media screen and (max-width: 425px) {
-    .message {
-        padding: 8px;
-    }
-
-    .message-content {
-        margin-right: auto;
-        width: 100%;
-    }
-
-    .message-body {
-        max-width: calc(100vw - 142px);
-    }
-
-    .message-content.indent {
-        width: calc(100% - 65px);
-    }
-
-    .message-time {
-        width: 65px;
-    }
 }

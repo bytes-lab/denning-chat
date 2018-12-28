@@ -382,6 +382,9 @@
     height: calc(100% - 165px);
     overflow-y: auto;
 }
+.l-chat-content article:last-child {
+    padding-bottom: 30px;
+}
 .l-chat_group .l-chat-content {
     height: calc(100% - 165px);
 }

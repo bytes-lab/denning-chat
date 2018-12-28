@@ -39,10 +39,6 @@
 .last_message_preview > a:hover {
     opacity: initial;
 }
-.list-item.is-selected .last_message_preview,
-.list-item.is-selected .last_message_preview > a {
-    color: #f5f5f5;
-}
 .last_message_preview > .em {
     cursor: pointer;
 }
@@ -113,9 +109,6 @@
 .list-item:hover .status {
     border-color: #f2f4f5;
 }
-.list-item.is-selected .status {
-    border-color: #1cba48;
-}
 .occupant .status {
     display: none;
     margin: -1px 5px 0 -5px;
@@ -152,10 +145,6 @@
 .list-item:hover .status_request {
     background: #f2f4f5;
 }
-.list-item.is-selected .status_request {
-    background: #1cba48;
-    color: #fff;
-}
 .list-item .status_request:after {
     font-size: 16px;
     font-weight: bold;
@@ -191,9 +180,6 @@
     position: absolute;
     right: 15px;
     top: 14px;
-}
-.list-item.is-selected .last_time_preview {
-    color: #f8f8f8;
 }
 /* unread */
 .unread {
