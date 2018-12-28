@@ -704,13 +704,7 @@
     <li class="list-item dialog-item" data-id="<%= user.id %>">
         <span class="contact l-flexbox user">
             <div class="l-flexbox_inline">
-                <% if (user.avatar_url == 'images/profile.svg') { %>
-                    <div class="contact-avatar avatar profileUserAvatar m-user__img_<%= user.color %>" data-id="<%= user.id %>">
-                        <i class="material-icons chat">person</i>
-                    </div>
-                <% } else { %>
-                    <div class="contact-avatar avatar profileUserAvatar" style="background-image:url(<%= user.avatar_url %>)" data-id="<%= user.id %>"></div>
-                <% } %>
+                <div class="contact-avatar avatar profileUserAvatar" style="background-image:url(<%= user.avatar_url %>)" data-id="<%= user.id %>"></div>
                 <div class="name">
                     <span class="name profileUserName" data-id="<%= user.id %>"><%= user.full_name %></span>
                     <div style="font-size: 11px; color: #aaa;"><%= position %></div>

@@ -61,10 +61,15 @@ article.message[data-status="typing"] > div {
     margin-top: 0;
 }
 .message-content {
-    padding-left: 5px;
+    background: rgb(242,246,249);
+    padding: 13px 19px 15px;
     width: 460px;
-    color: #333;
+    border-radius: 0 15px 15px;
     word-wrap: break-word;
+}
+.message.is-own .message-content {
+    background: rgb(219,244,253);
+    border-radius: 15px 15px 0;
 }
 .message_attach .message-content {
     width: 460px;
@@ -93,7 +98,7 @@ article.message[data-status="typing"] > div {
     font-size: 14px;
     line-height: 1.43;
     text-align: left;
-    color: #4a4a4a;
+    color: rgb(37,36,35);
     position: relative;
     width: 100%;
 }

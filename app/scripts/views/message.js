@@ -338,18 +338,18 @@ define([
                             (message.stack ? ' without_border' : '') + '" data-id="' + message.sender_id + '" data-type="' + type + '">';
                         }
 
-                        if (contact.avatar_url != 'images/profile.svg') {
+                        // if (contact.avatar_url != 'images/profile.svg') {
                             html += '<div class="message-avatar avatar profileUserAvatar' + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
                                 '" style="background-image:url(' + contact.avatar_url + ')" data-id="' + message.sender_id + '"></div>';                            
-                        } else {
-                            html += '<div class="message-avatar avatar profileUserAvatar m-user__img_' + contact.color + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
-                                '" data-id="' + message.sender_id + '"><i class="material-icons dialog">person</i></div>';                            
-                        }
+                        // } else {
+                        //     html += '<div class="message-avatar avatar profileUserAvatar m-user__img_' + contact.color + (message.stack ? ' is-hidden' : (isUserMenu ? ' userMenu j-userMenu' : '')) +
+                        //         '" data-id="' + message.sender_id + '"><i class="material-icons dialog">person</i></div>';                            
+                        // }
 
                         html += '<div class="message-container-wrap">';
                         html += '<div class="message-container l-flexbox l-flexbox_flexbetween l-flexbox_alignstretch">';
                         html += '<div class="message-content' + (message.stack ? ' indent' : '') + '">';
-                        html += '<h4 class="message-author' + (message.stack ? ' is-hidden' : '') + '"><span class="profileUserName" data-id="' + message.sender_id + '">' + contact.full_name + '</span></h4>';
+                        // html += '<h4 class="message-author' + (message.stack ? ' is-hidden' : '') + '"><span class="profileUserName" data-id="' + message.sender_id + '">' + contact.full_name + '</span></h4>';
 
                         if (attachType && attachType.indexOf('image') > -1) {
                             html += '<div class="message-body">';
