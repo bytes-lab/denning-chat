@@ -1064,7 +1064,6 @@ define([
             /* dialogs
             ----------------------------------------------------- */
             $('.list').on('click', '.contact.dialog', function(event) {
-                console.log("123");
                 if (event.target.tagName !== 'INPUT') {
                     event.preventDefault();
                     $('.l-sidebar').removeClass('active');
