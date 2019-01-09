@@ -20,6 +20,7 @@
     left: 0;
 }
 .popup {
+    border-radius: 3px;
     position: fixed;
     top: 25%;
     left: 50%;
@@ -130,15 +131,15 @@
     height: 80vh;
 }
 .popup-header {
-    margin-top: -1px;
-    padding: 0 20px;
-    background: #f2f4f5;
-    border-bottom: 1px solid #f2f4f5;
+    padding-left: 15px;
+    padding-right: 40px;
 }
 .popup-header h3 {
     font-size: 18px;
-    line-height: 60px;
-    color: #333;
+    line-height: 24px;
+    color: #9c27b0;
+    padding-top: 18px;
+    padding-bottom: 2px;
 }
 .popup-form {
     height: 50px;

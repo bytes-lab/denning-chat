@@ -266,6 +266,16 @@ define([
         }
     };
 
+    Helpers.View = {
+        hide: function(selector) {
+            $(selector).addClass('is-hidden');
+        },
+
+        show: function(selector) {
+            $(selector).removeClass('is-hidden');
+        }
+    }
+    
     // smart console
     Helpers.log = function() {
         if (DCCONFIG.debug) {

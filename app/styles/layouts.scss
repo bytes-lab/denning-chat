@@ -492,7 +492,7 @@
 
 .filter-item.active, .filter-item:hover {
     color: white;
-    background-color: #4691F1;
+    background-color: #2196f3;
     padding: 8px 1px;
 }
 
@@ -539,21 +539,21 @@
 .matter_desc {
     font-size: 14px;
     line-height: 22px;
-    margin: 3px 0;
     max-height: 64px;
     overflow: hidden;
+    color: #666;
+    padding-left: 3px;
 }
 
 .matter_title {
     font-size: 16px;
     line-height: 22px;
-    margin: 3px 0;
-    color: purple;
+    color: #333;
     font-weight: 550;
 }
 
 .list-item-matter {
-    padding: 3px 12px;
+    padding: 4px 10px;
     cursor: pointer;
     background: white;
 }
@@ -574,7 +574,7 @@
 
 .list_matters {
     height: 400px;
-    overflow-y: scroll;
+    overflow-y: auto;
     margin: 10px 12px;
     border: solid 1px #bbb;
 }

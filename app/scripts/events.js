@@ -286,8 +286,7 @@ define([
             });
 
             $workspace.on('click', '.j-btn_file_folder', function() {
-                $('.j-file-folder').addClass('is-overlay')
-                    .parent('.j-overlay').addClass('is-overlay');
+                $('.j-file-folder').addClass('is-overlay').parent('.j-overlay').addClass('is-overlay');
             });
 
             $workspace.on('click', '.j-groupProfile', function(event) {
@@ -862,6 +861,8 @@ define([
                             var el = Helpers.fillTemplate('tpl_matter', { matter: ii});
                             $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
                         });
+
+                        $('.list_matters').mCustomScrollbar({ theme: 'minimal-dark' });
                     }
                 });
             };
@@ -884,14 +885,15 @@ define([
 
             $('.list_matters').on('click', '.list-item-matter', function() {
                 var key = $(this).data('key');
-                $('.list-item-matter').addClass('is-hidden');
-                $('.btn_matter_file').removeClass('is-hidden');
-                $('.j-ifileSearch').removeClass('is-hidden');
+                Helpers.View.hide('.list-item-matter');
+                Helpers.View.show('.btn_matter_file');
+                Helpers.View.show('.j-ifileSearch');
+
                 $('.j-ifileSearch .form-input-search').val('');
                 $('.filename').text($(this).find('.matter_title').text());
 
-                var param = {};
-                DenningApi.call('get', 'v1/app/matter/'+key+'/fileFolder', param, function (res) {
+                DenningApi.call('get', 'v1/app/matter/'+key+'/fileFolder', {}, function (res) {
+                    $('.list_matters').mCustomScrollbar("destroy");
                     if (!res || res.documents.length == 0) {
                         if (!$('.list_matters').find('.no-matter-file').length) 
                             $('.list_matters').append('<li class="no-matter-file" style="padding: 12px; font-weight: 500; font-size: 16px;">There is no file.</li>');                                
@@ -903,6 +905,7 @@ define([
                             $('.list_matters').append(Helpers.toHtml(el)[0]);
                         });
                     }
+                    $('.list_matters').mCustomScrollbar({ theme: 'minimal-dark' });
                 });
             });
 
