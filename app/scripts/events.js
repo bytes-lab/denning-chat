@@ -886,11 +886,12 @@ define([
             $('.list_matters').on('click', '.list-item-matter', function() {
                 var key = $(this).data('key');
                 Helpers.View.hide('.list-item-matter');
+                Helpers.View.hide('.j-fileSearch');
                 Helpers.View.show('.btn_matter_file');
                 Helpers.View.show('.j-ifileSearch');
 
                 $('.j-ifileSearch .form-input-search').val('');
-                $('.filename').text($(this).find('.matter_title').text());
+                $('.filename').text($(this).find('.matter_title').text().replace("Matter: ", ""));
 
                 DenningApi.call('get', 'v1/app/matter/'+key+'/fileFolder', {}, function (res) {
                     $('.list_matters').mCustomScrollbar("destroy");
@@ -910,11 +911,13 @@ define([
             });
 
             $('.btn_matter_file').on('click', function() {
-                $(this).addClass('is-hidden');
-                $('.j-ifileSearch').addClass('is-hidden');
-                $('.list_matters').find('.no-matter-file').addClass('is-hidden');
+                Helpers.View.hide(this);
+                Helpers.View.hide('.j-ifileSearch');
+                Helpers.View.hide('.no-matter-file');
+                // $(this).addClass('is-hidden');
+                Helpers.View.show('.j-fileSearch');
+                Helpers.View.show('.list-item-matter');
                 $('.list-item-file').remove();
-                $('.list-item-matter').removeClass('is-hidden');
                 $('.filename').text('Search Denning Folders');
             });
 
