@@ -842,6 +842,10 @@ define([
             var loadFolders = function() {
                 var $self = $( ".j-fileSearch" );
 
+                if ($('.list_matters').is('.mCS-autoHide')) {
+                    $('.list_matters').mCustomScrollbar("destroy");
+                }
+
                 $self.find('.j-clean-button').show();
                 $self.parent().find('.list_matters').html('<li style="padding: 12px; font-weight: 600; font-size: 17px;">Searching...</li>');
 
@@ -861,9 +865,8 @@ define([
                             var el = Helpers.fillTemplate('tpl_matter', { matter: ii});
                             $self.parent().find('.list_matters').append(Helpers.toHtml(el)[0]);
                         });
-
-                        $('.list_matters').mCustomScrollbar({ theme: 'minimal-dark' });
                     }
+                    $('.list_matters').mCustomScrollbar({ theme: 'minimal-dark' });
                 });
             };
 
@@ -884,7 +887,8 @@ define([
             });
 
             $('.list_matters').on('click', '.list-item-matter', function() {
-                var key = $(this).data('key');
+                var key = $(this).data('key'),
+                    type = $(this).data('type').toLowerCase();
                 Helpers.View.hide('.list-item-matter');
                 Helpers.View.hide('.j-fileSearch');
                 Helpers.View.show('.btn_matter_file');
@@ -893,18 +897,31 @@ define([
                 $('.j-ifileSearch .form-input-search').val('');
                 $('.filename').text($(this).find('.matter_title').text().replace("Matter: ", ""));
 
-                DenningApi.call('get', 'v1/app/matter/'+key+'/fileFolder', {}, function (res) {
+                DenningApi.call('get', 'v1/document/'+type+'/dir/'+key, {}, function (res) {
                     $('.list_matters').mCustomScrollbar("destroy");
                     if (!res || res.documents.length == 0) {
                         if (!$('.list_matters').find('.no-matter-file').length) 
-                            $('.list_matters').append('<li class="no-matter-file" style="padding: 12px; font-weight: 500; font-size: 16px;">There is no file.</li>');                                
-                        
+                            $('.list_matters').append('<li class="no-matter-file" style="padding: 12px; font-weight: 500; font-size: 16px;">There is no file.</li>');                        
                         $('.list_matters').find('.no-matter-file').removeClass('is-hidden');
                     } else {
+                        var el = Helpers.fillTemplate('tpl_matter_folder', { folder: { name: "FILES" }});
+                        $('.list_matters').append(Helpers.toHtml(el)[0]);
+
                         _.each(res.documents, function(ii) {
                             var el = Helpers.fillTemplate('tpl_matter_file', { file: ii});
                             $('.list_matters').append(Helpers.toHtml(el)[0]);
                         });
+
+                        _.each(res.folders, function(ii) {
+                            var el = Helpers.fillTemplate('tpl_matter_folder', { folder: { name: ii.name.toUpperCase() }});
+                            $('.list_matters').append(Helpers.toHtml(el)[0]);
+
+                            _.each(ii.documents, function(jj) {
+                                var el = Helpers.fillTemplate('tpl_matter_file', { file: jj});
+                                $('.list_matters').append(Helpers.toHtml(el)[0]);
+                            });
+                        });
+
                     }
                     $('.list_matters').mCustomScrollbar({ theme: 'minimal-dark' });
                 });
@@ -914,9 +931,9 @@ define([
                 Helpers.View.hide(this);
                 Helpers.View.hide('.j-ifileSearch');
                 Helpers.View.hide('.no-matter-file');
-                // $(this).addClass('is-hidden');
                 Helpers.View.show('.j-fileSearch');
                 Helpers.View.show('.list-item-matter');
+
                 $('.list-item-file').remove();
                 $('.filename').text('Search Denning Folders');
             });
@@ -1010,7 +1027,7 @@ define([
 
             $('.j-clean-button').on('click', function(event) {
                 var $self = $(this),
-                    $form = $self.parent('form.formSearch');
+                    $form = $self.parent('.formSearch');
 
                 $self.hide();
                 $form.find('input.form-input-search').val('').focus();
@@ -1020,6 +1037,9 @@ define([
                 } else if ($form.is('.j-localSearch')) {
                     UserView.localSearch($form);
                 } else if ($form.is('.j-fileSearch')) {
+                    if ($('.list_matters').is('.mCS-autoHide')) {
+                        $('.list_matters').mCustomScrollbar("destroy");
+                    }
                     $('.list_matters').html('');
                     $('.doc-search').val('');
                     $('.filename').html('Search Denning Folders');

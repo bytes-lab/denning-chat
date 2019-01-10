@@ -742,7 +742,7 @@
 </script>
 
 <script type="text/template" id="tpl_matter">
-    <li class="list-item-matter" data-key="<%= matter.key %>">
+    <li class="list-item-matter" data-key="<%= matter.key %>" data-type="<%= matter.Title.split(':')[0] %>">
         <div class="matter__details">
             <p class="matter_title"><%- matter.Title %></p>
             <p class="matter_desc"><%- matter.Desc %></p>
@@ -753,8 +753,24 @@
 <script type="text/template" id="tpl_matter_file">
     <li class="list-item-file" data-url="<%= file.URL %>" data-title="<%= file.name %>" data-ext="<%= file.ext %>" data-size=<%= file.size %>>
         <div class="matter__details">
-            <p class="matter_title"><%- file.name %><%= file.ext %></p>
-            <p class="matter_desc">Created at <%- file.date %></p>
+            <input type="checkbox" class="form-checkbox file-choose">
+            <% if (file.ext=='.jpg' || file.ext=='.png' || file.ext=='.jpeg') { %>
+                <img width="18" src="images/file/image.ico">
+            <% } else if (file.ext=='.pdf') { %>
+                <img width="18" src="images/file/pdf.png">
+            <% } else { %>
+                <img width="18" src="images/file/word.png">
+            <% } %>
+            <span class="file_title" title="<%- file.name %><%= file.ext %>"><%- file.name %><%= file.ext %></span>
+        </div>
+    </li>
+</script>
+
+<script type="text/template" id="tpl_matter_folder">
+    <li class="list-item-file" data-url="<%= folder.URL %>" data-title="<%= folder.name %>" data-ext="<%= folder.ext %>">
+        <div class="matter__details folder">
+            <i class="material-icons">folder</i>
+            <span class="folder_title" title="<%- folder.name %>"><%- folder.name %></span>
         </div>
     </li>
 </script>

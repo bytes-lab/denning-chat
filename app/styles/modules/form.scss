@@ -152,6 +152,10 @@ input.form-input-search.without_M[type=search]:focus:not([readonly]) {
     height: 6vh;
     margin: 2vh 0 4vh;
 }
+.file-choose {
+    margin-left: 3px;
+    margin-top: -7px;
+}
 .form-file:hover .form-file-custom {
     opacity: 0.6;
 }

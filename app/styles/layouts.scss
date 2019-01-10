@@ -552,6 +552,31 @@
     font-weight: 550;
 }
 
+.file_title {
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    width: calc(100% - 50px);
+    display: inline-block;
+}
+
+.folder_title {
+    color: #2196f3;
+    margin-top: 3px;
+}
+
+.matter__details.folder {
+    margin-top: 5px;
+    display: flex;
+}
+
+.matter__details.folder i {
+    color: #2196f3;
+    margin-left: -5px;
+    margin-right: 5px;
+    font-size: 20px;
+}
+
 .list-item-matter {
     padding: 4px 10px;
     cursor: pointer;

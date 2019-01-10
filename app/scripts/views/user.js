@@ -283,7 +283,7 @@ define([
 
             if (val.length > 0) {
                 $('.list_matters').find('.list-item-file').each(function() {
-                    var name = $(this).find('.matter_title').text().toLowerCase(),
+                    var name = $(this).find('.matter_title').text().toLowerCase()+$(this).find('.file_title').text().toLowerCase(),
                         li = $(this).clone();
 
                     if (name.indexOf(val) == -1) {
