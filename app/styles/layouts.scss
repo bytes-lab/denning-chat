@@ -492,7 +492,7 @@
 
 .filter-item.active, .filter-item:hover {
     color: white;
-    background-color: #2196f3;
+    background-color: #26c6da;
     padding: 8px 1px;
 }
 
@@ -661,4 +661,12 @@
     .l-user-email {
         max-width: 200px;
     }
+}
+
+.m-b-10 {
+    margin-bottom: 10px;   
+}
+
+.m-t-10 {
+    margin-top: 10px;   
 }

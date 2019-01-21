@@ -891,7 +891,7 @@ define([
                     type = $(this).data('type').toLowerCase();
                 Helpers.View.hide('.list-item-matter');
                 Helpers.View.hide('.j-fileSearch');
-                Helpers.View.show('.btn_matter_file');
+                Helpers.View.show('#popupFileFolder button.btn');
                 Helpers.View.show('.j-ifileSearch');
 
                 $('.j-ifileSearch .form-input-search').val('');
@@ -927,8 +927,8 @@ define([
                 });
             });
 
-            $('.btn_matter_file').on('click', function() {
-                Helpers.View.hide(this);
+            $('#popupFileFolder button.back').on('click', function() {
+                Helpers.View.hide('#popupFileFolder button.btn');
                 Helpers.View.hide('.j-ifileSearch');
                 Helpers.View.hide('.no-matter-file');
                 Helpers.View.show('.j-fileSearch');
@@ -942,20 +942,25 @@ define([
                 closePopup();
             });
 
-            $('.list_matters').on('dblclick', '.list-item-file', function() {
-                var jid = $('.j-btn_file_folder').parents('.l-chat').data('jid'),
-                    dialog_id = $('.j-btn_file_folder').parents('.l-chat').data('dialog'),
-                    val = 'https://denningonline.com.my/denningapi/' + $(this).data('title') + $(this).data('ext'),
-                    type = $('.j-btn_file_folder').parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat',
-                    dext = {
-                        url: val,
-                        title: $(this).data('title'),
-                        ext: $(this).data('ext'),
-                        size: $(this).data('size') * 1000
-                    };
+            $('#popupFileFolder').on('click', '.send-denning-files', function() {
+                var choosenFiles = $("input.file-choose:checked");
+                if (choosenFiles.length > 0) {
+                    var jid = $('.j-btn_file_folder').parents('.l-chat').data('jid'),
+                        dialog_id = $('.j-btn_file_folder').parents('.l-chat').data('dialog'),
+                        type = $('.j-btn_file_folder').parents('.l-chat').is('.is-group') ? 'groupchat' : 'chat';
 
-                MessageView._sendMessage(jid, val, type, dialog_id, dext);
-                alert(dext.title+dext.ext+' is attached successfully.');
+                    for (var i = 0; i < choosenFiles.length; i++) {
+                        var _file = $(choosenFiles[i]).parents('.list-item-file'),
+                            val = 'https://denningonline.com.my/denningapi/' + _file.data('title') + _file.data('ext'),
+                            dext = {
+                                url: val,
+                                title: _file.data('title'),
+                                ext: _file.data('ext'),
+                                size: _file.data('size') * 1000
+                            };
+                        MessageView._sendMessage(jid, val, type, dialog_id, dext);
+                    }
+                }
             });
             
             /* search

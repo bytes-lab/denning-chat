@@ -379,7 +379,7 @@ define([
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + attachUrl + '" target="_blank"><img class="icon" src="images/file/pdf.png"><div class=""> ' + message.attachment.name + '</div></a>';
                             html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div></div>';
-                        } else if (dext && dext.ext.indexOf('pdf') > -1) {
+                        } else if (dext && dext.ext && dext.ext.indexOf('pdf') > -1) {
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + dext.url + '" target="_blank"><img class="icon" src="images/file/pdf.png"><div class=""> ' + dext.title + dext.ext + '</div></a>';
                             html += '<span class="attach-size">' + getFileSize(dext.size) + '</span></div></div>';
@@ -387,7 +387,7 @@ define([
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + attachUrl + '" target="_blank"><img class="icon" src="images/file/word.png"><div class=""> ' + message.attachment.name + '</div></a>';
                             html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div></div>';
-                        } else if (dext && dext.ext.indexOf('doc') > -1) {
+                        } else if (dext && dext.ext && dext.ext.indexOf('doc') > -1) {
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + dext.url + '" target="_blank"><img class="icon" src="images/file/word.png"><div class=""> ' + dext.title + dext.ext + '</div></a>';
                             html += '<span class="attach-size">' + getFileSize(dext.size) + '</span></div></div>';
