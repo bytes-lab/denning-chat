@@ -116,6 +116,10 @@ define([
                 unreadDialogs[dialog_id] = true;
                 counter = Object.keys(unreadDialogs).length;
 
+                if (parent.document.getElementById('tmn-unread-msg')) {
+                    parent.document.getElementById('tmn-unread-msg').textContent = counter;
+                    parent.document.getElementById('tmn-unread-msg').style.display = 'inline';
+                }
                 $('title').text('(' + counter + ') ' + TITLE_NAME);
                 $('link[rel="icon"]').remove();
                 $('head').append('<link rel="icon" href="' + FAVICON_COUNTER + '">');
@@ -131,7 +135,14 @@ define([
 
                 if (counter > 0) {
                     $('title').text('(' + counter + ') ' + TITLE_NAME);
+                    if (parent.document.getElementById('tmn-unread-msg')) {
+                        parent.document.getElementById('tmn-unread-msg').textContent = counter;
+                        parent.document.getElementById('tmn-unread-msg').style.display = 'inline';
+                    }
                 } else {
+                    if (parent.document.getElementById('tmn-unread-msg')) {
+                        parent.document.getElementById('tmn-unread-msg').style.display = 'none';
+                    }
                     $('title').text(TITLE_NAME);
                     $('link[rel="icon"]').remove();
                     $('head').append('<link rel="icon" href="' + FAVICON + '">');

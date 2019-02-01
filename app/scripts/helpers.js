@@ -274,7 +274,7 @@ define([
         show: function(selector) {
             $(selector).removeClass('is-hidden');
         }
-    }
+    };
     
     // smart console
     Helpers.log = function() {
