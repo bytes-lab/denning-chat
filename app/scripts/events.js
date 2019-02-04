@@ -953,7 +953,7 @@ define([
                         var _file = $(choosenFiles[i]).parents('.list-item-file'),
                             val = 'https://denningonline.com.my/denningapi/' + _file.data('title') + _file.data('ext'),
                             dext = {
-                                url: val,
+                                url: _file.data('url').replace('/document/', '/getOneTimeLink/'),
                                 title: _file.data('title'),
                                 ext: _file.data('ext'),
                                 size: _file.data('size') * 1000
@@ -963,6 +963,15 @@ define([
                 }
             });
             
+            $('#chatWrap').on('click', '.denning-attachment', function() {
+                var _url = $(this).data('url');
+                console.log(_url);
+                DenningApi.call('get', _url, { }, function (link) {
+                    _url = 'https://docs.google.com/gview?url=https://denningchat.com.my/denningwcf/' +
+                      link + '&embedded=false';
+                    window.open(_url, '_blank');
+                });
+            });
             /* search
             ----------------------------------------------------- */
             $('.j-globalSearch').on('keyup search submit', function(event) {
