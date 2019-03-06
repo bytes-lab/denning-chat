@@ -960,6 +960,7 @@ define([
                             };
                         MessageView._sendMessage(jid, val, type, dialog_id, dext);
                     }
+                    closePopup();
                 }
             });
             
