@@ -778,6 +778,16 @@
     </li>
 </script>
 
+<script type="text/template" id="tpl_message_body_denning">
+    <div class="message-body">
+        <div class="denning-attachment" id="attach_<%= message.id %>" class="attach-file" data-url="<%= dext.url %>" data-name="<%= dext.title %>" data-ext="<%= dext.ext %>">
+            <img class="icon" src="images/file/<%= icon %>">
+            <div><%= dext.title %><%= dext.ext %></div>
+        </div>
+        <span class="attach-size"><%= size %></span>
+    </div>
+</script>
+
 </body>
 
 </html>

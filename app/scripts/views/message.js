@@ -363,43 +363,48 @@ define([
                         if (attachType && attachType.indexOf('image') > -1) {
                             html += '<div class="message-body">';
                             html += '<div id="image_' + message.id + '" class="preview preview-photo" data-url="' + attachUrl + '" data-name="' + message.attachment.name + '">';
-                            html += '<img src="' + attachUrl + '" alt="attach"></div></div></div>';
+                            html += '<img src="' + attachUrl + '" alt="attach"></div></div>';
                         } else if (attachType && attachType.indexOf('audio') > -1) {
-                            html += '<div class="message-body"><div id="audio_player_' + message.id + '" class="audio_player"></div></div></div>';
+                            html += '<div class="message-body"><div id="audio_player_' + message.id + '" class="audio_player"></div></div>';
                         } else if (attachType && attachType.indexOf('video') > -1) {
                             html += '<div class="message-body"><div class="media_title">'+ message.attachment.name + '</div>';
                             html += '<video id="video_' + message.id + '" class="video_player j-videoPlayer" preload="none" data-source="' + attachUrl + '" poster="images/ic-play-video.svg">'+
                                         // '<source src="' + attachUrl + '" type="video/mp4">'+
-                                    '</video></div></div>';
+                                    '</video></div>';
                         } else if (attachType && attachType.indexOf('location') > -1) {
                             html += '<div class="message-body">';
                             html += '<a class="open_googlemaps" href="' + mapAttachLink + '" target="_blank">';
-                            html += '<img id="attach_' + message.id + '" src="' + mapAttachImage + '" alt="attach" class="attach_map"></a></div></div>';
+                            html += '<img id="attach_' + message.id + '" src="' + mapAttachImage + '" alt="attach" class="attach_map"></a></div>';
                         } else if (attachType && attachType.indexOf('pdf') > -1) {
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + attachUrl + '" target="_blank"><img class="icon" src="images/file/pdf.png"><div class=""> ' + message.attachment.name + '</div></a>';
-                            html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div></div>';
-                        } else if (dext && dext.ext && dext.ext.indexOf('pdf') > -1) {
-                            html += '<div class="message-body">';
-                            html += '<div class="denning-attachment" id="attach_' + message.id + '" class="attach-file" data-url="' + dext.url + '" target="_blank"><img class="icon" src="images/file/pdf.png"><div class=""> ' + dext.title + dext.ext + '</div></div>';
-                            html += '<span class="attach-size">' + getFileSize(dext.size) + '</span></div></div>';
+                            html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div>';
                         } else if (attachType && attachType.indexOf('word') > -1) {
                             html += '<div class="message-body">';
                             html += '<a id="attach_' + message.id + '" class="attach-file" href="' + attachUrl + '" target="_blank"><img class="icon" src="images/file/word.png"><div class=""> ' + message.attachment.name + '</div></a>';
-                            html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div></div>';
-                        } else if (dext && dext.ext && dext.ext.indexOf('doc') > -1) {
-                            html += '<div class="message-body">';
-                            html += '<div class="denning-attachment" id="attach_' + message.id + '" class="attach-file" data-url="' + dext.url + '" target="_blank"><img class="icon" src="images/file/word.png"><div class=""> ' + dext.title + dext.ext + '</div></div>';
-                            html += '<span class="attach-size">' + getFileSize(dext.size) + '</span></div></div>';
+                            html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div>';
+                        } else if (dext && dext.ext) {
+                            var icon = 'file.ico';
+                            if (dext.ext.indexOf('pdf') > -1)
+                                icon = 'pdf.png';
+                            else if (dext.ext.indexOf('doc') > -1)
+                                icon = 'word.png';
+
+                            var el = Helpers.fillTemplate('tpl_message_body_denning', { 
+                                message: message, 
+                                dext: dext, 
+                                size: getFileSize(dext.size),
+                                icon: icon });
+                            html += el;
                         } else if (message.attachment && message.attachment.type.indexOf('file') > -1) {
                             html += '<div class="message-body">';
                             html += '<div class="denning-attachment" id="attach_' + message.id + '" class="attach-file" href="' + attachUrl + '" download="' + message.attachment.name + '"><img class="icon" src="images/file/file.ico"><div class=""> ' + message.attachment.name + '</div></a>';
-                            html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div></div>';
+                            html += '<span class="attach-size">' + getFileSize(message.attachment.size) + '</span></div>';
                         } else {
-                            html += '<div class="message-body">' + minEmoji(Helpers.Messages.parser(message.body)) + '</div></div>';
+                            html += '<div class="message-body">' + minEmoji(Helpers.Messages.parser(message.body)) + '</div>';
                         }
 
-                        html += '</div></div></article>';
+                        html += '</div></div></div></article>';
 
                         break;
                 }
