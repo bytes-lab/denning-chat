@@ -6,10 +6,12 @@
  */
 define([
     'jquery',
-    'config'
+    'config',
+    'Helpers'
 ], function(
     $,
-    DCCONFIG
+    DCCONFIG,
+    Helpers
 ) {    
 
     var self,
@@ -22,11 +24,21 @@ define([
     }
 
     DenningApi.prototype = {
+        isReady: function() {
+            self.init();
+            return baseUrl && sessionID && email;
+        },
         init: function() {
-            var userInfo = JSON.parse(localStorage.userInfo);
-            baseUrl = userInfo.catDenning[0].APIServer;
-            sessionID = userInfo.sessionID;
-            email = userInfo.email;
+            try {
+                var userInfo = JSON.parse(localStorage.userInfo);
+                baseUrl = userInfo.catDenning[0].APIServer;
+                sessionID = userInfo.sessionID;
+                email = userInfo.email;                
+            } catch (e) {
+                baseUrl = Helpers.getURLParameter('server');
+                sessionID = Helpers.getURLParameter('sid');
+                email = Helpers.getURLParameter('uid');
+            }
         },
         call: function (method, path, data, callback) {
             self.init();
@@ -50,6 +62,9 @@ define([
                 data: data,
                 success: function(res) {
                     callback(res);
+                },
+                error: function(res) {
+                    alert(res.statusCode);
                 }
             });
         }

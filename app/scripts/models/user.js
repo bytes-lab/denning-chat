@@ -217,7 +217,8 @@ define([
 
                 var tmp = localStorage.userInfo;
                 localStorage.clear();
-                localStorage.setItem('userInfo', tmp);
+                if (tmp)
+                    localStorage.setItem('userInfo', tmp);
                 window.location.reload();
             });
         }

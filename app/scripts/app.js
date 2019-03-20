@@ -95,7 +95,8 @@ define([
                 // removing the old cached data from LocalStorage
                 var tmp = localStorage.userInfo;
                 localStorage.clear();
-                localStorage.setItem('userInfo', tmp);
+                if (tmp)
+                    localStorage.setItem('userInfo', tmp);
                 localStorage.setItem('DC.isReleaseQBAccount', '1');
                 this.service.init();
             }
@@ -103,13 +104,18 @@ define([
             this.events.init();
             this.listeners.init();
 
-            Helpers.log('App init', this);
-            var email = Helpers.getURLParameter('uid');
-            if (email) {
-                this.models.User.login({ 
-                    email: email, 
-                    password: Helpers.getURLParameter('sppid') || 'denningIT'
-                });
+            if (!this.denningApi.isReady()) {
+                alert("You need to provide the denning api credentials!");
+            } else {
+                Helpers.log('App init', this);
+                var email = Helpers.getURLParameter('uid');
+
+                if (email) {
+                    this.models.User.login({ 
+                        email: email, 
+                        password: Helpers.getURLParameter('sppid') || 'denningIT'
+                    });
+                }                
             }
         },
 
