@@ -67,7 +67,9 @@ define([
                     callback(res);
                 },
                 error: function(res) {
-                    alert(res.statusCode);
+                    if (res.status == 408) {
+                        alert('Denning session expired!');
+                    }
                 }
             });
         }
