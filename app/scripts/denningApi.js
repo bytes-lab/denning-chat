@@ -28,6 +28,9 @@ define([
             self.init();
             return baseUrl && sessionID && email;
         },
+        getEmail: function() {
+            return email;
+        },
         init: function() {
             try {
                 var userInfo = JSON.parse(localStorage.userInfo);

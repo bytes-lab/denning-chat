@@ -108,7 +108,7 @@ define([
                 alert("You need to provide the denning api credentials!");
             } else {
                 Helpers.log('App init', this);
-                var email = Helpers.getURLParameter('uid');
+                var email = this.denningApi.getEmail();
 
                 if (email) {
                     this.models.User.login({ 
