@@ -7,11 +7,13 @@
 define([
     'jquery',
     'config',
-    'Helpers'
+    'Helpers',
+    'cryptojs'
 ], function(
     $,
     DCCONFIG,
-    Helpers
+    Helpers,
+    CryptoJS
 ) {    
 
     var self,
@@ -54,6 +56,15 @@ define([
                 _sessionID = sessionID;
             }
 
+            return self._call(method, url, _sessionID, data, callback)
+        },
+        call_crypto: function(method, path, dialog_id, data, callback) {
+            url = baseUrl + path;
+            _sessionID = CryptoJS.HmacSHA1("webuserid="+email+"&dialog_id="+dialog_id, "Tctz5xEDNWuJQq4").toString(); 
+
+            return self._call(method, url, _sessionID, data, callback)
+        },
+        _call: function(method, url, _sessionID, data, callback) {
             return $.ajax({
                 type: method,
                 url: url,
@@ -71,7 +82,7 @@ define([
                         alert('Denning session expired!');
                     }
                 }
-            });
+            });            
         }
     };
 
