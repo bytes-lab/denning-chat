@@ -9,7 +9,6 @@ define([
     'config',
     'quickblox',
     'Helpers',
-    'DCHtml',
     'LocationView',
     'underscore',
     'progressbar'
@@ -18,7 +17,6 @@ define([
     DCCONFIG,
     QB,
     Helpers,
-    DCHtml,
     Location,
     _,
     ProgressBar
@@ -54,7 +52,7 @@ define([
 
             if (file) {
                 // progress bar DOM
-                html = DCHtml.Attach.attach({
+                html = Helpers.fillTemplate('tpl_attach', { 
                     'fileName': file.name,
                     'fileSizeCrop': fileSizeCrop,
                     'fileSizeUnit': fileSizeUnit,
@@ -83,7 +81,7 @@ define([
         },
 
         pastErrorMessage: function(errMsg, objDom, chat) {
-            var html = DCHtml.Attach.error({
+            var html = Helpers.fillTemplate('tpl_attach_error', { 
                 'errMsg': errMsg
             });
 

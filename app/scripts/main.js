@@ -90,11 +90,11 @@ requirejs.config({
         // custom listeners
         Listeners: 'listeners',
         // templates
-        DCHtml: 'qmhtml',
+        DCHtml: 'dc_html',
         // entities
         Entities: 'entities',
         // DC Player
-        DCPlayer: 'views/qmplayer'
+        DCPlayer: 'views/dc_player'
     }
 });
 
