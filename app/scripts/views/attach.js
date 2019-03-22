@@ -67,16 +67,7 @@ define([
 
                 fixScroll();
 
-                if (file.type.indexOf('image') > -1) {
-                    Attach.crop(file, {
-                        w: 1000,
-                        h: 1000
-                    }, function(blob) {
-                        self.createProgressBar(id, fileSizeCrop, metadata, blob);
-                    });
-                } else {
-                    self.createProgressBar(id, fileSizeCrop, metadata, file);
-                }
+                self.createProgressBar(id, fileSizeCrop, metadata, file);
             }
         },
 
@@ -122,14 +113,22 @@ define([
 
             setPercent();
 
-            Attach.upload(file, function(blob) {
-                Helpers.log('Blob:', blob);
+            Attach.upload(file, function(res) {
+                if (res.code == 200) {
+                    console.log(res.success[0]);
 
-                if (!blob.size) {
-                    blob.size = file.size || metadata.size;
+                    // var _file = $(choosenFiles[i]).parents('.list-item-file'),
+                    //     val = 'File Attachment: ' + file.name,
+                    //     dext = {
+                    //         url: res.success[0],
+                    //         title: file.name,
+                    //         ext: file.name,
+                    //         size: file.size
+                    //     };
+                    // MessageView._sendMessage(jid, val, type, dialog_id, dext);
+
                 }
-
-                self.sendMessage($chatItem, blob, metadata);
+                // self.sendMessage($chatItem, blob, metadata);
 
                 isUpload = true;
 
@@ -315,6 +314,7 @@ define([
         $('.l-chat:visible .j-scrollbar_message').mCustomScrollbar('scrollTo', 'bottom');
     }
 
+    // for media files
     function readMetadata(file) {
         var _URL = window.URL || window.webkitURL,
             metadata = { 'size': file.size },
