@@ -46,7 +46,7 @@ define([
                 fileSize = file.size,
                 fileSizeCrop = fileSize > (1024 * 1024) ? (fileSize / (1024 * 1024)).toFixed(1) : (fileSize / 1024).toFixed(1),
                 fileSizeUnit = fileSize > (1024 * 1024) ? 'MB' : 'KB',
-                metadata = readMetadata(file),
+                metadata = { 'size': file.size },
                 errMsg,
                 html;
 
@@ -114,21 +114,21 @@ define([
             setPercent();
 
             Attach.upload(file, function(res) {
-                if (res.code == 200) {
-                    console.log(res.success[0]);
+                if (res.code == "200") {                    
 
-                    // var _file = $(choosenFiles[i]).parents('.list-item-file'),
-                    //     val = 'File Attachment: ' + file.name,
-                    //     dext = {
-                    //         url: res.success[0],
-                    //         title: file.name,
-                    //         ext: file.name,
-                    //         size: file.size
-                    //     };
-                    // MessageView._sendMessage(jid, val, type, dialog_id, dext);
+                    var MessageView = this.app.views.Message,
+                        val = 'File Attachment: ' + file.name,
+                        type = $chatItem.is('.is-group') ? 'groupchat' : 'chat',
+                        fn_ = file.name.split('.'),
+                        dext = {
+                            url: res.success[0],
+                            ext: '.'+fn_.pop(),
+                            title: fn_.join('.'),
+                            size: file.size
+                        };
 
+                    MessageView._sendMessage($chatItem.data('jid'), val, type, $chatItem.data('dialog'), dext);
                 }
-                // self.sendMessage($chatItem, blob, metadata);
 
                 isUpload = true;
 
@@ -162,6 +162,7 @@ define([
             objDom.parents('article').remove();
         },
 
+        // only used for audio record file at the moment
         sendMessage: function(chat, blob, metadata, mapCoords) {
             var MessageView = this.app.views.Message,
                 jid = chat.data('jid'),
@@ -264,46 +265,6 @@ define([
 
                 return text;
             }
-        },
-
-        validateFile: function(file) {
-            var errMsg,
-                maxSize,
-                fullType,
-                type;
-
-            fullType = file.type;
-            type = file.type.indexOf('image/') === 0 ? 'image' :
-                   file.type.indexOf('audio/') === 0 ? 'audio' :
-                   file.type.indexOf('video/') === 0 ? 'video' : 'file';
-
-            if (type === 'video' || type === 'audio') {
-                maxSize = DCCONFIG.maxLimitMediaFile * 1024 * 1024;
-            } else {
-                maxSize = DCCONFIG.maxLimitFile * 1024 * 1024;
-            }
-
-            if (file.name.length > 100) {
-                errMsg = DCCONFIG.errors.fileName;
-            } else if (file.size > maxSize) {
-                if (type === 'video') {
-                    errMsg = DCCONFIG.errors.videoSize;
-                } else {
-                    errMsg = DCCONFIG.errors.fileSize;
-                }
-            }
-
-            if (type === 'video' && fullType !== 'video/mp4') {
-                errMsg = 'This video format is not supported, only *.mp4';
-            } else if (type === 'audio' && fullType !== 'audio/mp3') {
-                if (fullType !== 'audio/mpeg') {
-                    errMsg = 'This audio format is not supported, only *.mp3';
-                }
-            } else if (type === 'file') {
-                errMsg = 'This file format isn\'t supported';
-            }
-
-            return errMsg;
         }
 
     };
@@ -312,52 +273,6 @@ define([
     ---------------------------------------------------------------------- */
     function fixScroll() {
         $('.l-chat:visible .j-scrollbar_message').mCustomScrollbar('scrollTo', 'bottom');
-    }
-
-    // for media files
-    function readMetadata(file) {
-        var _URL = window.URL || window.webkitURL,
-            metadata = { 'size': file.size },
-            type = file.type.indexOf('image/') === 0 ? 'image' :
-                   file.type.indexOf('audio/') === 0 ? 'audio' :
-                   file.type.indexOf('video/') === 0 ? 'video' : 'file';
-
-        switch (type) {
-            case 'image':
-                var image = new Image();
-
-                image.src = _URL.createObjectURL(file);
-                image.onload = function() {
-                    metadata.width = this.width;
-                    metadata.height = this.height;
-                };
-                break;
-
-            case 'audio':
-                var audio = new Audio();
-
-                audio.src = _URL.createObjectURL(file);
-                audio.onloadedmetadata = function() {
-                    metadata.duration = Math.floor(this.duration);
-                };
-                break;
-
-            case 'video':
-                var video = document.createElement('video');
-
-                video.src = _URL.createObjectURL(file);
-                video.onloadedmetadata = function() {
-                    metadata.width = this.videoWidth;
-                    metadata.height = this.videoHeight;
-                    metadata.duration = Math.floor(this.duration);
-                };
-                break;
-
-            default:
-                break;
-        }
-
-        return metadata;
     }
 
     return AttachView;

@@ -81,6 +81,16 @@ define([
                     if (res.status == 408) {
                         alert('Denning session expired!');
                     }
+                    //  else if (res.status == 0) { // strange exception
+                    //     res = {
+                    //         code: "200",
+                    //         desc: "success",
+                    //         success: [
+                    //             "v1/app/matter/0800-8888/fileFolder/rex43ifqw5.jpg?subFolder=\chatAttachment.5bd43090a0eb477ca71c1c35"
+                    //         ]
+                    //     };
+                    //     callback(res);
+                    // }
                 }
             });            
         }
