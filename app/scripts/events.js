@@ -625,20 +625,6 @@ define([
                 UserView.loginForm();
             });
 
-            /* forgot and reset page
-            ----------------------------------------------------- */
-            $('#forgotForm').on('click submit', function(event) {
-                Helpers.log('send letter');
-                event.preventDefault();
-                UserView.forgotForm();
-            });
-
-            $('#resetForm').on('click submit', function(event) {
-                Helpers.log('reset password');
-                event.preventDefault();
-                UserView.resetForm();
-            });
-
             /* popovers
             ----------------------------------------------------- */
             $('#avatar-container').on('click', function(event) {

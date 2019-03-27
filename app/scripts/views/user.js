@@ -45,16 +45,6 @@ define([
             User.login();
         },
 
-        forgotForm: function() {
-            clearErrors();
-            User.forgot();
-        },
-
-        resetForm: function() {
-            clearErrors();
-            User.resetPass();
-        },
-
         autologin: function() {
             switchPage($('#loginPage'));
             User.autologin();

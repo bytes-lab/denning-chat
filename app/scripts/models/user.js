@@ -111,39 +111,46 @@ define([
         },
 
         login: function(defaultUser) {
+            var DenningApi = this.app.denningApi,
+                UserView = this.app.views.User,
+                form = $('section:visible form'),
+                self = this;
+
+            localStorage.removeItem('DC._logOut');
+
+            if (defaultUser) {
+                UserView.createSpinner();
+                this.qbLogin(defaultUser);
+            } else if (validate(form, this)) {
+                UserView.createSpinner();
+
+                DenningApi.call('post', 'v1/signIn', tempParams, function (users) {
+
+                });
+            }
+        },
+
+        qbLogin: function(params) {
             var QBApiCalls = this.app.service,
                 UserView = this.app.views.User,
                 DialogView = this.app.views.Dialog,
                 Contact = this.app.models.Contact,
-                form = $('section:visible form'),
-                self = this,
-                params;
+                self = this;
 
-            localStorage.removeItem('DC._logOut');
+            QBApiCalls.createSession(params, function(session) {
+                QBApiCalls.getUser(session.user_id, function(user) {
+                    self.contact = Contact.create(user);
 
-            if (defaultUser || validate(form, this)) {
-                UserView.createSpinner();
-
-                params = {
-                    email: defaultUser && defaultUser.email || tempParams.email,
-                    password: defaultUser && defaultUser.password || tempParams.password
-                };
-
-                QBApiCalls.createSession(params, function(session) {
-                    QBApiCalls.getUser(session.user_id, function(user) {
-                        self.contact = Contact.create(user);
-
-                        Helpers.log('User', self);
-                        
-                        UserView.successFormCallback();
-                        QBApiCalls.connectChat(self.contact.user_jid, function() {
-                            self.rememberMe();
-                            DialogView.prepareDownloading();
-                            DialogView.downloadDialogs();
-                        });
+                    Helpers.log('User', self);
+                    
+                    UserView.successFormCallback();
+                    QBApiCalls.connectChat(self.contact.user_jid, function() {
+                        self.rememberMe();
+                        DialogView.prepareDownloading();
+                        DialogView.downloadDialogs();
                     });
                 });
-            }
+            });
         },
 
         rememberMe: function() {
@@ -157,24 +164,6 @@ define([
             });
 
             localStorage.setItem('DC.user', JSON.stringify(storage));
-        },
-
-        forgot: function() {
-            var QBApiCalls = this.app.service,
-                UserView = this.app.views.User,
-                form = $('section:visible form'),
-                self = this;
-
-            if (validate(form, this)) {
-                UserView.createSpinner();
-
-                QBApiCalls.createSession({}, function() {
-                    QBApiCalls.forgotPassword(tempParams.email, function() {
-                        UserView.successSendEmailCallback();
-                        self._valid = false;
-                    });
-                });
-            }
         },
 
         autologin: function() {
@@ -307,18 +296,6 @@ define([
         $('section:visible .text_error').addClass('is-error').text(errMsg);
         $('section:visible input:password').val('');
         $('section:visible .chroma-hash label').css('background-color', 'rgb(255, 255, 255)');
-    }
-
-    function getImport(user) {
-        var isImport;
-
-        try {
-            isImport = JSON.parse(user.custom_data).is_import || null;
-        } catch (err) {
-            isImport = null;
-        }
-
-        return isImport;
     }
 
     return User;
