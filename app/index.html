@@ -289,13 +289,14 @@
             <div class="filter-item active" data-category="0">All</div>
             <div class="filter-item" data-category="1">Contact</div>
             <div class="filter-item" data-category="2">Matter</div>
-            <div class="filter-item" data-category="4">Transit</div>
+            <!-- <div class="filter-item" data-category="4">Property</div> -->
+            <div class="filter-item" data-category="8">Transit</div>
         </div>
 
         <ul class="popup-elem list list_matters"></ul>
         <div class="center-align m-b-10">
             <button class="btn cyan send-denning-files is-hidden">Send</button>
-            <button class="btn grey lighten-1 back is-hidden">Back</button>            
+            <button class="btn grey lighten-1 back is-hidden">Back</button>
         </div>
     </div>
 
@@ -441,7 +442,7 @@
                 <option value="matters" class="matters">Matter</option>
                 <option value="denning" class="denning">Denning</option>
             </select>
-        </div>        
+        </div>
         <div class="popup-content">
             <ul class="list list_contacts scrollbarContacts"></ul>
             <div class="note l-flexbox l-flexbox_column">
@@ -466,7 +467,7 @@
         <div style="text-align: center; margin: 10px;">
             <button class="waves-effect waves-light btn saveProfile j-saveProfile" data-dialog="" data-balloon="Save Settings" data-balloon-pos="down">
                 Save
-            </button>            
+            </button>
             <button class="waves-effect waves-light btn addToGroupChat" data-ids="" data-dialog="" data-balloon="Add occupants to group chat" data-balloon-pos="down">
                 Add members
             </button>
@@ -474,7 +475,7 @@
                 Leave
             </button>
         </div>
-    </div>    
+    </div>
 </div>
 
 <audio id="newMessageSignal">
@@ -647,7 +648,7 @@
                     <% if (user_role != 'client' ) { %>
                     <button class="btn_chat btn_chat_leave groupProfile j-groupProfile" data-balloon="Settings and profile" data-balloon-pos="down" data-ids="<%= occupantsIds.join() %>" data-dialog="<%= dialog_id %>">
                         <img src="images/ic_settings_black_24px.svg" alt="Chat profile">
-                    </button>                    
+                    </button>
                     <% } %>
                 <% } %>
             </div>

@@ -221,15 +221,7 @@ define([
 
             $('.mediacall .btn_hangup').click();
 
-            User.logout(function() {
-                switchOnWelcomePage();
-                $('.j-capBox').removeClass('is-hidden');
-                $('.j-chatWrap').addClass('is-hidden');
-                $('.j-popover_const').removeClass('is-active');
-                $('.l-chat').remove();
-                Helpers.log('current User and Session were destroyed');
-                DialogView.logoutWithClearData();
-            });
+            User.logout();
         },
 
         localSearch: function(form) {

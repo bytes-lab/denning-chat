@@ -78,7 +78,7 @@ define([
 
     DenningChat.prototype = {
         init: function() {
-            var token;
+            var token, logged_out = false;
 
             this.setHtml5Patterns();
 
@@ -93,6 +93,7 @@ define([
                 this.service.init();
             } else {
                 // removing the old cached data from LocalStorage
+                logged_out = localStorage.getItem('DC._logOut');
                 var tmp = localStorage.userInfo;
                 localStorage.clear();
                 if (tmp)
@@ -110,12 +111,12 @@ define([
                 Helpers.log('App init', this);
                 var email = this.denningApi.getEmail();
 
-                if (email) {
+                if (email && !logged_out) {
                     this.models.User.login({ 
                         email: email, 
                         password: Helpers.getURLParameter('sppid') || 'denningIT'
                     });
-                }                
+                }
             }
         },
 

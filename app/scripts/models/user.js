@@ -119,6 +119,8 @@ define([
                 self = this,
                 params;
 
+            localStorage.removeItem('DC._logOut');
+
             if (defaultUser || validate(form, this)) {
                 UserView.createSpinner();
 
@@ -217,6 +219,7 @@ define([
 
                 var tmp = localStorage.userInfo;
                 localStorage.clear();
+                localStorage.setItem('DC._logOut', true);
                 if (tmp)
                     localStorage.setItem('userInfo', tmp);
                 window.location.reload();
