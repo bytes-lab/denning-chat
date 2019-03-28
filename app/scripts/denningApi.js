@@ -53,7 +53,7 @@ define([
                 _sessionID = "{334E910C-CC68-4784-9047-0F23D37C9CF9}";
 
                 if (['v1/signIn', 'v1/web/staffLogin'].indexOf(path) > -1) {
-                    email = "online@denning.com.my"
+                    email = "online@denning.com.my";
                     if (['v1/web/staffLogin'].indexOf(path) > -1) {
                         url = baseUrl + path;
                     }

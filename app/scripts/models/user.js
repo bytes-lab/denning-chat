@@ -21,7 +21,7 @@ define([
     Helpers,
     Person,
     ProfileView,
-    Fingerprint2,
+    Fingerprint2
 ) {
 
     var self,
