@@ -12,7 +12,7 @@ define([
     'Helpers',
     'models/person',
     'views/profile',
-    'views/change_password'
+    'fingerprint2',
 ], function(
     $,
     _,
@@ -21,7 +21,7 @@ define([
     Helpers,
     Person,
     ProfileView,
-    ChangePassView
+    Fingerprint2,
 ) {
 
     var self,
@@ -47,12 +47,7 @@ define([
                 model: currentUser
             });
 
-            var changePassView = new ChangePassView({
-                model: currentUser
-            });
-
             self.app.views.Profile = profileView;
-            self.app.views.ChangePass = changePassView;
         },
 
         updateQBUser: function(user) {
@@ -124,8 +119,26 @@ define([
             } else if (validate(form, this)) {
                 UserView.createSpinner();
 
-                DenningApi.call('post', 'v1/signIn', tempParams, function (users) {
+                new Fingerprint2().get(function (result, components) {
+                    var data = {
+                        ipWAN: "121.196.213.102",
+                        ipLAN: "192.168.0.101",
+                        OS: "Windows 10",
+                        device: "laptop",
+                        deviceName: "laptop01",
+                        MAC: result,
+                        email: tempParams.email,
+                        password: tempParams.password
+                    };
 
+                    DenningApi.call('post', 'v1/signIn', JSON.stringify(data), function (resp) {
+                        data.sessionID = resp.sessionID;
+                        localStorage.setItem('userInfo', JSON.stringify(resp));
+
+                        DenningApi.call('post', 'v1/web/staffLogin', JSON.stringify(data), function (resp) {
+                            self.qbLogin({ email: tempParams.email, password: 'denningIT' });                            
+                        });
+                    });
                 });
             }
         },
