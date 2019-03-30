@@ -119,7 +119,10 @@ define([
             } else if (validate(form, this)) {
                 UserView.createSpinner();
 
-                new Fingerprint2().get(function (result, components) {
+                Fingerprint2.get(function (components) {
+                    var values = components.map(function (component) { return component.value; }),
+                        result = Fingerprint2.x64hash128(values.join(''), 31);
+
                     var data = {
                         ipWAN: "121.196.213.102",
                         ipLAN: "192.168.0.101",
@@ -133,14 +136,24 @@ define([
 
                     DenningApi.call('post', 'v1/signIn', JSON.stringify(data), function (resp) {
                         data.sessionID = resp.sessionID;
-                        localStorage.setItem('userInfo', JSON.stringify(resp));
-
-                        DenningApi.call('post', 'v1/web/staffLogin', JSON.stringify(data), function (resp) {
-                            self.qbLogin({ email: tempParams.email, password: 'denningIT' });                            
-                        });
+                        if (resp.statusCode == 250) {
+                            data.activationCode = "654321";
+                            DenningApi.call('post', 'v1/SMS/newDevice', JSON.stringify(data), function (resp) {
+                                self.denningStaffLogin(data);
+                            });
+                        } else {
+                            self.denningStaffLogin(data);
+                        }
                     });
                 });
             }
+        },
+
+        denningStaffLogin: function(data) {
+            DenningApi.call('post', 'v1/web/staffLogin', JSON.stringify(data), function (resp) {
+                localStorage.setItem('userInfo', JSON.stringify(resp));
+                self.qbLogin({ email: tempParams.email, password: 'denningIT' });
+            });
         },
 
         qbLogin: function(params) {

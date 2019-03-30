@@ -53,7 +53,7 @@ requirejs.config({
         QBNotification: '../bower_components/web-notifications/qbNotification',
         lamejs: '../bower_components/lamejs/lame.min',
         QBMediaRecorder: '../bower_components/media-recorder-js/mediaRecorder',
-        fingerprint2: '../bower_components/fingerprintjs2/dist/fingerprint2.min',
+        fingerprint2: '../bower_components/fingerprintjs2/fingerprint2',
         // Denning application
         config: '../configs/main_config',
         MainModule: 'app',

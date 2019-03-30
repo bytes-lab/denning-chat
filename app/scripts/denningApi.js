@@ -48,11 +48,11 @@ define([
         call: function (method, path, data, callback) {
             self.init();
 
-            if (['v2/chat/contact', 'v1/chat/contact/fav', 'v1/signIn', 'v1/web/staffLogin'].indexOf(path) > -1) {
+            if (['v2/chat/contact', 'v1/chat/contact/fav', 'v1/signIn', 'v1/web/staffLogin', 'v1/SMS/newDevice'].indexOf(path) > -1) {
                 url = 'https://denningonline.com.my/denningapi/' + path;
                 _sessionID = "{334E910C-CC68-4784-9047-0F23D37C9CF9}";
 
-                if (['v1/signIn', 'v1/web/staffLogin'].indexOf(path) > -1) {
+                if (['v1/signIn', 'v1/web/staffLogin', 'v1/SMS/newDevice'].indexOf(path) > -1) {
                     email = "online@denning.com.my";
                     if (['v1/web/staffLogin'].indexOf(path) > -1) {
                         url = baseUrl + path;

@@ -21,7 +21,7 @@
     "quickblox": "^2.6.0",
     "firebase": "^4.3.1",
     "jquery-ui": "^1.12.1",
-    "fingerprintjs2": "~1.6.1"
+    "fingerprintjs2": "^2.0.0"
   },
   "devDependencies": {}
 }
