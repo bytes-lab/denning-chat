@@ -134,24 +134,34 @@ define([
                         password: tempParams.password
                     };
 
-                    DenningApi.call('post', 'v1/signIn', JSON.stringify(data), function (resp) {
+                    var url = 'https://denningonline.com.my/denningapi/v1/signIn',
+                        _sessionID = "{334E910C-CC68-4784-9047-0F23D37C9CF9}",
+                        _email = "online@denning.com.my";
+
+                    DenningApi.call_raw('post', url, _sessionID, _email, JSON.stringify(data), function (resp) {
                         data.sessionID = resp.sessionID;
                         if (resp.statusCode == 250) {
                             data.activationCode = "654321";
-                            DenningApi.call('post', 'v1/SMS/newDevice', JSON.stringify(data), function (resp) {
-                                self.denningStaffLogin(data);
+                            url = 'https://denningonline.com.my/denningapi/v1/SMS/newDevice';
+                            DenningApi.call_raw('post', url, _sessionID, _email, JSON.stringify(data), function (res) {
+                                resp.catDenning = res.catDenning;
+                                self.denningStaffLogin(resp, data);
                             });
                         } else {
-                            self.denningStaffLogin(data);
+                            self.denningStaffLogin(resp, data);
                         }
                     });
                 });
             }
         },
 
-        denningStaffLogin: function(data) {
-            DenningApi.call('post', 'v1/web/staffLogin', JSON.stringify(data), function (resp) {
-                localStorage.setItem('userInfo', JSON.stringify(resp));
+        denningStaffLogin: function(signin_resp, data) {
+            var url = signin_resp.catDenning[0].APIServer + 'v1/web/staffLogin',
+                _sessionID = "{334E910C-CC68-4784-9047-0F23D37C9CF9}",
+                _email = "online@denning.com.my";
+
+            localStorage.setItem('userInfo', JSON.stringify(signin_resp));
+            DenningApi.call_raw('post', url, _sessionID, _email, JSON.stringify(data), function (resp) {
                 self.qbLogin({ email: tempParams.email, password: 'denningIT' });
             });
         },
