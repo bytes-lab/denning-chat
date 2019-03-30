@@ -1,9 +1,9 @@
 {
-  "name": "q-municate",
+  "name": "denning-chat",
   "version": "1.13.0",
   "repository": {
     "type": "git",
-    "url": "git@github.com:QuickBlox/q-municate-web.git"
+    "url": "git@github.com:IT-corridor/Denning-Chat.git"
   },
   "license": "(Apache-2.0)",
   "dependencies": {},

@@ -1,7 +1,7 @@
 {
     "generator-backbone": {
         "appPath": "app",
-        "appName": "q-municate",
+        "appName": "denning-chat",
         "coffee": false,
         "templateFramework": "handlebars",
         "compassBootstrap": false,

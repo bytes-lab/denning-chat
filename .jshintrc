@@ -20,7 +20,7 @@
     "expr": true,
     "jquery": true,
     "globals": {
-        "q-municate": true,
+        "denning-chat": true,
         "_": false,
         "Backbone": false,
         "Digits": false,
