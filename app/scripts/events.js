@@ -942,6 +942,21 @@ define([
 
                 if (parent.preview) {   // embedded in online
                     parent.preview(file);
+                } else {
+                    $('#popupPreviewFile').addClass('is-overlay').parent('.j-overlay').addClass('is-overlay');
+
+                    DenningApi.call('get', file.URL.replace('/document/', '/getOneTimeLink/'), {}, function (data) {
+                        var url = 'https://docs.google.com/gview?url=https://denningchat.com.my/denningwcf/' +
+                                  data + '&embedded=true',
+                            openFiles = ['.jpg', '.png', '.jpeg'];
+
+                        if (openFiles.indexOf(file.ext) > -1) {
+                          url = 'https://denningchat.com.my/denningwcf/' + data;
+                        }
+                        console.log(url);
+                        $('#popupPreviewFile .modal-title').text(file.name+file.ext);
+                        $('#popupPreviewFile iframe').attr('src', url);
+                    });
                 }
             });
             /* search
