@@ -5,9 +5,11 @@
  *
  */
 define([
-    'loadImage'
+    'loadImage',
+    'Entities'
 ], function(
-    loadImage
+    loadImage,
+    Entities
 ) {
 
     function Attach(app) {
@@ -23,14 +25,16 @@ define([
 
             this.getBase64(file).then(function(base64_data) {
                 var lastModifiedDate = file.lastModifiedDate,
-                    dialog_id = this.app.entities.active;
+                    dialog_id = this.app.entities.active,
+                    dialogs = Entities.Collections.dialogs,
+                    dialog = dialogs.get(dialog_id);
 
                 if (typeof file.lastModified === "number") {
                     lastModifiedDate = new Date(file.lastModified);
                 }
 
                 var param = {
-                    "fileNo1": "0800-8888",
+                    "fileNo1": dialog.get('data').fileNo1 || "0800-8888",
                     "dialog_id": dialog_id,
                     "documents":[
                         {

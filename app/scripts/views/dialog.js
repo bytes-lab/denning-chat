@@ -661,7 +661,8 @@ define([
                         role_admin: Helpers.getAdmin(ContactList.denningUsers, User.contact),
                         role_normal: Helpers.getRoles(ContactList.denningUsers, ContactList.contacts, occupants_ids, 'colleague'),        // staff
                         role_reader: Helpers.getRoles(ContactList.denningUsers, ContactList.contacts, occupants_ids, 'Client'),
-                        notifications: 1
+                        notifications: 1,
+                        fileNo1: "0800-8888"
                     }
                 }, function(dialog) {
                     self.removeDataSpinner();
