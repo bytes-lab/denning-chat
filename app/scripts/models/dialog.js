@@ -424,9 +424,7 @@ define([
                 Helpers.log(res);
             });
         }
-
     };
 
     return Dialog;
-
 });
