@@ -523,7 +523,7 @@ define([
 
             $('.d-file-type .filter-item').on('click', function() {
                 // for denning file type filter
-                console.log($(this).data('ext'));
+                filterDenningFiles();
             });
 
             function selectTabFilter() {
@@ -1020,7 +1020,7 @@ define([
                     if (this.id === 'searchContacts') {
                         UserView.localSearch($self);
                     } else if (this.id === 'docSearch') {
-                        UserView.docSearch($self);
+                        filterDenningFiles();
                     } else {
                         UserView.friendsSearch($self);
                     }
@@ -1523,6 +1523,21 @@ define([
         $chat.find('.l-chat-content').toggleClass('l-chat-content_min');
     }
 
-    return Events;
+    function filterDenningFiles() {
+        var ext = $('.d-file-type .filter-item.active').data('ext').toLowerCase(),
+            keyword = $('#docSearch input').val().toUpperCase();
 
+        $('.list_matters').find('.list-item-file').each(function() {
+            var ext_ = $(this).data('ext').toLowerCase(),
+                name_ = $(this).find('.matter_title').text().toLowerCase()+$(this).find('.file_title').text().toLowerCase();
+
+            if ((ext == '*' || ext.indexOf(ext_) > -1) && (name_.indexOf(keyword) > -1)) {
+                $(this).removeClass('is-hidden');
+            } else {
+                $(this).addClass('is-hidden');
+            }
+        });
+    }
+
+    return Events;
 });

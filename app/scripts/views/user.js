@@ -259,24 +259,6 @@ define([
             }
         },
 
-        docSearch: function(form) {
-            var val = form.find('input[type="search"]').val().trim().toLowerCase(),
-                $notSearchLists = $('.list_matters');
-
-            if (val.length > 0) {
-                $('.list_matters').find('.list-item-file').each(function() {
-                    var name = $(this).find('.matter_title').text().toLowerCase()+$(this).find('.file_title').text().toLowerCase(),
-                        li = $(this).clone();
-
-                    if (name.indexOf(val) == -1) {
-                        $(this).addClass('is-hidden');
-                    }
-                });
-            } else {
-                $('.list_matters').find('.list-item-file').removeClass('is-hidden');
-            }
-        },
-
         friendsSearch: function(form) {
             var val = form.find('input[type="search"]').val().trim().toLowerCase(),
                 result = form.next();
