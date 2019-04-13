@@ -941,6 +941,10 @@ define([
                         MessageView._sendMessage(jid, val, type, dialog_id, dext);
                     }
                     closePopup();
+
+                    // reset file select dialog
+                    $('#popupFileFolder button.back').click();
+                    $('.j-fileSearch .j-clean-button').click();
                 }
             });
             
@@ -964,7 +968,7 @@ define([
                         if (openFiles.indexOf(file.ext) > -1) {
                           url = 'https://denningchat.com.my/denningwcf/' + data;
                         }
-                        console.log(url);
+
                         $('#popupPreviewFile .modal-title').text(file.name+file.ext);
                         $('#popupPreviewFile iframe').attr('src', url);
                     });
