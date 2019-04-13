@@ -285,12 +285,18 @@
             <input class="form-input-search without_M doc-search" type="search" placeholder="Search docs">
             <button class="clean-button j-clean-button" type="reset">✕</button>
         </div>
-        <div class="pill" data-for="file">
+        <div class="pill d-file-category" data-for="file">
             <div class="filter-item rf-14 w19 active" data-category="0">All</div>
             <div class="filter-item rf-14 w20" data-category="1">Contact</div>
             <div class="filter-item rf-14 w19" data-category="2">Matter</div>
             <div class="filter-item rf-14 w23" data-category="4">Property</div>
             <div class="filter-item rf-14 w19" data-category="8">Transit</div>
+        </div>
+        <div class="pill d-file-type is-hidden" data-for="file">
+            <div class="filter-item rf-14 w25 active" data-ext=".pdf">Pdf</div>
+            <div class="filter-item rf-14 w25" data-ext=".doc">Word</div>
+            <div class="filter-item rf-14 w25" data-ext=".xls">Excel</div>
+            <div class="filter-item rf-14 w25" data-ext="*">Other</div>
         </div>
 
         <ul class="popup-elem list list_matters"></ul>

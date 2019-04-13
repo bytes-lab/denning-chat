@@ -493,12 +493,12 @@ define([
                 $('.j-sidebar__tab_link').removeClass('active');
                 $(this).addClass('active');
 
-                $('.filter-item').removeClass('active');
-                $('.filter-item:first-child').addClass('active');
+                $('.main .filter-item').removeClass('active');
+                $('.main .filter-item:first-child').addClass('active');
 
                 var tab_type = $('.j-sidebar__tab_link.active').data('type');
                 if (tab_type == "contact" || tab_type == "favourite") {
-                    $('.filter-item:last-child').addClass('disabled');
+                    $('.main .filter-item:last-child').addClass('disabled');
                 }
                 // reset search
                 $('.localSearch input').val('');
@@ -511,12 +511,19 @@ define([
 
                 $(this).siblings().removeClass('active');
                 $(this).addClass('active');
+            });
 
-                if ($(this).parent().data('for') == 'main') {
-                    selectTabFilter();      // for main filter
-                } else {
-                    loadFolders();          // for denning file filter
-                }
+            $('.main .filter-item').on('click', function() {
+                selectTabFilter();      // for main filter
+            });
+
+            $('.d-file-category .filter-item').on('click', function() {
+                loadFolders();          // for denning file filter
+            });
+
+            $('.d-file-type .filter-item').on('click', function() {
+                // for denning file type filter
+                console.log($(this).data('ext'));
             });
 
             function selectTabFilter() {
@@ -531,10 +538,10 @@ define([
                 } else if (tab_type == "favourite") {
                     ContactListView.showContacts(filter_type, 'favourite_');
                 } else if (tab_type == "chat") {
-                    $('.filter-item:last-child').removeClass('disabled');
+                    $('.main .filter-item:last-child').removeClass('disabled');
                     DialogView.showChats(false, filter_type);
                 } else {
-                    $('.filter-item:last-child').removeClass('disabled');
+                    $('.main .filter-item:last-child').removeClass('disabled');
                     $('.new-group').removeClass('is-hidden');
                     $('.l-list-wrap').addClass('group');
                     DialogView.showChats(true, filter_type);
@@ -571,11 +578,11 @@ define([
                     filter_type = $('.filter-item.active').data('type');
 
                 if (tab_type != 'chat') {
-                    $('.filter-item').removeClass('active');
-                    $('.filter-item:first-child').addClass('active');
+                    $('.main .filter-item').removeClass('active');
+                    $('.main .filter-item:first-child').addClass('active');
                     $('.j-sidebar__tab_link:first').click();
                 } else if (filter_type != 'contact') {
-                    $('.filter-item:first-child').click();
+                    $('.main .filter-item:first-child').click();
                 }
 
                 selectOrCreateChat(id);
@@ -860,8 +867,10 @@ define([
                     type = $(this).data('type').toLowerCase();
                 Helpers.View.hide('.list-item-matter');
                 Helpers.View.hide('.j-fileSearch');
+                Helpers.View.hide('.d-file-category');
                 Helpers.View.show('#popupFileFolder button.btn');
                 Helpers.View.show('.j-ifileSearch');
+                Helpers.View.show('.d-file-type');
 
                 $('.j-ifileSearch .form-input-search').val('');
                 $('.filename').text($(this).find('.matter_title').text().replace("Matter: ", ""));
@@ -900,8 +909,10 @@ define([
                 Helpers.View.hide('#popupFileFolder button.btn');
                 Helpers.View.hide('.j-ifileSearch');
                 Helpers.View.hide('.no-matter-file');
+                Helpers.View.hide('.d-file-type');
                 Helpers.View.show('.j-fileSearch');
                 Helpers.View.show('.list-item-matter');
+                Helpers.View.show('.d-file-category');
 
                 $('.list-item-file').remove();
                 $('.filename').text('Search Denning Folders');
