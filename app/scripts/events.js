@@ -478,7 +478,7 @@ define([
                 return false;
             });
 
-            $('.care-line').on('click', function() {
+            $body.on('click', '.care-line', function() {
                 $('.new-group').addClass('is-hidden');
                 $('.j-sidebar__tab_link').removeClass('active');
                 $('.main .filter-item').removeClass('active');

@@ -662,7 +662,7 @@ define([
                         role_normal: Helpers.getRoles(ContactList.denningUsers, ContactList.contacts, occupants_ids, 'colleague'),        // staff
                         role_reader: Helpers.getRoles(ContactList.denningUsers, ContactList.contacts, occupants_ids, 'Client'),
                         notifications: 1,
-                        fileNo1: "0800-8888"
+                        fileNo1: "0700-7777"
                     }
                 }, function(dialog) {
                     self.removeDataSpinner();
