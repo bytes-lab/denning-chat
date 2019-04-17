@@ -48,9 +48,10 @@ define([
 
             self.denningUsers = users;
 
-            if (!contactLoaded) {
+            if (!contactLoaded && false) {
                 var value = _.difference(emails, _.pluck(self.contacts, 'email'));
                 if (value.length > 0) {
+                    console.log(value, '@@@');
                     params = {
                         filter: {
                             field: 'email',
