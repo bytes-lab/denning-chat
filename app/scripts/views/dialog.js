@@ -972,7 +972,7 @@ define([
         var str = '';
 
         if (!status || status.subscription === 'none') {
-            str += '<span class="status status_request"></span>';
+            str += '<span class="status"></span>';
         } else if (status && status.status) {
             str += '<span class="status status_online"></span>';
         } else {

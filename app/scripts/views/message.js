@@ -946,7 +946,7 @@ define([
     ---------------------------------------------------------------------- */
     function getStatus(status, html) {
         if (!status || status.subscription === 'none') {
-            html += '<span class="status status_request"></span>';
+            html += '<span class="status"></span>';
         } else if (status && status.status) {
             html += '<span class="status status_online"></span>';
         } else {

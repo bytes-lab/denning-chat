@@ -616,7 +616,7 @@ define([
             delete notConfirmed[id];
             ContactList.saveNotConfirmed(notConfirmed);
 
-            dialogItem.find('.status').removeClass('status_online').addClass('status_request');
+            dialogItem.find('.status').removeClass('status_online');
             if (dialogItem.is('.l-chat')) {
                 dialogItem.addClass('is-request');
             }
