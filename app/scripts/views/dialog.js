@@ -255,6 +255,8 @@ define([
                             $('#emptyList').removeClass('is-hidden');
                         }
 
+                        // select colleages
+                        $('.main .filter-item:nth-child(2)').click();
                     });
 
                 } else if (!skip) {

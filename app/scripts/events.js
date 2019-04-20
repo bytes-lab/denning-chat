@@ -179,7 +179,6 @@ define([
                 return false;
             });
 
-
             $('.j-em_wrap').on('click', function(event) {
                 var target = $(this).children()[0],
                     textarea = $('.l-chat:visible .textarea')[0];
@@ -494,7 +493,7 @@ define([
                 $(this).addClass('active');
 
                 $('.main .filter-item').removeClass('active');
-                $('.main .filter-item:first-child').addClass('active');
+                $('.main .filter-item:nth-child(2)').addClass('active');
 
                 var tab_type = $('.j-sidebar__tab_link.active').data('type');
                 if (tab_type == "contact" || tab_type == "favourite") {
