@@ -355,7 +355,7 @@ define([
      */
 
     // select and open dialog
-    $('.list_contextmenu').on('click', '.contact.dialog', function() {
+    $('.list_contextmenu').on('click touchstart', '.contact.dialog', function() {
         var dialogId = $(this).parent().data('dialog');
 
         if (entities.active !== dialogId) {

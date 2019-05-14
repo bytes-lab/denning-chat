@@ -219,6 +219,9 @@ define([
         },
 
         resetRecord: function(dialogId) {
+            if (!self.supported)
+                return false;
+
             var popover = document.querySelector('.j-popover_record'),
                 button = document.querySelector('.j-btn_audio_record'),
                 activeDialogId = self.app.entities.active;
@@ -247,6 +250,9 @@ define([
         },
 
         startRecord: function() {
+            if (!self.supported)
+                return false;
+
             self.blob = null;
             self._startStream(function() {
                 self.recorder.start(self.stream);

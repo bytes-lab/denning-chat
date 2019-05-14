@@ -135,7 +135,7 @@ define([
                 return false;
             });
 
-            $body.on('click', '.j-open_sidebar', function(event) {
+            $body.on('click touchstart', '.j-open_sidebar', function(event) {
                 $('.l-sidebar').removeClass('active');
                 $('.l-sidebar').addClass('active');
             });
@@ -488,7 +488,7 @@ define([
                 Ps.update(scrollbar);
             });
 
-            $('.j-sidebar__tab_link').on('click', function() {
+            $('.j-sidebar__tab_link').on('click touchstart', function() {
                 $('.j-sidebar__tab_link').removeClass('active');
                 $(this).addClass('active');
 
@@ -504,7 +504,7 @@ define([
                 selectTabFilter();
             });
 
-            $('.filter-item').on('click', function() {
+            $('.filter-item').on('click touchstart', function() {
                 if (!$('.j-sidebar__tab_link.active').data('type'))
                     return;
 
@@ -512,15 +512,15 @@ define([
                 $(this).addClass('active');
             });
 
-            $('.main .filter-item').on('click', function() {
+            $('.main .filter-item').on('click touchstart', function() {
                 selectTabFilter();      // for main filter
             });
 
-            $('.d-file-category .filter-item').on('click', function() {
+            $('.d-file-category .filter-item').on('click touchstart', function() {
                 loadFolders();          // for denning file filter
             });
 
-            $('.d-file-type .filter-item').on('click', function() {
+            $('.d-file-type .filter-item').on('click touchstart', function() {
                 // for denning file type filter
                 filterDenningFiles();
             });
