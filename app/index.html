@@ -317,7 +317,7 @@
  -->
         </div>
         <div style="height: calc(100vh - 135px);">
-            <iframe ng-src="{{ url }}" style="width: 100%; height: 100%; border: 1px solid #aaa;"></iframe>
+            <iframe class="preview-iframe is-hidden" ng-src="{{ url }}"></iframe>
         </div>
     </div>
 
@@ -519,11 +519,10 @@
     <source src="audio/end_of_call.mp3" />
 </audio>
 
-<script src="bower_components/quickblox/quickblox.min.js"></script>
 <!-- build:js scripts/build.js -->
+<script src="bower_components/quickblox/quickblox.min.js"></script>
 <script src="bower_components/requirejs/require.js"></script>
 <script src="scripts/main.js"></script>
-
 <!-- endbuild -->
 
 <script id="tpl_avatarSection" type="text/template">

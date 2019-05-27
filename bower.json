@@ -20,7 +20,7 @@
     "jquery-ui": "^1.12.1",
     "fingerprintjs2": "^2.0.0",
     "fetch": "^2.0.3",
-    "quickblox": "^2.12.0"
+    "quickblox": "2.12.0"
   },
   "devDependencies": {}
 }

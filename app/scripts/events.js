@@ -136,6 +136,7 @@ define([
             });
 
             $body.on('click touchstart', '.j-open_sidebar', function(event) {
+                event.preventDefault();
                 $('.l-sidebar').removeClass('active');
                 $('.l-sidebar').addClass('active');
             });
@@ -957,20 +958,23 @@ define([
                 if (parent.preview) {   // embedded in online
                     parent.preview(file);
                 } else {
-                    $('#popupPreviewFile').addClass('is-overlay').parent('.j-overlay').addClass('is-overlay');
+                    if (screen.width >= 768) {
+                        $('#popupPreviewFile').addClass('is-overlay').parent('.j-overlay').addClass('is-overlay');
+                        Helpers.View.show('#popupPreviewFile iframe');
 
-                    DenningApi.call('get', file.URL.replace('/document/', '/getOneTimeLink/'), {}, function (data) {
-                        var url = 'https://docs.google.com/gview?url=https://denningchat.com.my/denningwcf/' +
-                                  data + '&embedded=true',
-                            openFiles = ['.jpg', '.png', '.jpeg'];
+                        DenningApi.call('get', file.URL.replace('/document/', '/getOneTimeLink/'), {}, function (data) {
+                            var url = 'https://docs.google.com/gview?url=https://denningchat.com.my/denningwcf/' +
+                                      data + '&embedded=true',
+                                openFiles = ['.jpg', '.png', '.jpeg'];
 
-                        if (openFiles.indexOf(file.ext) > -1) {
-                          url = 'https://denningchat.com.my/denningwcf/' + data;
-                        }
+                            if (openFiles.indexOf(file.ext) > -1) {
+                              url = 'https://denningchat.com.my/denningwcf/' + data;
+                            }
 
-                        $('#popupPreviewFile .modal-title').text(file.name+file.ext);
-                        $('#popupPreviewFile iframe').attr('src', url);
-                    });
+                            $('#popupPreviewFile .modal-title').text(file.name+file.ext);
+                            $('#popupPreviewFile iframe').attr('src', url);
+                        });                        
+                    }
                 }
             });
             /* search
@@ -1104,7 +1108,7 @@ define([
 
             /* dialogs
             ----------------------------------------------------- */
-            $('.list touchstart').on('click', '.contact.dialog', function(event) {
+            $('.list').on('click', '.contact.dialog', function(event) {
                 if (event.target.tagName !== 'INPUT') {
                     event.preventDefault();
                     $('.l-sidebar').removeClass('active');
@@ -1498,6 +1502,7 @@ define([
         $('.j-popupDelete.is-overlay').removeData('id');
         $('.is-overlay:not(.chat-occupants-wrap)').removeClass('is-overlay');
         $('.temp-box').remove();
+        Helpers.View.hide('#popupPreviewFile iframe');
 
         if ($('video.attach-video')[0]) {
             $('video.attach-video')[0].pause();
