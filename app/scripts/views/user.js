@@ -7,7 +7,6 @@
 define([
     'jquery',
     'config',
-    'quickblox',
     'Entities',
     'Helpers',
     'DCHtml',
@@ -15,7 +14,6 @@ define([
 ], function(
     $,
     DCCONFIG,
-    QB,
     Entities,
     Helpers,
     DCHtml,

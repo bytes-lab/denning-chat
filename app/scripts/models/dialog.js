@@ -6,13 +6,11 @@
  */
 define([
     'config',
-    'quickblox',
     'underscore',
     'Helpers',
     'Entities'
 ], function(
     DCCONFIG,
-    QB,
     _,
     Helpers,
     Entities

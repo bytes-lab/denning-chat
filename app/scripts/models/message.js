@@ -6,11 +6,9 @@
  */
 define([
     'config',
-    'quickblox',
     'Entities'
 ], function(
     DCCONFIG,
-    QB,
     Entities
 ) {
     var self;

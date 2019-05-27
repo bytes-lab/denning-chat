@@ -6,16 +6,16 @@ define([
     'underscore',
     'backbone',
     'config',
-    'quickblox',
     'Helpers'
 ], function(
     $,
     _,
     Backbone,
     DCCONFIG,
-    QB,
     Helpers
 ) {
+
+    var QB = window.QB;
 
     var entities = {
         Models: {},

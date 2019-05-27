@@ -7,12 +7,10 @@
 define([
     'jquery',
     'config',
-    'quickblox',
     'Helpers'
 ], function(
     $,
     DCCONFIG,
-    QB,
     Helpers
 ) {
 
@@ -39,7 +37,7 @@ define([
 
         if (!options.isCallee) {
             if (callType === 'video') {
-                self.session = QB.webrtc.createNewSession([options.opponentId], QB.webrtc.CallType.VIDEO);
+                self.session = QB.webrtc.createNewSession([options.opponentId], QB.webrtc.CallType.VIDEO, null, {bandwidth: 512});
             } else {
                 self.session = QB.webrtc.createNewSession([options.opponentId], QB.webrtc.CallType.AUDIO);
             }

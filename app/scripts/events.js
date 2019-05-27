@@ -477,7 +477,7 @@ define([
                 return false;
             });
 
-            $body.on('click', '.care-line', function() {
+            $body.on('click touchstart', '.care-line', function() {
                 $('.new-group').addClass('is-hidden');
                 $('.j-sidebar__tab_link').removeClass('active');
                 $('.main .filter-item').removeClass('active');
@@ -917,7 +917,7 @@ define([
                 $('.filename').text('Search Denning Folders');
             });
 
-            $('.j-close-button').on('click', function() {
+            $('.j-close-button').on('click touchstart', function() {
                 closePopup();
             });
 
@@ -1104,7 +1104,7 @@ define([
 
             /* dialogs
             ----------------------------------------------------- */
-            $('.list').on('click', '.contact.dialog', function(event) {
+            $('.list touchstart').on('click', '.contact.dialog', function(event) {
                 if (event.target.tagName !== 'INPUT') {
                     event.preventDefault();
                     $('.l-sidebar').removeClass('active');
@@ -1254,10 +1254,10 @@ define([
             $workspace.on('click', '.j-videoPlayer', function(e) {
                 var video = e.target;
 
-                if (!video.dataset.source) return false;
+                if (!video.dataset.source) return true;
 
                 video.src = video.dataset.source;
-                video.preload = 'metadata';
+                video.preload = 'auto';
                 video.poster = 'images/video_loader.gif';
 
                 video.addEventListener('loadeddata', isReady);

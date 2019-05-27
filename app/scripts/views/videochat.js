@@ -6,7 +6,6 @@
  */
 define([
     'jquery',
-    'quickblox',
     'Entities',
     'config',
     'Helpers',
@@ -14,7 +13,6 @@ define([
     'DCHtml'
 ], function(
     $,
-    QB,
     Entities,
     DCCONFIG,
     Helpers,
@@ -323,6 +321,7 @@ define([
 
             $incomings.find('.mCSB_container').prepend(htmlTpl);
             openPopup($incomings);
+            Helpers.pauseAllMedia();
 
             if (Settings.get('sounds_notify') && SyncTabs.get()) {
                 audioSignal.play();
@@ -459,31 +458,11 @@ define([
         }
     };
 
-    VideoChatView.prototype.onCallStatsReport = function(session, userId, stats) {
-        /**
-         * Hack for Firefox
-         * (https://bugzilla.mozilla.org/show_bug.cgi?id=852665)
-         */
-        if (is_firefox) {
-            var inboundrtp = _.findWhere(stats, {
-                type: 'inboundrtp'
-            });
-
-            if (!inboundrtp || !isBytesReceivedChanges(userId, inboundrtp)) {
-                if (!stopStreamFF) {
-                    stopStreamFF = setTimeout(function() {
-                        console.warn("This is Firefox and user " + userId + " has lost his connection.");
-
-                        if (!_.isEmpty(curSession)) {
-                            curSession.closeConnection(userId);
-                            $('.btn_hangup').click();
-                        }
-                    }, 30000);
-                }
-            } else {
-                clearTimeout(stopStreamFF);
-                stopStreamFF = undefined;
-            }
+    VideoChatView.prototype.onSessionConnectionStateChangedListener = function(session, userID, connectionState) {
+        // connectionState === 3 (failed) - will close connection (for firefox browser)
+        if (is_firefox && (connectionState === 3)) {
+            curSession.closeConnection(userID);
+            $('.btn_hangup').click();
         }
     };
 
@@ -718,27 +697,6 @@ define([
         } else {
             $status.hasClass('icon_videocall') ? $status.removeClass('icon_videocall') : $status.removeClass('icon_audiocall');
         }
-    }
-
-    function isBytesReceivedChanges(userId, inboundrtp) {
-        var res = true,
-            inbBytesRec = inboundrtp.bytesReceived;
-
-        if (network[userId] === undefined) {
-            network[userId] = {
-                'bytesReceived': inbBytesRec
-            };
-        } else {
-            if (network[userId].bytesReceived === inbBytesRec) {
-                res = false;
-            } else {
-                network[userId] = {
-                    'bytesReceived': inbBytesRec
-                };
-            }
-        }
-
-        return res;
     }
 
     function stopIncomingCall(id) {

@@ -4,13 +4,7 @@
  * Contact Module
  *
  */
-define([
-    'config',
-    'quickblox'
-], function(
-    DCCONFIG,
-    QB
-) {
+define(['config'], function(DCCONFIG) {
 
     function Contact(app) {
         this.app = app;

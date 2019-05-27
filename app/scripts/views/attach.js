@@ -7,7 +7,6 @@
 define([
     'jquery',
     'config',
-    'quickblox',
     'Helpers',
     'LocationView',
     'underscore',
@@ -15,7 +14,6 @@ define([
 ], function(
     $,
     DCCONFIG,
-    QB,
     Helpers,
     Location,
     _,

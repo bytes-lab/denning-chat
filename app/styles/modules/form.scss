@@ -86,7 +86,7 @@ input.form-input-search.without_M[type=search]:focus:not([readonly]) {
     position: absolute;
     width: 22px;
     height: 22px;
-    top: 15px;
+    top: 17px;
     right: 15px;
     color: #333;
     cursor: pointer;
@@ -96,12 +96,12 @@ input.form-input-search.without_M[type=search]:focus:not([readonly]) {
     top: 18px;
 }
 .form-input-message {
-    width: 96%;
+    width: 98%;
     height: 100%;
     margin: 0 auto;
-    padding: 8px 40px 5px 5px;
+    padding: 10px 40px 5px 5px;
     font-size: 15px;
-    line-height: 20px;
+    line-height: 22px;
     border-bottom: 1px solid #bebebe;
     resize: none;
     word-wrap: break-word;

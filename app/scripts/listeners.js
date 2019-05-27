@@ -4,18 +4,17 @@ define([
     'underscore',
     'jquery',
     'config',
-    'quickblox',
     'Helpers',
     'perfectscrollbar'
 ], function(
     _,
     $,
     DCCONFIG,
-    QB,
     Helpers,
     Ps
 ) {
     var self;
+    var QB = window.QB;
 
     function Listeners(app) {
         self = this;
@@ -105,7 +104,7 @@ define([
 
                 QB.webrtc.onUpdateCallListener    = VideoChatView.onUpdateCall;
                 QB.webrtc.onRemoteStreamListener  = VideoChatView.onRemoteStream;
-                QB.webrtc.onCallStatsReport       = VideoChatView.onCallStatsReport;
+                QB.webrtc.onSessionConnectionStateChangedListener = VideoChatView.onSessionConnectionStateChangedListener;
                 QB.webrtc.onSessionCloseListener  = VideoChatView.onSessionCloseListener;
                 QB.webrtc.onUserNotAnswerListener = VideoChatView.onUserNotAnswerListener;
             }
@@ -114,12 +113,7 @@ define([
         listenToMediaElement: function(selector) {
             document.querySelector(selector).onplaying = function(event) {
                 // pause all media sources except started one
-                document.querySelectorAll('.j-audioPlayer, .j-videoPlayer').forEach(function(element) {
-                    if (element !== event.target) {
-                        element.pause();
-                        element.currentTime = 0;
-                    }
-                });
+                Helpers.pauseAllMedia(event.target);
             };
         },
 
@@ -148,10 +142,11 @@ define([
         },
 
         onReconnectFailed: function(error) {
-            if (error) {
-                self.app.service.reconnectChat();
-                self.setChatState(false);
-            }
+            self.app.service.disconnectChat();
+    
+            self.app.models.User.autologin(function() {
+                _switchToOnlineMode();
+            });
         },
 
         _onNetworkStatusListener: function() {

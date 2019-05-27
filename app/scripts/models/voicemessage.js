@@ -4,12 +4,10 @@
 define([
     'config',
     'Helpers',
-    'lamejs',
     'QBMediaRecorder'
 ], function(
     DCCONFIG,
     Helpers,
-    lamejs,
     QBMediaRecorder
 ) {
     'use strict';
@@ -39,11 +37,13 @@ define([
 
     VoiceMessage.prototype = {
         init: function() {
-            if (QBMediaRecorder.isAvailable()) {
+            self.supported = false;
+    
+            if (Helpers.isIE11orEdge()) return true;
+    
+            if (QBMediaRecorder.isAvailable() || QBMediaRecorder.isAudioContext()) {
                 self.supported = true;
                 self._initRecorder();
-            } else {
-                self.supported = false;
             }
         },
 
@@ -65,31 +65,26 @@ define([
             self.ui.cancel = document.querySelector('.j-cancel_record');
             self.ui.progress = document.querySelector('.j-record_progress');
 
-            self.recorder = new QBMediaRecorder(options);
-
             self._initHandler();
+
+            self.recorder = new QBMediaRecorder(options);
 
             Helpers.log('Recorder is ready to use');
         },
 
         blockRecorder: function(message) {
-            var recorders = document.querySelectorAll('.j-btn_audio_record'),
+            var recorders = document.getElementsByClassName('j-btn_audio_record'),
                 error = message ? (' ' + message) : '(microphone wasn\'t found)';
 
             if (recorders.length) {
-                recorders.forEach(function(recorder) {
+                for (var i=0; i<recorders.length; i++) {
+                    var recorder = recorders[i];
                     recorder.disabled = true;
                     recorder.classList.remove('is-active');
                     recorder.classList.add('is-unavailable');
                     recorder.setAttribute('data-balloon-length', 'medium');
                     recorder.setAttribute('data-balloon', 'Recorder unavailable' + error);
-                });
-            }
-
-            if (message) {
-                Helpers.log('Recorder unavailable' + error);
-            } else {
-                Helpers.log('Recorder isn\'t supported is this browser');
+                }
             }
         },
 
@@ -101,7 +96,7 @@ define([
                 callback();
             }).catch(function(err) {
                 self.resetRecord();
-                self.blockRecorder();
+                self.blockRecorder('(microphone wasn\'t found)');
                 console.error(err);
             });
         },

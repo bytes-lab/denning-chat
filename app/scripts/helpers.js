@@ -3,13 +3,11 @@
  */
 define([
     'jquery',
-    'quickblox',
     'underscore',
     'config',
     'QBNotification'
 ], function(
     $,
-    QB,
     _,
     DCCONFIG,
     QBNotification
@@ -546,6 +544,21 @@ define([
 
     Helpers.getURLParameter = function(name) {
         return decodeURIComponent((new RegExp('[?|&]' + name + '=' + '([^&;]+?)(&|#|;|$)').exec(location.href) || [null, ''])[1].replace(/\+/g, '%20')) || null;
+    };
+
+    Helpers.pauseAllMedia = function(target) {
+        document.querySelectorAll('.j-audioPlayer, .j-videoPlayer').forEach(function(element) {
+            if (element !== target) {
+                element.pause();
+                if (target) {
+                    element.currentTime = 0;
+                }
+            }
+        });
+    };
+
+    Helpers.isIE11orEdge = function() {
+        return (/rv:11.0/i.test(navigator.userAgent) || /Edge\/\d./i.test(navigator.userAgent));
     };
 
     return Helpers;

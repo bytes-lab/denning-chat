@@ -101,8 +101,9 @@
 .disconnect.disconnected {
     height: 70px;
     opacity: 1;
+    height: 50px;
     visibility: visible;
-    background-color: rgba(150, 150, 150, 0.4);
+    background-color: rgba(150, 150, 150, 0.9);
 }
 .popup_connect {
     width: 100px;
@@ -138,7 +139,7 @@
     font-size: 18px;
     line-height: 24px;
     color: #9c27b0;
-    padding-top: 18px;
+    padding-top: 16px;
     padding-bottom: 2px;
 }
 .popup-form {

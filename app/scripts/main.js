@@ -38,7 +38,6 @@ requirejs.config({
         jquery: '../bower_components/jquery/dist/jquery',
         underscore: '../bower_components/underscore/underscore',
         backbone: '../bower_components/backbone/backbone',
-        quickblox: 'https://cdnjs.cloudflare.com/ajax/libs/quickblox/2.5.1/quickblox.min',
         progressbar: '../bower_components/progressbar.js/lib/control/progressbar',
         loadImage: '../bower_components/blueimp-load-image/js/load-image',
         mCustomScrollbar: '../bower_components/malihu-custom-scrollbar-plugin/jquery.mCustomScrollbar',
@@ -51,8 +50,7 @@ requirejs.config({
         nicescroll: '../bower_components/jquery.nicescroll/jquery.nicescroll.min',
         perfectscrollbar: '../bower_components/perfect-scrollbar/js/perfect-scrollbar.min',
         QBNotification: '../bower_components/web-notifications/qbNotification',
-        lamejs: '../bower_components/lamejs/lame.min',
-        QBMediaRecorder: '../bower_components/media-recorder-js/mediaRecorder',
+        QBMediaRecorder: '../bower_components/media-recorder-js/qbMediaRecorder',
         fingerprint2: '../bower_components/fingerprintjs2/fingerprint2',
         // Denning application
         config: '../configs/main_config',

@@ -96,8 +96,9 @@ define([
                 logged_out = localStorage.getItem('DC._logOut');
                 var tmp = localStorage.userInfo;
                 localStorage.clear();
-                if (tmp)
+                if (tmp) {
                     localStorage.setItem('userInfo', tmp);
+                }
                 localStorage.setItem('DC.isReleaseQBAccount', '1');
                 this.service.init();
             }
